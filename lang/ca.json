@@ -1,0 +1,101 @@
+{
+  "meta": { "lang": "ca", "title": "La Iaia – Cuina preparada amb ànima" },
+  "nav": {
+    "sobre": "Qui som",
+    "linies": "Què fem",
+    "productes": "Productes",
+    "qualitat": "Qualitat",
+    "contacte": "Contacte"
+  },
+  "hero": {
+    "eyebrow": "Cuina preparada amb ànima",
+    "title": "La cuina de sempre, preparada per al món d'avui.",
+    "slides": [
+      "El gust de la tradició, a punt per a la teva taula.",
+      "Cuina de mercat amb el sabor casolà de sempre.",
+      "La cuina que ens agrada, el menjar que et cuida.",
+      "Ingredients de primera selecció per a un resultat excepcional."
+    ],
+    "cta_primary": "Descobreix-nos",
+    "cta_secondary": "Contacta"
+  },
+  "sobre": {
+    "tag": "L'empresa",
+    "title": "Una empresa alimentària nascuda de la cuina de sempre.",
+    "text1": "Disposem d'un obrador industrial d'alta tecnologia dedicat exclusivament a l'elaboració de plats cuinats de mercat en gran format.",
+    "text2": "Transformem el receptari tradicional en més de 35 varietats de menjar preparat, garantint un control total del procés i la màxima qualitat en cada ració.",
+    "stat1_num": "35",  "stat1_suffix": "+", "stat1_label": "Varietats de plats",
+    "stat2_num": "18",  "stat2_suffix": "",  "stat2_label": "Dies de vida útil",
+    "stat3_num": "100", "stat3_suffix": "%", "stat3_label": "Producte artesà",
+    "stat4_num": "4",   "stat4_suffix": "°", "stat4_label": "Temp. conservació màx."
+  },
+  "linies": {
+    "tag": "Dues línies de negoci",
+    "alimentacio": {
+      "tag": "Producció i distribució",
+      "title": "La Iaia Alimentació",
+      "text": "Elaborem plats preparats i solucions de cinquena gamma per a hostaleria, retail, col·lectivitats i distribuïdors que necessiten producte segur, regular i de qualitat.",
+      "items": ["Obrador propi d'alta tecnologia", "Producció professional en gran format", "Cinquena gamma per a professionals", "Solucions per a empreses i distribuïdors"],
+      "cta": "Saber-ne més"
+    },
+    "botigues": {
+      "tag": "Venda directa",
+      "title": "La Iaia Botigues",
+      "text": "Apropem la cuina preparada al consumidor final a través de botigues físiques, amb plats pensats per menjar bé sense renunciar a la comoditat del dia a dia.",
+      "items": ["Plats preparats per emportar", "Cuina casolana i pràctica", "Venda directa al públic", "Proximitat amb el consumidor final"],
+      "cta": "Les nostres botigues"
+    }
+  },
+  "productes": {
+    "tag": "El nostre catàleg",
+    "title": "Plats preparats amb sabor, regularitat i confiança.",
+    "subtitle": "Més de 35 varietats elaborades amb ingredients de primera selecció i processos de qualitat controlats.",
+    "categories": [
+      { "id": "canelons",  "name": "Canelons i Lasanyes",        "icon": "bi-stack",       "image": null,                          "items": ["Canelons de carn", "Lasanya bolonyesa", "Lasanya vegetal"] },
+      { "id": "carns",     "name": "Carns i Guisats",            "icon": "bi-fire",        "image": null,                          "items": ["Fricandó de vedella", "Mandonguilles amb samfaina", "Estofat de vedella", "Galtes de porc", "Cua de bou", "Callos", "Pollastre a l'ast", "Cuixa a l'ast amb patates", "Costelles de porc BBQ", "Aletes de pollastre BBQ"] },
+      { "id": "peixos",    "name": "Peixos i Marisc",            "icon": "bi-droplet-half","image": null,                          "items": ["Bacallà amb pisto", "Lluç amb salsa verda", "Popets encebats", "Esqueixada de bacallà"] },
+      { "id": "llegums",   "name": "Llegums i Verdures",         "icon": "bi-tree",        "image": null,                          "items": ["Cigrons amb ou", "Llenties Riojana", "Fabada Asturiana", "Trinxat de la Cerdanya"] },
+      { "id": "arrossos",  "name": "Arrossos i Fideuàs",         "icon": "bi-grid-3x3",    "image": "img/paella_marisc.jpg",       "items": ["Fideuà marinera", "Paella de marisc", "Arròs de muntanya", "Risotto de bolets", "Risotto de gambes i verdures"] },
+      { "id": "pastes",    "name": "Pastes i Noodles",           "icon": "bi-slash-circle","image": "img/udon.jpg",                "items": ["Macarrons bolonyesa", "Tallarins carbonara", "Udon amb verdures i gambes", "Noodles amb verdures i vedella"] },
+      { "id": "croquetes", "name": "Croquetes",                  "icon": "bi-egg",         "image": "img/croquetes_pollastre.jpg", "items": ["Croquetes de pollastre", "Croquetes de pernil", "Croquetes de bolets (xiitake, gírgola i nameko)"] },
+      { "id": "amanides",  "name": "Amanides i Pastissos Freds", "icon": "bi-flower1",     "image": null,                          "items": ["Ensaladilla russa", "Pastís de tonyina"] },
+      { "id": "postres",   "name": "Postres",                    "icon": "bi-heart",       "image": null,                          "items": ["Properament..."] }
+    ]
+  },
+  "qualitat": {
+    "tag": "Els nostres estàndards",
+    "title": "Qualitat en cada pas.",
+    "subtitle": "La confiança es construeix amb processos rigorosos, producte regular i una manera de treballar orientada a garantir seguretat, sabor i servei.",
+    "items": [
+      { "icon": "bi-stars",            "title": "Selecció de Matèries Primeres", "text": "Ingredients de primera categoria, proveïdors de confiança i selecció acurada per garantir sabor i resultat excepcionals." },
+      { "icon": "bi-clipboard2-check", "title": "Rigor en la Preparació",        "text": "Mateixa recepta, mateix sabor. Pesem i mesurem cada ingredient per garantir la regularitat en tots els nostres plats." },
+      { "icon": "bi-lightning-charge", "title": "Cuina d'Avantguarda",           "text": "Combinem mètodes de cuina casolana amb equips d'última generació i processos de cocció adaptats a cada recepta." },
+      { "icon": "bi-box-seam",         "title": "Envasat d'Alta Protecció",      "text": "Atmosfera protectora per garantir una vida útil de 18 dies sense perdre les propietats organolèptiques del producte." },
+      { "icon": "bi-shield-check",     "title": "Laboratori de Control",         "text": "Pla d'higiene i desinfecció que controla cada fase de la producció, assegurant els estàndards de seguretat més elevats." },
+      { "icon": "bi-thermometer-snow", "title": "Logística i Cadena de Fred",    "text": "Distribució eficient que mai trenca la cadena de fred, mantenint el producte entre 2°C i 4°C fins al lliurament." }
+    ]
+  },
+  "contacte": {
+    "tag": "Parlem",
+    "title": "Explica'ns el teu projecte.",
+    "subtitle": "Tant si busques plats preparats per al teu negoci com una solució pràctica per al dia a dia, estem aquí per ajudar-te.",
+    "form": {
+      "nom": "Nom i cognoms",
+      "empresa": "Empresa",
+      "email": "Correu electrònic",
+      "telefon": "Telèfon",
+      "tipus": "Tipus de consulta",
+      "tipus_opts": ["Informació comercial", "Producte per a professionals", "Botigues", "Distribució", "Altres"],
+      "missatge": "Missatge",
+      "enviar": "Enviar missatge",
+      "ok_title": "Missatge enviat!",
+      "ok_text": "Ens posarem en contacte amb tu aviat."
+    }
+  },
+  "footer": {
+    "tagline": "Cuinem perquè menjar bé sigui més fàcil.",
+    "copy": "© 2026 La Iaia. Tots els drets reservats.",
+    "legal": "Avís legal",
+    "privacitat": "Privacitat"
+  }
+}

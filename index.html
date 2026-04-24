@@ -1,256 +1,320 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="ca">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Layaya — Próximamente</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+  <title>La Iaia</title>
 
-    :root {
-      --bg:       #f2faf2;
-      --green:    #77be79;
-      --green-dk: #3d7a3f;
-      --green-xdk:#1e4a20;
-      --green-lt: #a8d5aa;
-      --green-xlt:#d6edd7;
-      --muted:    #5a8f5c;
-    }
-
-    body {
-      min-height: 100vh;
-      background-color: var(--bg);
-      background-image:
-        radial-gradient(ellipse at 15% 55%, rgba(119, 190, 121, 0.18) 0%, transparent 55%),
-        radial-gradient(ellipse at 85% 15%, rgba(61, 122, 63, 0.12) 0%, transparent 50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Lato', sans-serif;
-      color: var(--green-xdk);
-      overflow: hidden;
-    }
-
-    /* Decorative top/bottom borders */
-    body::before,
-    body::after {
-      content: '';
-      position: fixed;
-      left: 0;
-      right: 0;
-      height: 5px;
-      background: linear-gradient(90deg, var(--green-dk), var(--green), var(--green-lt), var(--green), var(--green-dk));
-    }
-    body::before { top: 0; }
-    body::after  { bottom: 0; }
-
-    .container {
-      text-align: center;
-      padding: 2rem 1.5rem;
-      max-width: 640px;
-      animation: fadeUp 1s ease both;
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    .logo-wrap {
-      margin-bottom: 2.5rem;
-    }
-
-    .logo-wrap img {
-      width: min(280px, 70vw);
-      filter:
-        drop-shadow(0 6px 20px rgba(61, 122, 63, 0.18))
-        drop-shadow(0 2px 6px rgba(61, 122, 63, 0.10));
-      transition: transform 0.4s ease;
-    }
-
-    .logo-wrap img:hover {
-      transform: scale(1.03);
-    }
-
-    .divider {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin: 0 auto 2rem;
-      max-width: 320px;
-    }
-
-    .divider span {
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--green), transparent);
-    }
-
-    .divider-icon {
-      color: var(--green);
-      font-size: 1.1rem;
-    }
-
-    h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 5vw, 3rem);
-      font-weight: 700;
-      letter-spacing: -0.5px;
-      line-height: 1.2;
-      margin-bottom: 1rem;
-      color: var(--green-xdk);
-    }
-
-    h1 em {
-      font-style: italic;
-      color: var(--green-dk);
-    }
-
-    .subtitle {
-      font-size: clamp(1rem, 2.5vw, 1.15rem);
-      font-weight: 300;
-      color: var(--muted);
-      line-height: 1.75;
-      margin-bottom: 2.5rem;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: var(--green-xdk);
-      color: var(--bg);
-      font-size: 0.78rem;
-      font-weight: 400;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      padding: 0.55rem 1.4rem;
-      border-radius: 100px;
-      margin-bottom: 3rem;
-    }
-
-    .badge .dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--green-lt);
-      animation: pulse 2s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1;   transform: scale(1);   }
-      50%       { opacity: 0.3; transform: scale(0.65); }
-    }
-
-    .social {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .social a {
-      display: flex;
-      align-items: center;
-      gap: 0.45rem;
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 0.85rem;
-      letter-spacing: 0.04em;
-      padding: 0.5rem 1.2rem;
-      border: 1px solid var(--green-lt);
-      border-radius: 100px;
-      transition: all 0.25s ease;
-    }
-
-    .social a:hover {
-      color: var(--green-xdk);
-      border-color: var(--green-dk);
-      background: rgba(119, 190, 121, 0.12);
-    }
-
-    .footer {
-      position: fixed;
-      bottom: 1.5rem;
-      font-size: 0.75rem;
-      color: var(--green-lt);
-      letter-spacing: 0.06em;
-    }
-
-    /* Decorative blobs */
-    .shape {
-      position: fixed;
-      border-radius: 50%;
-      pointer-events: none;
-    }
-
-    .shape-1 {
-      width: 520px; height: 520px;
-      top: -160px; right: -160px;
-      background: radial-gradient(circle, rgba(119,190,121,0.12), transparent 68%);
-    }
-
-    .shape-2 {
-      width: 420px; height: 420px;
-      bottom: -130px; left: -130px;
-      background: radial-gradient(circle, rgba(61,122,63,0.10), transparent 68%);
-    }
-
-    .shape-3 {
-      width: 200px; height: 200px;
-      top: 60%; left: 60%;
-      background: radial-gradient(circle, rgba(168,213,170,0.15), transparent 70%);
-    }
-  </style>
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Outfit:wght@300;400;500;600&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
 
-  <div class="shape shape-1"></div>
-  <div class="shape shape-2"></div>
-  <div class="shape shape-3"></div>
+  <!-- Custom cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-trail" id="cursorTrail"></div>
 
-  <main class="container">
-
-    <div class="logo-wrap">
-      <img src="img/logo.png" alt="Layaya">
-    </div>
-
-    <div class="divider">
-      <span></span>
-      <span class="divider-icon">✦</span>
-      <span></span>
-    </div>
-
-    <h1>Pronto abrimos<br><em>nuestras puertas</em></h1>
-
-    <p class="subtitle">
-      Estamos preparando algo delicioso para ti.<br>
-      Vuelve pronto y descubre todo lo que hemos preparado.
-    </p>
-
-    <div class="badge">
-      <span class="dot"></span>
-      En construcción
-    </div>
-
-    <div class="social">
-      <a href="https://www.instagram.com/layaya.alimentacion/" target="_blank" rel="noopener">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
-        @layaya.alimentacion
+  <!-- ═══════════════════════════════════════════════
+       NAV
+  ════════════════════════════════════════════════ -->
+  <nav class="nav-main" id="mainNav" role="navigation">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">
+        <img src="img/logo.png" alt="La Iaia" height="44">
       </a>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <div class="nav-menu" id="navMenu">
+        <ul class="nav-links">
+          <li><a href="#sobre"    data-i18n="nav.sobre">Qui som</a></li>
+          <li><a href="#linies"   data-i18n="nav.linies">Què fem</a></li>
+          <li><a href="#productes"data-i18n="nav.productes">Productes</a></li>
+          <li><a href="#qualitat" data-i18n="nav.qualitat">Qualitat</a></li>
+          <li><a href="#contacte" data-i18n="nav.contacte" class="nav-cta">Contacte</a></li>
+        </ul>
+        <div class="lang-switcher" id="langSwitcher"></div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════════
+       HERO  — split layout (text left · images right)
+  ════════════════════════════════════════════════ -->
+  <section id="hero" class="hero">
+
+    <!-- Left panel -->
+    <div class="hero-left">
+      <p class="hero-eyebrow" data-i18n="hero.eyebrow">Cuina preparada amb ànima</p>
+
+      <h1 class="hero-headline" id="heroHeadline" data-i18n="hero.title">
+        La cuina de sempre, preparada per al món d'avui.
+      </h1>
+
+      <div class="hero-claim">
+        <div class="claim-bar"></div>
+        <p class="claim-text" id="claimText"></p>
+      </div>
+
+      <div class="hero-actions">
+        <a href="#sobre" class="btn-primary magnetic" data-i18n="hero.cta_primary">Descobreix-nos</a>
+        <a href="#contacte" class="btn-ghost magnetic" data-i18n="hero.cta_secondary">Contacta</a>
+      </div>
     </div>
 
-  </main>
+    <!-- Right panel — image mosaic -->
+    <div class="hero-right" id="heroRight">
+      <div class="hero-img-grid">
+        <div class="hero-img-wrap" style="--delay:0.1s">
+          <img src="img/paella_marisc.jpg" alt="Paella de marisc" loading="eager">
+          <div class="hero-img-label">Arrossos &amp; Fideuàs</div>
+        </div>
+        <div class="hero-img-wrap" style="--delay:0.25s">
+          <img src="img/risotto_bolets.jpg" alt="Risotto de bolets" loading="eager">
+          <div class="hero-img-label">Risottos</div>
+        </div>
+        <div class="hero-img-wrap" style="--delay:0.4s">
+          <img src="img/croquetes_pollastre.jpg" alt="Croquetes de pollastre" loading="eager">
+          <div class="hero-img-label">Croquetes</div>
+        </div>
+        <div class="hero-img-wrap" style="--delay:0.55s">
+          <img src="img/udon.jpg" alt="Udon" loading="eager">
+          <div class="hero-img-label">Pastes &amp; Noodles</div>
+        </div>
+      </div>
+      <!-- Gold accent decoration -->
+      <div class="hero-deco-circle"></div>
+    </div>
 
-  <footer class="footer">© 2026 Layaya</footer>
+    <!-- Scroll hint -->
+    <div class="scroll-hint">
+      <span class="scroll-hint-line"></span>
+      <span class="scroll-hint-text">scroll</span>
+    </div>
 
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       SOBRE NOSALTRES
+  ════════════════════════════════════════════════ -->
+  <section id="sobre" class="section-sobre">
+    <div class="sobre-inner">
+
+      <div class="sobre-text reveal">
+        <span class="section-tag" data-i18n="sobre.tag">L'empresa</span>
+        <h2 class="section-title" data-i18n="sobre.title">Una empresa alimentària nascuda de la cuina de sempre.</h2>
+        <p data-i18n="sobre.text1"></p>
+        <p data-i18n="sobre.text2"></p>
+      </div>
+
+      <div class="sobre-stats reveal">
+        <div class="stat-item">
+          <div class="stat-num" data-target-num="35" data-target-suffix="+" data-i18n-suffix="sobre.stat1_suffix">0</div>
+          <div class="stat-label" data-i18n="sobre.stat1_label">Varietats de plats</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num" data-target-num="18" data-target-suffix="" data-i18n-suffix="sobre.stat2_suffix">0</div>
+          <div class="stat-label" data-i18n="sobre.stat2_label">Dies de vida útil</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num" data-target-num="100" data-target-suffix="%" data-i18n-suffix="sobre.stat3_suffix">0</div>
+          <div class="stat-label" data-i18n="sobre.stat3_label">Producte artesà</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num" data-target-num="4" data-target-suffix="°" data-i18n-suffix="sobre.stat4_suffix">0</div>
+          <div class="stat-label" data-i18n="sobre.stat4_label">Temp. conservació màx.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       LÍNIES DE NEGOCI
+  ════════════════════════════════════════════════ -->
+  <section id="linies" class="section-linies">
+
+    <div class="linies-header reveal">
+      <span class="section-tag light" data-i18n="linies.tag">Dues línies de negoci</span>
+    </div>
+
+    <div class="linies-grid">
+
+      <!-- Alimentació -->
+      <article class="linia-card linia-alimentacio reveal">
+        <div class="linia-bg">
+          <img src="img/paella_marisc.jpg" alt="" aria-hidden="true">
+          <div class="linia-overlay"></div>
+        </div>
+        <div class="linia-content">
+          <span class="linia-tag" data-i18n="linies.alimentacio.tag">Producció i distribució</span>
+          <h3 data-i18n="linies.alimentacio.title">La Iaia Alimentació</h3>
+          <p data-i18n="linies.alimentacio.text"></p>
+          <ul class="linia-list" id="liniaAlimItems"></ul>
+          <a href="#contacte" class="btn-outline-light magnetic" data-i18n="linies.alimentacio.cta">Saber-ne més</a>
+        </div>
+      </article>
+
+      <!-- Botigues -->
+      <article class="linia-card linia-botigues reveal">
+        <div class="linia-bg">
+          <img src="img/croquetes_pollastre.jpg" alt="" aria-hidden="true">
+          <div class="linia-overlay linia-overlay-gold"></div>
+        </div>
+        <div class="linia-content">
+          <span class="linia-tag gold" data-i18n="linies.botigues.tag">Venda directa</span>
+          <h3 data-i18n="linies.botigues.title">La Iaia Botigues</h3>
+          <p data-i18n="linies.botigues.text"></p>
+          <ul class="linia-list" id="liniaBotigaItems"></ul>
+          <a href="#contacte" class="btn-outline-gold magnetic" data-i18n="linies.botigues.cta">Les nostres botigues</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       PRODUCTES
+  ════════════════════════════════════════════════ -->
+  <section id="productes" class="section-productes">
+    <div class="container-xl">
+
+      <div class="section-header reveal">
+        <span class="section-tag light" data-i18n="productes.tag">El nostre catàleg</span>
+        <h2 class="section-title light" data-i18n="productes.title">Plats preparats amb sabor, regularitat i confiança.</h2>
+        <p class="section-subtitle light" data-i18n="productes.subtitle"></p>
+      </div>
+
+      <!-- Featured image strip -->
+      <div class="products-strip reveal" id="productsStrip"></div>
+
+      <!-- Tab nav -->
+      <div class="products-nav reveal" id="productsNav"></div>
+
+      <!-- Tab content -->
+      <div class="products-content" id="productsContent"></div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       QUALITAT
+  ════════════════════════════════════════════════ -->
+  <section id="qualitat" class="section-qualitat">
+    <div class="container-xl">
+
+      <div class="section-header reveal">
+        <span class="section-tag" data-i18n="qualitat.tag">Els nostres estàndards</span>
+        <h2 class="section-title" data-i18n="qualitat.title">Qualitat en cada pas.</h2>
+        <p class="section-subtitle" data-i18n="qualitat.subtitle"></p>
+      </div>
+
+      <div class="qualitat-grid" id="qualitatGrid"></div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       CONTACTE
+  ════════════════════════════════════════════════ -->
+  <section id="contacte" class="section-contacte">
+    <div class="contacte-inner">
+
+      <div class="contacte-text reveal">
+        <span class="section-tag light" data-i18n="contacte.tag">Parlem</span>
+        <h2 class="section-title light" data-i18n="contacte.title">Explica'ns el teu projecte.</h2>
+        <p class="section-subtitle light" data-i18n="contacte.subtitle"></p>
+        <a href="https://www.instagram.com/layaya.alimentacion/" target="_blank" rel="noopener" class="contacte-social">
+          <i class="bi bi-instagram"></i>
+          <span>@layaya.alimentacion</span>
+        </a>
+      </div>
+
+      <div class="contacte-form-wrap reveal">
+        <form class="contacte-form" id="contactForm" novalidate>
+          <div class="form-row">
+            <div class="form-field">
+              <input type="text" id="fNom" name="nom" required autocomplete="name">
+              <label for="fNom" data-i18n="contacte.form.nom">Nom i cognoms</label>
+            </div>
+            <div class="form-field">
+              <input type="text" id="fEmpresa" name="empresa" autocomplete="organization">
+              <label for="fEmpresa" data-i18n="contacte.form.empresa">Empresa</label>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <input type="email" id="fEmail" name="email" required autocomplete="email">
+              <label for="fEmail" data-i18n="contacte.form.email">Correu electrònic</label>
+            </div>
+            <div class="form-field">
+              <input type="tel" id="fTel" name="telefon" autocomplete="tel">
+              <label for="fTel" data-i18n="contacte.form.telefon">Telèfon</label>
+            </div>
+          </div>
+          <div class="form-field">
+            <select id="fTipus" name="tipus">
+              <option value="" disabled selected></option>
+            </select>
+            <label for="fTipus" data-i18n="contacte.form.tipus">Tipus de consulta</label>
+          </div>
+          <div class="form-field">
+            <textarea id="fMissatge" name="missatge" rows="4" required></textarea>
+            <label for="fMissatge" data-i18n="contacte.form.missatge">Missatge</label>
+          </div>
+          <button type="submit" class="btn-primary btn-submit magnetic">
+            <span data-i18n="contacte.form.enviar">Enviar missatge</span>
+            <i class="bi bi-arrow-right"></i>
+          </button>
+        </form>
+
+        <div class="form-success" id="formSuccess" hidden>
+          <div class="form-success-icon"><i class="bi bi-check-lg"></i></div>
+          <h3 data-i18n="contacte.form.ok_title">Missatge enviat!</h3>
+          <p data-i18n="contacte.form.ok_text">Ens posarem en contacte amb tu aviat.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       FOOTER
+  ════════════════════════════════════════════════ -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="img/logo.png" alt="La Iaia" height="36">
+        <p data-i18n="footer.tagline">Cuinem perquè menjar bé sigui més fàcil.</p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="#sobre"    data-i18n="nav.sobre">Qui som</a>
+        <a href="#linies"   data-i18n="nav.linies">Què fem</a>
+        <a href="#productes"data-i18n="nav.productes">Productes</a>
+        <a href="#qualitat" data-i18n="nav.qualitat">Qualitat</a>
+        <a href="#contacte" data-i18n="nav.contacte">Contacte</a>
+      </nav>
+      <div class="footer-bottom">
+        <span data-i18n="footer.copy">© 2026 La Iaia. Tots els drets reservats.</span>
+        <div class="footer-legal">
+          <a href="#" data-i18n="footer.legal">Avís legal</a>
+          <a href="#" data-i18n="footer.privacitat">Privacitat</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Custom JS -->
+  <script src="js/main.js"></script>
 </body>
 </html>
