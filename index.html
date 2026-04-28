@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after {
       box-sizing: border-box;
@@ -22,24 +23,224 @@
       --green-lt: #a8d5aa;
       --green-xlt:#d6edd7;
       --muted:    #5a8f5c;
+
+      /* px de scroll per segon de vídeo — ajusta si cal */
+      --scroll-per-second: 300;
+    }
+
+    html {
+      scroll-behavior: auto;
     }
 
     body {
-      min-height: 100vh;
       background-color: var(--bg);
-      background-image:
-        radial-gradient(ellipse at 15% 55%, rgba(119, 190, 121, 0.18) 0%, transparent 55%),
-        radial-gradient(ellipse at 85% 15%, rgba(61, 122, 63, 0.12) 0%, transparent 50%);
+      font-family: 'Lato', sans-serif;
+      color: var(--green-xdk);
+    }
+
+    /* ─── HERO SCROLL ─────────────────────────────────────── */
+
+    .hero-scroll {
+      position: relative;
+      height: 400vh; /* fallback mentre el vídeo carrega; JS l'ajusta */
+    }
+
+    .hero-sticky {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      width: 100%;
+      overflow: hidden;
+      background: #0a1a0a;
+    }
+
+    #hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* overlay suau per llegibilitat del text sobre el vídeo */
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.10) 0%,
+        rgba(0,0,0,0.25) 60%,
+        rgba(0,0,0,0.55) 100%
+      );
+      pointer-events: none;
+    }
+
+    /* ─── TEXT DEL HERO ──────────────────────────────────── */
+
+    .hero-content {
+      position: absolute;
+      bottom: 7rem;
+      left: 6vw;
+      max-width: min(780px, 90vw);
+      z-index: 2;
+    }
+
+    .hero-logo {
+      width: min(180px, 40vw);
+      display: block;
+      margin-bottom: 2rem;
+      filter: none;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(0.68rem, 1.1vw, 0.82rem);
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 1.3rem;
+    }
+
+    .hero-title {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(3.4rem, 7.5vw, 7rem);
+      font-weight: 900;
+      line-height: 1.05;
+      color: #fff;
+      text-shadow: 0 2px 32px rgba(0,0,0,0.4);
+      margin-bottom: 1.8rem;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      font-weight: 700;
+      color: rgba(255,255,255,0.88);
+    }
+
+    .hero-claims {
+      position: relative;
+      height: 2.8em;
+      overflow: visible;
+    }
+
+    .hero-claim {
+      position: absolute;
+      top: 0;
+      left: 0;
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(1.1rem, 1.9vw, 1.5rem);
+      font-weight: 500;
+      white-space: nowrap;
+      padding: 0.3em 0.9em;
+      border-radius: 4px;
+      overflow: hidden;
+      transform: translateY(130%);
+      pointer-events: none;
+    }
+
+    /* Fons verd que fa sweep */
+    .hero-claim::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: #7ABA78;
+      transform-origin: left center;
+      transform: scaleX(0);
+      border-radius: inherit;
+      z-index: 0;
+    }
+
+    /* Text sobre el fons */
+    .hero-claim span {
+      position: relative;
+      z-index: 1;
+      color: #fff;
+      display: block;
+      opacity: 0;
+      transform: scale(1.28);
+    }
+
+    /* Entrada: surt de baix → sweep verd → text apareix */
+    .hero-claim.is-active {
+      animation: claim-rise 0.4s cubic-bezier(0.16,1,0.3,1) forwards;
+    }
+    .hero-claim.is-active::before {
+      animation: bg-sweep 0.42s 0.28s cubic-bezier(0.16,1,0.3,1) forwards;
+    }
+    .hero-claim.is-active span {
+      animation: text-pop 0.38s 0.58s cubic-bezier(0.16,1,0.3,1) forwards;
+    }
+
+    /* Sortida: puja cap amunt */
+    .hero-claim.is-leaving {
+      animation: claim-leave 0.38s cubic-bezier(0.55,0,1,0.45) forwards;
+    }
+
+    @keyframes claim-rise {
+      from { transform: translateY(130%); }
+      to   { transform: translateY(0); }
+    }
+    @keyframes claim-leave {
+      from { transform: translateY(0); }
+      to   { transform: translateY(-130%); }
+    }
+    @keyframes bg-sweep {
+      from { transform: scaleX(0); }
+      to   { transform: scaleX(1); }
+    }
+    @keyframes text-pop {
+      from { opacity: 0; transform: scale(1.28); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    /* indicador de scroll */
+    .scroll-hint {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      font-family: 'Lato', sans-serif;
-      color: var(--green-xdk);
-      overflow: hidden;
+      gap: 0.5rem;
+      color: rgba(255,255,255,0.75);
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      animation: hint-fade 2.5s ease-in-out infinite;
+      pointer-events: none;
     }
 
-    /* Decorative top/bottom borders */
+    .scroll-hint svg {
+      animation: bounce 2.5s ease-in-out infinite;
+    }
+
+    @keyframes hint-fade {
+      0%, 100% { opacity: 0.8; }
+      50%       { opacity: 0.3; }
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(6px); }
+    }
+
+    /* barra de progrés */
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--green-dk), var(--green));
+      z-index: 100;
+      transition: width 0.05s linear;
+    }
+
+    /* ─── BARRES DECORATIVES VERDES (top + bottom) ────────── */
+
     body::before,
     body::after {
       content: '';
@@ -48,15 +249,14 @@
       right: 0;
       height: 5px;
       background: linear-gradient(90deg, var(--green-dk), var(--green), var(--green-lt), var(--green), var(--green-dk));
+      z-index: 99;
     }
     body::before { top: 0; }
     body::after  { bottom: 0; }
 
-    .container {
-      text-align: center;
-      padding: 2rem 1.5rem;
-      max-width: 640px;
-      animation: fadeUp 1s ease both;
+    @keyframes pulse {
+      0%, 100% { opacity: 1;   transform: scale(1);   }
+      50%       { opacity: 0.3; transform: scale(0.65); }
     }
 
     @keyframes fadeUp {
@@ -64,193 +264,2663 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    .logo-wrap {
-      margin-bottom: 2.5rem;
+    /* ─── QUI SOM — bg cremós + radial gradients reaprofitats ─── */
+
+    .seccio-quisom {
+      position: relative;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(ellipse at 15% 55%, rgba(119, 190, 121, 0.18) 0%, transparent 55%),
+        radial-gradient(ellipse at 85% 15%, rgba(61, 122, 63, 0.12) 0%, transparent 50%);
+      padding: 8rem 1.5rem;
+      overflow: hidden;
     }
 
-    .logo-wrap img {
-      width: min(280px, 70vw);
-      filter:
-        drop-shadow(0 6px 20px rgba(61, 122, 63, 0.18))
-        drop-shadow(0 2px 6px rgba(61, 122, 63, 0.10));
-      transition: transform 0.4s ease;
-    }
-
-    .logo-wrap img:hover {
-      transform: scale(1.03);
-    }
-
-    .divider {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin: 0 auto 2rem;
-      max-width: 320px;
-    }
-
-    .divider span {
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--green), transparent);
-    }
-
-    .divider-icon {
-      color: var(--green);
-      font-size: 1.1rem;
-    }
-
-    h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 5vw, 3rem);
-      font-weight: 700;
-      letter-spacing: -0.5px;
-      line-height: 1.2;
-      margin-bottom: 1rem;
-      color: var(--green-xdk);
-    }
-
-    h1 em {
-      font-style: italic;
-      color: var(--green-dk);
-    }
-
-    .subtitle {
-      font-size: clamp(1rem, 2.5vw, 1.15rem);
-      font-weight: 300;
-      color: var(--muted);
-      line-height: 1.75;
-      margin-bottom: 2.5rem;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: var(--green-xdk);
-      color: var(--bg);
-      font-size: 0.78rem;
-      font-weight: 400;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      padding: 0.55rem 1.4rem;
-      border-radius: 100px;
-      margin-bottom: 3rem;
-    }
-
-    .badge .dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--green-lt);
-      animation: pulse 2s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1;   transform: scale(1);   }
-      50%       { opacity: 0.3; transform: scale(0.65); }
-    }
-
-    .social {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .social a {
-      display: flex;
-      align-items: center;
-      gap: 0.45rem;
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 0.85rem;
-      letter-spacing: 0.04em;
-      padding: 0.5rem 1.2rem;
-      border: 1px solid var(--green-lt);
-      border-radius: 100px;
-      transition: all 0.25s ease;
-    }
-
-    .social a:hover {
-      color: var(--green-xdk);
-      border-color: var(--green-dk);
-      background: rgba(119, 190, 121, 0.12);
-    }
-
-    .footer {
-      position: fixed;
-      bottom: 1.5rem;
-      font-size: 0.75rem;
-      color: var(--green-lt);
-      letter-spacing: 0.06em;
-    }
-
-    /* Decorative blobs */
-    .shape {
-      position: fixed;
+    .quisom-shape {
+      position: absolute;
       border-radius: 50%;
       pointer-events: none;
     }
 
-    .shape-1 {
+    .quisom-shape-1 {
       width: 520px; height: 520px;
       top: -160px; right: -160px;
-      background: radial-gradient(circle, rgba(119,190,121,0.12), transparent 68%);
+      background: radial-gradient(circle, rgba(119,190,121,0.16), transparent 68%);
     }
 
-    .shape-2 {
+    .quisom-shape-2 {
       width: 420px; height: 420px;
       bottom: -130px; left: -130px;
       background: radial-gradient(circle, rgba(61,122,63,0.10), transparent 68%);
     }
 
-    .shape-3 {
-      width: 200px; height: 200px;
-      top: 60%; left: 60%;
-      background: radial-gradient(circle, rgba(168,213,170,0.15), transparent 70%);
+    .quisom-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr minmax(320px, 460px);
+      gap: 5rem;
+      align-items: center;
     }
+
+    .quisom-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      font-family: 'Sora', sans-serif;
+      font-size: 0.74rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--green-dk);
+      padding: 0.5rem 1.1rem;
+      border: 1px solid rgba(30, 74, 32, 0.22);
+      border-radius: 100px;
+      margin-bottom: 2rem;
+    }
+
+    .quisom-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .quisom-title {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2.2rem, 4.2vw, 3.6rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: var(--green-xdk);
+      margin-bottom: 2rem;
+    }
+
+    .quisom-title em {
+      font-style: italic;
+      color: var(--green-dk);
+      font-weight: 600;
+    }
+
+    .quisom-lead {
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(0.95rem, 1.2vw, 1.05rem);
+      font-weight: 300;
+      line-height: 1.75;
+      color: #4a5e4b;
+      margin-bottom: 1.2rem;
+      max-width: 560px;
+    }
+
+    .quisom-lead strong {
+      font-weight: 500;
+      color: var(--green-xdk);
+    }
+
+    /* Stats grid 2x2 */
+    .quisom-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+    }
+
+    .stat-card {
+      position: relative;
+      padding: 2rem 1.5rem;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(30, 74, 32, 0.12);
+      border-radius: 18px;
+      text-align: left;
+      overflow: hidden;
+      transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s ease;
+    }
+
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      inset: -40% -40% auto auto;
+      width: 140px;
+      height: 140px;
+      background: radial-gradient(circle, rgba(119,190,121,0.22), transparent 70%);
+      pointer-events: none;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(30, 74, 32, 0.10);
+    }
+
+    .stat-num {
+      display: inline-block;
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2.4rem, 4vw, 3.4rem);
+      font-weight: 700;
+      line-height: 1;
+      color: var(--green-xdk);
+      letter-spacing: -0.03em;
+    }
+
+    .stat-suffix {
+      display: inline-block;
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.4rem, 2.4vw, 2rem);
+      font-weight: 600;
+      color: var(--green);
+      vertical-align: top;
+      margin-left: 0.1rem;
+      line-height: 1.1;
+    }
+
+    .stat-label {
+      font-family: 'Sora', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      color: #5a8f5c;
+      margin-top: 0.5rem;
+      line-height: 1.4;
+    }
+
+    @media (max-width: 860px) {
+      .seccio-quisom { padding: 5rem 1.5rem; }
+      .quisom-inner {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      .quisom-stats { gap: 0.8rem; }
+      .stat-card { padding: 1.4rem 1.1rem; }
+    }
+
+    /* ─── SECCIÓ "QUI SERVIM" — estil Mercket ────────────────── */
+
+    .seccio-serveis {
+      background-color: #F7EFE3;
+      padding: 8rem 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .serveis-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(180px, 300px) 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    /* Columna esquerra */
+    .serveis-left {
+      position: relative;
+      padding-top: 0.25rem;
+    }
+
+    .serveis-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: 1px solid rgba(60, 42, 33, 0.22);
+      color: #3C2A21;
+      font-family: 'Sora', sans-serif;
+      font-size: 0.74rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding: 0.5rem 1.1rem;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+
+    .serveis-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #7ABA78;
+      flex-shrink: 0;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .serveis-deco-1 {
+      position: absolute;
+      top: 4rem;
+      left: -80px;
+      width: 190px;
+      height: 340px;
+      border-radius: 999px;
+      background: rgba(122, 186, 120, 0.15);
+      transform: rotate(-10deg);
+      pointer-events: none;
+    }
+
+    .serveis-deco-2 {
+      position: absolute;
+      top: 12rem;
+      left: 20px;
+      width: 110px;
+      height: 180px;
+      border-radius: 999px;
+      background: rgba(232, 200, 112, 0.14);
+      transform: rotate(18deg);
+      pointer-events: none;
+    }
+
+    /* Columna dreta */
+    .serveis-heading {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.6rem, 2.5vw, 2.3rem);
+      font-weight: 700;
+      line-height: 1.3;
+      color: #3C2A21;
+      margin-bottom: 3.5rem;
+      max-width: 480px;
+    }
+
+    .serveis-heading em {
+      font-style: italic;
+      color: #5a9e5c;
+    }
+
+    /* Llista */
+    .serveis-list {
+      list-style: none;
+      border-top: 1px solid rgba(60, 42, 33, 0.12);
+      margin-bottom: 3rem;
+    }
+
+    .serveis-item {
+      display: block;
+      padding: 1.4rem 0;
+      border-bottom: 1px solid rgba(60, 42, 33, 0.12);
+      cursor: default;
+      opacity: 0;
+      transform: translateY(22px);
+      transition:
+        opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .serveis-item.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .serveis-item.is-hovered .serveis-nom,
+    .serveis-item.is-visible:hover .serveis-nom {
+      color: #3C2A21;
+    }
+
+    .serveis-item.is-hovered .serveis-num,
+    .serveis-item.is-visible:hover .serveis-num {
+      color: #7ABA78;
+    }
+
+    .serveis-nom {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2rem, 4vw, 3.8rem);
+      font-weight: 300;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      color: rgba(60, 42, 33, 0.12);
+    }
+
+    /* ─── TEXT REVEAL — chars (.serveis-nom) ──────────────────── */
+    .serveis-nom .char {
+      display: inline;
+      color: rgba(60, 42, 33, 0.12);
+      transition-property: color;
+      transition-duration: 0.55s;
+      transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+      transition-delay: calc(var(--char-i) * 42ms);
+    }
+
+    .serveis-nom .char.is-lit {
+      color: rgba(60, 42, 33, 0.55);
+    }
+
+    .serveis-item.is-hovered .serveis-nom .char,
+    .serveis-item.is-visible:hover .serveis-nom .char {
+      color: #3C2A21 !important;
+      transition-delay: calc(var(--char-i) * 16ms) !important;
+    }
+
+    /* ─── TEXT REVEAL — words (.serveis-heading) ──────────────── */
+    .serveis-heading .word {
+      display: inline;
+      color: rgba(60, 42, 33, 0.14);
+      transition-property: color;
+      transition-duration: 0.6s;
+      transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+      transition-delay: calc(var(--word-i) * 80ms);
+    }
+
+    .serveis-heading em .word {
+      color: rgba(90, 158, 92, 0.2);
+    }
+
+    .serveis-heading .word.is-lit {
+      color: #3C2A21;
+    }
+
+    .serveis-heading em .word.is-lit {
+      color: #5a9e5c;
+    }
+
+    .serveis-num {
+      font-family: 'Sora', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      color: rgba(60, 42, 33, 0.25);
+      vertical-align: super;
+      line-height: 0;
+      margin-left: 0.2rem;
+      transition: color 0.35s ease;
+    }
+
+    /* CTA */
+    .serveis-cta {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .serveis-btn {
+      display: inline-flex;
+      align-items: center;
+      background: #7ABA78;
+      color: #fff;
+      font-family: 'Sora', sans-serif;
+      font-size: 0.76rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 0.9rem 2.2rem;
+      border-radius: 100px;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .serveis-btn:hover {
+      background: #5a9e5c;
+      transform: scale(1.04);
+    }
+
+    .serveis-btn-arrow {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #7ABA78;
+      color: #fff;
+      font-size: 1.1rem;
+      text-decoration: none;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .serveis-btn-arrow:hover {
+      background: #5a9e5c;
+      transform: scale(1.12);
+    }
+
+    /* Panel de descripció — columna esquerra */
+    .serveis-desc {
+      margin-top: 2.5rem;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      max-width: 230px;
+    }
+
+    .serveis-desc.is-active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .serveis-desc-text {
+      font-family: 'Sora', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 300;
+      color: #606060;
+      line-height: 1.75;
+    }
+
+    /* Wrap per a posicionament relatiu de la imatge flotant */
+    .serveis-list-wrap {
+      position: relative;
+    }
+
+    /* Estructura interna de cada ítem */
+    .serveis-item-main {
+      display: flex;
+      align-items: baseline;
+      gap: 0;
+    }
+
+    /* Fletxa ↳ — sempre reserva espai però invisible fins hover */
+    .serveis-arrow {
+      font-size: 1.3rem;
+      color: #7ABA78;
+      width: 2.2rem;
+      flex-shrink: 0;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      line-height: 1;
+    }
+
+    .serveis-item.is-hovered .serveis-arrow {
+      opacity: 1;
+    }
+
+    /* Dóna marge dret als ítems per deixar lloc a la imatge flotant */
+    @media (min-width: 861px) {
+      .serveis-item { padding-right: 290px; }
+    }
+
+    /* Imatge flotant posicionada per JS */
+    .serveis-img-float {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 265px;
+      height: 210px;
+      border-radius: 10px;
+      overflow: hidden;
+      opacity: 0;
+      transform: scale(0.94) translateY(8px);
+      transition:
+        opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+    }
+
+    .serveis-img-float.is-active {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+
+    .serveis-img-float img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Responsive */
+    @media (max-width: 860px) {
+      .serveis-inner {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+      .serveis-deco-1,
+      .serveis-deco-2 { display: none; }
+      .serveis-img-float { display: none; }
+      .serveis-desc { max-width: none; }
+    }
+
+    @media (max-width: 480px) {
+      .seccio-serveis { padding: 5rem 1.5rem; }
+      .serveis-nom { font-size: clamp(1.8rem, 9vw, 2.8rem); }
+    }
+
+    /* ─── HERO RESPONSIVE ────────────────────────────────── */
+    @media (max-width: 640px) {
+      .hero-content {
+        bottom: 3.5rem;
+        left: 1.5rem;
+        right: 1.5rem;
+        max-width: none;
+      }
+      .hero-logo {
+        width: min(110px, 28vw);
+        margin-bottom: 1rem;
+      }
+      .hero-eyebrow {
+        margin-bottom: 0.9rem;
+      }
+      .hero-title {
+        margin-bottom: 1.2rem;
+      }
+      .hero-claims {
+        height: 3em;
+      }
+      .hero-claim {
+        font-size: clamp(0.85rem, 3.8vw, 1rem);
+      }
+    }
+
+    @media (max-width: 380px) {
+      .hero-logo { width: min(90px, 25vw); }
+      .hero-content { bottom: 2.5rem; }
+    }
+
+    /* ─── NAVEGACIÓ — pill flotant centrat ───────────────── */
+
+    .site-nav {
+      position: fixed;
+      top: 1.2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 200;
+      max-width: calc(100vw - 2rem);
+      transition: top 0.4s ease;
+    }
+
+    .site-nav.scrolled { top: 0.7rem; }
+
+    .nav-pill {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 6px 6px 6px 14px;
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(14px) saturate(140%);
+      -webkit-backdrop-filter: blur(14px) saturate(140%);
+      border: 1.5px solid rgba(30, 74, 32, 0.8);
+      border-radius: 9999px;
+      box-shadow:
+        0 10px 32px rgba(30, 74, 32, 0.12),
+        0 2px 8px rgba(30, 74, 32, 0.06);
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      flex: 0 0 auto;
+    }
+
+    .nav-logo {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-logo img {
+      height: 36px;
+      width: auto;
+      display: block;
+      transition: height 0.35s ease;
+    }
+
+    .site-nav.scrolled .nav-logo img { height: 32px; }
+
+    /* Links amb cursor lliscant + mix-blend-difference
+       (sense isolation: el blend computa contra el bg del pill) */
+    .nav-links {
+      position: relative;
+      display: flex;
+      align-items: center;
+      list-style: none;
+      margin: 0 0.2rem;
+    }
+
+    .nav-links li {
+      position: relative;
+      z-index: 10;
+      list-style: none;
+    }
+
+    .nav-links a {
+      display: block;
+      font-family: 'Sora', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #fff;
+      text-decoration: none;
+      padding: 0.55rem 0.95rem;
+      mix-blend-mode: difference;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    @media (min-width: 768px) {
+      .nav-links a {
+        font-size: 0.82rem;
+        padding: 0.6rem 1.1rem;
+      }
+    }
+
+    .nav-cursor {
+      position: absolute;
+      z-index: 0;
+      top: 0;
+      bottom: 0;
+      background: var(--green-xdk);
+      border-radius: 9999px;
+      opacity: 0;
+      pointer-events: none;
+      transition: left 0.32s cubic-bezier(0.16,1,0.3,1),
+                  width 0.32s cubic-bezier(0.16,1,0.3,1),
+                  opacity 0.25s ease;
+    }
+
+    /* Selector d'idioma — dins del pill */
+    .nav-lang {
+      display: flex;
+      align-items: center;
+      gap: 0.05rem;
+      list-style: none;
+      padding: 0 0.55rem;
+      border-left: 1px solid rgba(30, 74, 32, 0.18);
+      border-right: 1px solid rgba(30, 74, 32, 0.18);
+    }
+
+    .nav-lang button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: 'Sora', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: rgba(30, 74, 32, 0.45);
+      padding: 0.35rem 0.4rem;
+      text-transform: uppercase;
+      transition: color 0.25s ease;
+    }
+
+    .nav-lang button:hover { color: rgba(30, 74, 32, 0.75); }
+    .nav-lang button.active { color: var(--green-xdk); }
+
+    /* CTA — sempre verd primari */
+    .nav-cta {
+      font-family: 'Sora', sans-serif;
+      font-size: 0.74rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #fff;
+      background: var(--green);
+      text-decoration: none;
+      padding: 0.65rem 1.2rem;
+      border-radius: 9999px;
+      flex: 0 0 auto;
+      transition: background 0.25s ease, transform 0.25s cubic-bezier(0.16,1,0.3,1);
+    }
+
+    .nav-cta:hover {
+      background: var(--green-dk);
+      transform: scale(1.04);
+    }
+
+    /* Hamburger — només visible en mòbil */
+    .nav-hamburger {
+      display: none;
+      background: var(--green);
+      border: none;
+      cursor: pointer;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 4px;
+      flex: 0 0 auto;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 16px;
+      height: 2px;
+      background: #fff;
+      border-radius: 2px;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+    @media (max-width: 860px) {
+      .site-nav {
+        top: 0.8rem;
+        width: calc(100vw - 1.5rem);
+        max-width: calc(100vw - 1.5rem);
+      }
+
+      .nav-pill {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .nav-links,
+      .nav-lang,
+      .nav-cta { display: none; }
+
+      .nav-hamburger { display: flex; }
+
+      /* Mode obert mòbil: el pill creix i col·loca el contingut en columna */
+      .site-nav.nav-mobile-open .nav-pill {
+        flex-direction: column;
+        align-items: stretch;
+        border-radius: 26px;
+        padding: 12px;
+        gap: 0.55rem;
+      }
+
+      .site-nav.nav-mobile-open .nav-brand {
+        justify-content: space-between;
+        width: 100%;
+      }
+
+      .site-nav.nav-mobile-open .nav-links,
+      .site-nav.nav-mobile-open .nav-lang,
+      .site-nav.nav-mobile-open .nav-cta { display: flex; }
+
+      .site-nav.nav-mobile-open .nav-links {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.15rem;
+        margin: 0;
+        isolation: auto;
+        padding: 0.4rem 0;
+        border-top: 1px solid rgba(30, 74, 32, 0.12);
+        border-bottom: 1px solid rgba(30, 74, 32, 0.12);
+      }
+
+      .site-nav.nav-mobile-open .nav-cursor { display: none; }
+
+      .site-nav.nav-mobile-open .nav-links a {
+        color: var(--green-xdk);
+        mix-blend-mode: normal;
+        padding: 0.65rem 0.6rem;
+        font-size: 0.82rem;
+      }
+
+      .site-nav.nav-mobile-open .nav-lang {
+        border: none;
+        justify-content: flex-start;
+        padding: 0.2rem 0;
+      }
+
+      .site-nav.nav-mobile-open .nav-cta {
+        text-align: center;
+        justify-content: center;
+        margin-top: 0.2rem;
+      }
+    }
+
+    /* ─── LÍNIES DE NEGOCI ─────────────────────────────────── */
+
+    .seccio-linies {
+      background: var(--bg);
+      padding: 7rem 1.5rem 8rem;
+    }
+
+    .linies-header {
+      max-width: 1200px;
+      margin: 0 auto 3.5rem;
+      text-align: center;
+    }
+
+    .linies-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      font-family: 'Sora', sans-serif;
+      font-size: 0.74rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--green-dk);
+      padding: 0.5rem 1.1rem;
+      border: 1px solid rgba(30, 74, 32, 0.22);
+      border-radius: 100px;
+      margin-bottom: 1.4rem;
+    }
+
+    .linies-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .linies-title {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: var(--green-xdk);
+    }
+
+    .linies-grid {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .linia-card {
+      position: relative;
+      min-height: 540px;
+      border-radius: 24px;
+      overflow: hidden;
+      isolation: isolate;
+      cursor: default;
+    }
+
+    .linia-img {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      transition: transform 1.2s cubic-bezier(0.16,1,0.3,1);
+    }
+
+    .linia-card:hover .linia-img { transform: scale(1.06); }
+
+    .linia-overlay {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .linia-overlay-verd {
+      background: linear-gradient(160deg, rgba(30,74,32,0.30) 0%, rgba(30,74,32,0.85) 100%);
+    }
+
+    .linia-overlay-daurat {
+      background: linear-gradient(160deg, rgba(232,200,112,0.25) 0%, rgba(60,42,33,0.85) 100%);
+    }
+
+    .linia-content {
+      position: relative;
+      z-index: 1;
+      padding: 3rem 2.5rem 2.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      min-height: 100%;
+      color: #fff;
+    }
+
+    .linia-tag {
+      align-self: flex-start;
+      font-family: 'Sora', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.78);
+      padding: 0.4rem 0.9rem;
+      border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 100px;
+      margin-bottom: 1.4rem;
+    }
+
+    .linia-tag-daurat {
+      color: #E8C870;
+      border-color: rgba(232,200,112,0.5);
+    }
+
+    .linia-name {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+
+    .linia-desc {
+      font-family: 'Sora', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 300;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 1.5rem;
+      max-width: 460px;
+    }
+
+    .linia-feats {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .linia-feats li {
+      font-family: 'Sora', sans-serif;
+      font-size: 0.74rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      color: rgba(255,255,255,0.78);
+      padding: 0.4rem 0.85rem;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 100px;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+
+    .linia-cta {
+      align-self: flex-start;
+      font-family: 'Sora', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #fff;
+      background: var(--green);
+      text-decoration: none;
+      padding: 0.85rem 1.6rem;
+      border-radius: 100px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      transition: background 0.3s ease, transform 0.3s cubic-bezier(0.16,1,0.3,1);
+    }
+
+    .linia-cta:hover {
+      background: var(--green-dk);
+      transform: translateX(4px);
+    }
+
+    .linia-cta-daurat {
+      background: #E8C870;
+      color: #3C2A21;
+    }
+    .linia-cta-daurat:hover { background: #d8b85a; }
+
+    .linia-arrow { transition: transform 0.3s ease; }
+    .linia-cta:hover .linia-arrow { transform: translateX(3px); }
+
+    @media (max-width: 860px) {
+      .linies-grid { grid-template-columns: 1fr; }
+      .linia-card { min-height: 460px; }
+      .linia-content { padding: 2.2rem 1.7rem 2rem; }
+    }
+
+    /* ─── PRODUCTES ────────────────────────────────────────── */
+
+    .seccio-productes {
+      background: linear-gradient(170deg, #1e4a20 0%, #163818 100%);
+      padding: 7rem 1.5rem 8rem;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .seccio-productes::before {
+      content: '';
+      position: absolute;
+      width: 600px; height: 600px;
+      top: -200px; right: -200px;
+      background: radial-gradient(circle, rgba(122,186,120,0.18), transparent 65%);
+      pointer-events: none;
+    }
+
+    .productes-header {
+      max-width: 900px;
+      margin: 0 auto 4rem;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .productes-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      font-family: 'Sora', sans-serif;
+      font-size: 0.74rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      padding: 0.5rem 1.1rem;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 100px;
+      margin-bottom: 1.4rem;
+    }
+
+    .productes-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .productes-title {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2.2rem, 4.4vw, 3.4rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: #fff;
+      margin-bottom: 1.2rem;
+    }
+
+    .productes-title em {
+      font-style: italic;
+      color: #95d691;
+      font-weight: 600;
+    }
+
+    .productes-sub {
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(0.95rem, 1.2vw, 1.05rem);
+      font-weight: 300;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.6;
+      max-width: 580px;
+      margin: 0 auto;
+    }
+
+    .productes-tabs {
+      max-width: 1200px;
+      margin: 0 auto 2.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .prod-tab {
+      font-family: 'Sora', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: rgba(255,255,255,0.7);
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 100px;
+      padding: 0.6rem 1.2rem;
+      cursor: pointer;
+      transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+    }
+
+    .prod-tab:hover {
+      color: #fff;
+      border-color: rgba(255,255,255,0.4);
+      background: rgba(255,255,255,0.08);
+    }
+
+    .prod-tab.active {
+      color: var(--green-xdk);
+      background: var(--green);
+      border-color: var(--green);
+    }
+
+    .productes-stage {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+      min-height: 380px;
+    }
+
+    .prod-panel {
+      display: none;
+      grid-template-columns: minmax(320px, 1fr) 1fr;
+      gap: 3rem;
+      align-items: stretch;
+      animation: fadeUp 0.5s cubic-bezier(0.16,1,0.3,1) both;
+    }
+
+    .prod-panel.is-active { display: grid; }
+
+    .prod-img {
+      min-height: 360px;
+      background-size: cover;
+      background-position: center;
+      border-radius: 20px;
+    }
+
+    .prod-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .prod-info h3 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+      font-weight: 700;
+      line-height: 1.2;
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+
+    .prod-info p {
+      font-family: 'Sora', sans-serif;
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.78);
+      margin-bottom: 1.5rem;
+      max-width: 520px;
+    }
+
+    .prod-info ul {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.6rem 1.5rem;
+    }
+
+    .prod-info li {
+      position: relative;
+      padding-left: 1.2rem;
+      font-family: 'Sora', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.85);
+    }
+
+    .prod-info li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.55rem;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+    }
+
+    @media (max-width: 860px) {
+      .prod-panel { grid-template-columns: 1fr; gap: 2rem; }
+      .prod-img { min-height: 240px; }
+      .prod-info ul { grid-template-columns: 1fr; }
+    }
+
+    /* ─── QUALITAT ─────────────────────────────────────────── */
+
+    .seccio-qualitat {
+      position: relative;
+      background: #F7EFE3;
+      padding: 7rem 1.5rem 8rem;
+      overflow: hidden;
+    }
+
+    .qualitat-shape {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .qualitat-shape-1 {
+      width: 480px; height: 480px;
+      top: -160px; left: -120px;
+      background: radial-gradient(circle, rgba(122,186,120,0.18), transparent 70%);
+    }
+    .qualitat-shape-2 {
+      width: 380px; height: 380px;
+      bottom: -120px; right: -100px;
+      background: radial-gradient(circle, rgba(232,200,112,0.16), transparent 70%);
+    }
+
+    .qualitat-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .qualitat-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .qualitat-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      font-family: 'Sora', sans-serif;
+      font-size: 0.74rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--green-dk);
+      padding: 0.5rem 1.1rem;
+      border: 1px solid rgba(30, 74, 32, 0.22);
+      border-radius: 100px;
+      margin-bottom: 1.4rem;
+    }
+
+    .qualitat-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .qualitat-title {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: #3C2A21;
+    }
+
+    .qualitat-title em {
+      font-style: italic;
+      color: var(--green-dk);
+      font-weight: 600;
+    }
+
+    .qualitat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.4rem;
+    }
+
+    .qualitat-card {
+      position: relative;
+      background: #fff;
+      border-radius: 18px;
+      padding: 2.4rem 2rem 2rem;
+      border: 1px solid rgba(60, 42, 33, 0.06);
+      transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s ease;
+    }
+
+    .qualitat-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 30px 60px rgba(30, 74, 32, 0.10);
+    }
+
+    .qualitat-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(122, 186, 120, 0.15);
+      color: var(--green-dk);
+      margin-bottom: 1.4rem;
+    }
+
+    .qualitat-num {
+      position: absolute;
+      top: 1.4rem;
+      right: 1.6rem;
+      font-family: 'Fraunces', serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: rgba(60, 42, 33, 0.18);
+      letter-spacing: 0.04em;
+    }
+
+    .qualitat-name {
+      font-family: 'Fraunces', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      line-height: 1.3;
+      color: #3C2A21;
+      margin-bottom: 0.7rem;
+    }
+
+    .qualitat-desc {
+      font-family: 'Sora', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 300;
+      line-height: 1.65;
+      color: #606060;
+    }
+
+    @media (max-width: 1024px) {
+      .qualitat-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .qualitat-grid { grid-template-columns: 1fr; }
+      .seccio-qualitat { padding: 5rem 1.3rem; }
+    }
+
+    /* ─── CONTACTE ─────────────────────────────────────────── */
+
+    .seccio-contacte {
+      background: var(--bg);
+      background-image:
+        radial-gradient(ellipse at 80% 80%, rgba(119, 190, 121, 0.18) 0%, transparent 55%),
+        radial-gradient(ellipse at 20% 20%, rgba(61, 122, 63, 0.12) 0%, transparent 50%);
+      padding: 7rem 1.5rem 8rem;
+    }
+
+    .contacte-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .contacte-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      font-family: 'Sora', sans-serif;
+      font-size: 0.74rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--green-dk);
+      padding: 0.5rem 1.1rem;
+      border: 1px solid rgba(30, 74, 32, 0.22);
+      border-radius: 100px;
+      margin-bottom: 1.5rem;
+    }
+
+    .contacte-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .contacte-title {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: var(--green-xdk);
+      margin-bottom: 1.5rem;
+    }
+
+    .contacte-title em {
+      font-style: italic;
+      color: var(--green-dk);
+      font-weight: 600;
+    }
+
+    .contacte-lead {
+      font-family: 'Sora', sans-serif;
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.7;
+      color: #4a5e4b;
+      margin-bottom: 2.5rem;
+      max-width: 480px;
+    }
+
+    .contacte-data {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(30, 74, 32, 0.14);
+    }
+
+    .contacte-data li {
+      display: flex;
+      align-items: baseline;
+      gap: 1.4rem;
+    }
+
+    .contacte-key {
+      font-family: 'Sora', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--green-dk);
+      width: 90px;
+      flex-shrink: 0;
+    }
+
+    .contacte-data a,
+    .contacte-val {
+      font-family: 'Sora', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 400;
+      color: var(--green-xdk);
+      text-decoration: none;
+      transition: color 0.25s ease;
+    }
+
+    .contacte-data a:hover { color: var(--green); }
+
+    /* Formulari floating labels */
+    .contacte-form {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(30, 74, 32, 0.12);
+      border-radius: 22px;
+      padding: 2.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.1rem;
+    }
+
+    .form-field {
+      position: relative;
+    }
+
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      width: 100%;
+      font-family: 'Sora', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 400;
+      color: var(--green-xdk);
+      background: rgba(255, 255, 255, 0.4);
+      border: 1px solid rgba(30, 74, 32, 0.18);
+      border-radius: 12px;
+      padding: 1.3rem 1rem 0.6rem;
+      outline: none;
+      transition: border-color 0.3s ease, background 0.3s ease;
+    }
+
+    .form-field select { padding: 1rem 1rem 1rem; }
+    .form-field textarea { resize: vertical; min-height: 110px; padding-top: 1.5rem; }
+
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus {
+      border-color: var(--green);
+      background: rgba(255, 255, 255, 0.85);
+    }
+
+    .form-field label {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      font-family: 'Sora', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 400;
+      color: rgba(30, 74, 32, 0.5);
+      pointer-events: none;
+      transition: top 0.25s ease, font-size 0.25s ease, color 0.25s ease;
+      background: transparent;
+    }
+
+    .form-field input:focus + label,
+    .form-field input:not(:placeholder-shown) + label,
+    .form-field input:valid:not(:placeholder-shown) + label,
+    .form-field textarea:focus + label,
+    .form-field textarea:not(:placeholder-shown) + label {
+      top: 0.35rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--green-dk);
+    }
+
+    /* Truc perquè el floating label dispari amb input vací: requereix placeholder */
+    .form-field input,
+    .form-field textarea { }
+
+    .form-submit {
+      align-self: flex-start;
+      font-family: 'Sora', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #fff;
+      background: var(--green);
+      border: none;
+      border-radius: 100px;
+      padding: 1rem 2rem;
+      margin-top: 0.5rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      transition: background 0.3s ease, transform 0.3s cubic-bezier(0.16,1,0.3,1);
+    }
+
+    .form-submit:hover {
+      background: var(--green-dk);
+      transform: translateX(4px);
+    }
+
+    .form-submit-arrow { transition: transform 0.3s ease; }
+    .form-submit:hover .form-submit-arrow { transform: translateX(3px); }
+
+    @media (max-width: 860px) {
+      .contacte-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .contacte-form { padding: 1.6rem; }
+    }
+
+    /* ─── FOOTER ───────────────────────────────────────────── */
+
+    .site-footer {
+      background: linear-gradient(180deg, #163818 0%, #0e2810 100%);
+      color: rgba(255, 255, 255, 0.78);
+      padding: 5rem 1.5rem 2rem;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(220px, 1fr) 2fr;
+      gap: 4rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .footer-brand { display: flex; flex-direction: column; gap: 1.4rem; }
+    .footer-logo { width: 130px; height: auto; }
+    .footer-tag {
+      font-family: 'Fraunces', serif;
+      font-size: 1.05rem;
+      font-style: italic;
+      font-weight: 400;
+      line-height: 1.45;
+      color: rgba(255, 255, 255, 0.65);
+      max-width: 260px;
+    }
+
+    .footer-cols {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .footer-col {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+
+    .footer-col-title {
+      font-family: 'Sora', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 0.3rem;
+    }
+
+    .footer-col a {
+      font-family: 'Sora', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.72);
+      text-decoration: none;
+      transition: color 0.25s ease;
+    }
+
+    .footer-col a:hover { color: #fff; }
+
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-top: 1.7rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      font-family: 'Sora', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.45);
+      letter-spacing: 0.04em;
+    }
+
+    .footer-legal { display: flex; gap: 0.6rem; align-items: center; }
+    .footer-legal a {
+      color: rgba(255, 255, 255, 0.55);
+      text-decoration: none;
+      transition: color 0.25s ease;
+    }
+    .footer-legal a:hover { color: #fff; }
+    .footer-sep { opacity: 0.4; }
+
+    @media (max-width: 768px) {
+      .footer-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .footer-cols { grid-template-columns: repeat(2, 1fr); gap: 1.6rem; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+    }
+
   </style>
 </head>
 <body>
 
-  <div class="shape shape-1"></div>
-  <div class="shape shape-2"></div>
-  <div class="shape shape-3"></div>
+  <div class="progress-bar" id="progress-bar"></div>
 
-  <main class="container">
+  <!-- ─── NAVEGACIÓ — pill flotant ───────────────────────── -->
+  <nav class="site-nav" id="site-nav">
+    <div class="nav-pill">
+      <div class="nav-brand">
+        <a href="#" class="nav-logo" aria-label="Layaya">
+          <img src="img/logo.png" alt="Layaya">
+        </a>
+        <button class="nav-hamburger" id="nav-hamburger" aria-label="Menú">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
 
-    <div class="logo-wrap">
-      <img src="img/logo.png" alt="Layaya">
+      <ul class="nav-links">
+        <li><a href="#qui-som">Qui som</a></li>
+        <li><a href="#que-fem">Què fem</a></li>
+        <li><a href="#productes">Productes</a></li>
+        <li><a href="#qualitat">Qualitat</a></li>
+        <span class="nav-cursor"></span>
+      </ul>
+
+      <ul class="nav-lang">
+        <li><button class="active">CA</button></li>
+        <li><button>ES</button></li>
+        <li><button>EN</button></li>
+      </ul>
+
+      <a href="#contacte" class="nav-cta">Contacte</a>
+    </div>
+  </nav>
+
+  <!-- ─── HERO AMB VÍDEO SCROLL-DRIVEN ─────────────────────── -->
+  <section class="hero-scroll" id="hero-scroll">
+    <div class="hero-sticky">
+      <video
+        id="hero-video"
+        muted
+        playsinline
+        preload="auto"
+        disablepictureinpicture
+      >
+        <!--
+          Afegeix el fitxer de vídeo aquí.
+          Recomanat: MP4 H.264, resolució 1920×1080 o superior.
+          Exemple: <source src="video/hero.mp4" type="video/mp4">
+        -->
+        <source src="img/video.mp4" type="video/mp4">
+      </video>
+
+      <div class="hero-overlay"></div>
+
+      <div class="hero-content">
+        <img src="img/logo.png" alt="Layaya" class="hero-logo">
+        <p class="hero-eyebrow">Cuina preparada amb ànima</p>
+        <h1 class="hero-title">Cuina de mercat<br>amb el sabor<br><em>casolà de sempre.</em></h1>
+        <div class="hero-claims" id="hero-claims">
+          <p class="hero-claim is-active"><span>El gust de la tradició, a punt per a la teva taula.</span></p>
+          <p class="hero-claim"><span>La cuina que ens agrada, el menjar que et cuida.</span></p>
+          <p class="hero-claim"><span>Ingredients de primera selecció per a un resultat excepcional.</span></p>
+        </div>
+      </div>
+
+      <div class="scroll-hint" id="scroll-hint">
+        <span>Desplaza</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="12" y1="5" x2="12" y2="19"/>
+          <polyline points="19 12 12 19 5 12"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── QUI SOM — reaprofita bg + radial gradients ─────── -->
+  <section class="seccio-quisom" id="qui-som">
+    <div class="quisom-shape quisom-shape-1"></div>
+    <div class="quisom-shape quisom-shape-2"></div>
+
+    <div class="quisom-inner" id="quisom-inner">
+
+      <div class="quisom-text">
+        <span class="quisom-eyebrow">
+          <span class="quisom-dot"></span>
+          L'empresa
+        </span>
+        <h2 class="quisom-title">
+          Una empresa alimentària nascuda<br>
+          de la <em>cuina de sempre.</em>
+        </h2>
+        <p class="quisom-lead">
+          Som un obrador industrial d'alta tecnologia que combina <strong>cuina casolana
+          professional</strong> i estàndards de seguretat alimentària. Més de 35 varietats
+          de plats de cinquena gamma, elaborats amb ingredients de primera selecció.
+        </p>
+        <p class="quisom-lead">
+          Controlem tot el procés: des de la recepció de matèries primeres fins al
+          packaging d'alta protecció i la cadena de fred. Cuinem perquè menjar bé
+          sigui més fàcil — per a hostaleria, retail, col·lectivitats i el consumidor final.
+        </p>
+      </div>
+
+      <div class="quisom-stats">
+        <div class="stat-card">
+          <div class="stat-num" data-count="35">0</div>
+          <div class="stat-suffix">+</div>
+          <div class="stat-label">Varietats de plats</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" data-count="18">0</div>
+          <div class="stat-label">Dies de vida útil</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" data-count="100">0</div>
+          <div class="stat-suffix">%</div>
+          <div class="stat-label">Producte artesà</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" data-count="4">0</div>
+          <div class="stat-suffix">°</div>
+          <div class="stat-label">Cadena de fred</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── QUÈ FEM — qui servim / línies de servei ───────────── -->
+  <section class="seccio-serveis" id="que-fem">
+    <div class="serveis-inner">
+
+      <div class="serveis-left">
+        <span class="serveis-badge">
+          <span class="serveis-dot"></span>
+          Qui servim
+        </span>
+        <div class="serveis-desc" id="serveis-desc">
+          <p class="serveis-desc-text" id="serveis-desc-text"></p>
+        </div>
+        <div class="serveis-deco-1"></div>
+        <div class="serveis-deco-2"></div>
+      </div>
+
+      <div class="serveis-right">
+        <h2 class="serveis-heading">
+          Cuina de mercat, elaborada amb <em>el sabor casolà de sempre.</em>
+        </h2>
+
+        <div class="serveis-list-wrap">
+          <ul class="serveis-list" id="serveis-list">
+            <li class="serveis-item"
+                data-desc="Plats de cinquena gamma per a restaurants, bars i hotels. Producció regular, sabor constant."
+                data-img="img/slider_principal.png">
+              <div class="serveis-item-main">
+                <span class="serveis-arrow">↳</span>
+                <span class="serveis-nom">Hostaleria</span>
+                <span class="serveis-num">{01}</span>
+              </div>
+            </li>
+            <li class="serveis-item"
+                data-desc="Envasos premium per a supermercats i comerços alimentaris especialitzats."
+                data-img="img/slider_principal.png">
+              <div class="serveis-item-main">
+                <span class="serveis-arrow">↳</span>
+                <span class="serveis-nom">Retail</span>
+                <span class="serveis-num">{02}</span>
+              </div>
+            </li>
+            <li class="serveis-item"
+                data-desc="Menús diaris per a escoles, hospitals i menjadors corporatius. Qualitat casolana a gran escala."
+                data-img="img/slider_principal.png">
+              <div class="serveis-item-main">
+                <span class="serveis-arrow">↳</span>
+                <span class="serveis-nom">Col·lectivitats</span>
+                <span class="serveis-num">{03}</span>
+              </div>
+            </li>
+            <li class="serveis-item"
+                data-desc="Xarxa de distribució en cadena de fred 2°C–4°C per a tot el territori."
+                data-img="img/slider_principal.png">
+              <div class="serveis-item-main">
+                <span class="serveis-arrow">↳</span>
+                <span class="serveis-nom">Distribució</span>
+                <span class="serveis-num">{04}</span>
+              </div>
+            </li>
+            <li class="serveis-item"
+                data-desc="Venda directa al consumidor final amb el sabor d'una cuina de mercat casolana."
+                data-img="img/slider_principal.png">
+              <div class="serveis-item-main">
+                <span class="serveis-arrow">↳</span>
+                <span class="serveis-nom">Botigues pròpies</span>
+                <span class="serveis-num">{05}</span>
+              </div>
+            </li>
+          </ul>
+
+          <div class="serveis-img-float" id="serveis-img-float">
+            <img src="" alt="" id="serveis-img">
+          </div>
+        </div>
+
+        <div class="serveis-cta">
+          <a href="#productes" class="serveis-btn">Descobrir els productes</a>
+          <a href="#productes" class="serveis-btn-arrow" aria-hidden="true">↗</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── LÍNIES DE NEGOCI ──────────────────────────────────── -->
+  <section class="seccio-linies" id="linies">
+    <div class="linies-header">
+      <span class="linies-eyebrow">
+        <span class="linies-dot"></span>
+        Línies de negoci
+      </span>
+      <h2 class="linies-title">Dues maneres d'arribar a la teva taula.</h2>
     </div>
 
-    <div class="divider">
-      <span></span>
-      <span class="divider-icon">✦</span>
-      <span></span>
+    <div class="linies-grid">
+      <article class="linia-card linia-alimentacio">
+        <div class="linia-img" style="background-image: url('img/paella_marisc.jpg');"></div>
+        <div class="linia-overlay linia-overlay-verd"></div>
+        <div class="linia-content">
+          <span class="linia-tag">Producció i distribució</span>
+          <h3 class="linia-name">Layaya Alimentació</h3>
+          <p class="linia-desc">
+            Elaboració professional per a hostaleria, retail, col·lectivitats i distribuïdors.
+            Cinquena gamma amb estàndards d'obrador.
+          </p>
+          <ul class="linia-feats">
+            <li>Obrador propi</li>
+            <li>Producció a escala</li>
+            <li>Cinquena gamma</li>
+            <li>Solucions per a empreses</li>
+          </ul>
+          <a href="#contacte" class="linia-cta">
+            Saber-ne més <span class="linia-arrow">→</span>
+          </a>
+        </div>
+      </article>
+
+      <article class="linia-card linia-botigues">
+        <div class="linia-img" style="background-image: url('img/croquetes_pollastre.jpg');"></div>
+        <div class="linia-overlay linia-overlay-daurat"></div>
+        <div class="linia-content">
+          <span class="linia-tag linia-tag-daurat">Venda directa</span>
+          <h3 class="linia-name">Layaya Botigues</h3>
+          <p class="linia-desc">
+            Plats per emportar amb cuina casolana al consumidor final, a botigues
+            de proximitat.
+          </p>
+          <ul class="linia-feats">
+            <li>Plats per emportar</li>
+            <li>Cuina casolana</li>
+            <li>Venda directa</li>
+            <li>Proximitat</li>
+          </ul>
+          <a href="#contacte" class="linia-cta linia-cta-daurat">
+            Les nostres botigues <span class="linia-arrow">→</span>
+          </a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ─── PRODUCTES ─────────────────────────────────────────── -->
+  <section class="seccio-productes" id="productes">
+    <div class="productes-header">
+      <span class="productes-eyebrow">
+        <span class="productes-dot"></span>
+        El nostre catàleg
+      </span>
+      <h2 class="productes-title">
+        Plats preparats amb <em>sabor</em>,<br>
+        regularitat i confiança.
+      </h2>
+      <p class="productes-sub">
+        Més de 35 varietats elaborades amb ingredients de primera selecció.
+      </p>
     </div>
 
-    <h1>Pronto abrimos<br><em>nuestras puertas</em></h1>
-
-    <p class="subtitle">
-      Estamos preparando algo delicioso para ti.<br>
-      Vuelve pronto y descubre todo lo que hemos preparado.
-    </p>
-
-    <div class="badge">
-      <span class="dot"></span>
-      En construcción
+    <div class="productes-tabs" id="productes-tabs">
+      <button class="prod-tab active" data-cat="0">Canelons i Lasanyes</button>
+      <button class="prod-tab" data-cat="1">Carns i Guisats</button>
+      <button class="prod-tab" data-cat="2">Peixos i Marisc</button>
+      <button class="prod-tab" data-cat="3">Llegums i Verdures</button>
+      <button class="prod-tab" data-cat="4">Arrossos i Fideuàs</button>
+      <button class="prod-tab" data-cat="5">Pastes i Noodles</button>
+      <button class="prod-tab" data-cat="6">Croquetes</button>
+      <button class="prod-tab" data-cat="7">Amanides i Pastissos Freds</button>
+      <button class="prod-tab" data-cat="8">Postres</button>
     </div>
 
-    <div class="social">
-      <a href="https://www.instagram.com/layaya.alimentacion/" target="_blank" rel="noopener">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
-        @layaya.alimentacion
-      </a>
+    <div class="productes-stage" id="productes-stage">
+      <div class="prod-panel is-active" data-cat="0">
+        <div class="prod-img" style="background-image: url('img/risotto_bolets.jpg');"></div>
+        <div class="prod-info">
+          <h3>Canelons i Lasanyes</h3>
+          <p>Receptes de farcit clàssic, beixamel artesana i pasta fresca. Plats reconfortants amb el sabor de casa.</p>
+          <ul>
+            <li>Canelons d'escudella</li>
+            <li>Canelons de pollastre i bolets</li>
+            <li>Lasanya de carn</li>
+            <li>Lasanya vegetal</li>
+          </ul>
+        </div>
+      </div>
+      <div class="prod-panel" data-cat="1">
+        <div class="prod-img" style="background-image: url('img/fabada.jpg');"></div>
+        <div class="prod-info">
+          <h3>Carns i Guisats</h3>
+          <p>Cocció lenta, fons casolà i talls seleccionats. Plats de cullera amb el caràcter dels guisats de sempre.</p>
+          <ul>
+            <li>Fricandó amb bolets</li>
+            <li>Estofat de vedella</li>
+            <li>Pollastre rostit</li>
+            <li>Mandonguilles amb sípia</li>
+          </ul>
+        </div>
+      </div>
+      <div class="prod-panel" data-cat="2">
+        <div class="prod-img" style="background-image: url('img/pastis_tonyina.jpg');"></div>
+        <div class="prod-info">
+          <h3>Peixos i Marisc</h3>
+          <p>Productes del mar tractats amb cura, salses elaborades amb fumet propi. Frescor i sabor mediterrani.</p>
+          <ul>
+            <li>Bacallà a la llauna</li>
+            <li>Suquet de peix</li>
+            <li>Pastís de tonyina</li>
+            <li>Calamars a la romana</li>
+          </ul>
+        </div>
+      </div>
+      <div class="prod-panel" data-cat="3">
+        <div class="prod-img" style="background-image: url('img/arros_muntanya.jpg');"></div>
+        <div class="prod-info">
+          <h3>Llegums i Verdures</h3>
+          <p>Llegums de proximitat i verdures de temporada. Cuites de manera tradicional, lleugeres i nutritives.</p>
+          <ul>
+            <li>Cigrons amb espinacs</li>
+            <li>Mongetes amb botifarra</li>
+            <li>Escalivada</li>
+            <li>Trinxat de la Cerdanya</li>
+          </ul>
+        </div>
+      </div>
+      <div class="prod-panel" data-cat="4">
+        <div class="prod-img" style="background-image: url('img/paella_marisc.jpg');"></div>
+        <div class="prod-info">
+          <h3>Arrossos i Fideuàs</h3>
+          <p>Arrossos secs, melosos i caldosos. Fons elaborats al mateix obrador amb ingredients de la costa i la muntanya.</p>
+          <ul>
+            <li>Paella de marisc</li>
+            <li>Arròs de muntanya</li>
+            <li>Arròs negre</li>
+            <li>Fideuà</li>
+          </ul>
+        </div>
+      </div>
+      <div class="prod-panel" data-cat="5">
+        <div class="prod-img" style="background-image: url('img/udon.jpg');"></div>
+        <div class="prod-info">
+          <h3>Pastes i Noodles</h3>
+          <p>Pasta fresca italiana i noodles asiàtics. Salses elaborades amb tomàquet pelat i ingredients frescos.</p>
+          <ul>
+            <li>Udon amb verdures</li>
+            <li>Espaguetis carbonara</li>
+            <li>Tallarines amb bolets</li>
+            <li>Yakisoba</li>
+          </ul>
+        </div>
+      </div>
+      <div class="prod-panel" data-cat="6">
+        <div class="prod-img" style="background-image: url('img/croquetes_pollastre.jpg');"></div>
+        <div class="prod-info">
+          <h3>Croquetes</h3>
+          <p>Beixamel cuita a foc lent, arrebossat fi i farcits generosos. La croqueta com a icona casolana, feta a escala.</p>
+          <ul>
+            <li>Croquetes de pollastre rostit</li>
+            <li>Croquetes de pernil</li>
+            <li>Croquetes de bacallà</li>
+            <li>Croquetes de bolets</li>
+          </ul>
+        </div>
+      </div>
+      <div class="prod-panel" data-cat="7">
+        <div class="prod-img" style="background-image: url('img/pastis_tonyina.jpg');"></div>
+        <div class="prod-info">
+          <h3>Amanides i Pastissos Freds</h3>
+          <p>Plats freds elaborats per servir. Combinacions equilibrades amb base mediterrània.</p>
+          <ul>
+            <li>Pastís de tonyina</li>
+            <li>Amanida de quinoa</li>
+            <li>Russa de l'avi</li>
+            <li>Carpaccio de remolatxa</li>
+          </ul>
+        </div>
+      </div>
+      <div class="prod-panel" data-cat="8">
+        <div class="prod-img" style="background-image: url('img/risotto_bolets.jpg');"></div>
+        <div class="prod-info">
+          <h3>Postres</h3>
+          <p>Receptes tradicionals casolanes amb un toc d'autor. Sense additius innecessaris, preparades cada setmana.</p>
+          <ul>
+            <li>Crema catalana</li>
+            <li>Mel i mató</li>
+            <li>Pastís de formatge</li>
+            <li>Brownie de xocolata</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── QUALITAT ──────────────────────────────────────────── -->
+  <section class="seccio-qualitat" id="qualitat">
+    <div class="qualitat-shape qualitat-shape-1"></div>
+    <div class="qualitat-shape qualitat-shape-2"></div>
+
+    <div class="qualitat-inner">
+      <div class="qualitat-header">
+        <span class="qualitat-eyebrow">
+          <span class="qualitat-dot"></span>
+          Qualitat i procés
+        </span>
+        <h2 class="qualitat-title">
+          Cada plat passa per <em>sis controls</em><br>
+          que asseguren el resultat.
+        </h2>
+      </div>
+
+      <div class="qualitat-grid">
+        <article class="qualitat-card">
+          <div class="qualitat-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3l8 4v6c0 4.5-3.5 7.5-8 8-4.5-.5-8-3.5-8-8V7l8-4z"/>
+              <path d="M9 12l2 2 4-4"/>
+            </svg>
+          </div>
+          <span class="qualitat-num">01</span>
+          <h3 class="qualitat-name">Selecció de matèries primeres</h3>
+          <p class="qualitat-desc">Proveïdors de proximitat verificats. Recepció controlada, traçabilitat completa.</p>
+        </article>
+
+        <article class="qualitat-card">
+          <div class="qualitat-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 12h2l3-9 4 18 3-12 2 6h4"/>
+            </svg>
+          </div>
+          <span class="qualitat-num">02</span>
+          <h3 class="qualitat-name">Rigor en la preparació</h3>
+          <p class="qualitat-desc">Receptes estandarditzades, pesatge precís, temps de cocció reproduïbles.</p>
+        </article>
+
+        <article class="qualitat-card">
+          <div class="qualitat-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 14c0-3 2-5 6-5s6 2 6 5"/>
+              <path d="M9 14v3M15 14v3M12 14v3"/>
+              <path d="M5 17h14"/>
+              <path d="M9 9V5M12 9V3M15 9V5"/>
+            </svg>
+          </div>
+          <span class="qualitat-num">03</span>
+          <h3 class="qualitat-name">Cuina d'avantguarda</h3>
+          <p class="qualitat-desc">Cocció a baixa temperatura, fons elaborats al mateix obrador, salses fetes en directe.</p>
+        </article>
+
+        <article class="qualitat-card">
+          <div class="qualitat-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="4" y="7" width="16" height="13" rx="2"/>
+              <path d="M8 7V5a4 4 0 0 1 8 0v2"/>
+              <path d="M8 12h8"/>
+            </svg>
+          </div>
+          <span class="qualitat-num">04</span>
+          <h3 class="qualitat-name">Envasat d'alta protecció</h3>
+          <p class="qualitat-desc">Atmosfera protectora i envasos pensats per a 18 dies de vida útil sense conservants.</p>
+        </article>
+
+        <article class="qualitat-card">
+          <div class="qualitat-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 3h6v3l3 4v9a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-9l3-4z"/>
+              <path d="M9 12h6"/>
+              <path d="M10.5 16h3"/>
+            </svg>
+          </div>
+          <span class="qualitat-num">05</span>
+          <h3 class="qualitat-name">Laboratori de control</h3>
+          <p class="qualitat-desc">Anàlisis microbiològiques periòdiques. Auditories internes i certificats sanitaris.</p>
+        </article>
+
+        <article class="qualitat-card">
+          <div class="qualitat-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="8" width="13" height="9" rx="1"/>
+              <path d="M15 11h4l3 3v3h-7"/>
+              <circle cx="6" cy="18" r="2"/>
+              <circle cx="18" cy="18" r="2"/>
+            </svg>
+          </div>
+          <span class="qualitat-num">06</span>
+          <h3 class="qualitat-name">Logística i cadena de fred</h3>
+          <p class="qualitat-desc">Transport refrigerat 2°C–4°C. Distribució estable per garantir el sabor d'origen.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CONTACTE ──────────────────────────────────────────── -->
+  <section class="seccio-contacte" id="contacte">
+    <div class="contacte-inner">
+
+      <div class="contacte-info">
+        <span class="contacte-eyebrow">
+          <span class="contacte-dot"></span>
+          Parlem
+        </span>
+        <h2 class="contacte-title">
+          Cuinem perquè <em>menjar bé</em><br>
+          sigui més fàcil.
+        </h2>
+        <p class="contacte-lead">
+          Treballes a hostaleria, retail o col·lectivitats? Vols saber com els nostres
+          plats poden ser part de la teva oferta? Escriu-nos i contactarem amb tu.
+        </p>
+
+        <ul class="contacte-data">
+          <li>
+            <span class="contacte-key">Instagram</span>
+            <a href="https://www.instagram.com/layaya.alimentacion/" target="_blank" rel="noopener">@layaya.alimentacion</a>
+          </li>
+          <li>
+            <span class="contacte-key">Correu</span>
+            <a href="mailto:hola@layaya.cat">hola@layaya.cat</a>
+          </li>
+          <li>
+            <span class="contacte-key">Horari</span>
+            <span class="contacte-val">Dilluns a divendres · 9h–18h</span>
+          </li>
+        </ul>
+      </div>
+
+      <form class="contacte-form" id="contacte-form" novalidate>
+        <div class="form-row">
+          <div class="form-field">
+            <input type="text" id="f-name" name="name" placeholder=" " required>
+            <label for="f-name">Nom i cognoms</label>
+          </div>
+          <div class="form-field">
+            <input type="text" id="f-company" name="company" placeholder=" ">
+            <label for="f-company">Empresa</label>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-field">
+            <input type="email" id="f-email" name="email" placeholder=" " required>
+            <label for="f-email">Correu electrònic</label>
+          </div>
+          <div class="form-field">
+            <input type="tel" id="f-phone" name="phone" placeholder=" ">
+            <label for="f-phone">Telèfon</label>
+          </div>
+        </div>
+
+        <div class="form-field form-field-select">
+          <select id="f-type" name="type">
+            <option value="">Tipus de consulta</option>
+            <option value="comercial">Informació comercial</option>
+            <option value="profesionals">Producte per a professionals</option>
+            <option value="botigues">Botigues</option>
+            <option value="distribucio">Distribució</option>
+            <option value="altres">Altres</option>
+          </select>
+        </div>
+
+        <div class="form-field">
+          <textarea id="f-message" name="message" rows="4" placeholder=" " required></textarea>
+          <label for="f-message">Missatge</label>
+        </div>
+
+        <button type="submit" class="form-submit">
+          Enviar missatge
+          <span class="form-submit-arrow">→</span>
+        </button>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ────────────────────────────────────────────── -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="img/logo.png" alt="Layaya" class="footer-logo">
+        <p class="footer-tag">Cuinem perquè menjar bé sigui més fàcil.</p>
+      </div>
+
+      <div class="footer-cols">
+        <div class="footer-col">
+          <span class="footer-col-title">Empresa</span>
+          <a href="#qui-som">Qui som</a>
+          <a href="#que-fem">Què fem</a>
+          <a href="#linies">Línies de negoci</a>
+        </div>
+        <div class="footer-col">
+          <span class="footer-col-title">Producte</span>
+          <a href="#productes">Catàleg</a>
+          <a href="#qualitat">Qualitat</a>
+          <a href="#contacte">Per a professionals</a>
+        </div>
+        <div class="footer-col">
+          <span class="footer-col-title">Contacte</span>
+          <a href="mailto:hola@layaya.cat">hola@layaya.cat</a>
+          <a href="https://www.instagram.com/layaya.alimentacion/" target="_blank" rel="noopener">@layaya.alimentacion</a>
+        </div>
+      </div>
     </div>
 
-  </main>
+    <div class="footer-bottom">
+      <span>© 2026 Layaya. Tots els drets reservats.</span>
+      <div class="footer-legal">
+        <a href="#">Avís legal</a>
+        <span class="footer-sep">·</span>
+        <a href="#">Privacitat</a>
+      </div>
+    </div>
+  </footer>
 
-  <footer class="footer">© 2026 Layaya</footer>
+  <script>
+    (function () {
+      const video       = document.getElementById('hero-video');
+      const heroScroll  = document.getElementById('hero-scroll');
+      const progressBar = document.getElementById('progress-bar');
+      const scrollHint  = document.getElementById('scroll-hint');
+
+      const SCROLL_PER_SECOND = 60;
+
+      function maxScroll() {
+        return heroScroll.offsetHeight - window.innerHeight;
+      }
+
+      function setScrollHeight() {
+        if (!video.duration || !isFinite(video.duration)) return;
+        heroScroll.style.height = Math.ceil(video.duration * SCROLL_PER_SECOND) + window.innerHeight + 'px';
+      }
+
+      video.addEventListener('loadedmetadata', setScrollHeight);
+      video.addEventListener('canplay', setScrollHeight);
+      video.addEventListener('canplaythrough', setScrollHeight);
+      window.addEventListener('resize', setScrollHeight);
+      video.load();
+
+      // ── Scroll lock fins que el vídeo acaba ──────────────────
+      let heroUnlocked = false;
+
+      function scrollTo(y) {
+        window.scrollTo({ top: Math.max(0, Math.min(maxScroll(), y)), behavior: 'instant' });
+      }
+
+      function onWheel(e) {
+        if (heroUnlocked) return;
+        e.preventDefault();
+        scrollTo(window.scrollY + e.deltaY);
+      }
+
+      let _ty = 0;
+      function onTouchStart(e) { _ty = e.touches[0].clientY; }
+      function onTouchMove(e) {
+        if (heroUnlocked) return;
+        e.preventDefault();
+        const d = _ty - e.touches[0].clientY;
+        _ty = e.touches[0].clientY;
+        scrollTo(window.scrollY + d);
+      }
+
+      const KEY_DELTA = { ArrowDown: 80, ArrowUp: -80, PageDown: 600, PageUp: -600, ' ': 600, End: 99999, Home: -99999 };
+      function onKeydown(e) {
+        if (heroUnlocked || !(e.key in KEY_DELTA)) return;
+        e.preventDefault();
+        scrollTo(window.scrollY + KEY_DELTA[e.key]);
+      }
+
+      document.addEventListener('wheel',      onWheel,      { passive: false });
+      document.addEventListener('touchstart', onTouchStart, { passive: true  });
+      document.addEventListener('touchmove',  onTouchMove,  { passive: false });
+      document.addEventListener('keydown',    onKeydown);
+
+      function unlock() {
+        heroUnlocked = true;
+        document.removeEventListener('wheel',      onWheel);
+        document.removeEventListener('touchstart', onTouchStart);
+        document.removeEventListener('touchmove',  onTouchMove);
+        document.removeEventListener('keydown',    onKeydown);
+      }
+
+      // ── Scrubbing ────────────────────────────────────────────
+      let ticking = false;
+      let isSeeking = false;
+
+      function onScroll() {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+
+      function update() {
+        ticking = false;
+        const ms       = maxScroll();
+        const progress = ms > 0 ? Math.max(0, Math.min(1, window.scrollY / ms)) : 0;
+
+        if (video.duration && isFinite(video.duration) && !isSeeking) {
+          isSeeking = true;
+          video.pause();
+          video.currentTime = progress * video.duration;
+        }
+
+        progressBar.style.width = (progress * 100) + '%';
+        scrollHint.style.opacity = window.scrollY > 40 ? '0' : '';
+        scrollHint.style.transition = 'opacity 0.4s ease';
+
+        if (progress >= 1 && !heroUnlocked) unlock();
+      }
+
+      video.addEventListener('seeked', function () { isSeeking = false; });
+      window.addEventListener('scroll', onScroll, { passive: true });
+      update();
+    })();
+
+    // Navegació: scroll → fons sòlid + hamburger mòbil
+    (function () {
+      const nav       = document.getElementById('site-nav');
+      const hamburger = document.getElementById('nav-hamburger');
+
+      window.addEventListener('scroll', function () {
+        nav.classList.toggle('scrolled', window.scrollY > 20);
+      }, { passive: true });
+
+      hamburger.addEventListener('click', function () {
+        hamburger.classList.toggle('open');
+        nav.classList.toggle('nav-mobile-open');
+      });
+
+      // Tanca el menú mòbil en clicar un link
+      nav.querySelectorAll('.nav-links a').forEach(function (link) {
+        link.addEventListener('click', function () {
+          hamburger.classList.remove('open');
+          nav.classList.remove('nav-mobile-open');
+        });
+      });
+
+      // Selector d'idioma
+      nav.querySelectorAll('.nav-lang button').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          nav.querySelectorAll('.nav-lang button').forEach(function (b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+        });
+      });
+
+      // Pill nav: cursor lliscant a l'hover
+      const navUL = nav.querySelector('.nav-links');
+      const cursor = nav.querySelector('.nav-cursor');
+      if (navUL && cursor) {
+        nav.querySelectorAll('.nav-links li').forEach(function (li) {
+          li.addEventListener('mouseenter', function () {
+            cursor.style.left = li.offsetLeft + 'px';
+            cursor.style.width = li.offsetWidth + 'px';
+            cursor.style.opacity = '1';
+          });
+        });
+        navUL.addEventListener('mouseleave', function () {
+          cursor.style.opacity = '0';
+        });
+      }
+    })();
+
+    // Slider de claims — sweep verd + text pop
+    (function () {
+      const claims = document.querySelectorAll('.hero-claim');
+      if (claims.length < 2) return;
+      let current = 0;
+      setInterval(function () {
+        const prev = current;
+        claims[prev].classList.remove('is-active');
+        claims[prev].classList.add('is-leaving');
+        setTimeout(function () { claims[prev].classList.remove('is-leaving'); }, 450);
+        current = (current + 1) % claims.length;
+        claims[current].classList.add('is-active');
+      }, 4500);
+    })();
+
+    // Secció "Qui servim" — scroll reveal + hover interactiu
+    (function () {
+      const items     = document.querySelectorAll('.serveis-item');
+      const descPanel = document.getElementById('serveis-desc');
+      const descText  = document.getElementById('serveis-desc-text');
+      const imgFloat  = document.getElementById('serveis-img-float');
+      const imgEl     = document.getElementById('serveis-img');
+      const listWrap  = document.querySelector('.serveis-list-wrap');
+
+      if (!items.length) return;
+
+      // — Scroll reveal en cascada —
+      const revealObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            const idx = Array.from(items).indexOf(entry.target);
+            setTimeout(function () {
+              entry.target.classList.add('is-visible');
+            }, idx * 80);
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      items.forEach(function (item) { revealObserver.observe(item); });
+
+      // — Hover: fletxa + descripció + imatge flotant —
+      items.forEach(function (item) {
+        item.addEventListener('mouseenter', function () {
+          items.forEach(function (el) { el.classList.remove('is-hovered'); });
+          item.classList.add('is-hovered');
+
+          // Descripció al panell esquerre
+          var desc = item.getAttribute('data-desc');
+          if (desc && descText && descPanel) {
+            descText.textContent = desc;
+            descPanel.classList.add('is-active');
+          }
+
+          // Imatge flotant — posicionada al centre vertical de l'ítem
+          var imgSrc = item.getAttribute('data-img');
+          if (imgSrc && imgFloat && imgEl && listWrap) {
+            if (imgEl.src !== window.location.origin + '/' + imgSrc &&
+                imgEl.getAttribute('src') !== imgSrc) {
+              imgEl.src = imgSrc;
+            }
+            var itemRect = item.getBoundingClientRect();
+            var wrapRect = listWrap.getBoundingClientRect();
+            var relTop   = itemRect.top - wrapRect.top;
+            var centreY  = relTop + itemRect.height / 2 - imgFloat.offsetHeight / 2;
+            imgFloat.style.top = Math.max(0, centreY) + 'px';
+            imgFloat.classList.add('is-active');
+          }
+        });
+
+        item.addEventListener('mouseleave', function () {
+          item.classList.remove('is-hovered');
+          if (descPanel) descPanel.classList.remove('is-active');
+          if (imgFloat) imgFloat.classList.remove('is-active');
+        });
+      });
+    })();
+
+    // ─── Text reveal: scroll-driven, dos trams ──────────────────
+    (function () {
+
+      // Split .serveis-nom en caràcters individuals
+      document.querySelectorAll('.serveis-nom').forEach(function (nom) {
+        var text = nom.textContent;
+        nom.innerHTML = '';
+        Array.from(text).forEach(function (ch, i) {
+          var s = document.createElement('span');
+          s.className = 'char';
+          s.textContent = ch;
+          s.style.setProperty('--char-i', i);
+          nom.appendChild(s);
+        });
+      });
+
+      // Split .serveis-heading en paraules, preservant el tag <em>
+      var heading = document.querySelector('.serveis-heading');
+      if (heading) {
+        var wi = 0;
+        function processNode(node) {
+          if (node.nodeType === 3) {
+            var parts = node.textContent.split(/(\s+)/);
+            var frag  = document.createDocumentFragment();
+            parts.forEach(function (part) {
+              if (!part) return;
+              if (/^\s+$/.test(part)) {
+                frag.appendChild(document.createTextNode(part));
+              } else {
+                var s = document.createElement('span');
+                s.className = 'word';
+                s.textContent = part;
+                s.style.setProperty('--word-i', wi++);
+                frag.appendChild(s);
+              }
+            });
+            node.parentNode.replaceChild(frag, node);
+          } else if (node.nodeType === 1) {
+            Array.from(node.childNodes).forEach(processNode);
+          }
+        }
+        Array.from(heading.childNodes).forEach(processNode);
+      }
+
+      // Observer: dos trams de reveal per a cada element observat
+      function revealHalf(els, half, phase) {
+        els.forEach(function (el, i) {
+          var inFirst = i < half;
+          if (phase === 1 && inFirst)  el.classList.add('is-lit');
+          if (phase === 2 && !inFirst) el.classList.add('is-lit');
+        });
+      }
+
+      var litObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          var ratio = entry.intersectionRatio;
+          var el    = entry.target;
+
+          if (el.classList.contains('serveis-item')) {
+            var nom   = el.querySelector('.serveis-nom');
+            if (!nom) return;
+            var chars = Array.from(nom.querySelectorAll('.char'));
+            var half  = Math.ceil(chars.length / 2);
+            if (ratio >= 0.25 && !el.dataset.lit1) {
+              el.dataset.lit1 = '1';
+              revealHalf(chars, half, 1);
+            }
+            if (ratio >= 0.80 && !el.dataset.lit2) {
+              el.dataset.lit2 = '1';
+              revealHalf(chars, half, 2);
+            }
+          }
+
+          if (el === heading) {
+            var words = Array.from(el.querySelectorAll('.word'));
+            var halfW = Math.ceil(words.length / 2);
+            if (ratio >= 0.25 && !el.dataset.lit1) {
+              el.dataset.lit1 = '1';
+              revealHalf(words, halfW, 1);
+            }
+            if (ratio >= 0.75 && !el.dataset.lit2) {
+              el.dataset.lit2 = '1';
+              revealHalf(words, halfW, 2);
+            }
+          }
+        });
+      }, { threshold: [0, 0.25, 0.75, 0.80, 1.0] });
+
+      document.querySelectorAll('.serveis-item').forEach(function (item) {
+        litObserver.observe(item);
+      });
+      if (heading) litObserver.observe(heading);
+
+    })();
+
+    // Productes — pestanyes
+    (function () {
+      const tabs   = document.querySelectorAll('.prod-tab');
+      const panels = document.querySelectorAll('.prod-panel');
+      if (!tabs.length || !panels.length) return;
+
+      tabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          const cat = tab.getAttribute('data-cat');
+          tabs.forEach(function (t) { t.classList.remove('active'); });
+          panels.forEach(function (p) { p.classList.remove('is-active'); });
+          tab.classList.add('active');
+          const panel = document.querySelector('.prod-panel[data-cat="' + cat + '"]');
+          if (panel) panel.classList.add('is-active');
+        });
+      });
+    })();
+
+    // Comptador animat de stats (Qui som)
+    (function () {
+      const nums = document.querySelectorAll('.stat-num');
+      if (!nums.length) return;
+
+      function animate(el) {
+        const target = parseInt(el.getAttribute('data-count'), 10) || 0;
+        const dur = 1600;
+        const t0 = performance.now();
+        function tick(now) {
+          const t = Math.min(1, (now - t0) / dur);
+          const eased = 1 - Math.pow(1 - t, 4);
+          el.textContent = Math.round(target * eased);
+          if (t < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+      }
+
+      const obs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            animate(entry.target);
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.4 });
+
+      nums.forEach(function (n) { obs.observe(n); });
+    })();
+
+    // Contacte — submit (placeholder)
+    (function () {
+      const form = document.getElementById('contacte-form');
+      if (!form) return;
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const btn = form.querySelector('.form-submit');
+        if (!btn) return;
+        const original = btn.innerHTML;
+        btn.innerHTML = 'Gràcies!';
+        btn.style.background = 'var(--green-dk)';
+        setTimeout(function () {
+          btn.innerHTML = original;
+          btn.style.background = '';
+          form.reset();
+        }, 2400);
+      });
+    })();
+  </script>
 
 </body>
 </html>
