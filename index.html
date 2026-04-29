@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
   <style>
     *, *::before, *::after {
       box-sizing: border-box;
@@ -70,8 +71,9 @@
       background: linear-gradient(
         to bottom,
         rgba(0,0,0,0.10) 0%,
-        rgba(0,0,0,0.25) 60%,
-        rgba(0,0,0,0.55) 100%
+        rgba(0,0,0,0.25) 55%,
+        rgba(0,0,0,0.48) 80%,
+        #f2faf2 100%
       );
       pointer-events: none;
     }
@@ -436,31 +438,25 @@
       .stat-card { padding: 1.4rem 1.1rem; }
     }
 
-    /* ─── SECCIÓ "QUI SERVIM" — estil Mercket ────────────────── */
+    /* ─── SECCIÓ "QUI SERVIM" — acordió d'imatges ─────────── */
 
     .seccio-serveis {
-      background-color: #F7EFE3;
+      background-color: #FBF6E8;
       padding: 8rem 2.5rem;
       position: relative;
       overflow: hidden;
     }
 
-    .serveis-inner {
+    .accord-inner {
       max-width: 1200px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: minmax(180px, 300px) 1fr;
+      grid-template-columns: minmax(200px, 280px) 1fr;
       gap: 5rem;
-      align-items: start;
+      align-items: center;
     }
 
-    /* Columna esquerra */
-    .serveis-left {
-      position: relative;
-      padding-top: 0.25rem;
-    }
-
-    .serveis-badge {
+    .accord-badge {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
@@ -474,9 +470,10 @@
       padding: 0.5rem 1.1rem;
       border-radius: 100px;
       white-space: nowrap;
+      margin-bottom: 2rem;
     }
 
-    .serveis-dot {
+    .accord-badge-dot {
       width: 6px;
       height: 6px;
       border-radius: 50%;
@@ -485,288 +482,125 @@
       animation: pulse 2s ease-in-out infinite;
     }
 
-    .serveis-deco-1 {
-      position: absolute;
-      top: 4rem;
-      left: -80px;
-      width: 190px;
-      height: 340px;
-      border-radius: 999px;
-      background: rgba(122, 186, 120, 0.15);
-      transform: rotate(-10deg);
-      pointer-events: none;
-    }
-
-    .serveis-deco-2 {
-      position: absolute;
-      top: 12rem;
-      left: 20px;
-      width: 110px;
-      height: 180px;
-      border-radius: 999px;
-      background: rgba(232, 200, 112, 0.14);
-      transform: rotate(18deg);
-      pointer-events: none;
-    }
-
-    /* Columna dreta */
-    .serveis-heading {
+    .accord-heading {
       font-family: 'Fraunces', serif;
-      font-size: clamp(1.6rem, 2.5vw, 2.3rem);
+      font-size: clamp(1.5rem, 2.4vw, 2.1rem);
       font-weight: 700;
       line-height: 1.3;
       color: #3C2A21;
-      margin-bottom: 3.5rem;
-      max-width: 480px;
+      margin-bottom: 1rem;
+      transition: opacity 0.25s ease;
     }
 
-    .serveis-heading em {
-      font-style: italic;
-      color: #5a9e5c;
-    }
-
-    /* Llista */
-    .serveis-list {
-      list-style: none;
-      border-top: 1px solid rgba(60, 42, 33, 0.12);
-      margin-bottom: 3rem;
-    }
-
-    .serveis-item {
-      display: block;
-      padding: 1.4rem 0;
-      border-bottom: 1px solid rgba(60, 42, 33, 0.12);
-      cursor: default;
-      opacity: 0;
-      transform: translateY(22px);
-      transition:
-        opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
-        transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .serveis-item.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .serveis-item.is-hovered .serveis-nom,
-    .serveis-item.is-visible:hover .serveis-nom {
-      color: #3C2A21;
-    }
-
-    .serveis-item.is-hovered .serveis-num,
-    .serveis-item.is-visible:hover .serveis-num {
-      color: #7ABA78;
-    }
-
-    .serveis-nom {
-      font-family: 'Fraunces', serif;
-      font-size: clamp(2rem, 4vw, 3.8rem);
-      font-weight: 300;
-      line-height: 1;
-      letter-spacing: -0.02em;
-      color: rgba(60, 42, 33, 0.12);
-    }
-
-    /* ─── TEXT REVEAL — chars (.serveis-nom) ──────────────────── */
-    .serveis-nom .char {
-      display: inline;
-      color: rgba(60, 42, 33, 0.12);
-      transition-property: color;
-      transition-duration: 0.55s;
-      transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
-      transition-delay: calc(var(--char-i) * 42ms);
-    }
-
-    .serveis-nom .char.is-lit {
-      color: rgba(60, 42, 33, 0.55);
-    }
-
-    .serveis-item.is-hovered .serveis-nom .char,
-    .serveis-item.is-visible:hover .serveis-nom .char {
-      color: #3C2A21 !important;
-      transition-delay: calc(var(--char-i) * 16ms) !important;
-    }
-
-    /* ─── TEXT REVEAL — words (.serveis-heading) ──────────────── */
-    .serveis-heading .word {
-      display: inline;
-      color: rgba(60, 42, 33, 0.14);
-      transition-property: color;
-      transition-duration: 0.6s;
-      transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
-      transition-delay: calc(var(--word-i) * 80ms);
-    }
-
-    .serveis-heading em .word {
-      color: rgba(90, 158, 92, 0.2);
-    }
-
-    .serveis-heading .word.is-lit {
-      color: #3C2A21;
-    }
-
-    .serveis-heading em .word.is-lit {
-      color: #5a9e5c;
-    }
-
-    .serveis-num {
+    .accord-desc {
       font-family: 'Sora', sans-serif;
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.06em;
-      color: rgba(60, 42, 33, 0.25);
-      vertical-align: super;
-      line-height: 0;
-      margin-left: 0.2rem;
-      transition: color 0.35s ease;
-    }
-
-    /* CTA */
-    .serveis-cta {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .serveis-btn {
-      display: inline-flex;
-      align-items: center;
-      background: #7ABA78;
-      color: #fff;
-      font-family: 'Sora', sans-serif;
-      font-size: 0.76rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      text-decoration: none;
-      padding: 0.9rem 2.2rem;
-      border-radius: 100px;
-      transition: background 0.3s ease, transform 0.3s ease;
-    }
-
-    .serveis-btn:hover {
-      background: #5a9e5c;
-      transform: scale(1.04);
-    }
-
-    .serveis-btn-arrow {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      background: #7ABA78;
-      color: #fff;
-      font-size: 1.1rem;
-      text-decoration: none;
-      transition: background 0.3s ease, transform 0.3s ease;
-    }
-
-    .serveis-btn-arrow:hover {
-      background: #5a9e5c;
-      transform: scale(1.12);
-    }
-
-    /* Panel de descripció — columna esquerra */
-    .serveis-desc {
-      margin-top: 2.5rem;
-      opacity: 0;
-      transform: translateY(6px);
-      transition: opacity 0.4s ease, transform 0.4s ease;
-      max-width: 230px;
-    }
-
-    .serveis-desc.is-active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .serveis-desc-text {
-      font-family: 'Sora', sans-serif;
-      font-size: 0.82rem;
+      font-size: 0.88rem;
       font-weight: 300;
       color: #606060;
       line-height: 1.75;
+      transition: opacity 0.25s ease;
     }
 
-    /* Wrap per a posicionament relatiu de la imatge flotant */
-    .serveis-list-wrap {
-      position: relative;
-    }
-
-    /* Estructura interna de cada ítem */
-    .serveis-item-main {
+    .accord-panels {
       display: flex;
-      align-items: baseline;
-      gap: 0;
-    }
-
-    /* Fletxa ↳ — sempre reserva espai però invisible fins hover */
-    .serveis-arrow {
-      font-size: 1.3rem;
-      color: #7ABA78;
-      width: 2.2rem;
-      flex-shrink: 0;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      line-height: 1;
-    }
-
-    .serveis-item.is-hovered .serveis-arrow {
-      opacity: 1;
-    }
-
-    /* Dóna marge dret als ítems per deixar lloc a la imatge flotant */
-    @media (min-width: 861px) {
-      .serveis-item { padding-right: 290px; }
-    }
-
-    /* Imatge flotant posicionada per JS */
-    .serveis-img-float {
-      position: absolute;
-      right: 0;
-      top: 0;
-      width: 265px;
-      height: 210px;
-      border-radius: 10px;
+      gap: 8px;
+      height: 520px;
+      border-radius: 12px;
       overflow: hidden;
-      opacity: 0;
-      transform: scale(0.94) translateY(8px);
-      transition:
-        opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-        transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-      pointer-events: none;
     }
 
-    .serveis-img-float.is-active {
-      opacity: 1;
-      transform: scale(1) translateY(0);
+    .accord-panel {
+      flex: 0 0 68px;
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: flex 0.7s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .serveis-img-float img {
+    .accord-panel.is-active { flex: 1; }
+
+    .accord-panel img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
     }
 
-    /* Responsive */
+    .accord-panel.is-active img { transform: scale(1.04); }
+
+    .accord-panel-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.45);
+      transition: background 0.5s ease;
+    }
+
+    .accord-panel.is-active .accord-panel-overlay {
+      background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.1) 55%, transparent 100%);
+    }
+
+    .accord-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1.4rem 1.2rem;
+      color: #fff;
+    }
+
+    .accord-label-num {
+      font-family: 'Sora', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      opacity: 0;
+      display: block;
+      margin-bottom: 0.3rem;
+      transition: opacity 0.35s ease;
+    }
+
+    .accord-panel.is-active .accord-label-num { opacity: 0.7; }
+
+    .accord-label-name {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      line-height: 1.2;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      white-space: nowrap;
+      transition: font-size 0.4s ease;
+    }
+
+    .accord-panel.is-active .accord-label-name {
+      writing-mode: horizontal-tb;
+      transform: none;
+      font-size: clamp(1.1rem, 2vw, 1.6rem);
+    }
+
     @media (max-width: 860px) {
-      .serveis-inner {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-      }
-      .serveis-deco-1,
-      .serveis-deco-2 { display: none; }
-      .serveis-img-float { display: none; }
-      .serveis-desc { max-width: none; }
+      .accord-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .accord-panels { height: 380px; }
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 540px) {
       .seccio-serveis { padding: 5rem 1.5rem; }
-      .serveis-nom { font-size: clamp(1.8rem, 9vw, 2.8rem); }
+      .accord-panels { flex-direction: column; height: auto; }
+      .accord-panel { flex: 0 0 60px; }
+      .accord-panel.is-active { flex: 0 0 300px; }
+      .accord-label-name { writing-mode: horizontal-tb; transform: none; font-size: 1rem; }
+      .accord-panel.is-active .accord-label-name { font-size: 1.2rem; }
     }
+
+    /* — serveis legacy (unused, safe to ignore) — */
+    .serveis-list {
+      list-style: none;
+    }
+
+    .serveis-item { display: none; }
 
     /* ─── HERO RESPONSIVE ────────────────────────────────── */
     @media (max-width: 640px) {
@@ -873,13 +707,15 @@
       font-weight: 600;
       letter-spacing: 0.06em;
       text-transform: uppercase;
-      color: #fff;
+      color: #7ABA78;
       text-decoration: none;
       padding: 0.55rem 0.95rem;
-      mix-blend-mode: difference;
       cursor: pointer;
       white-space: nowrap;
+      transition: color 0.25s ease, transform 0.25s cubic-bezier(0.16,1,0.3,1);
     }
+
+    .site-nav.scrolled .nav-links a { color: #fff; }
 
     @media (min-width: 768px) {
       .nav-links a {
@@ -1320,131 +1156,212 @@
       margin: 0 auto;
     }
 
-    .productes-tabs {
-      max-width: 1200px;
-      margin: 0 auto 2.5rem;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.5rem;
+    /* ─── PRODUCTES — co-carousel (Tim Guignard) ────────── */
+
+    /* Full-section colour backgrounds, fade per slide */
+    .co-background {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .co-background--style-0 {
+      background: linear-gradient(163deg, rgba(255,251,237,1) 0%, rgba(244,228,164,1) 100%);
+    }
+    .co-background--style-1 {
+      background: linear-gradient(163deg, rgba(255,247,247,1) 0%, rgba(240,193,193,1) 100%);
+    }
+    .co-background--style-2 {
+      background: linear-gradient(163deg, rgba(246,249,255,1) 0%, rgba(193,212,243,1) 100%);
+    }
+    .co-background--style-3 {
+      background: linear-gradient(163deg, rgba(247,254,247,1) 0%, rgba(190,228,188,1) 100%);
+    }
+
+    /* Carousel wrapper */
+    .co-carousel-wrap {
       position: relative;
-      z-index: 1;
-    }
-
-    .prod-tab {
-      font-family: 'Sora', sans-serif;
-      font-size: 0.78rem;
-      font-weight: 500;
-      letter-spacing: 0.04em;
-      color: rgba(255,255,255,0.7);
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 100px;
-      padding: 0.6rem 1.2rem;
-      cursor: pointer;
-      transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
-    }
-
-    .prod-tab:hover {
-      color: #fff;
-      border-color: rgba(255,255,255,0.4);
-      background: rgba(255,255,255,0.08);
-    }
-
-    .prod-tab.active {
-      color: var(--green-xdk);
-      background: var(--green);
-      border-color: var(--green);
-    }
-
-    .productes-stage {
-      max-width: 1200px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 1;
-      min-height: 380px;
-    }
-
-    .prod-panel {
-      display: none;
-      grid-template-columns: minmax(320px, 1fr) 1fr;
-      gap: 3rem;
-      align-items: stretch;
-      animation: fadeUp 0.5s cubic-bezier(0.16,1,0.3,1) both;
-    }
-
-    .prod-panel.is-active { display: grid; }
-
-    .prod-img {
-      min-height: 360px;
-      background-size: cover;
-      background-position: center;
-      border-radius: 20px;
-    }
-
-    .prod-info {
+      z-index: 9;
       display: flex;
       flex-direction: column;
+      align-items: center;
+      padding: 2rem 0 5rem;
+    }
+
+    .co-carousel {
+      margin: 0 auto;
+      width: 50%;
+      height: 400px;
+      overflow: visible;
+    }
+
+    .co-carousel__slide {
+      display: flex;
+      align-items: center;
       justify-content: center;
     }
 
-    .prod-info h3 {
-      font-family: 'Fraunces', serif;
-      font-size: clamp(1.6rem, 2.6vw, 2.2rem);
-      font-weight: 700;
-      line-height: 1.2;
-      color: #fff;
-      margin-bottom: 1rem;
+    /* Nav buttons */
+    .co-carousel__nav-buttons {
+      margin-top: 40px;
+      width: 50%;
+      display: flex;
+      justify-content: space-between;
     }
 
-    .prod-info p {
-      font-family: 'Sora', sans-serif;
-      font-size: 1rem;
-      font-weight: 300;
-      line-height: 1.65;
-      color: rgba(255,255,255,0.78);
-      margin-bottom: 1.5rem;
-      max-width: 520px;
-    }
-
-    .prod-info ul {
-      list-style: none;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 0.6rem 1.5rem;
-    }
-
-    .prod-info li {
+    .co-carousel__nav-button {
+      padding: 10px 0;
+      width: 150px;
       position: relative;
-      padding-left: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      color: rgba(255,255,255,0.88);
+    }
+
+    .co-carousel__nav-button.prev { align-items: flex-end; }
+    .co-carousel__nav-button.next { align-items: flex-start; }
+    .co-carousel__nav-button.swiper-button-disabled { opacity: .3; pointer-events: none; }
+
+    .co-carousel__nav-button:hover:not(.swiper-button-disabled).prev span {
+      transform: translate3d(-10px, 0, 0);
+    }
+    .co-carousel__nav-button:hover:not(.swiper-button-disabled).next span {
+      transform: translate3d(10px, 0, 0);
+    }
+
+    .co-carousel__nav-button::before {
+      display: block;
+      content: "";
+      width: 100%;
+      height: 1px;
+      background-color: rgba(255,255,255,0.88);
+    }
+
+    .co-carousel__nav-button span {
       font-family: 'Sora', sans-serif;
-      font-size: 0.92rem;
-      font-weight: 400;
-      color: rgba(255,255,255,0.85);
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 10px 0;
+      transition: transform cubic-bezier(.22,.74,.46,.97) .3s;
     }
 
-    .prod-info li::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0.55rem;
-      width: 8px;
-      height: 8px;
+    /* Card */
+    .co-card {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      height: 400px;
+      width: 250px;
+      border-radius: 20px;
+      box-shadow: 0 0 3px rgba(0,0,0,.1);
+      background: linear-gradient(163deg, rgba(255,251,237,1) 0%, rgba(244,228,164,1) 100%);
+    }
+
+    .co-card--style-1 {
+      background: linear-gradient(163deg, rgba(255,247,247,1) 0%, rgba(240,193,193,1) 100%);
+    }
+    .co-card--style-2 {
+      background: linear-gradient(163deg, rgba(246,249,255,1) 0%, rgba(193,212,243,1) 100%);
+    }
+    .co-card--style-3 {
+      background: linear-gradient(163deg, rgba(247,254,247,1) 0%, rgba(190,228,188,1) 100%);
+    }
+
+    /* Food image — circular plate floating above card */
+    .co-card__shoe {
+      position: relative;
+      flex-shrink: 0;
+      top: -15px;
+    }
+
+    .co-card__shoe-img {
+      user-select: none;
+      position: relative;
+      width: 168px;
+      height: 168px;
       border-radius: 50%;
-      background: var(--green);
+      object-fit: cover;
+      display: block;
+      z-index: 9;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.20);
     }
 
-    @media (max-width: 860px) {
-      .prod-panel { grid-template-columns: 1fr; gap: 2rem; }
-      .prod-img { min-height: 240px; }
-      .prod-info ul { grid-template-columns: 1fr; }
+    .co-card__shoe-shadow {
+      position: absolute;
+      top: 154px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: block;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      opacity: .22;
+      background-color: rgba(0,0,0,1);
+      box-shadow: 0 0 20px 28px rgba(0,0,0,1);
+    }
+
+    /* Card info */
+    .co-card__info {
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      padding: 20px;
+      display: table;
+    }
+
+    .co-card__title {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 16px;
+      letter-spacing: -0.01em;
+      color: #3C2A21;
+    }
+
+    .co-card__collection {
+      font-family: 'Sora', sans-serif;
+      font-weight: 600;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: rgba(60,42,33,0.5);
+    }
+
+    .co-card__price {
+      margin-top: 8px;
+      font-family: 'Sora', sans-serif;
+      font-weight: 500;
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      color: #7ABA78;
+    }
+
+    /* Text reveal mask */
+    .text-mask { overflow: hidden; }
+    .text-mask span { display: inline-flex; }
+
+    @media (max-width: 900px) {
+      .co-carousel { width: 70%; }
+      .co-carousel__nav-buttons { width: 70%; }
+    }
+
+    @media (max-width: 540px) {
+      .co-carousel { width: 86%; height: 360px; }
+      .co-carousel__nav-buttons { width: 86%; }
+      .co-card { height: 360px; width: 220px; }
+      .co-card__shoe-img { width: 145px; height: 145px; }
+      .co-card__shoe-shadow { top: 133px; }
     }
 
     /* ─── QUALITAT ─────────────────────────────────────────── */
 
     .seccio-qualitat {
       position: relative;
-      background: #F7EFE3;
+      background: #FBF6E8;
       padding: 7rem 1.5rem 8rem;
       overflow: hidden;
     }
@@ -2025,87 +1942,77 @@
     </div>
   </section>
 
-  <!-- ─── QUÈ FEM — qui servim / línies de servei ───────────── -->
+  <!-- ─── QUÈ FEM — acordió d'imatges ─────────────────────── -->
   <section class="seccio-serveis" id="que-fem">
-    <div class="serveis-inner">
+    <div class="accord-inner">
 
-      <div class="serveis-left">
-        <span class="serveis-badge">
-          <span class="serveis-dot"></span>
+      <div class="accord-left">
+        <span class="accord-badge">
+          <span class="accord-badge-dot"></span>
           Qui servim
         </span>
-        <div class="serveis-desc" id="serveis-desc">
-          <p class="serveis-desc-text" id="serveis-desc-text"></p>
-        </div>
-        <div class="serveis-deco-1"></div>
-        <div class="serveis-deco-2"></div>
+        <h2 class="accord-heading" id="accord-heading">Hostaleria i restaurants</h2>
+        <p class="accord-desc" id="accord-desc">Plats de cinquena gamma per a restaurants, bars i hotels. Producció regular, sabor constant.</p>
       </div>
 
-      <div class="serveis-right">
-        <h2 class="serveis-heading">
-          Cuina de mercat, elaborada amb <em>el sabor casolà de sempre.</em>
-        </h2>
+      <div class="accord-panels" id="accord-panels">
 
-        <div class="serveis-list-wrap">
-          <ul class="serveis-list" id="serveis-list">
-            <li class="serveis-item"
-                data-desc="Plats de cinquena gamma per a restaurants, bars i hotels. Producció regular, sabor constant."
-                data-img="img/slider_principal.png">
-              <div class="serveis-item-main">
-                <span class="serveis-arrow">↳</span>
-                <span class="serveis-nom">Hostaleria</span>
-                <span class="serveis-num">{01}</span>
-              </div>
-            </li>
-            <li class="serveis-item"
-                data-desc="Envasos premium per a supermercats i comerços alimentaris especialitzats."
-                data-img="img/slider_principal.png">
-              <div class="serveis-item-main">
-                <span class="serveis-arrow">↳</span>
-                <span class="serveis-nom">Retail</span>
-                <span class="serveis-num">{02}</span>
-              </div>
-            </li>
-            <li class="serveis-item"
-                data-desc="Menús diaris per a escoles, hospitals i menjadors corporatius. Qualitat casolana a gran escala."
-                data-img="img/slider_principal.png">
-              <div class="serveis-item-main">
-                <span class="serveis-arrow">↳</span>
-                <span class="serveis-nom">Col·lectivitats</span>
-                <span class="serveis-num">{03}</span>
-              </div>
-            </li>
-            <li class="serveis-item"
-                data-desc="Xarxa de distribució en cadena de fred 2°C–4°C per a tot el territori."
-                data-img="img/slider_principal.png">
-              <div class="serveis-item-main">
-                <span class="serveis-arrow">↳</span>
-                <span class="serveis-nom">Distribució</span>
-                <span class="serveis-num">{04}</span>
-              </div>
-            </li>
-            <li class="serveis-item"
-                data-desc="Venda directa al consumidor final amb el sabor d'una cuina de mercat casolana."
-                data-img="img/slider_principal.png">
-              <div class="serveis-item-main">
-                <span class="serveis-arrow">↳</span>
-                <span class="serveis-nom">Botigues pròpies</span>
-                <span class="serveis-num">{05}</span>
-              </div>
-            </li>
-          </ul>
-
-          <div class="serveis-img-float" id="serveis-img-float">
-            <img src="" alt="" id="serveis-img">
+        <div class="accord-panel is-active"
+             data-heading="Hostaleria i restaurants"
+             data-desc="Plats de cinquena gamma per a restaurants, bars i hotels. Producció regular, sabor constant.">
+          <img src="img/paella_marisc.jpg" alt="Hostaleria">
+          <div class="accord-panel-overlay"></div>
+          <div class="accord-label">
+            <span class="accord-label-num">01</span>
+            <span class="accord-label-name">Hostaleria</span>
           </div>
         </div>
 
-        <div class="serveis-cta">
-          <a href="#productes" class="serveis-btn">Descobrir els productes</a>
-          <a href="#productes" class="serveis-btn-arrow" aria-hidden="true">↗</a>
+        <div class="accord-panel"
+             data-heading="Retail i gran distribució"
+             data-desc="Envasos premium per a supermercats i comerços alimentaris especialitzats.">
+          <img src="img/risotto_bolets.jpg" alt="Retail">
+          <div class="accord-panel-overlay"></div>
+          <div class="accord-label">
+            <span class="accord-label-num">02</span>
+            <span class="accord-label-name">Retail</span>
+          </div>
         </div>
-      </div>
 
+        <div class="accord-panel"
+             data-heading="Col·lectivitats i menjadors"
+             data-desc="Menús diaris per a escoles, hospitals i menjadors corporatius. Qualitat casolana a gran escala.">
+          <img src="img/fabada.jpg" alt="Col·lectivitats">
+          <div class="accord-panel-overlay"></div>
+          <div class="accord-label">
+            <span class="accord-label-num">03</span>
+            <span class="accord-label-name">Col·lectivitats</span>
+          </div>
+        </div>
+
+        <div class="accord-panel"
+             data-heading="Distribució i cadena de fred"
+             data-desc="Xarxa de distribució en cadena de fred 2°C–4°C per a tot el territori.">
+          <img src="img/udon.jpg" alt="Distribució">
+          <div class="accord-panel-overlay"></div>
+          <div class="accord-label">
+            <span class="accord-label-num">04</span>
+            <span class="accord-label-name">Distribució</span>
+          </div>
+        </div>
+
+        <div class="accord-panel"
+             data-heading="Botigues pròpies i venda directa"
+             data-desc="Venda directa al consumidor final amb el sabor d'una cuina de mercat casolana.">
+          <img src="img/croquetes_pollastre.jpg" alt="Botigues pròpies">
+          <div class="accord-panel-overlay"></div>
+          <div class="accord-label">
+            <span class="accord-label-num">05</span>
+            <span class="accord-label-name">Botigues pròpies</span>
+          </div>
+        </div>
+
+      </div>
     </div>
   </section>
 
@@ -2182,137 +2089,79 @@
       </p>
     </div>
 
-    <div class="productes-tabs" id="productes-tabs">
-      <button class="prod-tab active" data-cat="0">Canelons i Lasanyes</button>
-      <button class="prod-tab" data-cat="1">Carns i Guisats</button>
-      <button class="prod-tab" data-cat="2">Peixos i Marisc</button>
-      <button class="prod-tab" data-cat="3">Llegums i Verdures</button>
-      <button class="prod-tab" data-cat="4">Arrossos i Fideuàs</button>
-      <button class="prod-tab" data-cat="5">Pastes i Noodles</button>
-      <button class="prod-tab" data-cat="6">Croquetes</button>
-      <button class="prod-tab" data-cat="7">Amanides i Pastissos Freds</button>
-      <button class="prod-tab" data-cat="8">Postres</button>
+    <div class="co-carousel-wrap">
+      <div class="swiper co-carousel">
+        <div class="swiper-wrapper">
+
+          <div class="swiper-slide co-carousel__slide">
+            <div class="co-card">
+              <div class="co-card__shoe">
+                <img class="co-card__shoe-img" src="img/arros_muntanya.jpg" alt="Arròs de muntanya">
+                <span class="co-card__shoe-shadow"></span>
+              </div>
+              <div class="co-card__info">
+                <div class="co-card__collection text-mask"><span>Arrossos i Fideuàs</span></div>
+                <div class="co-card__title text-mask"><span>Arròs de muntanya</span></div>
+                <div class="co-card__price text-mask"><span>Cinquena gamma · 18 dies</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="swiper-slide co-carousel__slide">
+            <div class="co-card co-card--style-1">
+              <div class="co-card__shoe">
+                <img class="co-card__shoe-img" src="img/fabada.jpg" alt="Fabada artesana">
+                <span class="co-card__shoe-shadow"></span>
+              </div>
+              <div class="co-card__info">
+                <div class="co-card__collection text-mask"><span>Carns i Llegums</span></div>
+                <div class="co-card__title text-mask"><span>Fabada artesana</span></div>
+                <div class="co-card__price text-mask"><span>Cinquena gamma · 18 dies</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="swiper-slide co-carousel__slide">
+            <div class="co-card co-card--style-2">
+              <div class="co-card__shoe">
+                <img class="co-card__shoe-img" src="img/pastis_tonyina.jpg" alt="Pastís de tonyina">
+                <span class="co-card__shoe-shadow"></span>
+              </div>
+              <div class="co-card__info">
+                <div class="co-card__collection text-mask"><span>Pastes i Amanides</span></div>
+                <div class="co-card__title text-mask"><span>Pastís de tonyina</span></div>
+                <div class="co-card__price text-mask"><span>Cinquena gamma · 18 dies</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="swiper-slide co-carousel__slide">
+            <div class="co-card co-card--style-3">
+              <div class="co-card__shoe">
+                <img class="co-card__shoe-img" src="img/risotto_bolets.jpg" alt="Risotto de bolets">
+                <span class="co-card__shoe-shadow"></span>
+              </div>
+              <div class="co-card__info">
+                <div class="co-card__collection text-mask"><span>Arrossos i Fideuàs</span></div>
+                <div class="co-card__title text-mask"><span>Risotto de bolets</span></div>
+                <div class="co-card__price text-mask"><span>Cinquena gamma · 18 dies</span></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="co-carousel__nav-buttons">
+        <div class="co-carousel__nav-button prev"><span>Anterior</span></div>
+        <div class="co-carousel__nav-button next"><span>Següent</span></div>
+      </div>
     </div>
 
-    <div class="productes-stage" id="productes-stage">
-      <div class="prod-panel is-active" data-cat="0">
-        <div class="prod-img" style="background-image: url('img/risotto_bolets.jpg');"></div>
-        <div class="prod-info">
-          <h3>Canelons i Lasanyes</h3>
-          <p>Receptes de farcit clàssic, beixamel artesana i pasta fresca. Plats reconfortants amb el sabor de casa.</p>
-          <ul>
-            <li>Canelons d'escudella</li>
-            <li>Canelons de pollastre i bolets</li>
-            <li>Lasanya de carn</li>
-            <li>Lasanya vegetal</li>
-          </ul>
-        </div>
-      </div>
-      <div class="prod-panel" data-cat="1">
-        <div class="prod-img" style="background-image: url('img/fabada.jpg');"></div>
-        <div class="prod-info">
-          <h3>Carns i Guisats</h3>
-          <p>Cocció lenta, fons casolà i talls seleccionats. Plats de cullera amb el caràcter dels guisats de sempre.</p>
-          <ul>
-            <li>Fricandó amb bolets</li>
-            <li>Estofat de vedella</li>
-            <li>Pollastre rostit</li>
-            <li>Mandonguilles amb sípia</li>
-          </ul>
-        </div>
-      </div>
-      <div class="prod-panel" data-cat="2">
-        <div class="prod-img" style="background-image: url('img/pastis_tonyina.jpg');"></div>
-        <div class="prod-info">
-          <h3>Peixos i Marisc</h3>
-          <p>Productes del mar tractats amb cura, salses elaborades amb fumet propi. Frescor i sabor mediterrani.</p>
-          <ul>
-            <li>Bacallà a la llauna</li>
-            <li>Suquet de peix</li>
-            <li>Pastís de tonyina</li>
-            <li>Calamars a la romana</li>
-          </ul>
-        </div>
-      </div>
-      <div class="prod-panel" data-cat="3">
-        <div class="prod-img" style="background-image: url('img/arros_muntanya.jpg');"></div>
-        <div class="prod-info">
-          <h3>Llegums i Verdures</h3>
-          <p>Llegums de proximitat i verdures de temporada. Cuites de manera tradicional, lleugeres i nutritives.</p>
-          <ul>
-            <li>Cigrons amb espinacs</li>
-            <li>Mongetes amb botifarra</li>
-            <li>Escalivada</li>
-            <li>Trinxat de la Cerdanya</li>
-          </ul>
-        </div>
-      </div>
-      <div class="prod-panel" data-cat="4">
-        <div class="prod-img" style="background-image: url('img/paella_marisc.jpg');"></div>
-        <div class="prod-info">
-          <h3>Arrossos i Fideuàs</h3>
-          <p>Arrossos secs, melosos i caldosos. Fons elaborats al mateix obrador amb ingredients de la costa i la muntanya.</p>
-          <ul>
-            <li>Paella de marisc</li>
-            <li>Arròs de muntanya</li>
-            <li>Arròs negre</li>
-            <li>Fideuà</li>
-          </ul>
-        </div>
-      </div>
-      <div class="prod-panel" data-cat="5">
-        <div class="prod-img" style="background-image: url('img/udon.jpg');"></div>
-        <div class="prod-info">
-          <h3>Pastes i Noodles</h3>
-          <p>Pasta fresca italiana i noodles asiàtics. Salses elaborades amb tomàquet pelat i ingredients frescos.</p>
-          <ul>
-            <li>Udon amb verdures</li>
-            <li>Espaguetis carbonara</li>
-            <li>Tallarines amb bolets</li>
-            <li>Yakisoba</li>
-          </ul>
-        </div>
-      </div>
-      <div class="prod-panel" data-cat="6">
-        <div class="prod-img" style="background-image: url('img/croquetes_pollastre.jpg');"></div>
-        <div class="prod-info">
-          <h3>Croquetes</h3>
-          <p>Beixamel cuita a foc lent, arrebossat fi i farcits generosos. La croqueta com a icona casolana, feta a escala.</p>
-          <ul>
-            <li>Croquetes de pollastre rostit</li>
-            <li>Croquetes de pernil</li>
-            <li>Croquetes de bacallà</li>
-            <li>Croquetes de bolets</li>
-          </ul>
-        </div>
-      </div>
-      <div class="prod-panel" data-cat="7">
-        <div class="prod-img" style="background-image: url('img/pastis_tonyina.jpg');"></div>
-        <div class="prod-info">
-          <h3>Amanides i Pastissos Freds</h3>
-          <p>Plats freds elaborats per servir. Combinacions equilibrades amb base mediterrània.</p>
-          <ul>
-            <li>Pastís de tonyina</li>
-            <li>Amanida de quinoa</li>
-            <li>Russa de l'avi</li>
-            <li>Carpaccio de remolatxa</li>
-          </ul>
-        </div>
-      </div>
-      <div class="prod-panel" data-cat="8">
-        <div class="prod-img" style="background-image: url('img/risotto_bolets.jpg');"></div>
-        <div class="prod-info">
-          <h3>Postres</h3>
-          <p>Receptes tradicionals casolanes amb un toc d'autor. Sense additius innecessaris, preparades cada setmana.</p>
-          <ul>
-            <li>Crema catalana</li>
-            <li>Mel i mató</li>
-            <li>Pastís de formatge</li>
-            <li>Brownie de xocolata</li>
-          </ul>
-        </div>
-      </div>
-    </div>
+    <div class="co-background co-background--style-0"></div>
+    <div class="co-background co-background--style-1"></div>
+    <div class="co-background co-background--style-2"></div>
+    <div class="co-background co-background--style-3"></div>
   </section>
 
   <!-- ─── QUALITAT ──────────────────────────────────────────── -->
@@ -2534,6 +2383,7 @@
     </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script>
     (function () {
       const video       = document.getElementById('hero-video');
@@ -2696,179 +2546,93 @@
       }, 4500);
     })();
 
-    // Secció "Qui servim" — scroll reveal + hover interactiu
+    // Secció "Qui servim" — acordió d'imatges
     (function () {
-      const items     = document.querySelectorAll('.serveis-item');
-      const descPanel = document.getElementById('serveis-desc');
-      const descText  = document.getElementById('serveis-desc-text');
-      const imgFloat  = document.getElementById('serveis-img-float');
-      const imgEl     = document.getElementById('serveis-img');
-      const listWrap  = document.querySelector('.serveis-list-wrap');
+      const panels  = document.querySelectorAll('.accord-panel');
+      const heading = document.getElementById('accord-heading');
+      const desc    = document.getElementById('accord-desc');
+      if (!panels.length) return;
 
-      if (!items.length) return;
+      function activate(panel) {
+        panels.forEach(function (p) { p.classList.remove('is-active'); });
+        panel.classList.add('is-active');
+        if (heading) heading.textContent = panel.getAttribute('data-heading') || '';
+        if (desc)    desc.textContent    = panel.getAttribute('data-desc')    || '';
+      }
 
-      // — Scroll reveal en cascada —
-      const revealObserver = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            const idx = Array.from(items).indexOf(entry.target);
-            setTimeout(function () {
-              entry.target.classList.add('is-visible');
-            }, idx * 80);
-            revealObserver.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.1 });
-
-      items.forEach(function (item) { revealObserver.observe(item); });
-
-      // — Hover: fletxa + descripció + imatge flotant —
-      items.forEach(function (item) {
-        item.addEventListener('mouseenter', function () {
-          items.forEach(function (el) { el.classList.remove('is-hovered'); });
-          item.classList.add('is-hovered');
-
-          // Descripció al panell esquerre
-          var desc = item.getAttribute('data-desc');
-          if (desc && descText && descPanel) {
-            descText.textContent = desc;
-            descPanel.classList.add('is-active');
-          }
-
-          // Imatge flotant — posicionada al centre vertical de l'ítem
-          var imgSrc = item.getAttribute('data-img');
-          if (imgSrc && imgFloat && imgEl && listWrap) {
-            if (imgEl.src !== window.location.origin + '/' + imgSrc &&
-                imgEl.getAttribute('src') !== imgSrc) {
-              imgEl.src = imgSrc;
-            }
-            var itemRect = item.getBoundingClientRect();
-            var wrapRect = listWrap.getBoundingClientRect();
-            var relTop   = itemRect.top - wrapRect.top;
-            var centreY  = relTop + itemRect.height / 2 - imgFloat.offsetHeight / 2;
-            imgFloat.style.top = Math.max(0, centreY) + 'px';
-            imgFloat.classList.add('is-active');
-          }
-        });
-
-        item.addEventListener('mouseleave', function () {
-          item.classList.remove('is-hovered');
-          if (descPanel) descPanel.classList.remove('is-active');
-          if (imgFloat) imgFloat.classList.remove('is-active');
-        });
+      panels.forEach(function (panel) {
+        panel.addEventListener('mouseenter', function () { activate(panel); });
       });
     })();
 
-    // ─── Text reveal: scroll-driven, dos trams ──────────────────
+    // Productes — co-carousel (Tim Guignard)
     (function () {
+      if (typeof Swiper === 'undefined') return;
 
-      // Split .serveis-nom en caràcters individuals
-      document.querySelectorAll('.serveis-nom').forEach(function (nom) {
-        var text = nom.textContent;
-        nom.innerHTML = '';
-        Array.from(text).forEach(function (ch, i) {
-          var s = document.createElement('span');
-          s.className = 'char';
-          s.textContent = ch;
-          s.style.setProperty('--char-i', i);
-          nom.appendChild(s);
-        });
-      });
+      var backgroundWrapper = document.querySelectorAll('.co-background');
 
-      // Split .serveis-heading en paraules, preservant el tag <em>
-      var heading = document.querySelector('.serveis-heading');
-      if (heading) {
-        var wi = 0;
-        function processNode(node) {
-          if (node.nodeType === 3) {
-            var parts = node.textContent.split(/(\s+)/);
-            var frag  = document.createDocumentFragment();
-            parts.forEach(function (part) {
-              if (!part) return;
-              if (/^\s+$/.test(part)) {
-                frag.appendChild(document.createTextNode(part));
-              } else {
-                var s = document.createElement('span');
-                s.className = 'word';
-                s.textContent = part;
-                s.style.setProperty('--word-i', wi++);
-                frag.appendChild(s);
+      new Swiper('.co-carousel', {
+        loop: false,
+        watchSlidesProgress: true,
+        speed: 1000,
+        grabCursor: true,
+        navigation: {
+          nextEl: '.co-carousel__nav-button.next',
+          prevEl: '.co-carousel__nav-button.prev',
+        },
+        on: {
+          touchEnd: function (swiper) {
+            var time = Date.now() - swiper.touchEventsData.touchStartTime;
+            var distance = Math.abs(swiper.touches.diff);
+            var velocity = distance / time;
+            var newSpeed = 1000 - velocity * 800;
+            swiper.params.speed = Math.max(200, Math.min(1000, newSpeed));
+          },
+          progress: function (swiper) {
+            swiper.slides.forEach(function (slide, index) {
+              var progress = slide.progress;
+              if (progress >= -1 && progress <= 1) {
+                var rotateShoeMax = 15;
+                var progressPositive = Math.abs(progress);
+                var translateX = progress * -100;
+                var rotateShoe = progressPositive * rotateShoeMax - rotateShoeMax;
+                var textMaskY = progressPositive * 50;
+                var scale = 1 - progressPositive * 0.2;
+                var opacity = 0.5 - progressPositive * 0.5;
+
+                slide.querySelector('.co-card').style.transform = 'scale(' + scale + ')';
+
+                var shoeImg = slide.querySelector('.co-card__shoe-img');
+                if (shoeImg) shoeImg.style.transform = 'translate3d(' + translateX + 'px,0,0) rotate(' + rotateShoe + 'deg)';
+
+                var shoeShadow = slide.querySelector('.co-card__shoe-shadow');
+                if (shoeShadow) shoeShadow.style.transform = 'translateX(calc(-50% + ' + (translateX / 2) + 'px))';
+
+                if (backgroundWrapper[index]) backgroundWrapper[index].style.opacity = opacity.toFixed(2);
+
+                slide.querySelectorAll('.text-mask span').forEach(function (t, i) {
+                  t.style.transform = 'translate3d(0,' + (textMaskY * (i + 1)) + 'px,0)';
+                });
               }
             });
-            node.parentNode.replaceChild(frag, node);
-          } else if (node.nodeType === 1) {
-            Array.from(node.childNodes).forEach(processNode);
+          },
+          setTransition: function (swiper, speed) {
+            swiper.slides.forEach(function (slide, index) {
+              slide.querySelector('.co-card').style.transition = speed + 'ms';
+              var shoeImg = slide.querySelector('.co-card__shoe-img');
+              if (shoeImg) shoeImg.style.transition = speed + 'ms';
+              var shoeShadow = slide.querySelector('.co-card__shoe-shadow');
+              if (shoeShadow) shoeShadow.style.transition = speed + 'ms';
+              if (backgroundWrapper[index]) backgroundWrapper[index].style.transition = speed + 'ms';
+              slide.querySelectorAll('.text-mask span').forEach(function (t) {
+                t.style.transition = speed + 'ms';
+              });
+            });
+          },
+          transitionEnd: function (swiper) {
+            swiper.params.speed = 1000;
           }
         }
-        Array.from(heading.childNodes).forEach(processNode);
-      }
-
-      // Observer: dos trams de reveal per a cada element observat
-      function revealHalf(els, half, phase) {
-        els.forEach(function (el, i) {
-          var inFirst = i < half;
-          if (phase === 1 && inFirst)  el.classList.add('is-lit');
-          if (phase === 2 && !inFirst) el.classList.add('is-lit');
-        });
-      }
-
-      var litObserver = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          var ratio = entry.intersectionRatio;
-          var el    = entry.target;
-
-          if (el.classList.contains('serveis-item')) {
-            var nom   = el.querySelector('.serveis-nom');
-            if (!nom) return;
-            var chars = Array.from(nom.querySelectorAll('.char'));
-            var half  = Math.ceil(chars.length / 2);
-            if (ratio >= 0.25 && !el.dataset.lit1) {
-              el.dataset.lit1 = '1';
-              revealHalf(chars, half, 1);
-            }
-            if (ratio >= 0.80 && !el.dataset.lit2) {
-              el.dataset.lit2 = '1';
-              revealHalf(chars, half, 2);
-            }
-          }
-
-          if (el === heading) {
-            var words = Array.from(el.querySelectorAll('.word'));
-            var halfW = Math.ceil(words.length / 2);
-            if (ratio >= 0.25 && !el.dataset.lit1) {
-              el.dataset.lit1 = '1';
-              revealHalf(words, halfW, 1);
-            }
-            if (ratio >= 0.75 && !el.dataset.lit2) {
-              el.dataset.lit2 = '1';
-              revealHalf(words, halfW, 2);
-            }
-          }
-        });
-      }, { threshold: [0, 0.25, 0.75, 0.80, 1.0] });
-
-      document.querySelectorAll('.serveis-item').forEach(function (item) {
-        litObserver.observe(item);
-      });
-      if (heading) litObserver.observe(heading);
-
-    })();
-
-    // Productes — pestanyes
-    (function () {
-      const tabs   = document.querySelectorAll('.prod-tab');
-      const panels = document.querySelectorAll('.prod-panel');
-      if (!tabs.length || !panels.length) return;
-
-      tabs.forEach(function (tab) {
-        tab.addEventListener('click', function () {
-          const cat = tab.getAttribute('data-cat');
-          tabs.forEach(function (t) { t.classList.remove('active'); });
-          panels.forEach(function (p) { p.classList.remove('is-active'); });
-          tab.classList.add('active');
-          const panel = document.querySelector('.prod-panel[data-cat="' + cat + '"]');
-          if (panel) panel.classList.add('is-active');
-        });
       });
     })();
 
