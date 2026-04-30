@@ -1,29 +1,36 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Layaya — Próximamente</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400&display=swap"
+    rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700&family=Sora:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
   <style>
-    *, *::before, *::after {
+    *,
+    *::before,
+    *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
     :root {
-      --bg:       #f2faf2;
-      --green:    #77be79;
-      --green-dk: #3d7a3f;
-      --green-xdk:#1e4a20;
-      --green-lt: #a8d5aa;
-      --green-xlt:#d6edd7;
-      --muted:    #5a8f5c;
+      --bg: #FFFDF8;
+      --green: #7ABA78;
+      --green-dk: #5a9e5c;
+      --green-xdk: #3C2A21;
+      --green-lt: #b8d9b6;
+      --green-xlt: #e2f0e1;
+      --muted: #606060;
 
       /* px de scroll per segon de vídeo — ajusta si cal */
       --scroll-per-second: 300;
@@ -43,7 +50,8 @@
 
     .hero-scroll {
       position: relative;
-      height: 400vh; /* fallback mentre el vídeo carrega; JS l'ajusta */
+      height: 400vh;
+      /* fallback mentre el vídeo carrega; JS l'ajusta */
     }
 
     .hero-sticky {
@@ -52,7 +60,7 @@
       height: 100vh;
       width: 100%;
       overflow: hidden;
-      background: #0a1a0a;
+      background: #0D0A08;
     }
 
     #hero-video {
@@ -68,13 +76,10 @@
     .hero-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(
-        to bottom,
-        rgba(0,0,0,0.10) 0%,
-        rgba(0,0,0,0.25) 55%,
-        rgba(0,0,0,0.48) 80%,
-        #f2faf2 100%
-      );
+      background: linear-gradient(to bottom,
+          rgba(0, 0, 0, 0.08) 0%,
+          rgba(0, 0, 0, 0.22) 55%,
+          rgba(0, 0, 0, 0.52) 100%);
       pointer-events: none;
     }
 
@@ -101,7 +106,7 @@
       font-weight: 500;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.7);
+      color: rgba(255, 255, 255, 0.7);
       margin-bottom: 1.3rem;
     }
 
@@ -111,14 +116,14 @@
       font-weight: 900;
       line-height: 1.05;
       color: #fff;
-      text-shadow: 0 2px 32px rgba(0,0,0,0.4);
+      text-shadow: 0 2px 32px rgba(0, 0, 0, 0.4);
       margin-bottom: 1.8rem;
     }
 
     .hero-title em {
       font-style: italic;
       font-weight: 700;
-      color: rgba(255,255,255,0.88);
+      color: rgba(255, 255, 255, 0.88);
     }
 
     .hero-claims {
@@ -166,35 +171,62 @@
 
     /* Entrada: surt de baix → sweep verd → text apareix */
     .hero-claim.is-active {
-      animation: claim-rise 0.4s cubic-bezier(0.16,1,0.3,1) forwards;
+      animation: claim-rise 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
+
     .hero-claim.is-active::before {
-      animation: bg-sweep 0.42s 0.28s cubic-bezier(0.16,1,0.3,1) forwards;
+      animation: bg-sweep 0.42s 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
+
     .hero-claim.is-active span {
-      animation: text-pop 0.38s 0.58s cubic-bezier(0.16,1,0.3,1) forwards;
+      animation: text-pop 0.38s 0.58s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
     /* Sortida: puja cap amunt */
     .hero-claim.is-leaving {
-      animation: claim-leave 0.38s cubic-bezier(0.55,0,1,0.45) forwards;
+      animation: claim-leave 0.38s cubic-bezier(0.55, 0, 1, 0.45) forwards;
     }
 
     @keyframes claim-rise {
-      from { transform: translateY(130%); }
-      to   { transform: translateY(0); }
+      from {
+        transform: translateY(130%);
+      }
+
+      to {
+        transform: translateY(0);
+      }
     }
+
     @keyframes claim-leave {
-      from { transform: translateY(0); }
-      to   { transform: translateY(-130%); }
+      from {
+        transform: translateY(0);
+      }
+
+      to {
+        transform: translateY(-130%);
+      }
     }
+
     @keyframes bg-sweep {
-      from { transform: scaleX(0); }
-      to   { transform: scaleX(1); }
+      from {
+        transform: scaleX(0);
+      }
+
+      to {
+        transform: scaleX(1);
+      }
     }
+
     @keyframes text-pop {
-      from { opacity: 0; transform: scale(1.28); }
-      to   { opacity: 1; transform: scale(1); }
+      from {
+        opacity: 0;
+        transform: scale(1.28);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
     }
 
     /* indicador de scroll */
@@ -207,7 +239,7 @@
       flex-direction: column;
       align-items: center;
       gap: 0.5rem;
-      color: rgba(255,255,255,0.75);
+      color: rgba(255, 255, 255, 0.75);
       font-size: 0.72rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
@@ -220,13 +252,27 @@
     }
 
     @keyframes hint-fade {
-      0%, 100% { opacity: 0.8; }
-      50%       { opacity: 0.3; }
+
+      0%,
+      100% {
+        opacity: 0.8;
+      }
+
+      50% {
+        opacity: 0.3;
+      }
     }
 
     @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50%       { transform: translateY(6px); }
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(6px);
+      }
     }
 
     /* barra de progrés */
@@ -253,17 +299,39 @@
       background: linear-gradient(90deg, var(--green-dk), var(--green), var(--green-lt), var(--green), var(--green-dk));
       z-index: 99;
     }
-    body::before { top: 0; }
-    body::after  { bottom: 0; }
+
+    body::before {
+      top: 0;
+    }
+
+    body::after {
+      bottom: 0;
+    }
 
     @keyframes pulse {
-      0%, 100% { opacity: 1;   transform: scale(1);   }
-      50%       { opacity: 0.3; transform: scale(0.65); }
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.3;
+        transform: scale(0.65);
+      }
     }
 
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to   { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     /* ─── QUI SOM — bg cremós + radial gradients reaprofitats ─── */
@@ -285,15 +353,19 @@
     }
 
     .quisom-shape-1 {
-      width: 520px; height: 520px;
-      top: -160px; right: -160px;
-      background: radial-gradient(circle, rgba(119,190,121,0.16), transparent 68%);
+      width: 520px;
+      height: 520px;
+      top: -160px;
+      right: -160px;
+      background: radial-gradient(circle, rgba(119, 190, 121, 0.16), transparent 68%);
     }
 
     .quisom-shape-2 {
-      width: 420px; height: 420px;
-      bottom: -130px; left: -130px;
-      background: radial-gradient(circle, rgba(61,122,63,0.10), transparent 68%);
+      width: 420px;
+      height: 420px;
+      bottom: -130px;
+      left: -130px;
+      background: radial-gradient(circle, rgba(61, 122, 63, 0.10), transparent 68%);
     }
 
     .quisom-inner {
@@ -352,7 +424,7 @@
       font-size: clamp(0.95rem, 1.2vw, 1.05rem);
       font-weight: 300;
       line-height: 1.75;
-      color: #4a5e4b;
+      color: #606060;
       margin-bottom: 1.2rem;
       max-width: 560px;
     }
@@ -379,7 +451,7 @@
       border-radius: 18px;
       text-align: left;
       overflow: hidden;
-      transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s ease;
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
     }
 
     .stat-card::before {
@@ -388,7 +460,7 @@
       inset: -40% -40% auto auto;
       width: 140px;
       height: 140px;
-      background: radial-gradient(circle, rgba(119,190,121,0.22), transparent 70%);
+      background: radial-gradient(circle, rgba(119, 190, 121, 0.22), transparent 70%);
       pointer-events: none;
     }
 
@@ -423,19 +495,28 @@
       font-size: 0.78rem;
       font-weight: 500;
       letter-spacing: 0.05em;
-      color: #5a8f5c;
+      color: #606060;
       margin-top: 0.5rem;
       line-height: 1.4;
     }
 
     @media (max-width: 860px) {
-      .seccio-quisom { padding: 5rem 1.5rem; }
+      .seccio-quisom {
+        padding: 5rem 1.5rem;
+      }
+
       .quisom-inner {
         grid-template-columns: 1fr;
         gap: 3rem;
       }
-      .quisom-stats { gap: 0.8rem; }
-      .stat-card { padding: 1.4rem 1.1rem; }
+
+      .quisom-stats {
+        gap: 0.8rem;
+      }
+
+      .stat-card {
+        padding: 1.4rem 1.1rem;
+      }
     }
 
     /* ─── SECCIÓ "QUI SERVIM" — acordió d'imatges ─────────── */
@@ -518,7 +599,9 @@
       transition: flex 0.7s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .accord-panel.is-active { flex: 1; }
+    .accord-panel.is-active {
+      flex: 1;
+    }
 
     .accord-panel img {
       width: 100%;
@@ -528,7 +611,9 @@
       pointer-events: none;
     }
 
-    .accord-panel.is-active img { transform: scale(1.04); }
+    .accord-panel.is-active img {
+      transform: scale(1.04);
+    }
 
     .accord-panel-overlay {
       position: absolute;
@@ -538,7 +623,7 @@
     }
 
     .accord-panel.is-active .accord-panel-overlay {
-      background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.1) 55%, transparent 100%);
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.1) 55%, transparent 100%);
     }
 
     .accord-label {
@@ -562,7 +647,9 @@
       transition: opacity 0.35s ease;
     }
 
-    .accord-panel.is-active .accord-label-num { opacity: 0.7; }
+    .accord-panel.is-active .accord-label-num {
+      opacity: 0.7;
+    }
 
     .accord-label-name {
       font-family: 'Fraunces', serif;
@@ -582,17 +669,43 @@
     }
 
     @media (max-width: 860px) {
-      .accord-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-      .accord-panels { height: 380px; }
+      .accord-inner {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .accord-panels {
+        height: 380px;
+      }
     }
 
     @media (max-width: 540px) {
-      .seccio-serveis { padding: 5rem 1.5rem; }
-      .accord-panels { flex-direction: column; height: auto; }
-      .accord-panel { flex: 0 0 60px; }
-      .accord-panel.is-active { flex: 0 0 300px; }
-      .accord-label-name { writing-mode: horizontal-tb; transform: none; font-size: 1rem; }
-      .accord-panel.is-active .accord-label-name { font-size: 1.2rem; }
+      .seccio-serveis {
+        padding: 5rem 1.5rem;
+      }
+
+      .accord-panels {
+        flex-direction: column;
+        height: auto;
+      }
+
+      .accord-panel {
+        flex: 0 0 60px;
+      }
+
+      .accord-panel.is-active {
+        flex: 0 0 300px;
+      }
+
+      .accord-label-name {
+        writing-mode: horizontal-tb;
+        transform: none;
+        font-size: 1rem;
+      }
+
+      .accord-panel.is-active .accord-label-name {
+        font-size: 1.2rem;
+      }
     }
 
     /* — serveis legacy (unused, safe to ignore) — */
@@ -600,7 +713,9 @@
       list-style: none;
     }
 
-    .serveis-item { display: none; }
+    .serveis-item {
+      display: none;
+    }
 
     /* ─── HERO RESPONSIVE ────────────────────────────────── */
     @media (max-width: 640px) {
@@ -610,27 +725,37 @@
         right: 1.5rem;
         max-width: none;
       }
+
       .hero-logo {
         width: min(110px, 28vw);
         margin-bottom: 1rem;
       }
+
       .hero-eyebrow {
         margin-bottom: 0.9rem;
       }
+
       .hero-title {
         margin-bottom: 1.2rem;
       }
+
       .hero-claims {
         height: 3em;
       }
+
       .hero-claim {
         font-size: clamp(0.85rem, 3.8vw, 1rem);
       }
     }
 
     @media (max-width: 380px) {
-      .hero-logo { width: min(90px, 25vw); }
-      .hero-content { bottom: 2.5rem; }
+      .hero-logo {
+        width: min(90px, 25vw);
+      }
+
+      .hero-content {
+        bottom: 2.5rem;
+      }
     }
 
     /* ─── NAVEGACIÓ — pill flotant centrat ───────────────── */
@@ -645,7 +770,9 @@
       transition: top 0.4s ease;
     }
 
-    .site-nav.scrolled { top: 0.7rem; }
+    .site-nav.scrolled {
+      top: 0.7rem;
+    }
 
     .nav-pill {
       display: flex;
@@ -682,7 +809,9 @@
       transition: height 0.35s ease;
     }
 
-    .site-nav.scrolled .nav-logo img { height: 32px; }
+    .site-nav.scrolled .nav-logo img {
+      height: 32px;
+    }
 
     /* Links amb cursor lliscant + mix-blend-difference
        (sense isolation: el blend computa contra el bg del pill) */
@@ -712,10 +841,12 @@
       padding: 0.55rem 0.95rem;
       cursor: pointer;
       white-space: nowrap;
-      transition: color 0.25s ease, transform 0.25s cubic-bezier(0.16,1,0.3,1);
+      transition: color 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .site-nav.scrolled .nav-links a { color: #fff; }
+    .site-nav.scrolled .nav-links a {
+      color: #fff;
+    }
 
     @media (min-width: 768px) {
       .nav-links a {
@@ -733,9 +864,9 @@
       border-radius: 9999px;
       opacity: 0;
       pointer-events: none;
-      transition: left 0.32s cubic-bezier(0.16,1,0.3,1),
-                  width 0.32s cubic-bezier(0.16,1,0.3,1),
-                  opacity 0.25s ease;
+      transition: left 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+        width 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+        opacity 0.25s ease;
     }
 
     /* Selector d'idioma — dins del pill */
@@ -763,8 +894,13 @@
       transition: color 0.25s ease;
     }
 
-    .nav-lang button:hover { color: rgba(30, 74, 32, 0.75); }
-    .nav-lang button.active { color: var(--green-xdk); }
+    .nav-lang button:hover {
+      color: rgba(30, 74, 32, 0.75);
+    }
+
+    .nav-lang button.active {
+      color: var(--green-xdk);
+    }
 
     /* CTA — sempre verd primari */
     .nav-cta {
@@ -779,7 +915,7 @@
       padding: 0.65rem 1.2rem;
       border-radius: 9999px;
       flex: 0 0 auto;
-      transition: background 0.25s ease, transform 0.25s cubic-bezier(0.16,1,0.3,1);
+      transition: background 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .nav-cta:hover {
@@ -812,9 +948,17 @@
       transition: transform 0.3s ease, opacity 0.3s ease;
     }
 
-    .nav-hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
-    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
-    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+    .nav-hamburger.open span:nth-child(1) {
+      transform: translateY(6px) rotate(45deg);
+    }
+
+    .nav-hamburger.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-hamburger.open span:nth-child(3) {
+      transform: translateY(-6px) rotate(-45deg);
+    }
 
     @media (max-width: 860px) {
       .site-nav {
@@ -830,9 +974,13 @@
 
       .nav-links,
       .nav-lang,
-      .nav-cta { display: none; }
+      .nav-cta {
+        display: none;
+      }
 
-      .nav-hamburger { display: flex; }
+      .nav-hamburger {
+        display: flex;
+      }
 
       /* Mode obert mòbil: el pill creix i col·loca el contingut en columna */
       .site-nav.nav-mobile-open .nav-pill {
@@ -850,7 +998,9 @@
 
       .site-nav.nav-mobile-open .nav-links,
       .site-nav.nav-mobile-open .nav-lang,
-      .site-nav.nav-mobile-open .nav-cta { display: flex; }
+      .site-nav.nav-mobile-open .nav-cta {
+        display: flex;
+      }
 
       .site-nav.nav-mobile-open .nav-links {
         flex-direction: column;
@@ -863,7 +1013,9 @@
         border-bottom: 1px solid rgba(30, 74, 32, 0.12);
       }
 
-      .site-nav.nav-mobile-open .nav-cursor { display: none; }
+      .site-nav.nav-mobile-open .nav-cursor {
+        display: none;
+      }
 
       .site-nav.nav-mobile-open .nav-links a {
         color: var(--green-xdk);
@@ -915,7 +1067,8 @@
     }
 
     .linies-dot {
-      width: 6px; height: 6px;
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
       background: var(--green);
       animation: pulse 2s ease-in-out infinite;
@@ -952,10 +1105,12 @@
       inset: 0;
       background-size: cover;
       background-position: center;
-      transition: transform 1.2s cubic-bezier(0.16,1,0.3,1);
+      transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .linia-card:hover .linia-img { transform: scale(1.06); }
+    .linia-card:hover .linia-img {
+      transform: scale(1.06);
+    }
 
     .linia-overlay {
       position: absolute;
@@ -964,11 +1119,11 @@
     }
 
     .linia-overlay-verd {
-      background: linear-gradient(160deg, rgba(30,74,32,0.30) 0%, rgba(30,74,32,0.85) 100%);
+      background: linear-gradient(160deg, rgba(30, 74, 32, 0.30) 0%, rgba(30, 74, 32, 0.85) 100%);
     }
 
     .linia-overlay-daurat {
-      background: linear-gradient(160deg, rgba(232,200,112,0.25) 0%, rgba(60,42,33,0.85) 100%);
+      background: linear-gradient(160deg, rgba(232, 200, 112, 0.25) 0%, rgba(60, 42, 33, 0.85) 100%);
     }
 
     .linia-content {
@@ -989,16 +1144,16 @@
       font-weight: 600;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.78);
+      color: rgba(255, 255, 255, 0.78);
       padding: 0.4rem 0.9rem;
-      border: 1px solid rgba(255,255,255,0.35);
+      border: 1px solid rgba(255, 255, 255, 0.35);
       border-radius: 100px;
       margin-bottom: 1.4rem;
     }
 
     .linia-tag-daurat {
       color: #E8C870;
-      border-color: rgba(232,200,112,0.5);
+      border-color: rgba(232, 200, 112, 0.5);
     }
 
     .linia-name {
@@ -1015,7 +1170,7 @@
       font-size: 0.95rem;
       font-weight: 300;
       line-height: 1.6;
-      color: rgba(255,255,255,0.85);
+      color: rgba(255, 255, 255, 0.85);
       margin-bottom: 1.5rem;
       max-width: 460px;
     }
@@ -1033,10 +1188,10 @@
       font-size: 0.74rem;
       font-weight: 500;
       letter-spacing: 0.05em;
-      color: rgba(255,255,255,0.78);
+      color: rgba(255, 255, 255, 0.78);
       padding: 0.4rem 0.85rem;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.18);
       border-radius: 100px;
       backdrop-filter: blur(6px);
       -webkit-backdrop-filter: blur(6px);
@@ -1057,7 +1212,7 @@
       display: inline-flex;
       align-items: center;
       gap: 0.6rem;
-      transition: background 0.3s ease, transform 0.3s cubic-bezier(0.16,1,0.3,1);
+      transition: background 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .linia-cta:hover {
@@ -1069,15 +1224,31 @@
       background: #E8C870;
       color: #3C2A21;
     }
-    .linia-cta-daurat:hover { background: #d8b85a; }
 
-    .linia-arrow { transition: transform 0.3s ease; }
-    .linia-cta:hover .linia-arrow { transform: translateX(3px); }
+    .linia-cta-daurat:hover {
+      background: #d8b85a;
+    }
+
+    .linia-arrow {
+      transition: transform 0.3s ease;
+    }
+
+    .linia-cta:hover .linia-arrow {
+      transform: translateX(3px);
+    }
 
     @media (max-width: 860px) {
-      .linies-grid { grid-template-columns: 1fr; }
-      .linia-card { min-height: 460px; }
-      .linia-content { padding: 2.2rem 1.7rem 2rem; }
+      .linies-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .linia-card {
+        min-height: 460px;
+      }
+
+      .linia-content {
+        padding: 2.2rem 1.7rem 2rem;
+      }
     }
 
     /* ─── PRODUCTES ────────────────────────────────────────── */
@@ -1093,9 +1264,11 @@
     .seccio-productes::before {
       content: '';
       position: absolute;
-      width: 600px; height: 600px;
-      top: -200px; right: -200px;
-      background: radial-gradient(circle, rgba(122,186,120,0.18), transparent 65%);
+      width: 600px;
+      height: 600px;
+      top: -200px;
+      right: -200px;
+      background: radial-gradient(circle, rgba(122, 186, 120, 0.18), transparent 65%);
       pointer-events: none;
     }
 
@@ -1116,15 +1289,16 @@
       font-weight: 600;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.7);
+      color: rgba(255, 255, 255, 0.7);
       padding: 0.5rem 1.1rem;
-      border: 1px solid rgba(255,255,255,0.2);
+      border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 100px;
       margin-bottom: 1.4rem;
     }
 
     .productes-dot {
-      width: 6px; height: 6px;
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
       background: var(--green);
       animation: pulse 2s ease-in-out infinite;
@@ -1150,7 +1324,7 @@
       font-family: 'Sora', sans-serif;
       font-size: clamp(0.95rem, 1.2vw, 1.05rem);
       font-weight: 300;
-      color: rgba(255,255,255,0.75);
+      color: rgba(255, 255, 255, 0.75);
       line-height: 1.6;
       max-width: 580px;
       margin: 0 auto;
@@ -1161,22 +1335,28 @@
     /* Full-section colour backgrounds, fade per slide */
     .co-background {
       position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       opacity: 0;
       pointer-events: none;
     }
+
     .co-background--style-0 {
-      background: linear-gradient(163deg, rgba(255,251,237,1) 0%, rgba(244,228,164,1) 100%);
+      background: linear-gradient(163deg, rgba(255, 251, 237, 1) 0%, rgba(244, 228, 164, 1) 100%);
     }
+
     .co-background--style-1 {
-      background: linear-gradient(163deg, rgba(255,247,247,1) 0%, rgba(240,193,193,1) 100%);
+      background: linear-gradient(163deg, rgba(255, 247, 247, 1) 0%, rgba(240, 193, 193, 1) 100%);
     }
+
     .co-background--style-2 {
-      background: linear-gradient(163deg, rgba(246,249,255,1) 0%, rgba(193,212,243,1) 100%);
+      background: linear-gradient(163deg, rgba(246, 249, 255, 1) 0%, rgba(193, 212, 243, 1) 100%);
     }
+
     .co-background--style-3 {
-      background: linear-gradient(163deg, rgba(247,254,247,1) 0%, rgba(190,228,188,1) 100%);
+      background: linear-gradient(163deg, rgba(247, 254, 247, 1) 0%, rgba(190, 228, 188, 1) 100%);
     }
 
     /* Carousel wrapper */
@@ -1217,16 +1397,26 @@
       display: flex;
       flex-direction: column;
       cursor: pointer;
-      color: rgba(255,255,255,0.88);
+      color: rgba(255, 255, 255, 0.88);
     }
 
-    .co-carousel__nav-button.prev { align-items: flex-end; }
-    .co-carousel__nav-button.next { align-items: flex-start; }
-    .co-carousel__nav-button.swiper-button-disabled { opacity: .3; pointer-events: none; }
+    .co-carousel__nav-button.prev {
+      align-items: flex-end;
+    }
+
+    .co-carousel__nav-button.next {
+      align-items: flex-start;
+    }
+
+    .co-carousel__nav-button.swiper-button-disabled {
+      opacity: .3;
+      pointer-events: none;
+    }
 
     .co-carousel__nav-button:hover:not(.swiper-button-disabled).prev span {
       transform: translate3d(-10px, 0, 0);
     }
+
     .co-carousel__nav-button:hover:not(.swiper-button-disabled).next span {
       transform: translate3d(10px, 0, 0);
     }
@@ -1236,7 +1426,7 @@
       content: "";
       width: 100%;
       height: 1px;
-      background-color: rgba(255,255,255,0.88);
+      background-color: rgba(255, 255, 255, 0.88);
     }
 
     .co-carousel__nav-button span {
@@ -1246,7 +1436,7 @@
       text-transform: uppercase;
       letter-spacing: 0.1em;
       padding: 10px 0;
-      transition: transform cubic-bezier(.22,.74,.46,.97) .3s;
+      transition: transform cubic-bezier(.22, .74, .46, .97) .3s;
     }
 
     /* Card */
@@ -1259,57 +1449,60 @@
       height: 400px;
       width: 250px;
       border-radius: 20px;
-      box-shadow: 0 0 3px rgba(0,0,0,.1);
-      background: linear-gradient(163deg, rgba(255,251,237,1) 0%, rgba(244,228,164,1) 100%);
+      box-shadow: 0 0 3px rgba(0, 0, 0, .1);
+      background: linear-gradient(163deg, rgba(255, 251, 237, 1) 0%, rgba(244, 228, 164, 1) 100%);
     }
 
     .co-card--style-1 {
-      background: linear-gradient(163deg, rgba(255,247,247,1) 0%, rgba(240,193,193,1) 100%);
-    }
-    .co-card--style-2 {
-      background: linear-gradient(163deg, rgba(246,249,255,1) 0%, rgba(193,212,243,1) 100%);
-    }
-    .co-card--style-3 {
-      background: linear-gradient(163deg, rgba(247,254,247,1) 0%, rgba(190,228,188,1) 100%);
+      background: linear-gradient(163deg, rgba(255, 247, 247, 1) 0%, rgba(240, 193, 193, 1) 100%);
     }
 
-    /* Food image — circular plate floating above card */
+    .co-card--style-2 {
+      background: linear-gradient(163deg, rgba(246, 249, 255, 1) 0%, rgba(193, 212, 243, 1) 100%);
+    }
+
+    .co-card--style-3 {
+      background: linear-gradient(163deg, rgba(247, 254, 247, 1) 0%, rgba(190, 228, 188, 1) 100%);
+    }
+
+    /* Food image — PNG transparent, overflows card top (same as original) */
     .co-card__shoe {
       position: relative;
+      width: 130%;
       flex-shrink: 0;
-      top: -15px;
+      top: -20px;
     }
 
     .co-card__shoe-img {
       user-select: none;
       position: relative;
-      width: 168px;
-      height: 168px;
-      border-radius: 50%;
-      object-fit: cover;
+      width: 100%;
       display: block;
       z-index: 9;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.20);
     }
 
     .co-card__shoe-shadow {
       position: absolute;
-      top: 154px;
-      left: 50%;
-      transform: translateX(-50%);
+      top: 80px;
+      left: 0;
+      right: 0;
+      margin-left: auto;
+      margin-right: auto;
       display: block;
       border-radius: 50%;
       width: 20px;
       height: 20px;
-      opacity: .22;
-      background-color: rgba(0,0,0,1);
-      box-shadow: 0 0 20px 28px rgba(0,0,0,1);
+      opacity: .3;
+      background-color: rgba(0, 0, 0, 1);
+      box-shadow: 0 0 30px 40px rgba(0, 0, 0, 1);
     }
 
     /* Card info */
     .co-card__info {
       position: absolute;
-      left: 0; right: 0; bottom: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
       padding: 20px;
       display: table;
     }
@@ -1328,7 +1521,7 @@
       font-size: 10px;
       text-transform: uppercase;
       letter-spacing: 0.14em;
-      color: rgba(60,42,33,0.5);
+      color: rgba(60, 42, 33, 0.5);
     }
 
     .co-card__price {
@@ -1341,20 +1534,42 @@
     }
 
     /* Text reveal mask */
-    .text-mask { overflow: hidden; }
-    .text-mask span { display: inline-flex; }
+    .text-mask {
+      overflow: hidden;
+    }
+
+    .text-mask span {
+      display: inline-flex;
+    }
 
     @media (max-width: 900px) {
-      .co-carousel { width: 70%; }
-      .co-carousel__nav-buttons { width: 70%; }
+      .co-carousel {
+        width: 70%;
+      }
+
+      .co-carousel__nav-buttons {
+        width: 70%;
+      }
     }
 
     @media (max-width: 540px) {
-      .co-carousel { width: 86%; height: 360px; }
-      .co-carousel__nav-buttons { width: 86%; }
-      .co-card { height: 360px; width: 220px; }
-      .co-card__shoe-img { width: 145px; height: 145px; }
-      .co-card__shoe-shadow { top: 133px; }
+      .co-carousel {
+        width: 86%;
+        height: 360px;
+      }
+
+      .co-carousel__nav-buttons {
+        width: 86%;
+      }
+
+      .co-card {
+        height: 360px;
+        width: 220px;
+      }
+
+      .co-card__shoe-shadow {
+        top: 70px;
+      }
     }
 
     /* ─── QUALITAT ─────────────────────────────────────────── */
@@ -1371,15 +1586,21 @@
       border-radius: 50%;
       pointer-events: none;
     }
+
     .qualitat-shape-1 {
-      width: 480px; height: 480px;
-      top: -160px; left: -120px;
-      background: radial-gradient(circle, rgba(122,186,120,0.18), transparent 70%);
+      width: 480px;
+      height: 480px;
+      top: -160px;
+      left: -120px;
+      background: radial-gradient(circle, rgba(122, 186, 120, 0.18), transparent 70%);
     }
+
     .qualitat-shape-2 {
-      width: 380px; height: 380px;
-      bottom: -120px; right: -100px;
-      background: radial-gradient(circle, rgba(232,200,112,0.16), transparent 70%);
+      width: 380px;
+      height: 380px;
+      bottom: -120px;
+      right: -100px;
+      background: radial-gradient(circle, rgba(232, 200, 112, 0.16), transparent 70%);
     }
 
     .qualitat-inner {
@@ -1411,7 +1632,8 @@
     }
 
     .qualitat-dot {
-      width: 6px; height: 6px;
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
       background: var(--green);
       animation: pulse 2s ease-in-out infinite;
@@ -1444,7 +1666,7 @@
       border-radius: 18px;
       padding: 2.4rem 2rem 2rem;
       border: 1px solid rgba(60, 42, 33, 0.06);
-      transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s ease;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
     }
 
     .qualitat-card:hover {
@@ -1493,11 +1715,19 @@
     }
 
     @media (max-width: 1024px) {
-      .qualitat-grid { grid-template-columns: repeat(2, 1fr); }
+      .qualitat-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
+
     @media (max-width: 600px) {
-      .qualitat-grid { grid-template-columns: 1fr; }
-      .seccio-qualitat { padding: 5rem 1.3rem; }
+      .qualitat-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .seccio-qualitat {
+        padding: 5rem 1.3rem;
+      }
     }
 
     /* ─── CONTACTE ─────────────────────────────────────────── */
@@ -1536,7 +1766,8 @@
     }
 
     .contacte-dot {
-      width: 6px; height: 6px;
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
       background: var(--green);
       animation: pulse 2s ease-in-out infinite;
@@ -1563,7 +1794,7 @@
       font-size: 1rem;
       font-weight: 300;
       line-height: 1.7;
-      color: #4a5e4b;
+      color: #606060;
       margin-bottom: 2.5rem;
       max-width: 480px;
     }
@@ -1604,7 +1835,9 @@
       transition: color 0.25s ease;
     }
 
-    .contacte-data a:hover { color: var(--green); }
+    .contacte-data a:hover {
+      color: var(--green);
+    }
 
     /* Formulari floating labels */
     .contacte-form {
@@ -1645,8 +1878,15 @@
       transition: border-color 0.3s ease, background 0.3s ease;
     }
 
-    .form-field select { padding: 1rem 1rem 1rem; }
-    .form-field textarea { resize: vertical; min-height: 110px; padding-top: 1.5rem; }
+    .form-field select {
+      padding: 1rem 1rem 1rem;
+    }
+
+    .form-field textarea {
+      resize: vertical;
+      min-height: 110px;
+      padding-top: 1.5rem;
+    }
 
     .form-field input:focus,
     .form-field select:focus,
@@ -1668,11 +1908,11 @@
       background: transparent;
     }
 
-    .form-field input:focus + label,
-    .form-field input:not(:placeholder-shown) + label,
-    .form-field input:valid:not(:placeholder-shown) + label,
-    .form-field textarea:focus + label,
-    .form-field textarea:not(:placeholder-shown) + label {
+    .form-field input:focus+label,
+    .form-field input:not(:placeholder-shown)+label,
+    .form-field input:valid:not(:placeholder-shown)+label,
+    .form-field textarea:focus+label,
+    .form-field textarea:not(:placeholder-shown)+label {
       top: 0.35rem;
       font-size: 0.7rem;
       letter-spacing: 0.08em;
@@ -1682,7 +1922,7 @@
 
     /* Truc perquè el floating label dispari amb input vací: requereix placeholder */
     .form-field input,
-    .form-field textarea { }
+    .form-field textarea {}
 
     .form-submit {
       align-self: flex-start;
@@ -1701,7 +1941,7 @@
       display: inline-flex;
       align-items: center;
       gap: 0.7rem;
-      transition: background 0.3s ease, transform 0.3s cubic-bezier(0.16,1,0.3,1);
+      transition: background 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .form-submit:hover {
@@ -1709,19 +1949,33 @@
       transform: translateX(4px);
     }
 
-    .form-submit-arrow { transition: transform 0.3s ease; }
-    .form-submit:hover .form-submit-arrow { transform: translateX(3px); }
+    .form-submit-arrow {
+      transition: transform 0.3s ease;
+    }
+
+    .form-submit:hover .form-submit-arrow {
+      transform: translateX(3px);
+    }
 
     @media (max-width: 860px) {
-      .contacte-inner { grid-template-columns: 1fr; gap: 3rem; }
-      .form-row { grid-template-columns: 1fr; }
-      .contacte-form { padding: 1.6rem; }
+      .contacte-inner {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .contacte-form {
+        padding: 1.6rem;
+      }
     }
 
     /* ─── FOOTER ───────────────────────────────────────────── */
 
     .site-footer {
-      background: linear-gradient(180deg, #163818 0%, #0e2810 100%);
+      background: linear-gradient(180deg, #2C1A10 0%, #1A0E08 100%);
       color: rgba(255, 255, 255, 0.78);
       padding: 5rem 1.5rem 2rem;
     }
@@ -1736,8 +1990,17 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
 
-    .footer-brand { display: flex; flex-direction: column; gap: 1.4rem; }
-    .footer-logo { width: 130px; height: auto; }
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 1.4rem;
+    }
+
+    .footer-logo {
+      width: 130px;
+      height: auto;
+    }
+
     .footer-tag {
       font-family: 'Fraunces', serif;
       font-size: 1.05rem;
@@ -1779,7 +2042,9 @@
       transition: color 0.25s ease;
     }
 
-    .footer-col a:hover { color: #fff; }
+    .footer-col a:hover {
+      color: #fff;
+    }
 
     .footer-bottom {
       max-width: 1200px;
@@ -1796,23 +2061,45 @@
       letter-spacing: 0.04em;
     }
 
-    .footer-legal { display: flex; gap: 0.6rem; align-items: center; }
+    .footer-legal {
+      display: flex;
+      gap: 0.6rem;
+      align-items: center;
+    }
+
     .footer-legal a {
       color: rgba(255, 255, 255, 0.55);
       text-decoration: none;
       transition: color 0.25s ease;
     }
-    .footer-legal a:hover { color: #fff; }
-    .footer-sep { opacity: 0.4; }
 
-    @media (max-width: 768px) {
-      .footer-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-      .footer-cols { grid-template-columns: repeat(2, 1fr); gap: 1.6rem; }
-      .footer-bottom { flex-direction: column; text-align: center; }
+    .footer-legal a:hover {
+      color: #fff;
     }
 
+    .footer-sep {
+      opacity: 0.4;
+    }
+
+    @media (max-width: 768px) {
+      .footer-inner {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .footer-cols {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.6rem;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
   </style>
 </head>
+
 <body>
 
   <div class="progress-bar" id="progress-bar"></div>
@@ -1850,13 +2137,7 @@
   <!-- ─── HERO AMB VÍDEO SCROLL-DRIVEN ─────────────────────── -->
   <section class="hero-scroll" id="hero-scroll">
     <div class="hero-sticky">
-      <video
-        id="hero-video"
-        muted
-        playsinline
-        preload="auto"
-        disablepictureinpicture
-      >
+      <video id="hero-video" muted playsinline preload="auto" disablepictureinpicture>
         <!--
           Afegeix el fitxer de vídeo aquí.
           Recomanat: MP4 H.264, resolució 1920×1080 o superior.
@@ -1880,10 +2161,10 @@
 
       <div class="scroll-hint" id="scroll-hint">
         <span>Desplaza</span>
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
-             stroke="currentColor" stroke-width="2" stroke-linecap="round">
-          <line x1="12" y1="5" x2="12" y2="19"/>
-          <polyline points="19 12 12 19 5 12"/>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round">
+          <line x1="12" y1="5" x2="12" y2="19" />
+          <polyline points="19 12 12 19 5 12" />
         </svg>
       </div>
     </div>
@@ -1907,7 +2188,7 @@
         </h2>
         <p class="quisom-lead">
           Som un obrador industrial d'alta tecnologia que combina <strong>cuina casolana
-          professional</strong> i estàndards de seguretat alimentària. Més de 35 varietats
+            professional</strong> i estàndards de seguretat alimentària. Més de 35 varietats
           de plats de cinquena gamma, elaborats amb ingredients de primera selecció.
         </p>
         <p class="quisom-lead">
@@ -1952,14 +2233,14 @@
           Qui servim
         </span>
         <h2 class="accord-heading" id="accord-heading">Hostaleria i restaurants</h2>
-        <p class="accord-desc" id="accord-desc">Plats de cinquena gamma per a restaurants, bars i hotels. Producció regular, sabor constant.</p>
+        <p class="accord-desc" id="accord-desc">Plats de cinquena gamma per a restaurants, bars i hotels. Producció
+          regular, sabor constant.</p>
       </div>
 
       <div class="accord-panels" id="accord-panels">
 
-        <div class="accord-panel is-active"
-             data-heading="Hostaleria i restaurants"
-             data-desc="Plats de cinquena gamma per a restaurants, bars i hotels. Producció regular, sabor constant.">
+        <div class="accord-panel is-active" data-heading="Hostaleria i restaurants"
+          data-desc="Plats de cinquena gamma per a restaurants, bars i hotels. Producció regular, sabor constant.">
           <img src="img/paella_marisc.jpg" alt="Hostaleria">
           <div class="accord-panel-overlay"></div>
           <div class="accord-label">
@@ -1968,9 +2249,8 @@
           </div>
         </div>
 
-        <div class="accord-panel"
-             data-heading="Retail i gran distribució"
-             data-desc="Envasos premium per a supermercats i comerços alimentaris especialitzats.">
+        <div class="accord-panel" data-heading="Retail i gran distribució"
+          data-desc="Envasos premium per a supermercats i comerços alimentaris especialitzats.">
           <img src="img/risotto_bolets.jpg" alt="Retail">
           <div class="accord-panel-overlay"></div>
           <div class="accord-label">
@@ -1979,9 +2259,8 @@
           </div>
         </div>
 
-        <div class="accord-panel"
-             data-heading="Col·lectivitats i menjadors"
-             data-desc="Menús diaris per a escoles, hospitals i menjadors corporatius. Qualitat casolana a gran escala.">
+        <div class="accord-panel" data-heading="Col·lectivitats i menjadors"
+          data-desc="Menús diaris per a escoles, hospitals i menjadors corporatius. Qualitat casolana a gran escala.">
           <img src="img/fabada.jpg" alt="Col·lectivitats">
           <div class="accord-panel-overlay"></div>
           <div class="accord-label">
@@ -1990,9 +2269,8 @@
           </div>
         </div>
 
-        <div class="accord-panel"
-             data-heading="Distribució i cadena de fred"
-             data-desc="Xarxa de distribució en cadena de fred 2°C–4°C per a tot el territori.">
+        <div class="accord-panel" data-heading="Distribució i cadena de fred"
+          data-desc="Xarxa de distribució en cadena de fred 2°C–4°C per a tot el territori.">
           <img src="img/udon.jpg" alt="Distribució">
           <div class="accord-panel-overlay"></div>
           <div class="accord-label">
@@ -2001,9 +2279,8 @@
           </div>
         </div>
 
-        <div class="accord-panel"
-             data-heading="Botigues pròpies i venda directa"
-             data-desc="Venda directa al consumidor final amb el sabor d'una cuina de mercat casolana.">
+        <div class="accord-panel" data-heading="Botigues pròpies i venda directa"
+          data-desc="Venda directa al consumidor final amb el sabor d'una cuina de mercat casolana.">
           <img src="img/croquetes_pollastre.jpg" alt="Botigues pròpies">
           <div class="accord-panel-overlay"></div>
           <div class="accord-label">
@@ -2028,7 +2305,7 @@
 
     <div class="linies-grid">
       <article class="linia-card linia-alimentacio">
-        <div class="linia-img" style="background-image: url('img/paella_marisc.jpg');"></div>
+        <div class="linia-img" style="background-image: url('img/arros_muntanya.png');"></div>
         <div class="linia-overlay linia-overlay-verd"></div>
         <div class="linia-content">
           <span class="linia-tag">Producció i distribució</span>
@@ -2050,7 +2327,7 @@
       </article>
 
       <article class="linia-card linia-botigues">
-        <div class="linia-img" style="background-image: url('img/croquetes_pollastre.jpg');"></div>
+        <div class="linia-img" style="background-image: url('img/arros_muntanya.png');"></div>
         <div class="linia-overlay linia-overlay-daurat"></div>
         <div class="linia-content">
           <span class="linia-tag linia-tag-daurat">Venda directa</span>
@@ -2096,7 +2373,7 @@
           <div class="swiper-slide co-carousel__slide">
             <div class="co-card">
               <div class="co-card__shoe">
-                <img class="co-card__shoe-img" src="img/arros_muntanya.jpg" alt="Arròs de muntanya">
+                <img class="co-card__shoe-img" src="img/arros_muntanya.png" alt="Arròs de muntanya">
                 <span class="co-card__shoe-shadow"></span>
               </div>
               <div class="co-card__info">
@@ -2184,9 +2461,10 @@
       <div class="qualitat-grid">
         <article class="qualitat-card">
           <div class="qualitat-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 3l8 4v6c0 4.5-3.5 7.5-8 8-4.5-.5-8-3.5-8-8V7l8-4z"/>
-              <path d="M9 12l2 2 4-4"/>
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3l8 4v6c0 4.5-3.5 7.5-8 8-4.5-.5-8-3.5-8-8V7l8-4z" />
+              <path d="M9 12l2 2 4-4" />
             </svg>
           </div>
           <span class="qualitat-num">01</span>
@@ -2196,8 +2474,9 @@
 
         <article class="qualitat-card">
           <div class="qualitat-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M3 12h2l3-9 4 18 3-12 2 6h4"/>
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 12h2l3-9 4 18 3-12 2 6h4" />
             </svg>
           </div>
           <span class="qualitat-num">02</span>
@@ -2207,51 +2486,58 @@
 
         <article class="qualitat-card">
           <div class="qualitat-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M6 14c0-3 2-5 6-5s6 2 6 5"/>
-              <path d="M9 14v3M15 14v3M12 14v3"/>
-              <path d="M5 17h14"/>
-              <path d="M9 9V5M12 9V3M15 9V5"/>
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 14c0-3 2-5 6-5s6 2 6 5" />
+              <path d="M9 14v3M15 14v3M12 14v3" />
+              <path d="M5 17h14" />
+              <path d="M9 9V5M12 9V3M15 9V5" />
             </svg>
           </div>
           <span class="qualitat-num">03</span>
           <h3 class="qualitat-name">Cuina d'avantguarda</h3>
-          <p class="qualitat-desc">Cocció a baixa temperatura, fons elaborats al mateix obrador, salses fetes en directe.</p>
+          <p class="qualitat-desc">Cocció a baixa temperatura, fons elaborats al mateix obrador, salses fetes en
+            directe.</p>
         </article>
 
         <article class="qualitat-card">
           <div class="qualitat-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="4" y="7" width="16" height="13" rx="2"/>
-              <path d="M8 7V5a4 4 0 0 1 8 0v2"/>
-              <path d="M8 12h8"/>
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6"
+              stroke-linecap="round" stroke-linejoin="round">
+              <rect x="4" y="7" width="16" height="13" rx="2" />
+              <path d="M8 7V5a4 4 0 0 1 8 0v2" />
+              <path d="M8 12h8" />
             </svg>
           </div>
           <span class="qualitat-num">04</span>
           <h3 class="qualitat-name">Envasat d'alta protecció</h3>
-          <p class="qualitat-desc">Atmosfera protectora i envasos pensats per a 18 dies de vida útil sense conservants.</p>
+          <p class="qualitat-desc">Atmosfera protectora i envasos pensats per a 18 dies de vida útil sense conservants.
+          </p>
         </article>
 
         <article class="qualitat-card">
           <div class="qualitat-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M9 3h6v3l3 4v9a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-9l3-4z"/>
-              <path d="M9 12h6"/>
-              <path d="M10.5 16h3"/>
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 3h6v3l3 4v9a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-9l3-4z" />
+              <path d="M9 12h6" />
+              <path d="M10.5 16h3" />
             </svg>
           </div>
           <span class="qualitat-num">05</span>
           <h3 class="qualitat-name">Laboratori de control</h3>
-          <p class="qualitat-desc">Anàlisis microbiològiques periòdiques. Auditories internes i certificats sanitaris.</p>
+          <p class="qualitat-desc">Anàlisis microbiològiques periòdiques. Auditories internes i certificats sanitaris.
+          </p>
         </article>
 
         <article class="qualitat-card">
           <div class="qualitat-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="8" width="13" height="9" rx="1"/>
-              <path d="M15 11h4l3 3v3h-7"/>
-              <circle cx="6" cy="18" r="2"/>
-              <circle cx="18" cy="18" r="2"/>
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6"
+              stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="8" width="13" height="9" rx="1" />
+              <path d="M15 11h4l3 3v3h-7" />
+              <circle cx="6" cy="18" r="2" />
+              <circle cx="18" cy="18" r="2" />
             </svg>
           </div>
           <span class="qualitat-num">06</span>
@@ -2283,7 +2569,8 @@
         <ul class="contacte-data">
           <li>
             <span class="contacte-key">Instagram</span>
-            <a href="https://www.instagram.com/layaya.alimentacion/" target="_blank" rel="noopener">@layaya.alimentacion</a>
+            <a href="https://www.instagram.com/layaya.alimentacion/" target="_blank"
+              rel="noopener">@layaya.alimentacion</a>
           </li>
           <li>
             <span class="contacte-key">Correu</span>
@@ -2368,7 +2655,8 @@
         <div class="footer-col">
           <span class="footer-col-title">Contacte</span>
           <a href="mailto:hola@layaya.cat">hola@layaya.cat</a>
-          <a href="https://www.instagram.com/layaya.alimentacion/" target="_blank" rel="noopener">@layaya.alimentacion</a>
+          <a href="https://www.instagram.com/layaya.alimentacion/" target="_blank"
+            rel="noopener">@layaya.alimentacion</a>
         </div>
       </div>
     </div>
@@ -2386,10 +2674,10 @@
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script>
     (function () {
-      const video       = document.getElementById('hero-video');
-      const heroScroll  = document.getElementById('hero-scroll');
+      const video = document.getElementById('hero-video');
+      const heroScroll = document.getElementById('hero-scroll');
       const progressBar = document.getElementById('progress-bar');
-      const scrollHint  = document.getElementById('scroll-hint');
+      const scrollHint = document.getElementById('scroll-hint');
 
       const SCROLL_PER_SECOND = 60;
 
@@ -2438,17 +2726,17 @@
         scrollTo(window.scrollY + KEY_DELTA[e.key]);
       }
 
-      document.addEventListener('wheel',      onWheel,      { passive: false });
-      document.addEventListener('touchstart', onTouchStart, { passive: true  });
-      document.addEventListener('touchmove',  onTouchMove,  { passive: false });
-      document.addEventListener('keydown',    onKeydown);
+      document.addEventListener('wheel', onWheel, { passive: false });
+      document.addEventListener('touchstart', onTouchStart, { passive: true });
+      document.addEventListener('touchmove', onTouchMove, { passive: false });
+      document.addEventListener('keydown', onKeydown);
 
       function unlock() {
         heroUnlocked = true;
-        document.removeEventListener('wheel',      onWheel);
+        document.removeEventListener('wheel', onWheel);
         document.removeEventListener('touchstart', onTouchStart);
-        document.removeEventListener('touchmove',  onTouchMove);
-        document.removeEventListener('keydown',    onKeydown);
+        document.removeEventListener('touchmove', onTouchMove);
+        document.removeEventListener('keydown', onKeydown);
       }
 
       // ── Scrubbing ────────────────────────────────────────────
@@ -2463,7 +2751,7 @@
 
       function update() {
         ticking = false;
-        const ms       = maxScroll();
+        const ms = maxScroll();
         const progress = ms > 0 ? Math.max(0, Math.min(1, window.scrollY / ms)) : 0;
 
         if (video.duration && isFinite(video.duration) && !isSeeking) {
@@ -2486,7 +2774,7 @@
 
     // Navegació: scroll → fons sòlid + hamburger mòbil
     (function () {
-      const nav       = document.getElementById('site-nav');
+      const nav = document.getElementById('site-nav');
       const hamburger = document.getElementById('nav-hamburger');
 
       window.addEventListener('scroll', function () {
@@ -2548,16 +2836,16 @@
 
     // Secció "Qui servim" — acordió d'imatges
     (function () {
-      const panels  = document.querySelectorAll('.accord-panel');
+      const panels = document.querySelectorAll('.accord-panel');
       const heading = document.getElementById('accord-heading');
-      const desc    = document.getElementById('accord-desc');
+      const desc = document.getElementById('accord-desc');
       if (!panels.length) return;
 
       function activate(panel) {
         panels.forEach(function (p) { p.classList.remove('is-active'); });
         panel.classList.add('is-active');
         if (heading) heading.textContent = panel.getAttribute('data-heading') || '';
-        if (desc)    desc.textContent    = panel.getAttribute('data-desc')    || '';
+        if (desc) desc.textContent = panel.getAttribute('data-desc') || '';
       }
 
       panels.forEach(function (panel) {
@@ -2687,4 +2975,5 @@
   </script>
 
 </body>
+
 </html>
