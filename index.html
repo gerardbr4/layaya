@@ -628,202 +628,430 @@
       }
     }
 
-    /* ─── SECCIÓ "QUI SERVIM" — acordió d'imatges ─────────── */
+    /* ─── SECCIÓ "QUI SERVIM" ───────────────────────────────── */
 
     .seccio-serveis {
       background-color: #FBF6E8;
-      padding: 8rem 2.5rem;
+      padding: 7rem 2.5rem 0;
       position: relative;
-      overflow: hidden;
     }
 
-    .accord-inner {
-      max-width: 1200px;
+    .serveis-inner {
+      max-width: 1280px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: minmax(200px, 280px) 1fr;
-      gap: 5rem;
-      align-items: center;
+      grid-template-columns: 280px 1fr;
+      gap: 4rem;
+      align-items: start;
     }
 
-    .accord-badge {
+    /* Columna esquerra */
+    .serveis-badge {
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
-      border: 1px solid rgba(60, 42, 33, 0.22);
-      color: #3C2A21;
+      gap: 0.45rem;
+      border: 1px solid rgba(60, 90, 50, 0.28);
+      color: var(--green-dk);
       font-family: 'Sora', sans-serif;
-      font-size: 0.74rem;
-      font-weight: 500;
+      font-size: 0.72rem;
+      font-weight: 600;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      padding: 0.5rem 1.1rem;
+      padding: 0.45rem 1rem;
       border-radius: 100px;
       white-space: nowrap;
-      margin-bottom: 2rem;
+      margin-bottom: 1.8rem;
     }
 
-    .accord-badge-dot {
-      width: 6px;
-      height: 6px;
+    .serveis-badge-dot {
+      width: 5px;
+      height: 5px;
       border-radius: 50%;
-      background: #7ABA78;
+      background: var(--green);
       flex-shrink: 0;
       animation: pulse 2s ease-in-out infinite;
     }
 
-    .accord-heading {
+    .serveis-title {
       font-family: 'Fraunces', serif;
-      font-size: clamp(1.5rem, 2.4vw, 2.1rem);
+      font-size: clamp(1.8rem, 2.8vw, 2.6rem);
       font-weight: 700;
-      line-height: 1.3;
-      color: #3C2A21;
+      line-height: 1.2;
+      color: #1a1a1a;
       margin-bottom: 1rem;
-      transition: opacity 0.25s ease;
+      transition: opacity 0.3s ease;
     }
 
-    .accord-desc {
+    .serveis-divider {
+      width: 38px;
+      height: 3px;
+      background: var(--green);
+      border-radius: 2px;
+      margin-bottom: 1.4rem;
+    }
+
+    .serveis-desc {
       font-family: 'Sora', sans-serif;
       font-size: 0.88rem;
       font-weight: 300;
       color: #606060;
       line-height: 1.75;
-      transition: opacity 0.25s ease;
+      margin-bottom: 2rem;
+      transition: opacity 0.3s ease;
     }
 
-    .accord-panels {
+    .serveis-feature {
       display: flex;
-      gap: 8px;
-      height: 520px;
-      border-radius: 12px;
-      overflow: hidden;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
     }
 
-    .accord-panel {
-      flex: 0 0 68px;
+    .serveis-feature-icon {
+      flex-shrink: 0;
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      background: rgba(122, 186, 120, 0.13);
+      box-shadow: 0 3px 12px rgba(100, 155, 80, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--green-dk);
+    }
+
+    .serveis-feature-text strong {
+      display: block;
+      font-family: 'Sora', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #1a1a1a;
+      margin-bottom: 0.25rem;
+    }
+
+    .serveis-feature-text span {
+      font-family: 'Sora', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 300;
+      color: #777;
+      line-height: 1.6;
+    }
+
+    .serveis-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      background: var(--green-dk);
+      color: #fff;
+      font-family: 'Sora', sans-serif;
+      font-size: 0.76rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 0.9rem 1.7rem;
+      border-radius: 100px;
+      transition: background 0.25s ease, transform 0.25s ease;
+    }
+
+    .serveis-cta:hover {
+      background: var(--green);
+      transform: translateY(-2px);
+    }
+
+    /* Àrea de cards */
+    .serveis-cards {
+      display: grid;
+      grid-template-columns: 1fr 290px;
+      gap: 0.7rem;
+      height: 600px;
+    }
+
+    /* Card principal */
+    .serveis-main-card {
       position: relative;
-      border-radius: 8px;
+      border-radius: 20px;
       overflow: hidden;
-      cursor: pointer;
-      transition: flex 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: default;
     }
 
-    .accord-panel.is-active {
-      flex: 1;
-    }
-
-    .accord-panel img {
+    .serveis-main-img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-      pointer-events: none;
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      display: block;
     }
 
-    .accord-panel.is-active img {
-      transform: scale(1.04);
-    }
-
-    .accord-panel-overlay {
+    .serveis-main-overlay {
       position: absolute;
       inset: 0;
-      background: rgba(0, 0, 0, 0.45);
-      transition: background 0.5s ease;
+      background: linear-gradient(to top,
+        rgba(15, 25, 10, 0.82) 0%,
+        rgba(15, 25, 10, 0.18) 50%,
+        transparent 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 2rem 2.2rem 2.2rem;
     }
 
-    .accord-panel.is-active .accord-panel-overlay {
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.1) 55%, transparent 100%);
+    .serveis-main-num {
+      font-family: 'Sora', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      color: var(--green);
+      margin-bottom: 0.45rem;
     }
 
-    .accord-label {
+    .serveis-main-title {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.6rem, 2.4vw, 2.4rem);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.15;
+      margin-bottom: 0.65rem;
+      transition: opacity 0.35s ease;
+    }
+
+    .serveis-main-desc {
+      font-family: 'Sora', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.65;
+      margin-bottom: 1.3rem;
+      max-width: 400px;
+      transition: opacity 0.35s ease;
+    }
+
+    .serveis-main-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: #fff;
+      text-decoration: none;
+      font-family: 'Sora', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .serveis-main-link-circle {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(255, 255, 255, 0.55);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .serveis-main-link:hover .serveis-main-link-circle {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: #fff;
+    }
+
+    /* Cards laterals */
+    .serveis-side-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+
+    .serveis-side-card {
+      position: relative;
+      flex: 1;
+      border-radius: 16px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .serveis-side-card:hover {
+      transform: scale(1.025);
+    }
+
+    .serveis-side-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .serveis-side-card:hover .serveis-side-img {
+      transform: scale(1.07);
+    }
+
+    .serveis-side-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top,
+        rgba(15, 25, 10, 0.75) 0%,
+        rgba(15, 25, 10, 0.2) 60%,
+        rgba(15, 25, 10, 0.08) 100%);
+    }
+
+    .serveis-side-icon {
+      position: absolute;
+      top: 0.9rem;
+      left: 0.9rem;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.88);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--green-dk);
+    }
+
+    .serveis-side-content {
       position: absolute;
       bottom: 0;
       left: 0;
       right: 0;
-      padding: 1.4rem 1.2rem;
-      color: #fff;
+      padding: 0.85rem 1rem;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 0.5rem;
     }
 
-    .accord-label-num {
-      font-family: 'Sora', sans-serif;
-      font-size: 0.65rem;
-      font-weight: 500;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      opacity: 0;
+    .serveis-side-num {
       display: block;
-      margin-bottom: 0.3rem;
-      transition: opacity 0.35s ease;
+      font-family: 'Sora', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      color: var(--green);
+      margin-bottom: 0.18rem;
     }
 
-    .accord-panel.is-active .accord-label-num {
-      opacity: 0.7;
-    }
-
-    .accord-label-name {
+    .serveis-side-title {
       font-family: 'Fraunces', serif;
+      font-size: 1.05rem;
       font-weight: 700;
-      font-size: 0.9rem;
+      color: #fff;
       line-height: 1.2;
-      writing-mode: vertical-rl;
-      transform: rotate(180deg);
-      white-space: nowrap;
-      transition: font-size 0.4s ease;
+      display: block;
     }
 
-    .accord-panel.is-active .accord-label-name {
-      writing-mode: horizontal-tb;
-      transform: none;
-      font-size: clamp(1.1rem, 2vw, 1.6rem);
+    .serveis-side-arrow {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(255, 255, 255, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 0.78rem;
+      transition: background 0.2s ease, border-color 0.2s ease;
+      margin-bottom: 0.1rem;
     }
 
-    @media (max-width: 860px) {
-      .accord-inner {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-      }
-
-      .accord-panels {
-        height: 380px;
-      }
+    .serveis-side-card:hover .serveis-side-arrow {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: #fff;
     }
 
-    @media (max-width: 540px) {
-      .seccio-serveis {
-        padding: 5rem 1.5rem;
-      }
-
-      .accord-panels {
-        flex-direction: column;
-        height: auto;
-      }
-
-      .accord-panel {
-        flex: 0 0 60px;
-      }
-
-      .accord-panel.is-active {
-        flex: 0 0 300px;
-      }
-
-      .accord-label-name {
-        writing-mode: horizontal-tb;
-        transform: none;
-        font-size: 1rem;
-      }
-
-      .accord-panel.is-active .accord-label-name {
-        font-size: 1.2rem;
-      }
+    /* Barra inferior */
+    .serveis-bar-wrap {
+      max-width: 1280px;
+      margin: 2.5rem auto 0;
+      padding-bottom: 5rem;
     }
 
-    /* — serveis legacy (unused, safe to ignore) — */
-    .serveis-list {
-      list-style: none;
+    .serveis-bar {
+      background: rgba(122, 186, 120, 0.09);
+      border-radius: 16px;
+      padding: 1.6rem 2.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
     }
 
-    .serveis-item {
-      display: none;
+    .serveis-bar-main {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .serveis-bar-icon {
+      flex-shrink: 0;
+      width: 44px;
+      height: 44px;
+      border-radius: 13px;
+      background: rgba(122, 186, 120, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--green-dk);
+    }
+
+    .serveis-bar-main strong {
+      display: block;
+      font-family: 'Sora', sans-serif;
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: #222;
+      margin-bottom: 0.2rem;
+    }
+
+    .serveis-bar-main p {
+      font-family: 'Sora', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 300;
+      color: #777;
+      line-height: 1.5;
+      max-width: 480px;
+      margin: 0;
+    }
+
+    .serveis-bar-feats {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      flex-shrink: 0;
+    }
+
+    .serveis-bar-feat {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: var(--green-dk);
+    }
+
+    .serveis-bar-feat span {
+      font-family: 'Sora', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: #444;
+      line-height: 1.35;
+    }
+
+    @media (max-width: 1060px) {
+      .serveis-inner { grid-template-columns: 240px 1fr; gap: 2.5rem; }
+      .serveis-cards { grid-template-columns: 1fr 240px; }
+    }
+
+    @media (max-width: 780px) {
+      .seccio-serveis { padding: 5rem 1.5rem 0; }
+      .serveis-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .serveis-cards { grid-template-columns: 1fr; height: auto; }
+      .serveis-main-card { height: 360px; }
+      .serveis-side-cards { flex-direction: row; height: 150px; }
+      .serveis-bar { flex-direction: column; align-items: flex-start; }
+      .serveis-bar-feats { flex-wrap: wrap; gap: 1rem; }
+      .serveis-bar-wrap { padding-bottom: 3.5rem; }
     }
 
     /* ─── HERO RESPONSIVE ────────────────────────────────── */
@@ -2476,74 +2704,130 @@
     </div>
   </section>
 
-  <!-- ─── QUÈ FEM — acordió d'imatges ─────────────────────── -->
+  <!-- ─── QUI SERVIM ──────────────────────────────────────── -->
   <section class="seccio-serveis" id="que-fem">
-    <div class="accord-inner">
 
-      <div class="accord-left">
-        <span class="accord-badge">
-          <span class="accord-badge-dot"></span>
+    <div class="serveis-inner">
+
+      <!-- Columna esquerra -->
+      <div class="serveis-left">
+        <span class="serveis-badge">
+          <span class="serveis-badge-dot"></span>
           Qui servim
         </span>
-        <h2 class="accord-heading" id="accord-heading">Hostaleria i restaurants</h2>
-        <p class="accord-desc" id="accord-desc">Plats de cinquena gamma per a restaurants, bars i hotels. Producció
-          regular, sabor constant.</p>
+        <h2 class="serveis-title" id="serveis-left-title">Col·lectivitats i menjadors</h2>
+        <div class="serveis-divider"></div>
+        <p class="serveis-desc" id="serveis-left-desc">Menús diaris per a escoles, hospitals i menjadors corporatius. Qualitat casolana a gran escala.</p>
+        <div class="serveis-feature">
+          <div class="serveis-feature-icon" id="serveis-feat-icon"></div>
+          <div class="serveis-feature-text">
+            <strong id="serveis-feat-title">Solucions adaptades</strong>
+            <span id="serveis-feat-desc">Ens adaptem a les necessitats de cada col·lectivitat amb flexibilitat i compromís.</span>
+          </div>
+        </div>
+        <a class="serveis-cta" href="#contacte">Més informació →</a>
       </div>
 
-      <div class="accord-panels" id="accord-panels">
+      <!-- Àrea de cards -->
+      <div class="serveis-cards">
 
-        <div class="accord-panel is-active" data-heading="Hostaleria i restaurants"
-          data-desc="Plats de cinquena gamma per a restaurants, bars i hotels. Producció regular, sabor constant.">
-          <img src="img/paella_marisc.jpg" alt="Hostaleria">
-          <div class="accord-panel-overlay"></div>
-          <div class="accord-label">
-            <span class="accord-label-num">01</span>
-            <span class="accord-label-name">Hostaleria</span>
+        <!-- Card principal (activa) -->
+        <div class="serveis-main-card">
+          <img id="serveis-main-img" class="serveis-main-img" src="img/fabada.jpg" alt="">
+          <div class="serveis-main-overlay">
+            <span class="serveis-main-num" id="serveis-main-num">01</span>
+            <h3 class="serveis-main-title" id="serveis-main-title">Col·lectivitats</h3>
+            <p class="serveis-main-desc" id="serveis-main-desc">Cuina casolana, equilibrada i segura per a grans col·lectius cada dia.</p>
+            <a class="serveis-main-link" href="#contacte">
+              <span class="serveis-main-link-circle">→</span>
+              VEURE SOLUCIONS
+            </a>
           </div>
         </div>
 
-        <div class="accord-panel" data-heading="Retail i gran distribució"
-          data-desc="Envasos premium per a supermercats i comerços alimentaris especialitzats.">
-          <img src="img/risotto_bolets.jpg" alt="Retail">
-          <div class="accord-panel-overlay"></div>
-          <div class="accord-label">
-            <span class="accord-label-num">02</span>
-            <span class="accord-label-name">Retail</span>
-          </div>
-        </div>
+        <!-- Cards laterals (3 panells no actius) -->
+        <div class="serveis-side-cards">
 
-        <div class="accord-panel" data-heading="Col·lectivitats i menjadors"
-          data-desc="Menús diaris per a escoles, hospitals i menjadors corporatius. Qualitat casolana a gran escala.">
-          <img src="img/fabada.jpg" alt="Col·lectivitats">
-          <div class="accord-panel-overlay"></div>
-          <div class="accord-label">
-            <span class="accord-label-num">03</span>
-            <span class="accord-label-name">Col·lectivitats</span>
+          <div class="serveis-side-card">
+            <img class="serveis-side-img" src="" alt="">
+            <div class="serveis-side-overlay"></div>
+            <div class="serveis-side-icon"></div>
+            <div class="serveis-side-content">
+              <div>
+                <span class="serveis-side-num"></span>
+                <span class="serveis-side-title"></span>
+              </div>
+              <div class="serveis-side-arrow">→</div>
+            </div>
           </div>
-        </div>
 
-        <div class="accord-panel" data-heading="Distribució i cadena de fred"
-          data-desc="Xarxa de distribució en cadena de fred 2°C–4°C per a tot el territori.">
-          <img src="img/udon.jpg" alt="Distribució">
-          <div class="accord-panel-overlay"></div>
-          <div class="accord-label">
-            <span class="accord-label-num">04</span>
-            <span class="accord-label-name">Distribució</span>
+          <div class="serveis-side-card">
+            <img class="serveis-side-img" src="" alt="">
+            <div class="serveis-side-overlay"></div>
+            <div class="serveis-side-icon"></div>
+            <div class="serveis-side-content">
+              <div>
+                <span class="serveis-side-num"></span>
+                <span class="serveis-side-title"></span>
+              </div>
+              <div class="serveis-side-arrow">→</div>
+            </div>
           </div>
-        </div>
 
-        <div class="accord-panel" data-heading="Botigues pròpies i venda directa"
-          data-desc="Venda directa al consumidor final amb el sabor d'una cuina de mercat casolana.">
-          <img src="img/croquetes_pollastre.jpg" alt="Botigues pròpies">
-          <div class="accord-panel-overlay"></div>
-          <div class="accord-label">
-            <span class="accord-label-num">05</span>
-            <span class="accord-label-name">Botigues pròpies</span>
+          <div class="serveis-side-card">
+            <img class="serveis-side-img" src="" alt="">
+            <div class="serveis-side-overlay"></div>
+            <div class="serveis-side-icon"></div>
+            <div class="serveis-side-content">
+              <div>
+                <span class="serveis-side-num"></span>
+                <span class="serveis-side-title"></span>
+              </div>
+              <div class="serveis-side-arrow">→</div>
+            </div>
           </div>
-        </div>
 
+        </div>
       </div>
     </div>
+
+    <!-- Barra inferior -->
+    <div class="serveis-bar-wrap">
+      <div class="serveis-bar">
+        <div class="serveis-bar-main">
+          <div class="serveis-bar-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22V11"/><path d="M12 16c0-4.5 4-7 7-8-1 4.5-3 8-7 8z"/><path d="M12 16c0-4.5-4-7-7-8 1 4.5 3 8 7 8z"/><path d="M12 11c0-3 2-5 4.5-6-.5 3-1.5 6-4.5 6z"/>
+            </svg>
+          </div>
+          <div>
+            <strong>Compromesos amb la qualitat i el servei</strong>
+            <p>Ingredients seleccionats, processos segurs i una atenció propera en cada servei que oferim.</p>
+          </div>
+        </div>
+        <div class="serveis-bar-feats">
+          <div class="serveis-bar-feat">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22V11"/><path d="M12 16c0-4.5 4-7 7-8-1 4.5-3 8-7 8z"/><path d="M12 16c0-4.5-4-7-7-8 1 4.5 3 8 7 8z"/>
+            </svg>
+            <span>Ingredients<br>de qualitat</span>
+          </div>
+          <div class="serveis-bar-feat">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L4 6v7c0 4.5 3.5 7.5 8 9 4.5-1.5 8-4.5 8-9V6L12 2z"/><path d="M9 12l2 2.5 4-4.5"/>
+            </svg>
+            <span>Seguretat<br>alimentària</span>
+          </div>
+          <div class="serveis-bar-feat">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+            <span>Servei<br>personalitzat</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </section>
 
   <!-- ─── LÍNIES DE NEGOCI ──────────────────────────────────── -->
@@ -3087,23 +3371,97 @@
       }, 4500);
     })();
 
-    // Secció "Qui servim" — acordió d'imatges
+    // Secció "Qui servim" — panel switcher
     (function () {
-      const panels = document.querySelectorAll('.accord-panel');
-      const heading = document.getElementById('accord-heading');
-      const desc = document.getElementById('accord-desc');
-      if (!panels.length) return;
+      var SVG_WRAP = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">';
 
-      function activate(panel) {
-        panels.forEach(function (p) { p.classList.remove('is-active'); });
-        panel.classList.add('is-active');
-        if (heading) heading.textContent = panel.getAttribute('data-heading') || '';
-        if (desc) desc.textContent = panel.getAttribute('data-desc') || '';
+      var ICONS = {
+        people:  SVG_WRAP + '<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
+        chefhat: SVG_WRAP + '<path d="M6 16h12v3.5a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V16z"/><path d="M8.5 16V13c0-1.9 1.6-3.5 3.5-3.5s3.5 1.6 3.5 3.5v3"/><path d="M6.5 12.5a5.5 5.5 0 0 1 11 0"/><line x1="10" y1="16" x2="10" y2="19.5"/><line x1="14" y1="16" x2="14" y2="19.5"/></svg>',
+        basket:  SVG_WRAP + '<path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>',
+        store:   SVG_WRAP + '<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>',
+      };
+
+      var PANELS = [
+        {
+          num: '01', img: 'img/fabada.jpg',
+          cardTitle: 'Col·lectivitats', cardDesc: 'Cuina casolana, equilibrada i segura per a grans col·lectius cada dia.',
+          leftTitle: 'Col·lectivitats i menjadors', leftDesc: 'Menús diaris per a escoles, hospitals i menjadors corporatius. Qualitat casolana a gran escala.',
+          featTitle: 'Solucions adaptades', featDesc: 'Ens adaptem a les necessitats de cada col·lectivitat amb flexibilitat i compromís.',
+          icon: 'people',
+        },
+        {
+          num: '02', img: 'img/paella_marisc.jpg',
+          cardTitle: 'Hostaleria', cardDesc: 'Productes premium per a cuines professionals que busquen màxima eficiència i sabor constant.',
+          leftTitle: 'Hostaleria i restaurants', leftDesc: 'Plats de cinquena gamma per a restaurants, bars i hotels. Producció regular, sabor constant.',
+          featTitle: 'Consistència i qualitat', featDesc: 'Producció regular que garanteix el sabor i la qualitat en cada servei.',
+          icon: 'chefhat',
+        },
+        {
+          num: '03', img: 'img/risotto_bolets.jpg',
+          cardTitle: 'Retail', cardDesc: 'Productes envasats amb identitat de marca per a comerços i grans superfícies.',
+          leftTitle: 'Retail i gran distribució', leftDesc: 'Envasos premium per a supermercats i comerços alimentaris especialitzats.',
+          featTitle: 'Presentació impecable', featDesc: "Packaging d'alta protecció i llarga vida útil per a la gran distribució.",
+          icon: 'basket',
+        },
+        {
+          num: '04', img: 'img/croquetes_pollastre.jpg',
+          cardTitle: 'Botigues pròpies', cardDesc: 'Plats tradicionals per a botigues de cuina casolana i establiments de take-away.',
+          leftTitle: 'Botigues i take-away', leftDesc: "Venda directa al consumidor final amb el sabor d'una cuina de mercat casolana.",
+          featTitle: 'Producte de proximitat', featDesc: 'Comerç local amb producte autèntic, fresc i de qualitat garantida.',
+          icon: 'store',
+        },
+      ];
+
+      var activeIdx = 0;
+      var mainImg    = document.getElementById('serveis-main-img');
+      var mainNum    = document.getElementById('serveis-main-num');
+      var mainTitle  = document.getElementById('serveis-main-title');
+      var mainDesc   = document.getElementById('serveis-main-desc');
+      var leftTitle  = document.getElementById('serveis-left-title');
+      var leftDesc   = document.getElementById('serveis-left-desc');
+      var featIcon   = document.getElementById('serveis-feat-icon');
+      var featTitle  = document.getElementById('serveis-feat-title');
+      var featDesc   = document.getElementById('serveis-feat-desc');
+      var sideCards  = document.querySelectorAll('.serveis-side-card');
+
+      if (!mainImg || !sideCards.length) return;
+
+      function renderSideCards() {
+        var others = PANELS.filter(function (_, i) { return i !== activeIdx; });
+        sideCards.forEach(function (card, i) {
+          var p = others[i];
+          var idx = PANELS.indexOf(p);
+          card.dataset.panelIdx = idx;
+          card.querySelector('.serveis-side-img').src = p.img;
+          card.querySelector('.serveis-side-num').textContent = p.num;
+          card.querySelector('.serveis-side-title').textContent = p.cardTitle;
+          card.querySelector('.serveis-side-icon').innerHTML = ICONS[p.icon];
+        });
       }
 
-      panels.forEach(function (panel) {
-        panel.addEventListener('mouseenter', function () { activate(panel); });
+      function activate(idx) {
+        activeIdx = idx;
+        var p = PANELS[idx];
+        mainImg.src = p.img;
+        mainNum.textContent = p.num;
+        mainTitle.textContent = p.cardTitle;
+        mainDesc.textContent = p.cardDesc;
+        leftTitle.textContent = p.leftTitle;
+        leftDesc.textContent = p.leftDesc;
+        featIcon.innerHTML = ICONS[p.icon];
+        featTitle.textContent = p.featTitle;
+        featDesc.textContent = p.featDesc;
+        renderSideCards();
+      }
+
+      sideCards.forEach(function (card) {
+        card.addEventListener('mouseenter', function () {
+          activate(parseInt(card.dataset.panelIdx));
+        });
       });
+
+      activate(0);
     })();
 
     // Productes — co-carousel (Tim Guignard)
