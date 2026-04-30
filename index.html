@@ -392,11 +392,16 @@
 
     .quisom-lead {
       font-family: 'Sora', sans-serif;
-      font-size: clamp(0.9rem, 1.1vw, 1rem);
+      font-size: clamp(0.88rem, 1.05vw, 0.98rem);
       font-weight: 300;
       line-height: 1.8;
       color: #606060;
       margin-bottom: 1rem;
+    }
+
+    .quisom-lead strong {
+      font-weight: 600;
+      color: #333;
     }
 
     .quisom-divider {
@@ -422,20 +427,21 @@
 
     .quisom-feature-icon {
       flex-shrink: 0;
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      background: var(--green);
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      background: rgba(122, 186, 120, 0.13);
+      box-shadow: 0 3px 12px rgba(100, 155, 80, 0.13);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.1rem;
+      color: var(--green-dk);
     }
 
     .quisom-feature-text strong {
       display: block;
       font-family: 'Sora', sans-serif;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       font-weight: 600;
       color: #1a1a1a;
       margin-bottom: 0.2rem;
@@ -443,13 +449,13 @@
 
     .quisom-feature-text span {
       font-family: 'Sora', sans-serif;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       font-weight: 300;
       color: #777;
       line-height: 1.5;
     }
 
-    /* Right column — stat cards over background photo */
+    /* Right column — stat cards */
     .quisom-right {
       position: relative;
     }
@@ -476,16 +482,15 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 1.1rem;
-      padding: 1.1rem;
     }
 
     .stat-card {
       background: #fff;
-      border-radius: 20px;
-      padding: 1.8rem 1.6rem;
+      border-radius: 18px;
+      padding: 1.5rem 1.4rem;
       box-shadow:
-        0 8px 28px rgba(160, 110, 55, 0.13),
-        0 2px 6px rgba(160, 110, 55, 0.07);
+        0 6px 24px rgba(140, 100, 50, 0.11),
+        0 2px 6px rgba(140, 100, 50, 0.06);
       display: flex;
       flex-direction: column;
       transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1),
@@ -494,42 +499,46 @@
     }
 
     .stat-card:hover {
-      transform: translateY(-7px);
+      transform: translateY(-6px);
       box-shadow:
-        0 22px 52px rgba(160, 110, 55, 0.18),
-        0 6px 14px rgba(160, 110, 55, 0.10);
+        0 18px 44px rgba(140, 100, 50, 0.17),
+        0 5px 12px rgba(140, 100, 50, 0.08);
+    }
+
+    .stat-card-top {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      margin-bottom: 0.6rem;
     }
 
     .stat-icon-wrap {
-      width: 48px;
-      height: 48px;
+      flex-shrink: 0;
+      width: 46px;
+      height: 46px;
       border-radius: 14px;
-      background: #F5EFE0;
+      background: rgba(122, 186, 120, 0.12);
+      box-shadow: 0 3px 10px rgba(100, 155, 80, 0.12);
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 1rem;
-      box-shadow: 0 4px 14px rgba(200, 155, 70, 0.18);
+      color: var(--green-dk);
     }
 
-    .stat-icon-svg {
-      width: 22px;
-      height: 22px;
-      filter: invert(50%) sepia(28%) saturate(550%) hue-rotate(82deg) brightness(88%);
+    .stat-card-meta {
+      display: flex;
+      flex-direction: column;
     }
 
-    .stat-num-wrap {
+    .stat-num-row {
       display: flex;
       align-items: baseline;
-      gap: 0.1rem;
-      margin-bottom: 0.55rem;
-      padding-bottom: 0.55rem;
-      border-bottom: 1.5px dashed rgba(122, 186, 120, 0.4);
+      gap: 0.05rem;
     }
 
     .stat-num {
       font-family: 'Fraunces', serif;
-      font-size: clamp(1.9rem, 3vw, 2.6rem);
+      font-size: clamp(1.6rem, 2.4vw, 2.1rem);
       font-weight: 700;
       line-height: 1;
       color: var(--green);
@@ -538,26 +547,34 @@
 
     .stat-suffix {
       font-family: 'Fraunces', serif;
-      font-size: clamp(1rem, 1.6vw, 1.5rem);
-      font-weight: 600;
+      font-size: clamp(0.95rem, 1.4vw, 1.25rem);
+      font-weight: 700;
       color: var(--green);
       line-height: 1;
     }
 
     .stat-label-title {
       font-family: 'Sora', sans-serif;
-      font-size: 0.83rem;
+      font-size: 0.78rem;
       font-weight: 600;
-      color: #222;
-      margin-bottom: 0.25rem;
+      color: #2a2a2a;
+      margin-top: 0.15rem;
+      line-height: 1.3;
+    }
+
+    .stat-divider {
+      border: none;
+      border-top: 1.5px dashed rgba(122, 186, 120, 0.38);
+      margin: 0.7rem 0;
     }
 
     .stat-label {
       font-family: 'Sora', sans-serif;
-      font-size: 0.76rem;
+      font-size: 0.77rem;
       font-weight: 300;
       color: #888;
-      line-height: 1.45;
+      line-height: 1.55;
+      margin: 0;
     }
 
     /* Circular stamp */
@@ -2271,93 +2288,167 @@
 
       <!-- Left column -->
       <div class="quisom-left">
-        <span class="quisom-badge">🌿 L'empresa</span>
+        <span class="quisom-badge">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V11"/><path d="M12 16c0-4.5 4-7 7-8-1 4.5-3 8-7 8z"/><path d="M12 16c0-4.5-4-7-7-8 1 4.5 3 8 7 8z"/></svg>
+          L'empresa
+        </span>
         <h2 class="quisom-title">
-          Una cuina<br>de <em>cuina de sempre.</em>
+          Una empresa alimentària<br>nascuda de la<br><em>cuina de sempre.</em>
         </h2>
         <p class="quisom-lead">
-          Som un obrador industrial d'alta tecnologia que combina cuina casolana
-          professional i estàndards de seguretat alimentària. Més de 35 varietats
+          Som un obrador industrial d'alta tecnologia que combina <strong>cuina casolana
+          professional</strong> i estàndards de seguretat alimentària. Més de 35 varietats
           de plats de cinquena gamma, elaborats amb ingredients de primera selecció.
-        </p>
-        <p class="quisom-lead">
-          Controlem tot el procés: des de la recepció de matèries primeres fins al
-          packaging d'alta protecció i la cadena de fred. Cuinem perquè menjar bé
-          sigui més fàcil.
         </p>
         <div class="quisom-divider"></div>
         <div class="quisom-features">
           <div class="quisom-feature">
-            <div class="quisom-feature-icon">🍲</div>
+            <div class="quisom-feature-icon">
+              <!-- Chef hat -->
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 16h12v3.5a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V16z"/>
+                <path d="M8.5 16V13c0-1.9 1.6-3.5 3.5-3.5s3.5 1.6 3.5 3.5v3"/>
+                <path d="M6.5 12.5a5.5 5.5 0 0 1 11 0"/>
+                <line x1="10" y1="16" x2="10" y2="19.5"/>
+                <line x1="14" y1="16" x2="14" y2="19.5"/>
+              </svg>
+            </div>
             <div class="quisom-feature-text">
               <strong>Tradició que inspira</strong>
-              <span>Receptes d'arrel catalana, cuinades amb tècnica professional i productes de temporada.</span>
+              <span>Receptes de sempre elaborades amb el saber fer de la cuina casolana.</span>
             </div>
           </div>
           <div class="quisom-feature">
-            <div class="quisom-feature-icon">✅</div>
+            <div class="quisom-feature-icon">
+              <!-- Shield + check -->
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2L4 6v7c0 4.5 3.5 7.5 8 9 4.5-1.5 8-4.5 8-9V6L12 2z"/>
+                <path d="M9 12l2 2.5 4-4.5"/>
+              </svg>
+            </div>
             <div class="quisom-feature-text">
               <strong>Qualitat i seguretat</strong>
-              <span>Processos certificats, traçabilitat completa i cadena de fred garantida des de l'obrador.</span>
+              <span>Processos certificats i ingredients de primera selecció.</span>
             </div>
           </div>
           <div class="quisom-feature">
-            <div class="quisom-feature-icon">🌱</div>
+            <div class="quisom-feature-icon">
+              <!-- Leaf sprout -->
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22V11"/>
+                <path d="M12 16c0-4.5 4-7 7-8-1 4.5-3 8-7 8z"/>
+                <path d="M12 16c0-4.5-4-7-7-8 1 4.5 3 8 7 8z"/>
+                <path d="M12 11c0-3 2-5 4.5-6-.5 3-1.5 6-4.5 6z"/>
+              </svg>
+            </div>
             <div class="quisom-feature-text">
               <strong>Compromesos amb el futur</strong>
-              <span>Envasos sostenibles, reducció de residus i col·laboració amb productors locals.</span>
+              <span>Producció responsable, eficiència energètica i compromís amb el territori.</span>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Right column — stat cards over photo -->
+      <!-- Right column — stat cards -->
       <div class="quisom-right">
         <div class="quisom-bg-photo"></div>
         <div class="quisom-stats">
+
+          <!-- 35+ Varietats -->
           <div class="stat-card">
-            <div class="stat-icon-wrap">
-              <img class="stat-icon-svg" src="img/iconset/icon1.svg" alt="">
+            <div class="stat-card-top">
+              <div class="stat-icon-wrap">
+                <!-- Cooking pot -->
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 3.5V5.5"/>
+                  <path d="M8.5 8Q12 5.5 15.5 8"/>
+                  <line x1="8" y1="8" x2="16" y2="8"/>
+                  <path d="M7 8h10l-1.3 11H8.3L7 8z"/>
+                  <path d="M7 12H5.2a1.3 1.3 0 0 0 0 2.5H7"/>
+                  <path d="M17 12h1.8a1.3 1.3 0 0 1 0 2.5H17"/>
+                </svg>
+              </div>
+              <div class="stat-card-meta">
+                <div class="stat-num-row">
+                  <span class="stat-num" data-count="35">0</span><span class="stat-suffix">+</span>
+                </div>
+                <div class="stat-label-title">Varietats de plats</div>
+              </div>
             </div>
-            <div class="stat-num-wrap">
-              <div class="stat-num" data-count="35">0</div>
-              <div class="stat-suffix">+</div>
-            </div>
-            <div class="stat-label-title">Varietats de plats</div>
-            <div class="stat-label">Productes de cinquena gamma llestos per servir</div>
+            <hr class="stat-divider">
+            <p class="stat-label">Plats de cinquena gamma elaborats cada dia amb ingredients de qualitat.</p>
           </div>
+
+          <!-- 18 Dies -->
           <div class="stat-card">
-            <div class="stat-icon-wrap">
-              <img class="stat-icon-svg" src="img/iconset/icon1.svg" alt="">
+            <div class="stat-card-top">
+              <div class="stat-icon-wrap">
+                <!-- Calendar -->
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="5" width="18" height="16" rx="2.5"/>
+                  <line x1="3" y1="10" x2="21" y2="10"/>
+                  <line x1="8" y1="3" x2="8" y2="7"/>
+                  <line x1="16" y1="3" x2="16" y2="7"/>
+                  <path d="M7 14h10M7 18h6"/>
+                </svg>
+              </div>
+              <div class="stat-card-meta">
+                <div class="stat-num-row">
+                  <span class="stat-num" data-count="18">0</span>
+                </div>
+                <div class="stat-label-title">Dies de vida útil</div>
+              </div>
             </div>
-            <div class="stat-num-wrap">
-              <div class="stat-num" data-count="18">0</div>
-            </div>
-            <div class="stat-label-title">Dies de vida útil</div>
-            <div class="stat-label">Conservació en fred sense additius artificials</div>
+            <hr class="stat-divider">
+            <p class="stat-label">Fresc, segur i llest per gaudir, amb tota la qualitat com el primer dia.</p>
           </div>
+
+          <!-- 100% Artesà -->
           <div class="stat-card">
-            <div class="stat-icon-wrap">
-              <img class="stat-icon-svg" src="img/iconset/icon1.svg" alt="">
+            <div class="stat-card-top">
+              <div class="stat-icon-wrap">
+                <!-- Medal / rosette -->
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="8.5" r="4.5"/>
+                  <circle cx="12" cy="8.5" r="2" stroke-dasharray="1.5 1.5"/>
+                  <path d="M8.5 12.5l-2 7h3.5l2-1.5 2 1.5H17.5l-2-7"/>
+                </svg>
+              </div>
+              <div class="stat-card-meta">
+                <div class="stat-num-row">
+                  <span class="stat-num" data-count="100">0</span><span class="stat-suffix">%</span>
+                </div>
+                <div class="stat-label-title">Producte artesà</div>
+              </div>
             </div>
-            <div class="stat-num-wrap">
-              <div class="stat-num" data-count="100">0</div>
-              <div class="stat-suffix">%</div>
-            </div>
-            <div class="stat-label-title">Producte artesà</div>
-            <div class="stat-label">Elaboració artesanal amb ingredients seleccionats</div>
+            <hr class="stat-divider">
+            <p class="stat-label">Elaboració pròpia amb receptes tradicionals i ingredients seleccionats.</p>
           </div>
+
+          <!-- 4° Cadena de fred -->
           <div class="stat-card">
-            <div class="stat-icon-wrap">
-              <img class="stat-icon-svg" src="img/iconset/icon1.svg" alt="">
+            <div class="stat-card-top">
+              <div class="stat-icon-wrap">
+                <!-- Snowflake -->
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="12" y1="2" x2="12" y2="22"/>
+                  <line x1="2" y1="12" x2="22" y2="12"/>
+                  <line x1="5.27" y1="5.27" x2="18.73" y2="18.73"/>
+                  <line x1="18.73" y1="5.27" x2="5.27" y2="18.73"/>
+                  <path d="M12 6l2-2m-2 2-2-2M12 18l2 2m-2-2-2 2M6 12l-2 2m2-2-2-2M18 12l2 2m-2-2 2-2"/>
+                </svg>
+              </div>
+              <div class="stat-card-meta">
+                <div class="stat-num-row">
+                  <span class="stat-num" data-count="4">0</span><span class="stat-suffix">°</span>
+                </div>
+                <div class="stat-label-title">Cadena de fred</div>
+              </div>
             </div>
-            <div class="stat-num-wrap">
-              <div class="stat-num" data-count="4">0</div>
-              <div class="stat-suffix">°</div>
-            </div>
-            <div class="stat-label-title">Cadena de fred</div>
-            <div class="stat-label">Transport i emmagatzematge refrigerats garantits</div>
+            <hr class="stat-divider">
+            <p class="stat-label">Control absolut de la temperatura per garantir la màxima seguretat.</p>
           </div>
+
         </div>
 
         <!-- Circular stamp -->
@@ -2371,7 +2462,13 @@
               <textPath href="#stampCircle" startOffset="0%">CUINEM PER A TU COM A CASA · CUINEM PER A TU COM A CASA ·</textPath>
             </text>
           </svg>
-          <div class="quisom-stamp-center">🍲</div>
+          <div class="quisom-stamp-center">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5a9e5c" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3.5V5.5"/><path d="M8.5 8Q12 5.5 15.5 8"/><line x1="8" y1="8" x2="16" y2="8"/>
+              <path d="M7 8h10l-1.3 11H8.3L7 8z"/>
+              <path d="M7 12H5.2a1.3 1.3 0 0 0 0 2.5H7"/><path d="M17 12h1.8a1.3 1.3 0 0 1 0 2.5H17"/>
+            </svg>
+          </div>
         </div>
       </div>
 
