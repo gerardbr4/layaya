@@ -336,171 +336,247 @@
 
     /* ─── QUI SOM — bg cremós + radial gradients reaprofitats ─── */
 
+    /* ─── SECCIÓ "L'EMPRESA" ─────────────────────────────────── */
+
     .seccio-quisom {
       position: relative;
       background-color: var(--bg);
-      background-image:
-        radial-gradient(ellipse at 15% 55%, rgba(119, 190, 121, 0.18) 0%, transparent 55%),
-        radial-gradient(ellipse at 85% 15%, rgba(61, 122, 63, 0.12) 0%, transparent 50%);
-      padding: 8rem 1.5rem;
+      padding: 8rem 2.5rem;
       overflow: hidden;
-    }
-
-    .quisom-shape {
-      position: absolute;
-      border-radius: 50%;
-      pointer-events: none;
-    }
-
-    .quisom-shape-1 {
-      width: 520px;
-      height: 520px;
-      top: -160px;
-      right: -160px;
-      background: radial-gradient(circle, rgba(119, 190, 121, 0.16), transparent 68%);
-    }
-
-    .quisom-shape-2 {
-      width: 420px;
-      height: 420px;
-      bottom: -130px;
-      left: -130px;
-      background: radial-gradient(circle, rgba(61, 122, 63, 0.10), transparent 68%);
     }
 
     .quisom-inner {
       position: relative;
       z-index: 1;
-      max-width: 1200px;
+      max-width: 1240px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: 1fr minmax(320px, 460px);
+      grid-template-columns: 1fr 1fr;
       gap: 5rem;
-      align-items: center;
+      align-items: start;
     }
 
-    .quisom-eyebrow {
+    /* Left column */
+    .quisom-badge {
       display: inline-flex;
       align-items: center;
-      gap: 0.55rem;
+      gap: 0.5rem;
       font-family: 'Sora', sans-serif;
-      font-size: 0.74rem;
-      font-weight: 600;
-      letter-spacing: 0.16em;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--green-dk);
-      padding: 0.5rem 1.1rem;
-      border: 1px solid rgba(30, 74, 32, 0.22);
+      background: rgba(122, 186, 120, 0.12);
+      border: 1px solid rgba(122, 186, 120, 0.35);
       border-radius: 100px;
+      padding: 0.45rem 1.1rem;
       margin-bottom: 2rem;
-    }
-
-    .quisom-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--green);
-      animation: pulse 2s ease-in-out infinite;
     }
 
     .quisom-title {
       font-family: 'Fraunces', serif;
-      font-size: clamp(2.2rem, 4.2vw, 3.6rem);
+      font-size: clamp(2.4rem, 4vw, 3.8rem);
       font-weight: 700;
-      line-height: 1.15;
-      letter-spacing: -0.01em;
-      color: var(--green-xdk);
-      margin-bottom: 2rem;
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      color: #1a1a1a;
+      margin-bottom: 1.8rem;
     }
 
     .quisom-title em {
       font-style: italic;
-      color: var(--green-dk);
+      color: var(--green);
       font-weight: 600;
     }
 
     .quisom-lead {
       font-family: 'Sora', sans-serif;
-      font-size: clamp(0.95rem, 1.2vw, 1.05rem);
+      font-size: clamp(0.9rem, 1.1vw, 1rem);
       font-weight: 300;
-      line-height: 1.75;
+      line-height: 1.8;
       color: #606060;
-      margin-bottom: 1.2rem;
-      max-width: 560px;
+      margin-bottom: 1rem;
     }
 
-    .quisom-lead strong {
-      font-weight: 500;
-      color: var(--green-xdk);
+    .quisom-divider {
+      width: 48px;
+      height: 3px;
+      background: var(--green);
+      border-radius: 2px;
+      margin: 2rem 0;
     }
 
-    /* Stats grid 2x2 */
+    /* Feature rows */
+    .quisom-features {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .quisom-feature {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .quisom-feature-icon {
+      flex-shrink: 0;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+    }
+
+    .quisom-feature-text strong {
+      display: block;
+      font-family: 'Sora', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #1a1a1a;
+      margin-bottom: 0.2rem;
+    }
+
+    .quisom-feature-text span {
+      font-family: 'Sora', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: #777;
+      line-height: 1.5;
+    }
+
+    /* Right column — stat cards over background photo */
+    .quisom-right {
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+    }
+
+    .quisom-bg-photo {
+      position: absolute;
+      inset: 0;
+      background: url('img/img_background_1.jpg') center/cover no-repeat;
+      z-index: 0;
+    }
+
+    .quisom-bg-photo::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(30, 50, 30, 0.45);
+    }
+
     .quisom-stats {
+      position: relative;
+      z-index: 1;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 1.2rem;
+      gap: 1px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 24px;
+      overflow: hidden;
     }
 
     .stat-card {
       position: relative;
-      padding: 2rem 1.5rem;
-      background: rgba(255, 255, 255, 0.7);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border: 1px solid rgba(30, 74, 32, 0.12);
-      border-radius: 18px;
-      text-align: left;
-      overflow: hidden;
-      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
-    }
-
-    .stat-card::before {
-      content: '';
-      position: absolute;
-      inset: -40% -40% auto auto;
-      width: 140px;
-      height: 140px;
-      background: radial-gradient(circle, rgba(119, 190, 121, 0.22), transparent 70%);
-      pointer-events: none;
+      padding: 2.2rem 1.8rem;
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      transition: background 0.25s ease;
     }
 
     .stat-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 40px rgba(30, 74, 32, 0.10);
+      background: rgba(255, 255, 255, 0.96);
+    }
+
+    .stat-icon {
+      font-size: 1.4rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .stat-num-wrap {
+      display: flex;
+      align-items: baseline;
+      gap: 0.1rem;
+      margin-bottom: 0.6rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1.5px dashed rgba(122, 186, 120, 0.4);
     }
 
     .stat-num {
-      display: inline-block;
       font-family: 'Fraunces', serif;
-      font-size: clamp(2.4rem, 4vw, 3.4rem);
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
       font-weight: 700;
       line-height: 1;
-      color: var(--green-xdk);
+      color: var(--green);
       letter-spacing: -0.03em;
     }
 
     .stat-suffix {
-      display: inline-block;
       font-family: 'Fraunces', serif;
-      font-size: clamp(1.4rem, 2.4vw, 2rem);
+      font-size: clamp(1.2rem, 2vw, 1.8rem);
       font-weight: 600;
       color: var(--green);
-      vertical-align: top;
-      margin-left: 0.1rem;
-      line-height: 1.1;
+      line-height: 1;
+    }
+
+    .stat-label-title {
+      font-family: 'Sora', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #222;
+      margin-bottom: 0.2rem;
     }
 
     .stat-label {
       font-family: 'Sora', sans-serif;
-      font-size: 0.78rem;
-      font-weight: 500;
-      letter-spacing: 0.05em;
-      color: #606060;
-      margin-top: 0.5rem;
+      font-size: 0.76rem;
+      font-weight: 300;
+      color: #777;
       line-height: 1.4;
     }
 
-    @media (max-width: 860px) {
+    /* Circular stamp */
+    .quisom-stamp {
+      position: absolute;
+      bottom: -1.5rem;
+      right: -1.5rem;
+      width: 110px;
+      height: 110px;
+      z-index: 2;
+    }
+
+    .quisom-stamp svg {
+      width: 100%;
+      height: 100%;
+      animation: spin 18s linear infinite;
+    }
+
+    .quisom-stamp-center {
+      position: absolute;
+      inset: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 1.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 900px) {
       .seccio-quisom {
         padding: 5rem 1.5rem;
       }
@@ -510,12 +586,11 @@
         gap: 3rem;
       }
 
-      .quisom-stats {
-        gap: 0.8rem;
-      }
-
-      .stat-card {
-        padding: 1.4rem 1.1rem;
+      .quisom-stamp {
+        bottom: -1rem;
+        right: -1rem;
+        width: 88px;
+        height: 88px;
       }
     }
 
@@ -2176,51 +2251,103 @@
 
   <!-- ─── QUI SOM — reaprofita bg + radial gradients ─────── -->
   <section class="seccio-quisom" id="qui-som">
-    <div class="quisom-shape quisom-shape-1"></div>
-    <div class="quisom-shape quisom-shape-2"></div>
+    <div class="quisom-inner">
 
-    <div class="quisom-inner" id="quisom-inner">
-
-      <div class="quisom-text">
-        <span class="quisom-eyebrow">
-          <span class="quisom-dot"></span>
-          L'empresa
-        </span>
+      <!-- Left column -->
+      <div class="quisom-left">
+        <span class="quisom-badge">🌿 L'empresa</span>
         <h2 class="quisom-title">
-          Una empresa alimentària nascuda<br>
-          de la <em>cuina de sempre.</em>
+          Una cuina<br>de <em>cuina de sempre.</em>
         </h2>
         <p class="quisom-lead">
-          Som un obrador industrial d'alta tecnologia que combina <strong>cuina casolana
-            professional</strong> i estàndards de seguretat alimentària. Més de 35 varietats
+          Som un obrador industrial d'alta tecnologia que combina cuina casolana
+          professional i estàndards de seguretat alimentària. Més de 35 varietats
           de plats de cinquena gamma, elaborats amb ingredients de primera selecció.
         </p>
         <p class="quisom-lead">
           Controlem tot el procés: des de la recepció de matèries primeres fins al
           packaging d'alta protecció i la cadena de fred. Cuinem perquè menjar bé
-          sigui més fàcil — per a hostaleria, retail, col·lectivitats i el consumidor final.
+          sigui més fàcil.
         </p>
+        <div class="quisom-divider"></div>
+        <div class="quisom-features">
+          <div class="quisom-feature">
+            <div class="quisom-feature-icon">🍲</div>
+            <div class="quisom-feature-text">
+              <strong>Tradició que inspira</strong>
+              <span>Receptes d'arrel catalana, cuinades amb tècnica professional i productes de temporada.</span>
+            </div>
+          </div>
+          <div class="quisom-feature">
+            <div class="quisom-feature-icon">✅</div>
+            <div class="quisom-feature-text">
+              <strong>Qualitat i seguretat</strong>
+              <span>Processos certificats, traçabilitat completa i cadena de fred garantida des de l'obrador.</span>
+            </div>
+          </div>
+          <div class="quisom-feature">
+            <div class="quisom-feature-icon">🌱</div>
+            <div class="quisom-feature-text">
+              <strong>Compromesos amb el futur</strong>
+              <span>Envasos sostenibles, reducció de residus i col·laboració amb productors locals.</span>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="quisom-stats">
-        <div class="stat-card">
-          <div class="stat-num" data-count="35">0</div>
-          <div class="stat-suffix">+</div>
-          <div class="stat-label">Varietats de plats</div>
+      <!-- Right column — stat cards over photo -->
+      <div class="quisom-right">
+        <div class="quisom-bg-photo"></div>
+        <div class="quisom-stats">
+          <div class="stat-card">
+            <div class="stat-icon">🍳</div>
+            <div class="stat-num-wrap">
+              <div class="stat-num" data-count="35">0</div>
+              <div class="stat-suffix">+</div>
+            </div>
+            <div class="stat-label-title">Varietats de plats</div>
+            <div class="stat-label">Productes de cinquena gamma llestos per servir</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">📅</div>
+            <div class="stat-num-wrap">
+              <div class="stat-num" data-count="18">0</div>
+            </div>
+            <div class="stat-label-title">Dies de vida útil</div>
+            <div class="stat-label">Conservació en fred sense additius artificials</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">🏅</div>
+            <div class="stat-num-wrap">
+              <div class="stat-num" data-count="100">0</div>
+              <div class="stat-suffix">%</div>
+            </div>
+            <div class="stat-label-title">Producte artesà</div>
+            <div class="stat-label">Elaboració artesanal amb ingredients seleccionats</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">❄️</div>
+            <div class="stat-num-wrap">
+              <div class="stat-num" data-count="4">0</div>
+              <div class="stat-suffix">°</div>
+            </div>
+            <div class="stat-label-title">Cadena de fred</div>
+            <div class="stat-label">Transport i emmagatzematge refrigerats garantits</div>
+          </div>
         </div>
-        <div class="stat-card">
-          <div class="stat-num" data-count="18">0</div>
-          <div class="stat-label">Dies de vida útil</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-num" data-count="100">0</div>
-          <div class="stat-suffix">%</div>
-          <div class="stat-label">Producte artesà</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-num" data-count="4">0</div>
-          <div class="stat-suffix">°</div>
-          <div class="stat-label">Cadena de fred</div>
+
+        <!-- Circular stamp -->
+        <div class="quisom-stamp">
+          <svg viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <path id="stampCircle" d="M 55,55 m -38,0 a 38,38 0 1,1 76,0 a 38,38 0 1,1 -76,0"/>
+            </defs>
+            <circle cx="55" cy="55" r="50" fill="white" stroke="#7ABA78" stroke-width="1.5"/>
+            <text font-family="Sora, sans-serif" font-size="8.5" font-weight="600" letter-spacing="2.5" fill="#5a9e5c" text-anchor="middle">
+              <textPath href="#stampCircle" startOffset="0%">CUINEM PER A TU COM A CASA · CUINEM PER A TU COM A CASA ·</textPath>
+            </text>
+          </svg>
+          <div class="quisom-stamp-center">🍲</div>
         </div>
       </div>
 
