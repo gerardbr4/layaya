@@ -46,245 +46,179 @@
       color: var(--green-xdk);
     }
 
-    /* ─── HERO SCROLL ─────────────────────────────────────── */
+    /* ─── HERO — imatge estàtica ────────────────────────────── */
 
-    .hero-scroll {
+    .hero-section {
       position: relative;
-      height: 400vh;
-      /* fallback mentre el vídeo carrega; JS l'ajusta */
-    }
-
-    .hero-sticky {
-      position: sticky;
-      top: 0;
-      height: 100vh;
-      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       overflow: hidden;
-      background: #0D0A08;
+      background: var(--bg);
+      padding-top: 90px;
+      padding-bottom: 140px;
     }
 
-    #hero-video {
+    .hero-bg {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      display: block;
+      object-position: center right;
     }
 
-    /* overlay suau per llegibilitat del text sobre el vídeo */
-    .hero-overlay {
+    .hero-bg-mask {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to bottom,
-          rgba(0, 0, 0, 0.08) 0%,
-          rgba(0, 0, 0, 0.22) 55%,
-          rgba(0, 0, 0, 0.52) 100%);
-      pointer-events: none;
+      background: linear-gradient(
+        to right,
+        rgba(255, 253, 248, 0.8) 0%,
+        rgba(255, 253, 248, 0.8) 45%,
+        transparent 80%
+      );
     }
 
-    /* ─── TEXT DEL HERO ──────────────────────────────────── */
-
-    .hero-content {
-      position: absolute;
-      bottom: 7rem;
-      left: 6vw;
-      max-width: min(780px, 90vw);
+    .hero-inner {
+      position: relative;
       z-index: 2;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 2.5rem;
+      width: 100%;
     }
 
-    .hero-logo {
-      width: min(180px, 40vw);
-      display: block;
-      margin-bottom: 2rem;
-      filter: none;
+    .hero-text {
+      max-width: 500px;
     }
 
     .hero-eyebrow {
       font-family: 'Sora', sans-serif;
-      font-size: clamp(0.68rem, 1.1vw, 0.82rem);
-      font-weight: 500;
+      font-size: 0.7rem;
+      font-weight: 600;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.7);
-      margin-bottom: 1.3rem;
+      color: var(--green-dk);
+      margin-bottom: 1.2rem;
     }
 
     .hero-title {
       font-family: 'Fraunces', serif;
-      font-size: clamp(3.4rem, 7.5vw, 7rem);
-      font-weight: 900;
+      font-size: clamp(2.8rem, 5.5vw, 5.5rem);
+      font-weight: 700;
       line-height: 1.05;
-      color: #fff;
-      text-shadow: 0 2px 32px rgba(0, 0, 0, 0.4);
+      color: #1a1a1a;
       margin-bottom: 1.8rem;
     }
 
     .hero-title em {
       font-style: italic;
-      font-weight: 700;
-      color: rgba(255, 255, 255, 0.88);
+      color: var(--green-dk);
     }
 
-    .hero-claims {
-      position: relative;
-      height: 2.8em;
-      overflow: visible;
-    }
-
-    .hero-claim {
-      position: absolute;
-      top: 0;
-      left: 0;
+    .hero-lead {
       font-family: 'Sora', sans-serif;
-      font-size: clamp(1.1rem, 1.9vw, 1.5rem);
-      font-weight: 500;
-      white-space: nowrap;
-      padding: 0.3em 0.9em;
-      border-radius: 4px;
-      overflow: hidden;
-      transform: translateY(130%);
-      pointer-events: none;
+      font-size: clamp(0.88rem, 1.1vw, 0.98rem);
+      font-weight: 300;
+      color: #555;
+      line-height: 1.75;
+      margin-bottom: 2.5rem;
+      max-width: 380px;
     }
 
-    /* Fons verd que fa sweep */
-    .hero-claim::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: #7ABA78;
-      transform-origin: left center;
-      transform: scaleX(0);
-      border-radius: inherit;
-      z-index: 0;
-    }
-
-    /* Text sobre el fons */
-    .hero-claim span {
-      position: relative;
-      z-index: 1;
-      color: #fff;
-      display: block;
-      opacity: 0;
-      transform: scale(1.28);
-    }
-
-    /* Entrada: surt de baix → sweep verd → text apareix */
-    .hero-claim.is-active {
-      animation: claim-rise 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-
-    .hero-claim.is-active::before {
-      animation: bg-sweep 0.42s 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-
-    .hero-claim.is-active span {
-      animation: text-pop 0.38s 0.58s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-
-    /* Sortida: puja cap amunt */
-    .hero-claim.is-leaving {
-      animation: claim-leave 0.38s cubic-bezier(0.55, 0, 1, 0.45) forwards;
-    }
-
-    @keyframes claim-rise {
-      from {
-        transform: translateY(130%);
-      }
-
-      to {
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes claim-leave {
-      from {
-        transform: translateY(0);
-      }
-
-      to {
-        transform: translateY(-130%);
-      }
-    }
-
-    @keyframes bg-sweep {
-      from {
-        transform: scaleX(0);
-      }
-
-      to {
-        transform: scaleX(1);
-      }
-    }
-
-    @keyframes text-pop {
-      from {
-        opacity: 0;
-        transform: scale(1.28);
-      }
-
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-
-    /* indicador de scroll */
-    .scroll-hint {
-      position: absolute;
-      bottom: 2.5rem;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
+    .hero-cta {
+      display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
-      color: rgba(255, 255, 255, 0.75);
-      font-size: 0.72rem;
-      letter-spacing: 0.18em;
+      gap: 0.8rem;
+      background: var(--green-dk);
+      color: #fff;
+      font-family: 'Sora', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      animation: hint-fade 2.5s ease-in-out infinite;
-      pointer-events: none;
+      text-decoration: none;
+      padding: 1rem 2rem;
+      border-radius: 100px;
+      transition: background 0.25s ease, transform 0.25s ease;
     }
 
-    .scroll-hint svg {
-      animation: bounce 2.5s ease-in-out infinite;
+    .hero-cta:hover {
+      background: var(--green);
+      transform: translateY(-2px);
     }
 
-    @keyframes hint-fade {
-
-      0%,
-      100% {
-        opacity: 0.8;
-      }
-
-      50% {
-        opacity: 0.3;
-      }
-    }
-
-    @keyframes bounce {
-
-      0%,
-      100% {
-        transform: translateY(0);
-      }
-
-      50% {
-        transform: translateY(6px);
-      }
-    }
-
-    /* barra de progrés */
-    .progress-bar {
-      position: fixed;
-      top: 0;
+    .hero-features-wrap {
+      position: absolute;
+      bottom: 0;
       left: 0;
-      height: 3px;
-      width: 0%;
-      background: linear-gradient(90deg, var(--green-dk), var(--green));
-      z-index: 100;
-      transition: width 0.05s linear;
+      right: 0;
+      padding: 0 2.5rem 2rem;
+      z-index: 3;
+    }
+
+    .hero-features {
+      max-width: 1240px;
+      margin: 0 auto;
+      background: rgba(255, 253, 248, 0.93);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 16px;
+      padding: 1.4rem 2rem;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+      border: 1px solid rgba(122, 186, 120, 0.15);
+    }
+
+    .hero-feat {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.8rem;
+      padding-right: 1rem;
+      border-right: 1px solid rgba(0, 0, 0, 0.07);
+    }
+
+    .hero-feat:last-child {
+      border-right: none;
+      padding-right: 0;
+    }
+
+    .hero-feat-icon {
+      flex-shrink: 0;
+      color: var(--green-dk);
+      margin-top: 0.1rem;
+    }
+
+    .hero-feat-text strong {
+      display: block;
+      font-family: 'Sora', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #1a1a1a;
+      margin-bottom: 0.2rem;
+    }
+
+    .hero-feat-text span {
+      font-family: 'Sora', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 300;
+      color: #777;
+      line-height: 1.45;
+    }
+
+    @media (max-width: 860px) {
+      .hero-section { padding-top: 70px; padding-bottom: 0; min-height: 80vh; }
+      .hero-inner { padding: 3rem 1.5rem 2rem; }
+      .hero-features-wrap { position: static; padding: 0 1.5rem 2rem; }
+      .hero-features { grid-template-columns: 1fr 1fr; }
+      .hero-feat { border-right: none; padding-right: 0; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-features { grid-template-columns: 1fr 1fr; gap: 0.7rem; padding: 1rem 1.2rem; }
     }
 
     /* ─── BARRES DECORATIVES VERDES (top + bottom) ────────── */
@@ -1049,110 +983,83 @@
       .serveis-bar-wrap { padding-bottom: 3.5rem; }
     }
 
-    /* ─── HERO RESPONSIVE ────────────────────────────────── */
-    @media (max-width: 640px) {
-      .hero-content {
-        bottom: 3.5rem;
-        left: 1.5rem;
-        right: 1.5rem;
-        max-width: none;
-      }
-
-      .hero-logo {
-        width: min(110px, 28vw);
-        margin-bottom: 1rem;
-      }
-
-      .hero-eyebrow {
-        margin-bottom: 0.9rem;
-      }
-
-      .hero-title {
-        margin-bottom: 1.2rem;
-      }
-
-      .hero-claims {
-        height: 3em;
-      }
-
-      .hero-claim {
-        font-size: clamp(0.85rem, 3.8vw, 1rem);
-      }
-    }
-
-    @media (max-width: 380px) {
-      .hero-logo {
-        width: min(90px, 25vw);
-      }
-
-      .hero-content {
-        bottom: 2.5rem;
-      }
-    }
-
-    /* ─── NAVEGACIÓ — pill flotant centrat ───────────────── */
+    /* ─── NAVEGACIÓ — barra superior ────────────────────────── */
 
     .site-nav {
       position: fixed;
-      top: 1.2rem;
-      left: 50%;
-      transform: translateX(-50%);
+      top: 0;
+      left: 0;
+      right: 0;
       z-index: 200;
-      max-width: calc(100vw - 2rem);
-      transition: top 0.4s ease;
+      background: rgba(255, 253, 248, 0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(122, 186, 120, 0.15);
+      transition: box-shadow 0.35s ease;
     }
 
     .site-nav.scrolled {
-      top: 0.7rem;
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
     }
 
     .nav-pill {
       display: flex;
       align-items: center;
-      gap: 0.45rem;
-      padding: 6px 6px 6px 14px;
-      background: rgba(255, 255, 255, 0.6);
-      backdrop-filter: blur(14px) saturate(140%);
-      -webkit-backdrop-filter: blur(14px) saturate(140%);
-      border: 1.5px solid rgba(30, 74, 32, 0.8);
-      border-radius: 9999px;
-      box-shadow:
-        0 10px 32px rgba(30, 74, 32, 0.12),
-        0 2px 8px rgba(30, 74, 32, 0.06);
+      justify-content: space-between;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0.7rem 3rem;
+      gap: 2rem;
+      transition: padding 0.35s ease;
+    }
+
+    .site-nav.scrolled .nav-pill {
+      padding-top: 0.4rem;
+      padding-bottom: 0.4rem;
     }
 
     .nav-brand {
       display: flex;
       align-items: center;
-      gap: 0.4rem;
+      gap: 0.7rem;
       flex: 0 0 auto;
+      text-decoration: none;
     }
 
     .nav-logo {
-      flex: 0 0 auto;
       display: flex;
       align-items: center;
     }
 
     .nav-logo img {
-      height: 36px;
+      height: 52px;
       width: auto;
       display: block;
       transition: height 0.35s ease;
     }
 
     .site-nav.scrolled .nav-logo img {
-      height: 32px;
+      height: 36px;
     }
 
-    /* Links amb cursor lliscant + mix-blend-difference
-       (sense isolation: el blend computa contra el bg del pill) */
+    .nav-brand-text {
+      font-family: 'Sora', sans-serif;
+      font-size: 0.58rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--green-dk);
+      line-height: 1.3;
+    }
+
     .nav-links {
       position: relative;
       display: flex;
       align-items: center;
       list-style: none;
-      margin: 0 0.2rem;
+      margin: 0;
+      flex: 1;
+      justify-content: center;
     }
 
     .nav-links li {
@@ -1166,25 +1073,17 @@
       font-family: 'Sora', sans-serif;
       font-size: 0.78rem;
       font-weight: 600;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: #7ABA78;
+      color: #2a2a2a;
       text-decoration: none;
-      padding: 0.55rem 0.95rem;
-      cursor: pointer;
+      padding: 0.55rem 1rem;
+      transition: color 0.25s ease;
       white-space: nowrap;
-      transition: color 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .site-nav.scrolled .nav-links a {
-      color: #fff;
-    }
-
-    @media (min-width: 768px) {
-      .nav-links a {
-        font-size: 0.82rem;
-        padding: 0.6rem 1.1rem;
-      }
+    .nav-links a:hover {
+      color: var(--green-dk);
     }
 
     .nav-cursor {
@@ -1192,8 +1091,8 @@
       z-index: 0;
       top: 0;
       bottom: 0;
-      background: #E8C870;
-      border-radius: 9999px;
+      background: rgba(122, 186, 120, 0.12);
+      border-radius: 8px;
       opacity: 0;
       pointer-events: none;
       transition: left 0.32s cubic-bezier(0.16, 1, 0.3, 1),
@@ -1201,15 +1100,20 @@
         opacity 0.25s ease;
     }
 
-    /* Selector d'idioma — dins del pill */
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex: 0 0 auto;
+    }
+
     .nav-lang {
       display: flex;
       align-items: center;
       gap: 0.05rem;
       list-style: none;
-      padding: 0 0.55rem;
-      border-left: 1px solid rgba(30, 74, 32, 0.18);
-      border-right: 1px solid rgba(30, 74, 32, 0.18);
+      padding: 0 0.6rem;
+      border-right: 1px solid rgba(0, 0, 0, 0.1);
     }
 
     .nav-lang button {
@@ -1220,45 +1124,43 @@
       font-size: 0.7rem;
       font-weight: 600;
       letter-spacing: 0.08em;
-      color: rgba(30, 74, 32, 0.45);
+      color: rgba(0, 0, 0, 0.35);
       padding: 0.35rem 0.4rem;
       text-transform: uppercase;
       transition: color 0.25s ease;
     }
 
-    .nav-lang button:hover {
-      color: rgba(30, 74, 32, 0.75);
-    }
+    .nav-lang button:hover { color: rgba(0, 0, 0, 0.65); }
 
     .nav-lang button.active {
-      color: var(--green-xdk);
+      color: var(--green-dk);
+      text-decoration: underline;
+      text-underline-offset: 3px;
     }
 
-    /* CTA — sempre verd primari */
     .nav-cta {
       font-family: 'Sora', sans-serif;
-      font-size: 0.74rem;
+      font-size: 0.72rem;
       font-weight: 600;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: #fff;
-      background: var(--green);
+      background: var(--green-dk);
       text-decoration: none;
-      padding: 0.65rem 1.2rem;
-      border-radius: 9999px;
+      padding: 0.65rem 1.4rem;
+      border-radius: 100px;
       flex: 0 0 auto;
-      transition: background 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: background 0.25s ease, transform 0.25s ease;
     }
 
     .nav-cta:hover {
-      background: var(--green-dk);
+      background: var(--green);
       transform: scale(1.04);
     }
 
-    /* Hamburger — només visible en mòbil */
     .nav-hamburger {
       display: none;
-      background: var(--green);
+      background: var(--green-dk);
       border: none;
       cursor: pointer;
       width: 38px;
@@ -1280,93 +1182,38 @@
       transition: transform 0.3s ease, opacity 0.3s ease;
     }
 
-    .nav-hamburger.open span:nth-child(1) {
-      transform: translateY(6px) rotate(45deg);
-    }
-
-    .nav-hamburger.open span:nth-child(2) {
-      opacity: 0;
-    }
-
-    .nav-hamburger.open span:nth-child(3) {
-      transform: translateY(-6px) rotate(-45deg);
-    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
     @media (max-width: 860px) {
-      .site-nav {
-        top: 0.8rem;
-        width: calc(100vw - 1.5rem);
-        max-width: calc(100vw - 1.5rem);
-      }
+      .nav-pill { padding: 0.6rem 1.5rem; }
+      .nav-links, .nav-lang, .nav-cta { display: none; }
+      .nav-hamburger { display: flex; }
 
-      .nav-pill {
-        width: 100%;
-        justify-content: space-between;
-      }
-
-      .nav-links,
-      .nav-lang,
-      .nav-cta {
-        display: none;
-      }
-
-      .nav-hamburger {
-        display: flex;
-      }
-
-      /* Mode obert mòbil: el pill creix i col·loca el contingut en columna */
       .site-nav.nav-mobile-open .nav-pill {
         flex-direction: column;
         align-items: stretch;
-        border-radius: 26px;
-        padding: 12px;
         gap: 0.55rem;
+        padding-bottom: 1rem;
       }
 
-      .site-nav.nav-mobile-open .nav-brand {
-        justify-content: space-between;
-        width: 100%;
-      }
+      .site-nav.nav-mobile-open .nav-brand { justify-content: space-between; width: 100%; }
 
       .site-nav.nav-mobile-open .nav-links,
       .site-nav.nav-mobile-open .nav-lang,
-      .site-nav.nav-mobile-open .nav-cta {
-        display: flex;
-      }
+      .site-nav.nav-mobile-open .nav-cta { display: flex; }
 
       .site-nav.nav-mobile-open .nav-links {
         flex-direction: column;
         align-items: stretch;
-        gap: 0.15rem;
-        margin: 0;
-        isolation: auto;
         padding: 0.4rem 0;
-        border-top: 1px solid rgba(30, 74, 32, 0.12);
-        border-bottom: 1px solid rgba(30, 74, 32, 0.12);
+        border-top: 1px solid rgba(0, 0, 0, 0.08);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
       }
 
-      .site-nav.nav-mobile-open .nav-cursor {
-        display: none;
-      }
-
-      .site-nav.nav-mobile-open .nav-links a {
-        color: var(--green-xdk);
-        mix-blend-mode: normal;
-        padding: 0.65rem 0.6rem;
-        font-size: 0.82rem;
-      }
-
-      .site-nav.nav-mobile-open .nav-lang {
-        border: none;
-        justify-content: flex-start;
-        padding: 0.2rem 0;
-      }
-
-      .site-nav.nav-mobile-open .nav-cta {
-        text-align: center;
-        justify-content: center;
-        margin-top: 0.2rem;
-      }
+      .site-nav.nav-mobile-open .nav-cursor { display: none; }
+      .site-nav.nav-mobile-open .nav-links a { padding: 0.65rem 0.6rem; color: #1a1a1a; }
     }
 
     /* ─── LÍNIES DE NEGOCI ─────────────────────────────────── */
@@ -1411,12 +1258,36 @@
       font-size: clamp(2rem, 4vw, 3.2rem);
       font-weight: 700;
       line-height: 1.15;
-      letter-spacing: -0.01em;
       color: var(--green-xdk);
+      margin-bottom: 1rem;
+    }
+
+    .linies-title-accent {
+      position: relative;
+      display: inline;
+    }
+
+    .linies-title-accent::after {
+      content: '';
+      position: absolute;
+      bottom: 1px;
+      left: 0;
+      width: 100%;
+      height: 2.5px;
+      background: var(--green-dk);
+      border-radius: 2px;
+    }
+
+    .linies-sub {
+      font-family: 'Sora', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: #666;
+      line-height: 1.6;
     }
 
     .linies-grid {
-      max-width: 1300px;
+      max-width: 1240px;
       margin: 0 auto;
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -1425,162 +1296,142 @@
 
     .linia-card {
       position: relative;
-      min-height: 540px;
-      border-radius: 24px;
+      border-radius: 20px;
       overflow: hidden;
-      isolation: isolate;
-      cursor: default;
-    }
-
-    .linia-img {
-      position: absolute;
-      inset: 0;
-      background-size: cover;
-      background-position: center;
-      transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .linia-card:hover .linia-img {
-      transform: scale(1.06);
-    }
-
-    .linia-overlay {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-    }
-
-    .linia-overlay-verd {
-      background: linear-gradient(160deg, rgba(30, 74, 32, 0.30) 0%, rgba(30, 74, 32, 0.85) 100%);
-    }
-
-    .linia-overlay-daurat {
-      background: linear-gradient(160deg, rgba(232, 200, 112, 0.25) 0%, rgba(60, 42, 33, 0.85) 100%);
-    }
-
-    .linia-content {
-      position: relative;
-      z-index: 1;
-      padding: 3rem 2.5rem 2.5rem;
+      padding: 2.2rem;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
-      min-height: 100%;
-      color: #fff;
+      min-height: 530px;
     }
+
+    .linia-card-verd {
+      background: #EAF3EA;
+      box-shadow: inset 0 0 0 2.5px rgba(255,255,255,0.95), 0 6px 32px rgba(30,74,32,0.08);
+    }
+
+    .linia-card-daurat {
+      background: #FBF3DC;
+      box-shadow: inset 0 0 0 2.5px rgba(255,255,255,0.95), 0 6px 32px rgba(200,160,20,0.12);
+    }
+
+    .linia-prod-img {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 52%;
+      height: 65%;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .linia-top {
+      padding-right: 54%;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .linia-main-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      flex-shrink: 0;
+    }
+
+    .linia-main-icon-verd { background: var(--green-dk); color: #fff; }
+    .linia-main-icon-daurat { background: #C49A10; color: #fff; }
 
     .linia-tag {
-      align-self: flex-start;
       font-family: 'Sora', sans-serif;
-      font-size: 0.7rem;
+      font-size: 0.67rem;
       font-weight: 600;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.17em;
       text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.78);
-      padding: 0.4rem 0.9rem;
-      border: 1px solid rgba(255, 255, 255, 0.35);
-      border-radius: 100px;
-      margin-bottom: 1.4rem;
+      margin-bottom: 0.4rem;
     }
 
-    .linia-tag-daurat {
-      color: #E8C870;
-      border-color: rgba(232, 200, 112, 0.5);
-    }
+    .linia-tag-verd { color: var(--green-dk); }
+    .linia-tag-daurat { color: #A07808; }
 
     .linia-name {
       font-family: 'Fraunces', serif;
-      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-size: clamp(1.6rem, 2.4vw, 2.2rem);
       font-weight: 700;
       line-height: 1.15;
-      margin-bottom: 1rem;
-      color: #fff;
+      color: #222;
+      margin-bottom: 0.8rem;
     }
 
     .linia-desc {
       font-family: 'Sora', sans-serif;
-      font-size: 0.95rem;
+      font-size: 0.83rem;
       font-weight: 300;
-      line-height: 1.6;
-      color: rgba(255, 255, 255, 0.85);
-      margin-bottom: 1.5rem;
-      max-width: 460px;
+      line-height: 1.65;
+      color: #555;
     }
+
+    .linia-bottom { margin-top: auto; }
 
     .linia-feats {
-      list-style: none;
       display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 2rem;
+      padding-top: 1.4rem;
+      margin-bottom: 1.4rem;
     }
 
-    .linia-feats li {
+    .linia-feat {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      text-align: center;
+    }
+
+    .linia-feat-icon-verd { color: var(--green-dk); }
+    .linia-feat-icon-daurat { color: #C49A10; }
+
+    .linia-feat span {
       font-family: 'Sora', sans-serif;
-      font-size: 0.74rem;
+      font-size: 0.68rem;
       font-weight: 500;
-      letter-spacing: 0.05em;
-      color: rgba(255, 255, 255, 0.78);
-      padding: 0.4rem 0.85rem;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      border-radius: 100px;
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
+      color: #555;
+      line-height: 1.3;
     }
 
     .linia-cta {
-      align-self: flex-start;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.7rem;
       font-family: 'Sora', sans-serif;
       font-size: 0.78rem;
       font-weight: 600;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: #fff;
-      background: var(--green);
       text-decoration: none;
-      padding: 0.85rem 1.6rem;
+      padding: 1.1rem 2rem;
       border-radius: 100px;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      transition: background 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      width: 100%;
+      box-sizing: border-box;
+      transition: filter 0.25s ease;
     }
 
-    .linia-cta:hover {
-      background: var(--green-dk);
-      transform: translateX(4px);
-    }
-
-    .linia-cta-daurat {
-      background: #E8C870;
-      color: #3C2A21;
-    }
-
-    .linia-cta-daurat:hover {
-      background: #d8b85a;
-    }
-
-    .linia-arrow {
-      transition: transform 0.3s ease;
-    }
-
-    .linia-cta:hover .linia-arrow {
-      transform: translateX(3px);
-    }
+    .linia-cta:hover { filter: brightness(1.1); }
+    .linia-cta-verd { background: var(--green-dk); color: #fff; }
+    .linia-cta-daurat { background: #D4A820; color: #fff; }
 
     @media (max-width: 860px) {
-      .linies-grid {
-        grid-template-columns: 1fr;
-      }
+      .linies-grid { grid-template-columns: 1fr; }
+      .linia-card { min-height: 460px; }
+    }
 
-      .linia-card {
-        min-height: 460px;
-      }
-
-      .linia-content {
-        padding: 2.2rem 1.7rem 2rem;
-      }
+    @media (max-width: 480px) {
+      .linia-prod-img { width: 44%; height: 55%; }
+      .linia-top { padding-right: 46%; }
     }
 
     /* ─── PRODUCTES ────────────────────────────────────────── */
@@ -1993,95 +1844,179 @@
     .qualitat-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 1.4rem;
+      gap: 1.2rem;
+      margin-bottom: 2rem;
     }
 
     .qualitat-card {
       position: relative;
       background: #fff;
       border-radius: 18px;
-      padding: 2.4rem 2rem 2rem;
-      border: 1px solid rgba(60, 42, 33, 0.06);
-      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+      border: 1px solid rgba(60, 42, 33, 0.07);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 150px;
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
     }
 
     .qualitat-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 30px 60px rgba(30, 74, 32, 0.10);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 50px rgba(30, 74, 32, 0.10);
+    }
+
+    .qualitat-card-body {
+      padding: 1.8rem 1.4rem 1.8rem 1.6rem;
+      display: flex;
+      flex-direction: column;
     }
 
     .qualitat-icon {
-      width: 56px;
-      height: 56px;
-      border-radius: 14px;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      flex-shrink: 0;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: rgba(122, 186, 120, 0.15);
+      background: rgba(122, 186, 120, 0.14);
       color: var(--green-dk);
-      margin-bottom: 1.4rem;
-    }
-
-    .qualitat-num {
-      position: absolute;
-      top: 1.4rem;
-      right: 1.6rem;
-      font-family: 'Fraunces', serif;
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: rgba(60, 42, 33, 0.18);
-      letter-spacing: 0.04em;
+      margin-bottom: 1.1rem;
     }
 
     .qualitat-name {
       font-family: 'Fraunces', serif;
-      font-size: 1.25rem;
+      font-size: 1.1rem;
       font-weight: 700;
       line-height: 1.3;
       color: #3C2A21;
-      margin-bottom: 0.7rem;
+      margin-bottom: 0.55rem;
     }
 
     .qualitat-desc {
       font-family: 'Sora', sans-serif;
-      font-size: 0.92rem;
+      font-size: 0.82rem;
       font-weight: 300;
       line-height: 1.65;
       color: #606060;
     }
 
+    .qualitat-card-img {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .qualitat-card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .qualitat-num {
+      position: absolute;
+      top: 0.85rem;
+      right: 0.9rem;
+      font-family: 'Fraunces', serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--green-dk);
+      letter-spacing: 0.04em;
+      background: rgba(255,255,255,0.75);
+      border-radius: 6px;
+      padding: 0.1rem 0.4rem;
+    }
+
+    /* Barra inferior */
+    .qualitat-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(122, 186, 120, 0.1);
+      border: 1px solid rgba(122, 186, 120, 0.2);
+      border-radius: 14px;
+      padding: 1.4rem 2rem;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .qualitat-bar-left {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .qualitat-bar-icon {
+      flex-shrink: 0;
+      color: var(--green-dk);
+      margin-top: 0.1rem;
+    }
+
+    .qualitat-bar-main {
+      font-family: 'Fraunces', serif;
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: #333;
+      line-height: 1.5;
+    }
+
+    .qualitat-bar-sub {
+      font-family: 'Fraunces', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      font-style: italic;
+      color: var(--green-dk);
+      margin-top: 0.2rem;
+    }
+
     @media (max-width: 1024px) {
-      .qualitat-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
+      .qualitat-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
     @media (max-width: 600px) {
-      .qualitat-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .seccio-qualitat {
-        padding: 5rem 1.3rem;
-      }
+      .qualitat-grid { grid-template-columns: 1fr; }
+      .seccio-qualitat { padding: 5rem 1.3rem; }
+      .qualitat-card { grid-template-columns: 1fr 120px; }
     }
 
     /* ─── CONTACTE ─────────────────────────────────────────── */
 
     .seccio-contacte {
-      background: var(--bg);
-      background-image:
-        radial-gradient(ellipse at 80% 80%, rgba(119, 190, 121, 0.18) 0%, transparent 55%),
-        radial-gradient(ellipse at 20% 20%, rgba(61, 122, 63, 0.12) 0%, transparent 50%);
-      padding: 7rem 1.5rem 8rem;
+      position: relative;
+      overflow: hidden;
+      padding: 7rem 2.5rem;
+    }
+
+    .contacte-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center right;
+      z-index: 0;
+    }
+
+    .contacte-bg-mask {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(
+        to right,
+        rgba(255, 253, 248, 0.95) 0%,
+        rgba(255, 253, 248, 0.95) 40%,
+        rgba(255, 253, 248, 0.5) 65%,
+        rgba(255, 253, 248, 0.15) 100%
+      );
     }
 
     .contacte-inner {
-      max-width: 1200px;
+      position: relative;
+      z-index: 2;
+      max-width: 1240px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: 1fr 1.1fr;
-      gap: 5rem;
+      grid-template-columns: 1fr 1.05fr;
+      gap: 4rem;
       align-items: start;
     }
 
@@ -2090,15 +2025,15 @@
       align-items: center;
       gap: 0.55rem;
       font-family: 'Sora', sans-serif;
-      font-size: 0.74rem;
+      font-size: 0.72rem;
       font-weight: 600;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--green-dk);
-      padding: 0.5rem 1.1rem;
+      padding: 0.45rem 1rem;
       border: 1px solid rgba(30, 74, 32, 0.22);
       border-radius: 100px;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.4rem;
     }
 
     .contacte-dot {
@@ -2114,198 +2049,312 @@
       font-size: clamp(2rem, 4vw, 3.2rem);
       font-weight: 700;
       line-height: 1.15;
-      letter-spacing: -0.01em;
       color: var(--green-xdk);
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.2rem;
     }
 
     .contacte-title em {
       font-style: italic;
       color: var(--green-dk);
-      font-weight: 600;
+    }
+
+    .contacte-divider {
+      width: 48px;
+      height: 3px;
+      background: var(--green-dk);
+      border-radius: 2px;
+      margin-bottom: 1.6rem;
     }
 
     .contacte-lead {
       font-family: 'Sora', sans-serif;
-      font-size: 1rem;
+      font-size: 0.95rem;
       font-weight: 300;
-      line-height: 1.7;
-      color: #606060;
-      margin-bottom: 2.5rem;
-      max-width: 480px;
+      line-height: 1.72;
+      color: #555;
+      margin-bottom: 2.2rem;
+      max-width: 420px;
     }
 
-    .contacte-data {
-      list-style: none;
+    /* Cards de contacte */
+    .contacte-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.85rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .contacte-card {
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(30, 74, 32, 0.12);
+      border-radius: 14px;
+      padding: 1.2rem 0.8rem;
       display: flex;
       flex-direction: column;
-      gap: 1.1rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid rgba(30, 74, 32, 0.14);
+      align-items: center;
+      text-align: center;
+      gap: 0.45rem;
+      text-decoration: none;
+      transition: box-shadow 0.25s ease, transform 0.25s ease;
     }
 
-    .contacte-data li {
+    .contacte-card:hover {
+      box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+      transform: translateY(-2px);
+    }
+
+    .contacte-card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(122, 186, 120, 0.14);
       display: flex;
-      align-items: baseline;
-      gap: 1.4rem;
+      align-items: center;
+      justify-content: center;
+      color: var(--green-dk);
+      margin-bottom: 0.3rem;
     }
 
-    .contacte-key {
+    .contacte-card-label {
       font-family: 'Sora', sans-serif;
-      font-size: 0.7rem;
+      font-size: 0.63rem;
       font-weight: 600;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--green-dk);
-      width: 90px;
+    }
+
+    .contacte-card-val {
+      font-family: 'Sora', sans-serif;
+      font-size: 0.76rem;
+      font-weight: 400;
+      color: var(--green-xdk);
+      line-height: 1.45;
+    }
+
+    /* Quote */
+    .contacte-quote {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      background: rgba(210, 225, 210, 0.45);
+      border-radius: 14px;
+      padding: 1.1rem 1.2rem;
+    }
+
+    .contacte-quote-mark {
+      font-family: 'Fraunces', serif;
+      font-size: 3rem;
+      line-height: 0.75;
+      color: var(--green-dk);
       flex-shrink: 0;
     }
 
-    .contacte-data a,
-    .contacte-val {
-      font-family: 'Sora', sans-serif;
-      font-size: 0.95rem;
+    .contacte-quote-text {
+      font-family: 'Fraunces', serif;
+      font-size: 1.2rem;
       font-weight: 400;
+      line-height: 1.6;
+      color: #333;
+      margin: 0;
+    }
+
+    .contacte-quote-text em {
+      font-style: italic;
+      color: var(--green-dk);
+      font-weight: 600;
+    }
+
+    /* Targeta formulari */
+    .contacte-form-wrap {
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .form-header-icon {
+      width: 42px;
+      height: 42px;
+      flex-shrink: 0;
+      border-radius: 12px;
+      background: rgba(122, 186, 120, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--green-dk);
+    }
+
+    .form-header-title {
+      font-family: 'Fraunces', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
       color: var(--green-xdk);
-      text-decoration: none;
-      transition: color 0.25s ease;
+      margin-bottom: 0.25rem;
     }
 
-    .contacte-data a:hover {
-      color: var(--green);
+    .form-header-sub {
+      font-family: 'Sora', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: #777;
     }
 
-    /* Formulari floating labels */
     .contacte-form {
-      background: rgba(255, 255, 255, 0.7);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(30, 74, 32, 0.12);
-      border-radius: 22px;
-      padding: 2.4rem;
       display: flex;
       flex-direction: column;
-      gap: 1.1rem;
+      gap: 0.8rem;
     }
 
     .form-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 1.1rem;
+      gap: 0.8rem;
     }
 
     .form-field {
       position: relative;
     }
 
+    .form-field-icon {
+      position: absolute;
+      left: 0.85rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: rgba(30, 74, 32, 0.38);
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+    }
+
+    .form-field--textarea .form-field-icon {
+      top: 0.88rem;
+      transform: none;
+    }
+
     .form-field input,
     .form-field select,
     .form-field textarea {
       width: 100%;
+      box-sizing: border-box;
       font-family: 'Sora', sans-serif;
-      font-size: 0.95rem;
+      font-size: 0.86rem;
       font-weight: 400;
       color: var(--green-xdk);
-      background: rgba(255, 255, 255, 0.4);
-      border: 1px solid rgba(30, 74, 32, 0.18);
-      border-radius: 12px;
-      padding: 1.3rem 1rem 0.6rem;
+      background: #fff;
+      border: 1px solid rgba(30, 74, 32, 0.15);
+      border-radius: 10px;
+      padding: 0.82rem 0.9rem 0.82rem 2.6rem;
       outline: none;
-      transition: border-color 0.3s ease, background 0.3s ease;
+      transition: border-color 0.25s ease;
     }
 
     .form-field select {
-      padding: 1rem 1rem 1rem;
+      appearance: none;
+      -webkit-appearance: none;
+      cursor: pointer;
+      padding-right: 2.4rem;
+    }
+
+    .form-field-chevron {
+      position: absolute;
+      right: 0.85rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: rgba(30, 74, 32, 0.38);
+      pointer-events: none;
     }
 
     .form-field textarea {
       resize: vertical;
       min-height: 110px;
-      padding-top: 1.5rem;
+      padding-top: 0.82rem;
     }
 
     .form-field input:focus,
     .form-field select:focus,
     .form-field textarea:focus {
       border-color: var(--green);
-      background: rgba(255, 255, 255, 0.85);
     }
 
-    .form-field label {
-      position: absolute;
-      top: 1rem;
-      left: 1rem;
-      font-family: 'Sora', sans-serif;
-      font-size: 0.92rem;
-      font-weight: 400;
-      color: rgba(30, 74, 32, 0.5);
-      pointer-events: none;
-      transition: top 0.25s ease, font-size 0.25s ease, color 0.25s ease;
-      background: transparent;
+    .form-field input::placeholder,
+    .form-field textarea::placeholder {
+      color: rgba(30, 74, 32, 0.38);
     }
-
-    .form-field input:focus+label,
-    .form-field input:not(:placeholder-shown)+label,
-    .form-field input:valid:not(:placeholder-shown)+label,
-    .form-field textarea:focus+label,
-    .form-field textarea:not(:placeholder-shown)+label {
-      top: 0.35rem;
-      font-size: 0.7rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--green-dk);
-    }
-
-    /* Truc perquè el floating label dispari amb input vací: requereix placeholder */
-    .form-field input,
-    .form-field textarea {}
 
     .form-submit {
-      align-self: flex-start;
+      width: 100%;
       font-family: 'Sora', sans-serif;
-      font-size: 0.82rem;
+      font-size: 0.78rem;
       font-weight: 600;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.13em;
       text-transform: uppercase;
       color: #fff;
-      background: var(--green);
+      background: var(--green-dk);
       border: none;
       border-radius: 100px;
-      padding: 1rem 2rem;
-      margin-top: 0.5rem;
+      padding: 1.1rem 2rem;
+      margin-top: 0.3rem;
       cursor: pointer;
-      display: inline-flex;
+      display: flex;
       align-items: center;
+      justify-content: center;
       gap: 0.7rem;
-      transition: background 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: background 0.25s ease;
     }
 
     .form-submit:hover {
-      background: var(--green-dk);
-      transform: translateX(4px);
+      background: var(--green);
     }
 
-    .form-submit-arrow {
-      transition: transform 0.3s ease;
+    .form-footer {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+      margin-top: 1rem;
     }
 
-    .form-submit:hover .form-submit-arrow {
-      transform: translateX(3px);
+    .form-footer-icon {
+      flex-shrink: 0;
+      color: rgba(30, 74, 32, 0.35);
+      margin-top: 0.05rem;
     }
 
-    @media (max-width: 860px) {
+    .form-footer-text {
+      font-family: 'Sora', sans-serif;
+      font-size: 0.73rem;
+      font-weight: 300;
+      line-height: 1.55;
+      color: #999;
+    }
+
+    @media (max-width: 960px) {
       .contacte-inner {
         grid-template-columns: 1fr;
         gap: 3rem;
       }
+    }
 
-      .form-row {
-        grid-template-columns: 1fr;
-      }
+    @media (max-width: 640px) {
+      .seccio-contacte { padding: 5rem 1.5rem; }
+      .contacte-cards { grid-template-columns: 1fr 1fr 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .contacte-form-wrap { padding: 1.5rem; }
+    }
 
-      .contacte-form {
-        padding: 1.6rem;
-      }
+    @media (max-width: 480px) {
+      .contacte-cards { grid-template-columns: 1fr; }
     }
 
     /* ─── FOOTER ───────────────────────────────────────────── */
@@ -2438,8 +2487,6 @@
 
 <body>
 
-  <div class="progress-bar" id="progress-bar"></div>
-
   <!-- ─── NAVEGACIÓ — pill flotant ───────────────────────── -->
   <nav class="site-nav" id="site-nav">
     <div class="nav-pill">
@@ -2447,6 +2494,7 @@
         <a href="#" class="nav-logo" aria-label="Layaya">
           <img src="img/logo.png" alt="Layaya">
         </a>
+        <span class="nav-brand-text">Cuina casolana</span>
         <button class="nav-hamburger" id="nav-hamburger" aria-label="Menú">
           <span></span><span></span><span></span>
         </button>
@@ -2460,48 +2508,77 @@
         <span class="nav-cursor"></span>
       </ul>
 
-      <ul class="nav-lang">
-        <li><button class="active">CA</button></li>
-        <li><button>ES</button></li>
-        <li><button>EN</button></li>
-      </ul>
-
-      <a href="#contacte" class="nav-cta">Contacte</a>
+      <div class="nav-right">
+        <ul class="nav-lang">
+          <li><button class="active">CA</button></li>
+          <li><button>ES</button></li>
+          <li><button>EN</button></li>
+        </ul>
+        <a href="#contacte" class="nav-cta">Contacte</a>
+      </div>
     </div>
   </nav>
 
-  <!-- ─── HERO AMB VÍDEO SCROLL-DRIVEN ─────────────────────── -->
-  <section class="hero-scroll" id="hero-scroll">
-    <div class="hero-sticky">
-      <video id="hero-video" muted playsinline preload="auto" disablepictureinpicture>
-        <!--
-          Afegeix el fitxer de vídeo aquí.
-          Recomanat: MP4 H.264, resolució 1920×1080 o superior.
-          Exemple: <source src="video/hero.mp4" type="video/mp4">
-        -->
-        <source src="img/video.mp4" type="video/mp4">
-      </video>
+  <!-- ─── HERO ─────────────────────────────────────────────── -->
+  <section class="hero-section" id="hero">
+    <img class="hero-bg" src="img/hero_background.png" alt="">
+    <div class="hero-bg-mask"></div>
 
-      <div class="hero-overlay"></div>
-
-      <div class="hero-content">
-        <img src="img/logo.png" alt="Layaya" class="hero-logo">
+    <div class="hero-inner">
+      <div class="hero-text">
         <p class="hero-eyebrow">Cuina preparada amb ànima</p>
-        <h1 class="hero-title">Cuina de mercat<br>amb el sabor<br><em>casolà de sempre.</em></h1>
-        <div class="hero-claims" id="hero-claims">
-          <p class="hero-claim is-active"><span>El gust de la tradició, a punt per a la teva taula.</span></p>
-          <p class="hero-claim"><span>La cuina que ens agrada, el menjar que et cuida.</span></p>
-          <p class="hero-claim"><span>Ingredients de primera selecció per a un resultat excepcional.</span></p>
-        </div>
+        <h1 class="hero-title">Cuina de mercat amb<br>el sabor <em>casolà de<br>sempre.</em></h1>
+        <p class="hero-lead">Receptes tradicionals elaborades cada dia amb ingredients de primera selecció, per a col·lectivitats, comerç i hostaleria.</p>
+        <a class="hero-cta" href="#que-fem">Descobreix la nostra cuina →</a>
       </div>
+    </div>
 
-      <div class="scroll-hint" id="scroll-hint">
-        <span>Desplaza</span>
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-          stroke-linecap="round">
-          <line x1="12" y1="5" x2="12" y2="19" />
-          <polyline points="19 12 12 19 5 12" />
-        </svg>
+    <div class="hero-features-wrap">
+      <div class="hero-features">
+        <div class="hero-feat">
+          <div class="hero-feat-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22V11"/><path d="M12 16c0-4.5 4-7 7-8-1 4.5-3 8-7 8z"/><path d="M12 16c0-4.5-4-7-7-8 1 4.5 3 8 7 8z"/>
+            </svg>
+          </div>
+          <div class="hero-feat-text">
+            <strong>Ingredients de qualitat</strong>
+            <span>Matèries primeres fresques i seleccionades.</span>
+          </div>
+        </div>
+        <div class="hero-feat">
+          <div class="hero-feat-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 16h12v3.5a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V16z"/><path d="M8.5 16V13c0-1.9 1.6-3.5 3.5-3.5s3.5 1.6 3.5 3.5v3"/><path d="M6.5 12.5a5.5 5.5 0 0 1 11 0"/><line x1="10" y1="16" x2="10" y2="19.5"/><line x1="14" y1="16" x2="14" y2="19.5"/>
+            </svg>
+          </div>
+          <div class="hero-feat-text">
+            <strong>Receptes casolanes</strong>
+            <span>Elaboració diària amb receptes tradicionals.</span>
+          </div>
+        </div>
+        <div class="hero-feat">
+          <div class="hero-feat-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L4 6v7c0 4.5 3.5 7.5 8 9 4.5-1.5 8-4.5 8-9V6L12 2z"/><path d="M9 12l2 2.5 4-4.5"/>
+            </svg>
+          </div>
+          <div class="hero-feat-text">
+            <strong>Seguretat alimentària</strong>
+            <span>Processos controlats i traçabilitat en tota la cadena.</span>
+          </div>
+        </div>
+        <div class="hero-feat">
+          <div class="hero-feat-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+          <div class="hero-feat-text">
+            <strong>Servei personalitzat</strong>
+            <span>Solucions adaptades a cada client i necessitat.</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -2832,53 +2909,84 @@
         <span class="linies-dot"></span>
         Línies de negoci
       </span>
-      <h2 class="linies-title">Dues maneres d'arribar a la teva taula.</h2>
+      <h2 class="linies-title">Dues maneres d'<span class="linies-title-accent">arribar</span> a la teva taula.</h2>
+      <p class="linies-sub">Mateixa qualitat. Mateixa cuina casolana. Solucions diferents per a cada necessitat.</p>
     </div>
 
     <div class="linies-grid">
-      <article class="linia-card linia-alimentacio">
-        <div class="linia-img" style="background-image: url('img/arros_muntanya.png');"></div>
-        <div class="linia-overlay linia-overlay-verd"></div>
-        <div class="linia-content">
-          <span class="linia-tag">Producció i distribució</span>
+
+      <!-- Layaya Alimentació -->
+      <article class="linia-card linia-card-verd">
+        <img class="linia-prod-img" src="img/arros_muntanya.png" alt="Layaya Alimentació">
+
+        <div class="linia-top">
+          <div class="linia-main-icon linia-main-icon-verd">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="8" width="13" height="9" rx="1"/><path d="M15 11h4l3 3v3h-7"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg>
+          </div>
+          <span class="linia-tag linia-tag-verd">Producció i distribució</span>
           <h3 class="linia-name">Layaya Alimentació</h3>
-          <p class="linia-desc">
-            Elaboració professional per a hostaleria, retail, col·lectivitats i distribuïdors.
-            Cinquena gamma amb estàndards d'obrador.
-          </p>
-          <ul class="linia-feats">
-            <li>Obrador propi</li>
-            <li>Producció a escala</li>
-            <li>Cinquena gamma</li>
-            <li>Solucions per a empreses</li>
-          </ul>
-          <a href="#contacte" class="linia-cta">
-            Saber-ne més <span class="linia-arrow">→</span>
-          </a>
+          <p class="linia-desc">Elaboració professional per a hostaleria, retail, col·lectivitats i distribuïdors. Cinquena gamma amb estàndards d'obrador.</p>
+        </div>
+
+        <div class="linia-bottom">
+          <div class="linia-feats">
+            <div class="linia-feat">
+              <svg class="linia-feat-icon-verd" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16h12v3.5a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V16z"/><path d="M8.5 16V13c0-1.9 1.6-3.5 3.5-3.5s3.5 1.6 3.5 3.5v3"/><path d="M6.5 12.5a5.5 5.5 0 0 1 11 0"/></svg>
+              <span>Obrador propi</span>
+            </div>
+            <div class="linia-feat">
+              <svg class="linia-feat-icon-verd" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18"/><path d="M12 7v14"/><path d="m7 7-4 10h8L7 7z"/><path d="m17 7-4 10h8l-4-10z"/></svg>
+              <span>Producció a escala</span>
+            </div>
+            <div class="linia-feat">
+              <svg class="linia-feat-icon-verd" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+              <span>Cinquena gamma</span>
+            </div>
+            <div class="linia-feat">
+              <svg class="linia-feat-icon-verd" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01M16 6h.01M12 6h.01M12 10h.01M12 14h.01M16 10h.01M16 14h.01M8 10h.01M8 14h.01"/></svg>
+              <span>Solucions per a empreses</span>
+            </div>
+          </div>
+          <a href="#contacte" class="linia-cta linia-cta-verd">Saber-ne més →</a>
         </div>
       </article>
 
-      <article class="linia-card linia-botigues">
-        <div class="linia-img" style="background-image: url('img/arros_muntanya.png');"></div>
-        <div class="linia-overlay linia-overlay-daurat"></div>
-        <div class="linia-content">
+      <!-- Layaya Botigues -->
+      <article class="linia-card linia-card-daurat">
+        <img class="linia-prod-img" src="img/arros_muntanya.png" alt="Layaya Botigues">
+
+        <div class="linia-top">
+          <div class="linia-main-icon linia-main-icon-daurat">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          </div>
           <span class="linia-tag linia-tag-daurat">Venda directa</span>
           <h3 class="linia-name">Layaya Botigues</h3>
-          <p class="linia-desc">
-            Plats per emportar amb cuina casolana al consumidor final, a botigues
-            de proximitat.
-          </p>
-          <ul class="linia-feats">
-            <li>Plats per emportar</li>
-            <li>Cuina casolana</li>
-            <li>Venda directa</li>
-            <li>Proximitat</li>
-          </ul>
-          <a href="#contacte" class="linia-cta linia-cta-daurat">
-            Les nostres botigues <span class="linia-arrow">→</span>
-          </a>
+          <p class="linia-desc">Plats per emportar amb cuina casolana al consumidor final, a botigues de proximitat.</p>
+        </div>
+
+        <div class="linia-bottom">
+          <div class="linia-feats">
+            <div class="linia-feat">
+              <svg class="linia-feat-icon-daurat" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+              <span>Plats per emportar</span>
+            </div>
+            <div class="linia-feat">
+              <svg class="linia-feat-icon-daurat" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20"/><path d="M6 8v8a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V8"/><path d="M8 8V6a4 4 0 0 1 8 0v2"/></svg>
+              <span>Cuina casolana</span>
+            </div>
+            <div class="linia-feat">
+              <svg class="linia-feat-icon-daurat" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+              <span>Venda directa</span>
+            </div>
+            <div class="linia-feat">
+              <svg class="linia-feat-icon-daurat" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>Proximitat</span>
+            </div>
+          </div>
+          <a href="#contacte" class="linia-cta linia-cta-daurat">Les nostres botigues →</a>
         </div>
       </article>
+
     </div>
   </section>
 
@@ -2991,174 +3099,223 @@
       </div>
 
       <div class="qualitat-grid">
+
         <article class="qualitat-card">
-          <div class="qualitat-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6"
-              stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 3l8 4v6c0 4.5-3.5 7.5-8 8-4.5-.5-8-3.5-8-8V7l8-4z" />
-              <path d="M9 12l2 2 4-4" />
-            </svg>
+          <div class="qualitat-card-body">
+            <div class="qualitat-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4v6c0 4.5-3.5 7.5-8 8-4.5-.5-8-3.5-8-8V7l8-4z"/><path d="M9 12l2 2 4-4"/></svg>
+            </div>
+            <h3 class="qualitat-name">Selecció de matèries primeres</h3>
+            <p class="qualitat-desc">Proveïdors de proximitat verificats. Recepció controlada, traçabilitat completa.</p>
           </div>
-          <span class="qualitat-num">01</span>
-          <h3 class="qualitat-name">Selecció de matèries primeres</h3>
-          <p class="qualitat-desc">Proveïdors de proximitat verificats. Recepció controlada, traçabilitat completa.</p>
+          <div class="qualitat-card-img">
+            <img src="img/fabada.jpg" alt="Selecció de matèries primeres">
+            <span class="qualitat-num">01</span>
+          </div>
         </article>
 
         <article class="qualitat-card">
-          <div class="qualitat-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6"
-              stroke-linecap="round" stroke-linejoin="round">
-              <path d="M3 12h2l3-9 4 18 3-12 2 6h4" />
-            </svg>
+          <div class="qualitat-card-body">
+            <div class="qualitat-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h2l3-9 4 18 3-12 2 6h4"/></svg>
+            </div>
+            <h3 class="qualitat-name">Rigor en la preparació</h3>
+            <p class="qualitat-desc">Receptes estandarditzades, pesatge precís, temps de cocció reproduïbles.</p>
           </div>
-          <span class="qualitat-num">02</span>
-          <h3 class="qualitat-name">Rigor en la preparació</h3>
-          <p class="qualitat-desc">Receptes estandarditzades, pesatge precís, temps de cocció reproduïbles.</p>
+          <div class="qualitat-card-img">
+            <img src="img/risotto_bolets.jpg" alt="Rigor en la preparació">
+            <span class="qualitat-num">02</span>
+          </div>
         </article>
 
         <article class="qualitat-card">
-          <div class="qualitat-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6"
-              stroke-linecap="round" stroke-linejoin="round">
-              <path d="M6 14c0-3 2-5 6-5s6 2 6 5" />
-              <path d="M9 14v3M15 14v3M12 14v3" />
-              <path d="M5 17h14" />
-              <path d="M9 9V5M12 9V3M15 9V5" />
-            </svg>
+          <div class="qualitat-card-body">
+            <div class="qualitat-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 14c0-3 2-5 6-5s6 2 6 5"/><path d="M9 14v3M15 14v3M12 14v3"/><path d="M5 17h14"/><path d="M9 9V5M12 9V3M15 9V5"/></svg>
+            </div>
+            <h3 class="qualitat-name">Cuina d'avantguarda</h3>
+            <p class="qualitat-desc">Cocció a baixa temperatura, fons elaborats al mateix obrador, salses fetes en directe.</p>
           </div>
-          <span class="qualitat-num">03</span>
-          <h3 class="qualitat-name">Cuina d'avantguarda</h3>
-          <p class="qualitat-desc">Cocció a baixa temperatura, fons elaborats al mateix obrador, salses fetes en
-            directe.</p>
+          <div class="qualitat-card-img">
+            <img src="img/arros_muntanya.jpg" alt="Cuina d'avantguarda">
+            <span class="qualitat-num">03</span>
+          </div>
         </article>
 
         <article class="qualitat-card">
-          <div class="qualitat-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6"
-              stroke-linecap="round" stroke-linejoin="round">
-              <rect x="4" y="7" width="16" height="13" rx="2" />
-              <path d="M8 7V5a4 4 0 0 1 8 0v2" />
-              <path d="M8 12h8" />
-            </svg>
+          <div class="qualitat-card-body">
+            <div class="qualitat-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="7" width="16" height="13" rx="2"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/><path d="M8 12h8"/></svg>
+            </div>
+            <h3 class="qualitat-name">Envasat d'alta protecció</h3>
+            <p class="qualitat-desc">Atmosfera protectora i envasos pensats per a 18 dies de vida útil sense conservants.</p>
           </div>
-          <span class="qualitat-num">04</span>
-          <h3 class="qualitat-name">Envasat d'alta protecció</h3>
-          <p class="qualitat-desc">Atmosfera protectora i envasos pensats per a 18 dies de vida útil sense conservants.
-          </p>
+          <div class="qualitat-card-img">
+            <img src="img/pastis_tonyina.jpg" alt="Envasat d'alta protecció">
+            <span class="qualitat-num">04</span>
+          </div>
         </article>
 
         <article class="qualitat-card">
-          <div class="qualitat-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6"
-              stroke-linecap="round" stroke-linejoin="round">
-              <path d="M9 3h6v3l3 4v9a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-9l3-4z" />
-              <path d="M9 12h6" />
-              <path d="M10.5 16h3" />
-            </svg>
+          <div class="qualitat-card-body">
+            <div class="qualitat-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6v3l3 4v9a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-9l3-4z"/><path d="M9 12h6"/><path d="M10.5 16h3"/></svg>
+            </div>
+            <h3 class="qualitat-name">Laboratori de control</h3>
+            <p class="qualitat-desc">Anàlisis microbiològiques periòdiques. Auditories internes i certificats sanitaris.</p>
           </div>
-          <span class="qualitat-num">05</span>
-          <h3 class="qualitat-name">Laboratori de control</h3>
-          <p class="qualitat-desc">Anàlisis microbiològiques periòdiques. Auditories internes i certificats sanitaris.
-          </p>
+          <div class="qualitat-card-img">
+            <img src="img/risotto_bolets.jpg" alt="Laboratori de control">
+            <span class="qualitat-num">05</span>
+          </div>
         </article>
 
         <article class="qualitat-card">
-          <div class="qualitat-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6"
-              stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="8" width="13" height="9" rx="1" />
-              <path d="M15 11h4l3 3v3h-7" />
-              <circle cx="6" cy="18" r="2" />
-              <circle cx="18" cy="18" r="2" />
-            </svg>
+          <div class="qualitat-card-body">
+            <div class="qualitat-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="8" width="13" height="9" rx="1"/><path d="M15 11h4l3 3v3h-7"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg>
+            </div>
+            <h3 class="qualitat-name">Logística i cadena de fred</h3>
+            <p class="qualitat-desc">Transport refrigerat 2°C–4°C. Distribució estable per garantir el sabor d'origen.</p>
           </div>
-          <span class="qualitat-num">06</span>
-          <h3 class="qualitat-name">Logística i cadena de fred</h3>
-          <p class="qualitat-desc">Transport refrigerat 2°C–4°C. Distribució estable per garantir el sabor d'origen.</p>
+          <div class="qualitat-card-img">
+            <img src="img/fabada.jpg" alt="Logística i cadena de fred">
+            <span class="qualitat-num">06</span>
+          </div>
         </article>
+
       </div>
+
+      <!-- Barra inferior -->
+      <div class="qualitat-bar">
+        <div class="qualitat-bar-left">
+          <svg class="qualitat-bar-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2.5 4-4.5"/></svg>
+          <div>
+            <div class="qualitat-bar-main">Compromís amb la qualitat, la seguretat alimentària i la millora contínua.</div>
+            <div class="qualitat-bar-sub">Així cuidem cada detall perquè tu nomès hagis d'oferir el millor.</div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
   <!-- ─── CONTACTE ──────────────────────────────────────────── -->
   <section class="seccio-contacte" id="contacte">
+    <img class="contacte-bg" src="img/hero_background.png" alt="">
+    <div class="contacte-bg-mask"></div>
+
     <div class="contacte-inner">
 
+      <!-- Columna esquerra -->
       <div class="contacte-info">
         <span class="contacte-eyebrow">
           <span class="contacte-dot"></span>
           Parlem
         </span>
         <h2 class="contacte-title">
-          Cuinem perquè <em>menjar bé</em><br>
-          sigui més fàcil.
+          Vols portar la nostra cuina<br><em>al teu negoci?</em>
         </h2>
+        <div class="contacte-divider"></div>
         <p class="contacte-lead">
-          Treballes a hostaleria, retail o col·lectivitats? Vols saber com els nostres
-          plats poden ser part de la teva oferta? Escriu-nos i contactarem amb tu.
+          Cuina casolana preparada, segura i flexible per a hostaleria, retail, col·lectivitats i distribució.
         </p>
 
-        <ul class="contacte-data">
-          <li>
-            <span class="contacte-key">Instagram</span>
-            <a href="https://www.instagram.com/layaya.alimentacion/" target="_blank"
-              rel="noopener">@layaya.alimentacion</a>
-          </li>
-          <li>
-            <span class="contacte-key">Correu</span>
-            <a href="mailto:hola@layaya.cat">hola@layaya.cat</a>
-          </li>
-          <li>
-            <span class="contacte-key">Horari</span>
-            <span class="contacte-val">Dilluns a divendres · 9h–18h</span>
-          </li>
-        </ul>
+        <div class="contacte-cards">
+          <a class="contacte-card" href="https://www.instagram.com/layaya.alimentacion/" target="_blank" rel="noopener">
+            <div class="contacte-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </div>
+            <span class="contacte-card-label">Instagram</span>
+            <span class="contacte-card-val">@layaya.alimentacion</span>
+          </a>
+          <a class="contacte-card" href="mailto:hola@layaya.cat">
+            <div class="contacte-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            </div>
+            <span class="contacte-card-label">Correu</span>
+            <span class="contacte-card-val">hola@layaya.cat</span>
+          </a>
+          <div class="contacte-card">
+            <div class="contacte-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <span class="contacte-card-label">Horari</span>
+            <span class="contacte-card-val">Dilluns a divendres<br>9h–18h</span>
+          </div>
+        </div>
+
+        <div class="contacte-quote">
+          <p class="contacte-quote-text">
+            Treballem per fer que menjar bé sigui <em>més fàcil</em> cada dia.
+          </p>
+        </div>
       </div>
 
-      <form class="contacte-form" id="contacte-form" novalidate>
-        <div class="form-row">
-          <div class="form-field">
-            <input type="text" id="f-name" name="name" placeholder=" " required>
-            <label for="f-name">Nom i cognoms</label>
+      <!-- Columna dreta: targeta formulari -->
+      <div class="contacte-form-wrap">
+        <div class="form-header">
+          <div class="form-header-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
           </div>
-          <div class="form-field">
-            <input type="text" id="f-company" name="company" placeholder=" ">
-            <label for="f-company">Empresa</label>
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="form-field">
-            <input type="email" id="f-email" name="email" placeholder=" " required>
-            <label for="f-email">Correu electrònic</label>
-          </div>
-          <div class="form-field">
-            <input type="tel" id="f-phone" name="phone" placeholder=" ">
-            <label for="f-phone">Telèfon</label>
+          <div>
+            <div class="form-header-title">Envia'ns la teva consulta</div>
+            <div class="form-header-sub">Et respondrem tan aviat com sigui possible.</div>
           </div>
         </div>
 
-        <div class="form-field form-field-select">
-          <select id="f-type" name="type">
-            <option value="">Tipus de consulta</option>
-            <option value="comercial">Informació comercial</option>
-            <option value="profesionals">Producte per a professionals</option>
-            <option value="botigues">Botigues</option>
-            <option value="distribucio">Distribució</option>
-            <option value="altres">Altres</option>
-          </select>
-        </div>
+        <form class="contacte-form" id="contacte-form" novalidate>
+          <div class="form-row">
+            <div class="form-field">
+              <span class="form-field-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+              <input type="text" id="f-name" name="name" placeholder="Nom i cognoms" required>
+            </div>
+            <div class="form-field">
+              <span class="form-field-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v8h4"/><path d="M18 9h2a2 2 0 0 1 2 2v11h-4"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg></span>
+              <input type="text" id="f-company" name="company" placeholder="Empresa">
+            </div>
+          </div>
 
-        <div class="form-field">
-          <textarea id="f-message" name="message" rows="4" placeholder=" " required></textarea>
-          <label for="f-message">Missatge</label>
-        </div>
+          <div class="form-row">
+            <div class="form-field">
+              <span class="form-field-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span>
+              <input type="email" id="f-email" name="email" placeholder="Correu electrònic" required>
+            </div>
+            <div class="form-field">
+              <span class="form-field-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.11 12 19.79 19.79 0 0 1 1.04 3.4 2 2 0 0 1 3 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+              <input type="tel" id="f-phone" name="phone" placeholder="Telèfon">
+            </div>
+          </div>
 
-        <button type="submit" class="form-submit">
-          Enviar missatge
-          <span class="form-submit-arrow">→</span>
-        </button>
-      </form>
+          <div class="form-field">
+            <span class="form-field-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"/><path d="M7 7h.01"/></svg></span>
+            <select id="f-type" name="type">
+              <option value="">Tipus de consulta</option>
+              <option value="comercial">Informació comercial</option>
+              <option value="profesionals">Producte per a professionals</option>
+              <option value="botigues">Botigues</option>
+              <option value="distribucio">Distribució</option>
+              <option value="altres">Altres</option>
+            </select>
+            <span class="form-field-chevron"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+          </div>
+
+          <div class="form-field form-field--textarea">
+            <span class="form-field-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+            <textarea id="f-message" name="message" rows="4" placeholder="Missatge" required></textarea>
+          </div>
+
+          <button type="submit" class="form-submit">
+            Enviar missatge
+            <span>→</span>
+          </button>
+
+          <div class="form-footer">
+            <span class="form-footer-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2.5 4-4.5"/></svg></span>
+            <span class="form-footer-text">Sense compromís. T'ajudarem a valorar la millor opció segons el teu volum i necessitat.</span>
+          </div>
+        </form>
+      </div>
 
     </div>
   </section>
@@ -3205,105 +3362,6 @@
 
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script>
-    (function () {
-      const video = document.getElementById('hero-video');
-      const heroScroll = document.getElementById('hero-scroll');
-      const progressBar = document.getElementById('progress-bar');
-      const scrollHint = document.getElementById('scroll-hint');
-
-      const SCROLL_PER_SECOND = 60;
-
-      function maxScroll() {
-        return heroScroll.offsetHeight - window.innerHeight;
-      }
-
-      function setScrollHeight() {
-        if (!video.duration || !isFinite(video.duration)) return;
-        heroScroll.style.height = Math.ceil(video.duration * SCROLL_PER_SECOND) + window.innerHeight + 'px';
-      }
-
-      video.addEventListener('loadedmetadata', setScrollHeight);
-      video.addEventListener('canplay', setScrollHeight);
-      video.addEventListener('canplaythrough', setScrollHeight);
-      window.addEventListener('resize', setScrollHeight);
-      video.load();
-
-      // ── Scroll lock fins que el vídeo acaba ──────────────────
-      let heroUnlocked = false;
-
-      function scrollTo(y) {
-        window.scrollTo({ top: Math.max(0, Math.min(maxScroll(), y)), behavior: 'instant' });
-      }
-
-      function onWheel(e) {
-        if (heroUnlocked) return;
-        e.preventDefault();
-        scrollTo(window.scrollY + e.deltaY);
-      }
-
-      let _ty = 0;
-      function onTouchStart(e) { _ty = e.touches[0].clientY; }
-      function onTouchMove(e) {
-        if (heroUnlocked) return;
-        e.preventDefault();
-        const d = _ty - e.touches[0].clientY;
-        _ty = e.touches[0].clientY;
-        scrollTo(window.scrollY + d);
-      }
-
-      const KEY_DELTA = { ArrowDown: 80, ArrowUp: -80, PageDown: 600, PageUp: -600, ' ': 600, End: 99999, Home: -99999 };
-      function onKeydown(e) {
-        if (heroUnlocked || !(e.key in KEY_DELTA)) return;
-        e.preventDefault();
-        scrollTo(window.scrollY + KEY_DELTA[e.key]);
-      }
-
-      document.addEventListener('wheel', onWheel, { passive: false });
-      document.addEventListener('touchstart', onTouchStart, { passive: true });
-      document.addEventListener('touchmove', onTouchMove, { passive: false });
-      document.addEventListener('keydown', onKeydown);
-
-      function unlock() {
-        heroUnlocked = true;
-        document.removeEventListener('wheel', onWheel);
-        document.removeEventListener('touchstart', onTouchStart);
-        document.removeEventListener('touchmove', onTouchMove);
-        document.removeEventListener('keydown', onKeydown);
-      }
-
-      // ── Scrubbing ────────────────────────────────────────────
-      let ticking = false;
-      let isSeeking = false;
-
-      function onScroll() {
-        if (ticking) return;
-        ticking = true;
-        requestAnimationFrame(update);
-      }
-
-      function update() {
-        ticking = false;
-        const ms = maxScroll();
-        const progress = ms > 0 ? Math.max(0, Math.min(1, window.scrollY / ms)) : 0;
-
-        if (video.duration && isFinite(video.duration) && !isSeeking) {
-          isSeeking = true;
-          video.pause();
-          video.currentTime = progress * video.duration;
-        }
-
-        progressBar.style.width = (progress * 100) + '%';
-        scrollHint.style.opacity = window.scrollY > 40 ? '0' : '';
-        scrollHint.style.transition = 'opacity 0.4s ease';
-
-        if (progress >= 1 && !heroUnlocked) unlock();
-      }
-
-      video.addEventListener('seeked', function () { isSeeking = false; });
-      window.addEventListener('scroll', onScroll, { passive: true });
-      update();
-    })();
-
     // Navegació: scroll → fons sòlid + hamburger mòbil
     (function () {
       const nav = document.getElementById('site-nav');
@@ -3349,21 +3407,6 @@
           cursor.style.opacity = '0';
         });
       }
-    })();
-
-    // Slider de claims — sweep verd + text pop
-    (function () {
-      const claims = document.querySelectorAll('.hero-claim');
-      if (claims.length < 2) return;
-      let current = 0;
-      setInterval(function () {
-        const prev = current;
-        claims[prev].classList.remove('is-active');
-        claims[prev].classList.add('is-leaving');
-        setTimeout(function () { claims[prev].classList.remove('is-leaving'); }, 450);
-        current = (current + 1) % claims.length;
-        claims[current].classList.add('is-active');
-      }, 4500);
     })();
 
     // Secció "Qui servim" — panel switcher
