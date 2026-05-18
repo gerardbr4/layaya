@@ -36,6 +36,19 @@
 
 **Criteri d'ús:** Els colors han de funcionar com a accents i blocs visuals, no tots alhora en la mateixa pantalla. Combinar sempre amb blanc trencat i fotografia real de producte.
 
+### Gradients Dinàmics del Catàleg
+Aquests són els gradients utilitzats per al fons dinàmic de la secció del catàleg i les seves targetes:
+*   **Estil 0 (Groc/Crema):**
+    `linear-gradient(163deg, #fffbed 0%, #f4e4a4 100%)`
+*   **Estil 1 (Vermell/Rosat suau):**
+    `linear-gradient(163deg, #fff7f7 0%, #f0c1c1 100%)`
+*   **Estil 2 (Blau suau):**
+    `linear-gradient(163deg, #f6f9ff 0%, #c1d4f3 100%)`
+*   **Estil 3 (Verd suau):**
+    `linear-gradient(163deg, #f7fef7 0%, #bee4bc 100%)`
+
+
+
 ---
 
 ## Tipografia

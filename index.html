@@ -72,12 +72,10 @@
     .hero-bg-mask {
       position: absolute;
       inset: 0;
-      background: linear-gradient(
-        to right,
-        rgba(255, 253, 248, 0.8) 0%,
-        rgba(255, 253, 248, 0.8) 45%,
-        transparent 80%
-      );
+      background: linear-gradient(to right,
+          rgba(255, 253, 248, 0.8) 0%,
+          rgba(255, 253, 248, 0.8) 45%,
+          transparent 80%);
     }
 
     .hero-inner {
@@ -210,15 +208,37 @@
     }
 
     @media (max-width: 860px) {
-      .hero-section { padding-top: 70px; padding-bottom: 0; min-height: 80vh; }
-      .hero-inner { padding: 3rem 1.5rem 2rem; }
-      .hero-features-wrap { position: static; padding: 0 1.5rem 2rem; }
-      .hero-features { grid-template-columns: 1fr 1fr; }
-      .hero-feat { border-right: none; padding-right: 0; }
+      .hero-section {
+        padding-top: 70px;
+        padding-bottom: 0;
+        min-height: 80vh;
+      }
+
+      .hero-inner {
+        padding: 3rem 1.5rem 2rem;
+      }
+
+      .hero-features-wrap {
+        position: static;
+        padding: 0 1.5rem 2rem;
+      }
+
+      .hero-features {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero-feat {
+        border-right: none;
+        padding-right: 0;
+      }
     }
 
     @media (max-width: 480px) {
-      .hero-features { grid-template-columns: 1fr 1fr; gap: 0.7rem; padding: 1rem 1.2rem; }
+      .hero-features {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.7rem;
+        padding: 1rem 1.2rem;
+      }
     }
 
     /* ─── BARRES DECORATIVES VERDES (top + bottom) ────────── */
@@ -408,7 +428,8 @@
       inset: 0;
       border-radius: 28px;
       background: rgba(30, 50, 25, 0.38);
-      display: none; /* activar quan s'afegeixi img_background_1.jpg */
+      display: none;
+      /* activar quan s'afegeixi img_background_1.jpg */
     }
 
     .quisom-stats {
@@ -429,7 +450,7 @@
       display: flex;
       flex-direction: column;
       transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1),
-                  box-shadow 0.32s ease;
+        box-shadow 0.32s ease;
       cursor: default;
     }
 
@@ -541,7 +562,9 @@
     }
 
     @keyframes spin {
-      to { transform: rotate(360deg); }
+      to {
+        transform: rotate(360deg);
+      }
     }
 
     @media (max-width: 900px) {
@@ -721,9 +744,9 @@
       position: absolute;
       inset: 0;
       background: linear-gradient(to top,
-        rgba(15, 25, 10, 0.82) 0%,
-        rgba(15, 25, 10, 0.18) 50%,
-        transparent 100%);
+          rgba(15, 25, 10, 0.82) 0%,
+          rgba(15, 25, 10, 0.18) 50%,
+          transparent 100%);
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
@@ -821,9 +844,9 @@
       position: absolute;
       inset: 0;
       background: linear-gradient(to top,
-        rgba(15, 25, 10, 0.75) 0%,
-        rgba(15, 25, 10, 0.2) 60%,
-        rgba(15, 25, 10, 0.08) 100%);
+          rgba(15, 25, 10, 0.75) 0%,
+          rgba(15, 25, 10, 0.2) 60%,
+          rgba(15, 25, 10, 0.08) 100%);
     }
 
     .serveis-side-icon {
@@ -968,19 +991,53 @@
     }
 
     @media (max-width: 1060px) {
-      .serveis-inner { grid-template-columns: 240px 1fr; gap: 2.5rem; }
-      .serveis-cards { grid-template-columns: 1fr 240px; }
+      .serveis-inner {
+        grid-template-columns: 240px 1fr;
+        gap: 2.5rem;
+      }
+
+      .serveis-cards {
+        grid-template-columns: 1fr 240px;
+      }
     }
 
     @media (max-width: 780px) {
-      .seccio-serveis { padding: 5rem 1.5rem 0; }
-      .serveis-inner { grid-template-columns: 1fr; gap: 2rem; }
-      .serveis-cards { grid-template-columns: 1fr; height: auto; }
-      .serveis-main-card { height: 360px; }
-      .serveis-side-cards { flex-direction: row; height: 150px; }
-      .serveis-bar { flex-direction: column; align-items: flex-start; }
-      .serveis-bar-feats { flex-wrap: wrap; gap: 1rem; }
-      .serveis-bar-wrap { padding-bottom: 3.5rem; }
+      .seccio-serveis {
+        padding: 5rem 1.5rem 0;
+      }
+
+      .serveis-inner {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .serveis-cards {
+        grid-template-columns: 1fr;
+        height: auto;
+      }
+
+      .serveis-main-card {
+        height: 360px;
+      }
+
+      .serveis-side-cards {
+        flex-direction: row;
+        height: 150px;
+      }
+
+      .serveis-bar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .serveis-bar-feats {
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .serveis-bar-wrap {
+        padding-bottom: 3.5rem;
+      }
     }
 
     /* ─── NAVEGACIÓ — barra superior ────────────────────────── */
@@ -1130,7 +1187,9 @@
       transition: color 0.25s ease;
     }
 
-    .nav-lang button:hover { color: rgba(0, 0, 0, 0.65); }
+    .nav-lang button:hover {
+      color: rgba(0, 0, 0, 0.65);
+    }
 
     .nav-lang button.active {
       color: var(--green-dk);
@@ -1182,14 +1241,32 @@
       transition: transform 0.3s ease, opacity 0.3s ease;
     }
 
-    .nav-hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
-    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
-    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+    .nav-hamburger.open span:nth-child(1) {
+      transform: translateY(6px) rotate(45deg);
+    }
+
+    .nav-hamburger.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-hamburger.open span:nth-child(3) {
+      transform: translateY(-6px) rotate(-45deg);
+    }
 
     @media (max-width: 860px) {
-      .nav-pill { padding: 0.6rem 1.5rem; }
-      .nav-links, .nav-lang, .nav-cta { display: none; }
-      .nav-hamburger { display: flex; }
+      .nav-pill {
+        padding: 0.6rem 1.5rem;
+      }
+
+      .nav-links,
+      .nav-lang,
+      .nav-cta {
+        display: none;
+      }
+
+      .nav-hamburger {
+        display: flex;
+      }
 
       .site-nav.nav-mobile-open .nav-pill {
         flex-direction: column;
@@ -1198,11 +1275,16 @@
         padding-bottom: 1rem;
       }
 
-      .site-nav.nav-mobile-open .nav-brand { justify-content: space-between; width: 100%; }
+      .site-nav.nav-mobile-open .nav-brand {
+        justify-content: space-between;
+        width: 100%;
+      }
 
       .site-nav.nav-mobile-open .nav-links,
       .site-nav.nav-mobile-open .nav-lang,
-      .site-nav.nav-mobile-open .nav-cta { display: flex; }
+      .site-nav.nav-mobile-open .nav-cta {
+        display: flex;
+      }
 
       .site-nav.nav-mobile-open .nav-links {
         flex-direction: column;
@@ -1212,8 +1294,14 @@
         border-bottom: 1px solid rgba(0, 0, 0, 0.08);
       }
 
-      .site-nav.nav-mobile-open .nav-cursor { display: none; }
-      .site-nav.nav-mobile-open .nav-links a { padding: 0.65rem 0.6rem; color: #1a1a1a; }
+      .site-nav.nav-mobile-open .nav-cursor {
+        display: none;
+      }
+
+      .site-nav.nav-mobile-open .nav-links a {
+        padding: 0.65rem 0.6rem;
+        color: #1a1a1a;
+      }
     }
 
     /* ─── LÍNIES DE NEGOCI ─────────────────────────────────── */
@@ -1306,12 +1394,12 @@
 
     .linia-card-verd {
       background: #EAF3EA;
-      box-shadow: inset 0 0 0 2.5px rgba(255,255,255,0.95), 0 6px 32px rgba(30,74,32,0.08);
+      box-shadow: inset 0 0 0 2.5px rgba(255, 255, 255, 0.95), 0 6px 32px rgba(30, 74, 32, 0.08);
     }
 
     .linia-card-daurat {
       background: #FBF3DC;
-      box-shadow: inset 0 0 0 2.5px rgba(255,255,255,0.95), 0 6px 32px rgba(200,160,20,0.12);
+      box-shadow: inset 0 0 0 2.5px rgba(255, 255, 255, 0.95), 0 6px 32px rgba(200, 160, 20, 0.12);
     }
 
     .linia-prod-img {
@@ -1342,8 +1430,15 @@
       flex-shrink: 0;
     }
 
-    .linia-main-icon-verd { background: var(--green-dk); color: #fff; }
-    .linia-main-icon-daurat { background: #C49A10; color: #fff; }
+    .linia-main-icon-verd {
+      background: var(--green-dk);
+      color: #fff;
+    }
+
+    .linia-main-icon-daurat {
+      background: #C49A10;
+      color: #fff;
+    }
 
     .linia-tag {
       font-family: 'Sora', sans-serif;
@@ -1354,8 +1449,13 @@
       margin-bottom: 0.4rem;
     }
 
-    .linia-tag-verd { color: var(--green-dk); }
-    .linia-tag-daurat { color: #A07808; }
+    .linia-tag-verd {
+      color: var(--green-dk);
+    }
+
+    .linia-tag-daurat {
+      color: #A07808;
+    }
 
     .linia-name {
       font-family: 'Fraunces', serif;
@@ -1374,7 +1474,9 @@
       color: #555;
     }
 
-    .linia-bottom { margin-top: auto; }
+    .linia-bottom {
+      margin-top: auto;
+    }
 
     .linia-feats {
       display: flex;
@@ -1391,8 +1493,13 @@
       text-align: center;
     }
 
-    .linia-feat-icon-verd { color: var(--green-dk); }
-    .linia-feat-icon-daurat { color: #C49A10; }
+    .linia-feat-icon-verd {
+      color: var(--green-dk);
+    }
+
+    .linia-feat-icon-daurat {
+      color: #C49A10;
+    }
 
     .linia-feat span {
       font-family: 'Sora', sans-serif;
@@ -1420,18 +1527,39 @@
       transition: filter 0.25s ease;
     }
 
-    .linia-cta:hover { filter: brightness(1.1); }
-    .linia-cta-verd { background: var(--green-dk); color: #fff; }
-    .linia-cta-daurat { background: #D4A820; color: #fff; }
+    .linia-cta:hover {
+      filter: brightness(1.1);
+    }
+
+    .linia-cta-verd {
+      background: var(--green-dk);
+      color: #fff;
+    }
+
+    .linia-cta-daurat {
+      background: #D4A820;
+      color: #fff;
+    }
 
     @media (max-width: 860px) {
-      .linies-grid { grid-template-columns: 1fr; }
-      .linia-card { min-height: 460px; }
+      .linies-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .linia-card {
+        min-height: 460px;
+      }
     }
 
     @media (max-width: 480px) {
-      .linia-prod-img { width: 44%; height: 55%; }
-      .linia-top { padding-right: 46%; }
+      .linia-prod-img {
+        width: 44%;
+        height: 55%;
+      }
+
+      .linia-top {
+        padding-right: 46%;
+      }
     }
 
     /* ─── PRODUCTES ────────────────────────────────────────── */
@@ -1567,59 +1695,130 @@
 
     /* Nav buttons */
     .co-carousel__nav-buttons {
-      margin-top: 40px;
-      width: 50%;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
       display: flex;
       justify-content: space-between;
+      padding: 0 calc(50% - 390px);
+      pointer-events: none;
+      z-index: 10;
     }
 
     .co-carousel__nav-button {
-      padding: 10px 0;
-      width: 150px;
-      position: relative;
+      pointer-events: all;
       display: flex;
       flex-direction: column;
+      align-items: center;
+      gap: 0.55rem;
       cursor: pointer;
-      color: rgba(255, 255, 255, 0.88);
+      color: rgba(255, 255, 255, 0.9);
     }
 
-    .co-carousel__nav-button.prev {
-      align-items: flex-end;
+    .co-carousel__nav-circle {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(255, 255, 255, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.25s ease, border-color 0.25s ease;
     }
 
-    .co-carousel__nav-button.next {
-      align-items: flex-start;
+    .co-carousel__nav-button:hover .co-carousel__nav-circle {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.95);
     }
 
     .co-carousel__nav-button.swiper-button-disabled {
-      opacity: .3;
+      opacity: 0.3;
       pointer-events: none;
-    }
-
-    .co-carousel__nav-button:hover:not(.swiper-button-disabled).prev span {
-      transform: translate3d(-10px, 0, 0);
-    }
-
-    .co-carousel__nav-button:hover:not(.swiper-button-disabled).next span {
-      transform: translate3d(10px, 0, 0);
-    }
-
-    .co-carousel__nav-button::before {
-      display: block;
-      content: "";
-      width: 100%;
-      height: 1px;
-      background-color: rgba(255, 255, 255, 0.88);
     }
 
     .co-carousel__nav-button span {
       font-family: 'Sora', sans-serif;
-      font-size: 12px;
+      font-size: 0.65rem;
       font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
-      padding: 10px 0;
-      transition: transform cubic-bezier(.22, .74, .46, .97) .3s;
+      letter-spacing: 0.14em;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    /* Footer productes */
+    .productes-footer {
+      position: relative;
+      z-index: 9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+      padding: 0 0 5rem;
+    }
+
+    .productes-download-row {
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+
+    .productes-download-row::before,
+    .productes-download-row::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.35);
+    }
+
+    .productes-download {
+      flex-shrink: 0;
+      margin: 0 2rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      font-family: 'Sora', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #fff;
+      background: var(--green-dk);
+      border: 1.5px solid rgba(255, 255, 255, 0.65);
+      text-decoration: none;
+      padding: 1.1rem 2.5rem;
+      border-radius: 100px;
+      transition: background 0.25s ease;
+    }
+
+    .productes-download:hover { background: var(--green); }
+
+    .productes-badges {
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+    }
+
+    .productes-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    .productes-badge svg { flex-shrink: 0; }
+
+    .productes-badge span {
+      font-family: 'Sora', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 300;
+    }
+
+    .productes-badges-sep {
+      width: 1px;
+      height: 20px;
+      background: rgba(255, 255, 255, 0.25);
     }
 
     /* Card */
@@ -1726,37 +1925,26 @@
     }
 
     @media (max-width: 900px) {
-      .co-carousel {
-        width: 70%;
-      }
+      .co-carousel { width: 70%; }
+      .co-carousel__nav-buttons { padding: 0 calc(50% - 280px); }
+    }
 
-      .co-carousel__nav-buttons {
-        width: 70%;
+    @media (max-width: 640px) {
+      .co-carousel__nav-buttons { padding: 0 1.5rem; }
+      .productes-download-row { padding: 0; }
+      .productes-badges {
+        flex-direction: column;
+        gap: 1.2rem;
+        padding: 0 1.5rem;
       }
+      .productes-badges-sep { width: 40px; height: 1px; }
     }
 
     @media (max-width: 540px) {
-      .co-carousel {
-        width: 86%;
-        height: 440px;
-      }
-
-      .co-carousel__nav-buttons {
-        width: 86%;
-      }
-
-      .co-card {
-        height: 440px;
-        width: 280px;
-      }
-
-      .co-card__shoe {
-        top: -80px;
-      }
-
-      .co-card__shoe-shadow {
-        top: 70px;
-      }
+      .co-carousel { width: 86%; height: 440px; }
+      .co-card { height: 440px; width: 280px; }
+      .co-card__shoe { top: -80px; }
+      .co-card__shoe-shadow { top: 70px; }
     }
 
     /* ─── QUALITAT ─────────────────────────────────────────── */
@@ -1921,7 +2109,7 @@
       font-weight: 700;
       color: var(--green-dk);
       letter-spacing: 0.04em;
-      background: rgba(255,255,255,0.75);
+      background: rgba(255, 255, 255, 0.75);
       border-radius: 6px;
       padding: 0.1rem 0.4rem;
     }
@@ -1969,13 +2157,23 @@
     }
 
     @media (max-width: 1024px) {
-      .qualitat-grid { grid-template-columns: repeat(2, 1fr); }
+      .qualitat-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
 
     @media (max-width: 600px) {
-      .qualitat-grid { grid-template-columns: 1fr; }
-      .seccio-qualitat { padding: 5rem 1.3rem; }
-      .qualitat-card { grid-template-columns: 1fr 120px; }
+      .qualitat-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .seccio-qualitat {
+        padding: 5rem 1.3rem;
+      }
+
+      .qualitat-card {
+        grid-template-columns: 1fr 120px;
+      }
     }
 
     /* ─── CONTACTE ─────────────────────────────────────────── */
@@ -2000,13 +2198,11 @@
       position: absolute;
       inset: 0;
       z-index: 1;
-      background: linear-gradient(
-        to right,
-        rgba(255, 253, 248, 0.95) 0%,
-        rgba(255, 253, 248, 0.95) 40%,
-        rgba(255, 253, 248, 0.5) 65%,
-        rgba(255, 253, 248, 0.15) 100%
-      );
+      background: linear-gradient(to right,
+          rgba(255, 253, 248, 0.95) 0%,
+          rgba(255, 253, 248, 0.95) 40%,
+          rgba(255, 253, 248, 0.5) 65%,
+          rgba(255, 253, 248, 0.15) 100%);
     }
 
     .contacte-inner {
@@ -2101,7 +2297,7 @@
     }
 
     .contacte-card:hover {
-      box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
       transform: translateY(-2px);
     }
 
@@ -2347,14 +2543,27 @@
     }
 
     @media (max-width: 640px) {
-      .seccio-contacte { padding: 5rem 1.5rem; }
-      .contacte-cards { grid-template-columns: 1fr 1fr 1fr; }
-      .form-row { grid-template-columns: 1fr; }
-      .contacte-form-wrap { padding: 1.5rem; }
+      .seccio-contacte {
+        padding: 5rem 1.5rem;
+      }
+
+      .contacte-cards {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .contacte-form-wrap {
+        padding: 1.5rem;
+      }
     }
 
     @media (max-width: 480px) {
-      .contacte-cards { grid-template-columns: 1fr; }
+      .contacte-cards {
+        grid-template-columns: 1fr;
+      }
     }
 
     /* ─── FOOTER ───────────────────────────────────────────── */
@@ -2528,7 +2737,8 @@
       <div class="hero-text">
         <p class="hero-eyebrow">Cuina preparada amb ànima</p>
         <h1 class="hero-title">Cuina de mercat amb<br>el sabor <em>casolà de<br>sempre.</em></h1>
-        <p class="hero-lead">Receptes tradicionals elaborades cada dia amb ingredients de primera selecció, per a col·lectivitats, comerç i hostaleria.</p>
+        <p class="hero-lead">Receptes tradicionals elaborades cada dia amb ingredients de primera selecció, per a
+          col·lectivitats, comerç i hostaleria.</p>
         <a class="hero-cta" href="#que-fem">Descobreix la nostra cuina →</a>
       </div>
     </div>
@@ -2537,8 +2747,11 @@
       <div class="hero-features">
         <div class="hero-feat">
           <div class="hero-feat-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 22V11"/><path d="M12 16c0-4.5 4-7 7-8-1 4.5-3 8-7 8z"/><path d="M12 16c0-4.5-4-7-7-8 1 4.5 3 8 7 8z"/>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22V11" />
+              <path d="M12 16c0-4.5 4-7 7-8-1 4.5-3 8-7 8z" />
+              <path d="M12 16c0-4.5-4-7-7-8 1 4.5 3 8 7 8z" />
             </svg>
           </div>
           <div class="hero-feat-text">
@@ -2548,8 +2761,13 @@
         </div>
         <div class="hero-feat">
           <div class="hero-feat-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M6 16h12v3.5a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V16z"/><path d="M8.5 16V13c0-1.9 1.6-3.5 3.5-3.5s3.5 1.6 3.5 3.5v3"/><path d="M6.5 12.5a5.5 5.5 0 0 1 11 0"/><line x1="10" y1="16" x2="10" y2="19.5"/><line x1="14" y1="16" x2="14" y2="19.5"/>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 16h12v3.5a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V16z" />
+              <path d="M8.5 16V13c0-1.9 1.6-3.5 3.5-3.5s3.5 1.6 3.5 3.5v3" />
+              <path d="M6.5 12.5a5.5 5.5 0 0 1 11 0" />
+              <line x1="10" y1="16" x2="10" y2="19.5" />
+              <line x1="14" y1="16" x2="14" y2="19.5" />
             </svg>
           </div>
           <div class="hero-feat-text">
@@ -2559,8 +2777,10 @@
         </div>
         <div class="hero-feat">
           <div class="hero-feat-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 2L4 6v7c0 4.5 3.5 7.5 8 9 4.5-1.5 8-4.5 8-9V6L12 2z"/><path d="M9 12l2 2.5 4-4.5"/>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L4 6v7c0 4.5 3.5 7.5 8 9 4.5-1.5 8-4.5 8-9V6L12 2z" />
+              <path d="M9 12l2 2.5 4-4.5" />
             </svg>
           </div>
           <div class="hero-feat-text">
@@ -2570,8 +2790,12 @@
         </div>
         <div class="hero-feat">
           <div class="hero-feat-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
             </svg>
           </div>
           <div class="hero-feat-text">
@@ -2590,7 +2814,12 @@
       <!-- Left column -->
       <div class="quisom-left">
         <span class="quisom-badge">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V11"/><path d="M12 16c0-4.5 4-7 7-8-1 4.5-3 8-7 8z"/><path d="M12 16c0-4.5-4-7-7-8 1 4.5 3 8 7 8z"/></svg>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22V11" />
+            <path d="M12 16c0-4.5 4-7 7-8-1 4.5-3 8-7 8z" />
+            <path d="M12 16c0-4.5-4-7-7-8 1 4.5 3 8 7 8z" />
+          </svg>
           L'empresa
         </span>
         <h2 class="quisom-title">
@@ -2598,7 +2827,7 @@
         </h2>
         <p class="quisom-lead">
           Som un obrador industrial d'alta tecnologia que combina <strong>cuina casolana
-          professional</strong> i estàndards de seguretat alimentària. Més de 35 varietats
+            professional</strong> i estàndards de seguretat alimentària. Més de 35 varietats
           de plats de cinquena gamma, elaborats amb ingredients de primera selecció.
         </p>
         <div class="quisom-divider"></div>
@@ -2606,12 +2835,13 @@
           <div class="quisom-feature">
             <div class="quisom-feature-icon">
               <!-- Chef hat -->
-              <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M6 16h12v3.5a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V16z"/>
-                <path d="M8.5 16V13c0-1.9 1.6-3.5 3.5-3.5s3.5 1.6 3.5 3.5v3"/>
-                <path d="M6.5 12.5a5.5 5.5 0 0 1 11 0"/>
-                <line x1="10" y1="16" x2="10" y2="19.5"/>
-                <line x1="14" y1="16" x2="14" y2="19.5"/>
+              <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 16h12v3.5a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V16z" />
+                <path d="M8.5 16V13c0-1.9 1.6-3.5 3.5-3.5s3.5 1.6 3.5 3.5v3" />
+                <path d="M6.5 12.5a5.5 5.5 0 0 1 11 0" />
+                <line x1="10" y1="16" x2="10" y2="19.5" />
+                <line x1="14" y1="16" x2="14" y2="19.5" />
               </svg>
             </div>
             <div class="quisom-feature-text">
@@ -2622,9 +2852,10 @@
           <div class="quisom-feature">
             <div class="quisom-feature-icon">
               <!-- Shield + check -->
-              <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 2L4 6v7c0 4.5 3.5 7.5 8 9 4.5-1.5 8-4.5 8-9V6L12 2z"/>
-                <path d="M9 12l2 2.5 4-4.5"/>
+              <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2L4 6v7c0 4.5 3.5 7.5 8 9 4.5-1.5 8-4.5 8-9V6L12 2z" />
+                <path d="M9 12l2 2.5 4-4.5" />
               </svg>
             </div>
             <div class="quisom-feature-text">
@@ -2635,11 +2866,12 @@
           <div class="quisom-feature">
             <div class="quisom-feature-icon">
               <!-- Leaf sprout -->
-              <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 22V11"/>
-                <path d="M12 16c0-4.5 4-7 7-8-1 4.5-3 8-7 8z"/>
-                <path d="M12 16c0-4.5-4-7-7-8 1 4.5 3 8 7 8z"/>
-                <path d="M12 11c0-3 2-5 4.5-6-.5 3-1.5 6-4.5 6z"/>
+              <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22V11" />
+                <path d="M12 16c0-4.5 4-7 7-8-1 4.5-3 8-7 8z" />
+                <path d="M12 16c0-4.5-4-7-7-8 1 4.5 3 8 7 8z" />
+                <path d="M12 11c0-3 2-5 4.5-6-.5 3-1.5 6-4.5 6z" />
               </svg>
             </div>
             <div class="quisom-feature-text">
@@ -2660,13 +2892,14 @@
             <div class="stat-card-top">
               <div class="stat-icon-wrap">
                 <!-- Cooking pot -->
-                <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 3.5V5.5"/>
-                  <path d="M8.5 8Q12 5.5 15.5 8"/>
-                  <line x1="8" y1="8" x2="16" y2="8"/>
-                  <path d="M7 8h10l-1.3 11H8.3L7 8z"/>
-                  <path d="M7 12H5.2a1.3 1.3 0 0 0 0 2.5H7"/>
-                  <path d="M17 12h1.8a1.3 1.3 0 0 1 0 2.5H17"/>
+                <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 3.5V5.5" />
+                  <path d="M8.5 8Q12 5.5 15.5 8" />
+                  <line x1="8" y1="8" x2="16" y2="8" />
+                  <path d="M7 8h10l-1.3 11H8.3L7 8z" />
+                  <path d="M7 12H5.2a1.3 1.3 0 0 0 0 2.5H7" />
+                  <path d="M17 12h1.8a1.3 1.3 0 0 1 0 2.5H17" />
                 </svg>
               </div>
               <div class="stat-card-meta">
@@ -2685,12 +2918,13 @@
             <div class="stat-card-top">
               <div class="stat-icon-wrap">
                 <!-- Calendar -->
-                <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3" y="5" width="18" height="16" rx="2.5"/>
-                  <line x1="3" y1="10" x2="21" y2="10"/>
-                  <line x1="8" y1="3" x2="8" y2="7"/>
-                  <line x1="16" y1="3" x2="16" y2="7"/>
-                  <path d="M7 14h10M7 18h6"/>
+                <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="5" width="18" height="16" rx="2.5" />
+                  <line x1="3" y1="10" x2="21" y2="10" />
+                  <line x1="8" y1="3" x2="8" y2="7" />
+                  <line x1="16" y1="3" x2="16" y2="7" />
+                  <path d="M7 14h10M7 18h6" />
                 </svg>
               </div>
               <div class="stat-card-meta">
@@ -2709,10 +2943,11 @@
             <div class="stat-card-top">
               <div class="stat-icon-wrap">
                 <!-- Medal / rosette -->
-                <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="8.5" r="4.5"/>
-                  <circle cx="12" cy="8.5" r="2" stroke-dasharray="1.5 1.5"/>
-                  <path d="M8.5 12.5l-2 7h3.5l2-1.5 2 1.5H17.5l-2-7"/>
+                <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="8.5" r="4.5" />
+                  <circle cx="12" cy="8.5" r="2" stroke-dasharray="1.5 1.5" />
+                  <path d="M8.5 12.5l-2 7h3.5l2-1.5 2 1.5H17.5l-2-7" />
                 </svg>
               </div>
               <div class="stat-card-meta">
@@ -2731,12 +2966,13 @@
             <div class="stat-card-top">
               <div class="stat-icon-wrap">
                 <!-- Snowflake -->
-                <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="12" y1="2" x2="12" y2="22"/>
-                  <line x1="2" y1="12" x2="22" y2="12"/>
-                  <line x1="5.27" y1="5.27" x2="18.73" y2="18.73"/>
-                  <line x1="18.73" y1="5.27" x2="5.27" y2="18.73"/>
-                  <path d="M12 6l2-2m-2 2-2-2M12 18l2 2m-2-2-2 2M6 12l-2 2m2-2-2-2M18 12l2 2m-2-2 2-2"/>
+                <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="12" y1="2" x2="12" y2="22" />
+                  <line x1="2" y1="12" x2="22" y2="12" />
+                  <line x1="5.27" y1="5.27" x2="18.73" y2="18.73" />
+                  <line x1="18.73" y1="5.27" x2="5.27" y2="18.73" />
+                  <path d="M12 6l2-2m-2 2-2-2M12 18l2 2m-2-2-2 2M6 12l-2 2m2-2-2-2M18 12l2 2m-2-2 2-2" />
                 </svg>
               </div>
               <div class="stat-card-meta">
@@ -2756,18 +2992,24 @@
         <div class="quisom-stamp">
           <svg viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
-              <path id="stampCircle" d="M 55,55 m -38,0 a 38,38 0 1,1 76,0 a 38,38 0 1,1 -76,0"/>
+              <path id="stampCircle" d="M 55,55 m -38,0 a 38,38 0 1,1 76,0 a 38,38 0 1,1 -76,0" />
             </defs>
-            <circle cx="55" cy="55" r="50" fill="white" stroke="#7ABA78" stroke-width="1.5"/>
-            <text font-family="Sora, sans-serif" font-size="8.5" font-weight="600" letter-spacing="2.5" fill="#5a9e5c" text-anchor="middle">
-              <textPath href="#stampCircle" startOffset="0%">CUINEM PER A TU COM A CASA · CUINEM PER A TU COM A CASA ·</textPath>
+            <circle cx="55" cy="55" r="50" fill="white" stroke="#7ABA78" stroke-width="1.5" />
+            <text font-family="Sora, sans-serif" font-size="8.5" font-weight="600" letter-spacing="2.5" fill="#5a9e5c"
+              text-anchor="middle">
+              <textPath href="#stampCircle" startOffset="0%">CUINEM PER A TU COM A CASA · CUINEM PER A TU COM A CASA ·
+              </textPath>
             </text>
           </svg>
           <div class="quisom-stamp-center">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5a9e5c" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 3.5V5.5"/><path d="M8.5 8Q12 5.5 15.5 8"/><line x1="8" y1="8" x2="16" y2="8"/>
-              <path d="M7 8h10l-1.3 11H8.3L7 8z"/>
-              <path d="M7 12H5.2a1.3 1.3 0 0 0 0 2.5H7"/><path d="M17 12h1.8a1.3 1.3 0 0 1 0 2.5H17"/>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5a9e5c" stroke-width="1.6"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3.5V5.5" />
+              <path d="M8.5 8Q12 5.5 15.5 8" />
+              <line x1="8" y1="8" x2="16" y2="8" />
+              <path d="M7 8h10l-1.3 11H8.3L7 8z" />
+              <path d="M7 12H5.2a1.3 1.3 0 0 0 0 2.5H7" />
+              <path d="M17 12h1.8a1.3 1.3 0 0 1 0 2.5H17" />
             </svg>
           </div>
         </div>
@@ -2789,12 +3031,14 @@
         </span>
         <h2 class="serveis-title" id="serveis-left-title">Col·lectivitats i menjadors</h2>
         <div class="serveis-divider"></div>
-        <p class="serveis-desc" id="serveis-left-desc">Menús diaris per a escoles, hospitals i menjadors corporatius. Qualitat casolana a gran escala.</p>
+        <p class="serveis-desc" id="serveis-left-desc">Menús diaris per a escoles, hospitals i menjadors corporatius.
+          Qualitat casolana a gran escala.</p>
         <div class="serveis-feature">
           <div class="serveis-feature-icon" id="serveis-feat-icon"></div>
           <div class="serveis-feature-text">
             <strong id="serveis-feat-title">Solucions adaptades</strong>
-            <span id="serveis-feat-desc">Ens adaptem a les necessitats de cada col·lectivitat amb flexibilitat i compromís.</span>
+            <span id="serveis-feat-desc">Ens adaptem a les necessitats de cada col·lectivitat amb flexibilitat i
+              compromís.</span>
           </div>
         </div>
         <a class="serveis-cta" href="#contacte">Més informació →</a>
@@ -2809,7 +3053,8 @@
           <div class="serveis-main-overlay">
             <span class="serveis-main-num" id="serveis-main-num">01</span>
             <h3 class="serveis-main-title" id="serveis-main-title">Col·lectivitats</h3>
-            <p class="serveis-main-desc" id="serveis-main-desc">Cuina casolana, equilibrada i segura per a grans col·lectius cada dia.</p>
+            <p class="serveis-main-desc" id="serveis-main-desc">Cuina casolana, equilibrada i segura per a grans
+              col·lectius cada dia.</p>
             <a class="serveis-main-link" href="#contacte">
               <span class="serveis-main-link-circle">→</span>
               VEURE SOLUCIONS
@@ -2868,8 +3113,12 @@
       <div class="serveis-bar">
         <div class="serveis-bar-main">
           <div class="serveis-bar-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 22V11"/><path d="M12 16c0-4.5 4-7 7-8-1 4.5-3 8-7 8z"/><path d="M12 16c0-4.5-4-7-7-8 1 4.5 3 8 7 8z"/><path d="M12 11c0-3 2-5 4.5-6-.5 3-1.5 6-4.5 6z"/>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22V11" />
+              <path d="M12 16c0-4.5 4-7 7-8-1 4.5-3 8-7 8z" />
+              <path d="M12 16c0-4.5-4-7-7-8 1 4.5 3 8 7 8z" />
+              <path d="M12 11c0-3 2-5 4.5-6-.5 3-1.5 6-4.5 6z" />
             </svg>
           </div>
           <div>
@@ -2879,20 +3128,29 @@
         </div>
         <div class="serveis-bar-feats">
           <div class="serveis-bar-feat">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 22V11"/><path d="M12 16c0-4.5 4-7 7-8-1 4.5-3 8-7 8z"/><path d="M12 16c0-4.5-4-7-7-8 1 4.5 3 8 7 8z"/>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22V11" />
+              <path d="M12 16c0-4.5 4-7 7-8-1 4.5-3 8-7 8z" />
+              <path d="M12 16c0-4.5-4-7-7-8 1 4.5 3 8 7 8z" />
             </svg>
             <span>Ingredients<br>de qualitat</span>
           </div>
           <div class="serveis-bar-feat">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 2L4 6v7c0 4.5 3.5 7.5 8 9 4.5-1.5 8-4.5 8-9V6L12 2z"/><path d="M9 12l2 2.5 4-4.5"/>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L4 6v7c0 4.5 3.5 7.5 8 9 4.5-1.5 8-4.5 8-9V6L12 2z" />
+              <path d="M9 12l2 2.5 4-4.5" />
             </svg>
             <span>Seguretat<br>alimentària</span>
           </div>
           <div class="serveis-bar-feat">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
             </svg>
             <span>Servei<br>personalitzat</span>
           </div>
@@ -2921,29 +3179,56 @@
 
         <div class="linia-top">
           <div class="linia-main-icon linia-main-icon-verd">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="8" width="13" height="9" rx="1"/><path d="M15 11h4l3 3v3h-7"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+              stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="8" width="13" height="9" rx="1" />
+              <path d="M15 11h4l3 3v3h-7" />
+              <circle cx="6" cy="18" r="2" />
+              <circle cx="18" cy="18" r="2" />
+            </svg>
           </div>
           <span class="linia-tag linia-tag-verd">Producció i distribució</span>
           <h3 class="linia-name">Layaya Alimentació</h3>
-          <p class="linia-desc">Elaboració professional per a hostaleria, retail, col·lectivitats i distribuïdors. Cinquena gamma amb estàndards d'obrador.</p>
+          <p class="linia-desc">Elaboració professional per a hostaleria, retail, col·lectivitats i distribuïdors.
+            Cinquena gamma amb estàndards d'obrador.</p>
         </div>
 
         <div class="linia-bottom">
           <div class="linia-feats">
             <div class="linia-feat">
-              <svg class="linia-feat-icon-verd" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16h12v3.5a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V16z"/><path d="M8.5 16V13c0-1.9 1.6-3.5 3.5-3.5s3.5 1.6 3.5 3.5v3"/><path d="M6.5 12.5a5.5 5.5 0 0 1 11 0"/></svg>
+              <svg class="linia-feat-icon-verd" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 16h12v3.5a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V16z" />
+                <path d="M8.5 16V13c0-1.9 1.6-3.5 3.5-3.5s3.5 1.6 3.5 3.5v3" />
+                <path d="M6.5 12.5a5.5 5.5 0 0 1 11 0" />
+              </svg>
               <span>Obrador propi</span>
             </div>
             <div class="linia-feat">
-              <svg class="linia-feat-icon-verd" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18"/><path d="M12 7v14"/><path d="m7 7-4 10h8L7 7z"/><path d="m17 7-4 10h8l-4-10z"/></svg>
+              <svg class="linia-feat-icon-verd" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 7h18" />
+                <path d="M12 7v14" />
+                <path d="m7 7-4 10h8L7 7z" />
+                <path d="m17 7-4 10h8l-4-10z" />
+              </svg>
               <span>Producció a escala</span>
             </div>
             <div class="linia-feat">
-              <svg class="linia-feat-icon-verd" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+              <svg class="linia-feat-icon-verd" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="8" r="6" />
+                <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" />
+              </svg>
               <span>Cinquena gamma</span>
             </div>
             <div class="linia-feat">
-              <svg class="linia-feat-icon-verd" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01M16 6h.01M12 6h.01M12 10h.01M12 14h.01M16 10h.01M16 14h.01M8 10h.01M8 14h.01"/></svg>
+              <svg class="linia-feat-icon-verd" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="16" height="20" x="4" y="2" rx="2" />
+                <path d="M9 22v-4h6v4" />
+                <path d="M8 6h.01M16 6h.01M12 6h.01M12 10h.01M12 14h.01M16 10h.01M16 14h.01M8 10h.01M8 14h.01" />
+              </svg>
               <span>Solucions per a empreses</span>
             </div>
           </div>
@@ -2957,7 +3242,12 @@
 
         <div class="linia-top">
           <div class="linia-main-icon linia-main-icon-daurat">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+              <line x1="3" y1="6" x2="21" y2="6" />
+              <path d="M16 10a4 4 0 0 1-8 0" />
+            </svg>
           </div>
           <span class="linia-tag linia-tag-daurat">Venda directa</span>
           <h3 class="linia-name">Layaya Botigues</h3>
@@ -2967,19 +3257,39 @@
         <div class="linia-bottom">
           <div class="linia-feats">
             <div class="linia-feat">
-              <svg class="linia-feat-icon-daurat" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+              <svg class="linia-feat-icon-daurat" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+                <line x1="3" y1="6" x2="21" y2="6" />
+                <path d="M16 10a4 4 0 0 1-8 0" />
+              </svg>
               <span>Plats per emportar</span>
             </div>
             <div class="linia-feat">
-              <svg class="linia-feat-icon-daurat" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20"/><path d="M6 8v8a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V8"/><path d="M8 8V6a4 4 0 0 1 8 0v2"/></svg>
+              <svg class="linia-feat-icon-daurat" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 12h20" />
+                <path d="M6 8v8a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V8" />
+                <path d="M8 8V6a4 4 0 0 1 8 0v2" />
+              </svg>
               <span>Cuina casolana</span>
             </div>
             <div class="linia-feat">
-              <svg class="linia-feat-icon-daurat" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+              <svg class="linia-feat-icon-daurat" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="8" cy="21" r="1" />
+                <circle cx="19" cy="21" r="1" />
+                <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
+              </svg>
               <span>Venda directa</span>
             </div>
             <div class="linia-feat">
-              <svg class="linia-feat-icon-daurat" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+              <svg class="linia-feat-icon-daurat" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path
+                  d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
               <span>Proximitat</span>
             </div>
           </div>
@@ -3070,8 +3380,43 @@
       </div>
 
       <div class="co-carousel__nav-buttons">
-        <div class="co-carousel__nav-button prev"><span>Anterior</span></div>
-        <div class="co-carousel__nav-button next"><span>Següent</span></div>
+        <div class="co-carousel__nav-button prev">
+          <div class="co-carousel__nav-circle">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+          </div>
+          <span>Anterior</span>
+        </div>
+        <div class="co-carousel__nav-button next">
+          <div class="co-carousel__nav-circle">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+          </div>
+          <span>Següent</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="productes-footer">
+      <div class="productes-download-row">
+        <a class="productes-download" href="#">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Descarrega el catàleg
+        </a>
+      </div>
+      <div class="productes-badges">
+        <div class="productes-badge">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V11"/><path d="M12 16c0-4.5 4-7 7-8-1 4.5-3 8-7 8z"/><path d="M12 16c0-4.5-4-7-7-8 1 4.5 3 8 7 8z"/></svg>
+          <span>Ingredients de primera selecció</span>
+        </div>
+        <div class="productes-badges-sep"></div>
+        <div class="productes-badge">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2.5 4-4.5"/></svg>
+          <span>Sense conservants afegits</span>
+        </div>
+        <div class="productes-badges-sep"></div>
+        <div class="productes-badge">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16h12v3.5a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V16z"/><path d="M8.5 16V13c0-1.9 1.6-3.5 3.5-3.5s3.5 1.6 3.5 3.5v3"/><path d="M6.5 12.5a5.5 5.5 0 0 1 11 0"/></svg>
+          <span>Elaboració pròpia</span>
+        </div>
       </div>
     </div>
 
@@ -3103,10 +3448,15 @@
         <article class="qualitat-card">
           <div class="qualitat-card-body">
             <div class="qualitat-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4v6c0 4.5-3.5 7.5-8 8-4.5-.5-8-3.5-8-8V7l8-4z"/><path d="M9 12l2 2 4-4"/></svg>
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3l8 4v6c0 4.5-3.5 7.5-8 8-4.5-.5-8-3.5-8-8V7l8-4z" />
+                <path d="M9 12l2 2 4-4" />
+              </svg>
             </div>
             <h3 class="qualitat-name">Selecció de matèries primeres</h3>
-            <p class="qualitat-desc">Proveïdors de proximitat verificats. Recepció controlada, traçabilitat completa.</p>
+            <p class="qualitat-desc">Proveïdors de proximitat verificats. Recepció controlada, traçabilitat completa.
+            </p>
           </div>
           <div class="qualitat-card-img">
             <img src="img/fabada.jpg" alt="Selecció de matèries primeres">
@@ -3117,7 +3467,10 @@
         <article class="qualitat-card">
           <div class="qualitat-card-body">
             <div class="qualitat-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h2l3-9 4 18 3-12 2 6h4"/></svg>
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 12h2l3-9 4 18 3-12 2 6h4" />
+              </svg>
             </div>
             <h3 class="qualitat-name">Rigor en la preparació</h3>
             <p class="qualitat-desc">Receptes estandarditzades, pesatge precís, temps de cocció reproduïbles.</p>
@@ -3131,10 +3484,17 @@
         <article class="qualitat-card">
           <div class="qualitat-card-body">
             <div class="qualitat-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 14c0-3 2-5 6-5s6 2 6 5"/><path d="M9 14v3M15 14v3M12 14v3"/><path d="M5 17h14"/><path d="M9 9V5M12 9V3M15 9V5"/></svg>
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 14c0-3 2-5 6-5s6 2 6 5" />
+                <path d="M9 14v3M15 14v3M12 14v3" />
+                <path d="M5 17h14" />
+                <path d="M9 9V5M12 9V3M15 9V5" />
+              </svg>
             </div>
             <h3 class="qualitat-name">Cuina d'avantguarda</h3>
-            <p class="qualitat-desc">Cocció a baixa temperatura, fons elaborats al mateix obrador, salses fetes en directe.</p>
+            <p class="qualitat-desc">Cocció a baixa temperatura, fons elaborats al mateix obrador, salses fetes en
+              directe.</p>
           </div>
           <div class="qualitat-card-img">
             <img src="img/arros_muntanya.jpg" alt="Cuina d'avantguarda">
@@ -3145,10 +3505,16 @@
         <article class="qualitat-card">
           <div class="qualitat-card-body">
             <div class="qualitat-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="7" width="16" height="13" rx="2"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/><path d="M8 12h8"/></svg>
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect x="4" y="7" width="16" height="13" rx="2" />
+                <path d="M8 7V5a4 4 0 0 1 8 0v2" />
+                <path d="M8 12h8" />
+              </svg>
             </div>
             <h3 class="qualitat-name">Envasat d'alta protecció</h3>
-            <p class="qualitat-desc">Atmosfera protectora i envasos pensats per a 18 dies de vida útil sense conservants.</p>
+            <p class="qualitat-desc">Atmosfera protectora i envasos pensats per a 18 dies de vida útil sense
+              conservants.</p>
           </div>
           <div class="qualitat-card-img">
             <img src="img/pastis_tonyina.jpg" alt="Envasat d'alta protecció">
@@ -3159,10 +3525,16 @@
         <article class="qualitat-card">
           <div class="qualitat-card-body">
             <div class="qualitat-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6v3l3 4v9a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-9l3-4z"/><path d="M9 12h6"/><path d="M10.5 16h3"/></svg>
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 3h6v3l3 4v9a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-9l3-4z" />
+                <path d="M9 12h6" />
+                <path d="M10.5 16h3" />
+              </svg>
             </div>
             <h3 class="qualitat-name">Laboratori de control</h3>
-            <p class="qualitat-desc">Anàlisis microbiològiques periòdiques. Auditories internes i certificats sanitaris.</p>
+            <p class="qualitat-desc">Anàlisis microbiològiques periòdiques. Auditories internes i certificats sanitaris.
+            </p>
           </div>
           <div class="qualitat-card-img">
             <img src="img/risotto_bolets.jpg" alt="Laboratori de control">
@@ -3173,10 +3545,17 @@
         <article class="qualitat-card">
           <div class="qualitat-card-body">
             <div class="qualitat-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="8" width="13" height="9" rx="1"/><path d="M15 11h4l3 3v3h-7"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg>
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="8" width="13" height="9" rx="1" />
+                <path d="M15 11h4l3 3v3h-7" />
+                <circle cx="6" cy="18" r="2" />
+                <circle cx="18" cy="18" r="2" />
+              </svg>
             </div>
             <h3 class="qualitat-name">Logística i cadena de fred</h3>
-            <p class="qualitat-desc">Transport refrigerat 2°C–4°C. Distribució estable per garantir el sabor d'origen.</p>
+            <p class="qualitat-desc">Transport refrigerat 2°C–4°C. Distribució estable per garantir el sabor d'origen.
+            </p>
           </div>
           <div class="qualitat-card-img">
             <img src="img/fabada.jpg" alt="Logística i cadena de fred">
@@ -3189,9 +3568,14 @@
       <!-- Barra inferior -->
       <div class="qualitat-bar">
         <div class="qualitat-bar-left">
-          <svg class="qualitat-bar-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2.5 4-4.5"/></svg>
+          <svg class="qualitat-bar-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            <path d="M9 12l2 2.5 4-4.5" />
+          </svg>
           <div>
-            <div class="qualitat-bar-main">Compromís amb la qualitat, la seguretat alimentària i la millora contínua.</div>
+            <div class="qualitat-bar-main">Compromís amb la qualitat, la seguretat alimentària i la millora contínua.
+            </div>
             <div class="qualitat-bar-sub">Així cuidem cada detall perquè tu nomès hagis d'oferir el millor.</div>
           </div>
         </div>
@@ -3224,21 +3608,34 @@
         <div class="contacte-cards">
           <a class="contacte-card" href="https://www.instagram.com/layaya.alimentacion/" target="_blank" rel="noopener">
             <div class="contacte-card-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+              </svg>
             </div>
             <span class="contacte-card-label">Instagram</span>
             <span class="contacte-card-val">@layaya.alimentacion</span>
           </a>
           <a class="contacte-card" href="mailto:hola@layaya.cat">
             <div class="contacte-card-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="16" x="2" y="4" rx="2" />
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+              </svg>
             </div>
             <span class="contacte-card-label">Correu</span>
             <span class="contacte-card-val">hola@layaya.cat</span>
           </a>
           <div class="contacte-card">
             <div class="contacte-card-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+                stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
+              </svg>
             </div>
             <span class="contacte-card-label">Horari</span>
             <span class="contacte-card-val">Dilluns a divendres<br>9h–18h</span>
@@ -3256,7 +3653,10 @@
       <div class="contacte-form-wrap">
         <div class="form-header">
           <div class="form-header-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+            </svg>
           </div>
           <div>
             <div class="form-header-title">Envia'ns la teva consulta</div>
@@ -3267,28 +3667,53 @@
         <form class="contacte-form" id="contacte-form" novalidate>
           <div class="form-row">
             <div class="form-field">
-              <span class="form-field-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+              <span class="form-field-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                  <circle cx="12" cy="7" r="4" />
+                </svg></span>
               <input type="text" id="f-name" name="name" placeholder="Nom i cognoms" required>
             </div>
             <div class="form-field">
-              <span class="form-field-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v8h4"/><path d="M18 9h2a2 2 0 0 1 2 2v11h-4"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg></span>
+              <span class="form-field-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" />
+                  <path d="M6 12H4a2 2 0 0 0-2 2v8h4" />
+                  <path d="M18 9h2a2 2 0 0 1 2 2v11h-4" />
+                  <path d="M10 6h4" />
+                  <path d="M10 10h4" />
+                  <path d="M10 14h4" />
+                  <path d="M10 18h4" />
+                </svg></span>
               <input type="text" id="f-company" name="company" placeholder="Empresa">
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-field">
-              <span class="form-field-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span>
+              <span class="form-field-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                  <rect width="20" height="16" x="2" y="4" rx="2" />
+                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                </svg></span>
               <input type="email" id="f-email" name="email" placeholder="Correu electrònic" required>
             </div>
             <div class="form-field">
-              <span class="form-field-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.11 12 19.79 19.79 0 0 1 1.04 3.4 2 2 0 0 1 3 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+              <span class="form-field-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                  <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.11 12 19.79 19.79 0 0 1 1.04 3.4 2 2 0 0 1 3 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                </svg></span>
               <input type="tel" id="f-phone" name="phone" placeholder="Telèfon">
             </div>
           </div>
 
           <div class="form-field">
-            <span class="form-field-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"/><path d="M7 7h.01"/></svg></span>
+            <span class="form-field-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z" />
+                <path d="M7 7h.01" />
+              </svg></span>
             <select id="f-type" name="type">
               <option value="">Tipus de consulta</option>
               <option value="comercial">Informació comercial</option>
@@ -3297,11 +3722,17 @@
               <option value="distribucio">Distribució</option>
               <option value="altres">Altres</option>
             </select>
-            <span class="form-field-chevron"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+            <span class="form-field-chevron"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9" />
+              </svg></span>
           </div>
 
           <div class="form-field form-field--textarea">
-            <span class="form-field-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+            <span class="form-field-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+              </svg></span>
             <textarea id="f-message" name="message" rows="4" placeholder="Missatge" required></textarea>
           </div>
 
@@ -3311,8 +3742,13 @@
           </button>
 
           <div class="form-footer">
-            <span class="form-footer-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2.5 4-4.5"/></svg></span>
-            <span class="form-footer-text">Sense compromís. T'ajudarem a valorar la millor opció segons el teu volum i necessitat.</span>
+            <span class="form-footer-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                <path d="M9 12l2 2.5 4-4.5" />
+              </svg></span>
+            <span class="form-footer-text">Sense compromís. T'ajudarem a valorar la millor opció segons el teu volum i
+              necessitat.</span>
           </div>
         </form>
       </div>
@@ -3414,10 +3850,10 @@
       var SVG_WRAP = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">';
 
       var ICONS = {
-        people:  SVG_WRAP + '<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
+        people: SVG_WRAP + '<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
         chefhat: SVG_WRAP + '<path d="M6 16h12v3.5a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V16z"/><path d="M8.5 16V13c0-1.9 1.6-3.5 3.5-3.5s3.5 1.6 3.5 3.5v3"/><path d="M6.5 12.5a5.5 5.5 0 0 1 11 0"/><line x1="10" y1="16" x2="10" y2="19.5"/><line x1="14" y1="16" x2="14" y2="19.5"/></svg>',
-        basket:  SVG_WRAP + '<path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>',
-        store:   SVG_WRAP + '<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>',
+        basket: SVG_WRAP + '<path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>',
+        store: SVG_WRAP + '<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>',
       };
 
       var PANELS = [
@@ -3452,16 +3888,16 @@
       ];
 
       var activeIdx = 0;
-      var mainImg    = document.getElementById('serveis-main-img');
-      var mainNum    = document.getElementById('serveis-main-num');
-      var mainTitle  = document.getElementById('serveis-main-title');
-      var mainDesc   = document.getElementById('serveis-main-desc');
-      var leftTitle  = document.getElementById('serveis-left-title');
-      var leftDesc   = document.getElementById('serveis-left-desc');
-      var featIcon   = document.getElementById('serveis-feat-icon');
-      var featTitle  = document.getElementById('serveis-feat-title');
-      var featDesc   = document.getElementById('serveis-feat-desc');
-      var sideCards  = document.querySelectorAll('.serveis-side-card');
+      var mainImg = document.getElementById('serveis-main-img');
+      var mainNum = document.getElementById('serveis-main-num');
+      var mainTitle = document.getElementById('serveis-main-title');
+      var mainDesc = document.getElementById('serveis-main-desc');
+      var leftTitle = document.getElementById('serveis-left-title');
+      var leftDesc = document.getElementById('serveis-left-desc');
+      var featIcon = document.getElementById('serveis-feat-icon');
+      var featTitle = document.getElementById('serveis-feat-title');
+      var featDesc = document.getElementById('serveis-feat-desc');
+      var sideCards = document.querySelectorAll('.serveis-side-card');
 
       if (!mainImg || !sideCards.length) return;
 
