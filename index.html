@@ -1136,7 +1136,7 @@
       justify-content: center;
     }
 
-    .nav-links li {
+    .nav-links li:not(.nav-cursor) {
       position: relative;
       z-index: 10;
       list-style: none;
@@ -1809,7 +1809,9 @@
       transition: background 0.25s ease;
     }
 
-    .productes-download:hover { background: var(--green); }
+    .productes-download:hover {
+      background: var(--green);
+    }
 
     .productes-badges {
       display: flex;
@@ -1824,7 +1826,9 @@
       color: rgba(255, 255, 255, 0.75);
     }
 
-    .productes-badge svg { flex-shrink: 0; }
+    .productes-badge svg {
+      flex-shrink: 0;
+    }
 
     .productes-badge span {
       font-family: 'Sora', sans-serif;
@@ -1942,26 +1946,54 @@
     }
 
     @media (max-width: 900px) {
-      .co-carousel { width: 70%; }
-      .co-carousel__nav-buttons { padding: 0 calc(50% - 280px); }
+      .co-carousel {
+        width: 70%;
+      }
+
+      .co-carousel__nav-buttons {
+        padding: 0 calc(50% - 280px);
+      }
     }
 
     @media (max-width: 640px) {
-      .co-carousel__nav-buttons { padding: 0 1.5rem; }
-      .productes-download-row { padding: 0; }
+      .co-carousel__nav-buttons {
+        padding: 0 1.5rem;
+      }
+
+      .productes-download-row {
+        padding: 0;
+      }
+
       .productes-badges {
         flex-direction: column;
         gap: 1.2rem;
         padding: 0 1.5rem;
       }
-      .productes-badges-sep { width: 40px; height: 1px; }
+
+      .productes-badges-sep {
+        width: 40px;
+        height: 1px;
+      }
     }
 
     @media (max-width: 540px) {
-      .co-carousel { width: 86%; height: 440px; }
-      .co-card { height: 440px; width: 280px; }
-      .co-card__media { top: -80px; }
-      .co-card__media-shadow { top: 70px; }
+      .co-carousel {
+        width: 86%;
+        height: 440px;
+      }
+
+      .co-card {
+        height: 440px;
+        width: 280px;
+      }
+
+      .co-card__media {
+        top: -80px;
+      }
+
+      .co-card__media-shadow {
+        top: 70px;
+      }
     }
 
     /* ─── QUALITAT ─────────────────────────────────────────── */
@@ -2704,6 +2736,7 @@
 
     /* ─── Reduced motion: respecta preferències sistema ───── */
     @media (prefers-reduced-motion: reduce) {
+
       *,
       *::before,
       *::after {
@@ -2726,7 +2759,8 @@
           <img src="img/logo.png" alt="Layaya">
         </a>
         <span class="nav-brand-text">Cuina casolana</span>
-        <button class="nav-hamburger" id="nav-hamburger" aria-label="Obrir menú" aria-expanded="false" aria-controls="site-nav">
+        <button class="nav-hamburger" id="nav-hamburger" aria-label="Obrir menú" aria-expanded="false"
+          aria-controls="site-nav">
           <span></span><span></span><span></span>
         </button>
       </div>
@@ -2751,114 +2785,40 @@
   </nav>
 
   <main id="contingut">
-  <!-- ─── HERO ─────────────────────────────────────────────── -->
-  <section class="hero-section" id="hero">
-    <img class="hero-bg" src="img/hero_background.png" alt="">
-    <div class="hero-bg-mask"></div>
+    <!-- ─── HERO ─────────────────────────────────────────────── -->
+    <section class="hero-section" id="hero">
+      <img class="hero-bg" src="img/hero_background.png" alt="">
+      <div class="hero-bg-mask"></div>
 
-    <div class="hero-inner">
-      <div class="hero-text">
-        <p class="hero-eyebrow">Cuina preparada amb ànima</p>
-        <h1 class="hero-title">Cuina de mercat amb<br>el sabor <em>casolà de<br>sempre.</em></h1>
-        <p class="hero-lead">Receptes tradicionals elaborades cada dia amb ingredients de primera selecció, per a
-          col·lectivitats, comerç i hostaleria.</p>
-        <a class="hero-cta" href="#que-fem">Descobreix la nostra cuina →</a>
-      </div>
-    </div>
-
-    <div class="hero-features-wrap">
-      <div class="hero-features">
-        <div class="hero-feat">
-          <div class="hero-feat-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
-              stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 22V11" />
-              <path d="M12 16c0-4.5 4-7 7-8-1 4.5-3 8-7 8z" />
-              <path d="M12 16c0-4.5-4-7-7-8 1 4.5 3 8 7 8z" />
-            </svg>
-          </div>
-          <div class="hero-feat-text">
-            <strong>Ingredients de qualitat</strong>
-            <span>Matèries primeres fresques i seleccionades.</span>
-          </div>
-        </div>
-        <div class="hero-feat">
-          <div class="hero-feat-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
-              stroke-linecap="round" stroke-linejoin="round">
-              <path d="M6 16h12v3.5a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V16z" />
-              <path d="M8.5 16V13c0-1.9 1.6-3.5 3.5-3.5s3.5 1.6 3.5 3.5v3" />
-              <path d="M6.5 12.5a5.5 5.5 0 0 1 11 0" />
-              <line x1="10" y1="16" x2="10" y2="19.5" />
-              <line x1="14" y1="16" x2="14" y2="19.5" />
-            </svg>
-          </div>
-          <div class="hero-feat-text">
-            <strong>Receptes casolanes</strong>
-            <span>Elaboració diària amb receptes tradicionals.</span>
-          </div>
-        </div>
-        <div class="hero-feat">
-          <div class="hero-feat-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
-              stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 2L4 6v7c0 4.5 3.5 7.5 8 9 4.5-1.5 8-4.5 8-9V6L12 2z" />
-              <path d="M9 12l2 2.5 4-4.5" />
-            </svg>
-          </div>
-          <div class="hero-feat-text">
-            <strong>Seguretat alimentària</strong>
-            <span>Processos controlats i traçabilitat en tota la cadena.</span>
-          </div>
-        </div>
-        <div class="hero-feat">
-          <div class="hero-feat-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
-              stroke-linecap="round" stroke-linejoin="round">
-              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-              <circle cx="9" cy="7" r="4" />
-              <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-            </svg>
-          </div>
-          <div class="hero-feat-text">
-            <strong>Servei personalitzat</strong>
-            <span>Solucions adaptades a cada client i necessitat.</span>
-          </div>
+      <div class="hero-inner">
+        <div class="hero-text">
+          <p class="hero-eyebrow">Cuina preparada amb ànima</p>
+          <h1 class="hero-title">Cuina de mercat amb<br>el sabor <em>casolà de<br>sempre.</em></h1>
+          <p class="hero-lead">Receptes tradicionals elaborades cada dia amb ingredients de primera selecció, per a
+            col·lectivitats, comerç i hostaleria.</p>
+          <a class="hero-cta" href="#que-fem">Descobreix la nostra cuina →</a>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- ─── QUI SOM — reaprofita bg + radial gradients ─────── -->
-  <section class="seccio-quisom" id="qui-som">
-    <div class="quisom-inner">
-
-      <!-- Left column -->
-      <div class="quisom-left">
-        <span class="quisom-badge">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 22V11" />
-            <path d="M12 16c0-4.5 4-7 7-8-1 4.5-3 8-7 8z" />
-            <path d="M12 16c0-4.5-4-7-7-8 1 4.5 3 8 7 8z" />
-          </svg>
-          L'empresa
-        </span>
-        <h2 class="quisom-title">
-          Una empresa alimentària<br>nascuda de la<br><em>cuina de sempre.</em>
-        </h2>
-        <p class="quisom-lead">
-          Som un obrador industrial d'alta tecnologia que combina <strong>cuina casolana
-            professional</strong> i estàndards de seguretat alimentària. Més de 35 varietats
-          de plats de cinquena gamma, elaborats amb ingredients de primera selecció.
-        </p>
-        <div class="quisom-divider"></div>
-        <div class="quisom-features">
-          <div class="quisom-feature">
-            <div class="quisom-feature-icon">
-              <!-- Chef hat -->
-              <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"
+      <div class="hero-features-wrap">
+        <div class="hero-features">
+          <div class="hero-feat">
+            <div class="hero-feat-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22V11" />
+                <path d="M12 16c0-4.5 4-7 7-8-1 4.5-3 8-7 8z" />
+                <path d="M12 16c0-4.5-4-7-7-8 1 4.5 3 8 7 8z" />
+              </svg>
+            </div>
+            <div class="hero-feat-text">
+              <strong>Ingredients de qualitat</strong>
+              <span>Matèries primeres fresques i seleccionades.</span>
+            </div>
+          </div>
+          <div class="hero-feat">
+            <div class="hero-feat-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
                 stroke-linecap="round" stroke-linejoin="round">
                 <path d="M6 16h12v3.5a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V16z" />
                 <path d="M8.5 16V13c0-1.9 1.6-3.5 3.5-3.5s3.5 1.6 3.5 3.5v3" />
@@ -2867,29 +2827,351 @@
                 <line x1="14" y1="16" x2="14" y2="19.5" />
               </svg>
             </div>
-            <div class="quisom-feature-text">
-              <strong>Tradició que inspira</strong>
-              <span>Receptes de sempre elaborades amb el saber fer de la cuina casolana.</span>
+            <div class="hero-feat-text">
+              <strong>Receptes casolanes</strong>
+              <span>Elaboració diària amb receptes tradicionals.</span>
             </div>
           </div>
-          <div class="quisom-feature">
-            <div class="quisom-feature-icon">
-              <!-- Shield + check -->
-              <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"
+          <div class="hero-feat">
+            <div class="hero-feat-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
                 stroke-linecap="round" stroke-linejoin="round">
                 <path d="M12 2L4 6v7c0 4.5 3.5 7.5 8 9 4.5-1.5 8-4.5 8-9V6L12 2z" />
                 <path d="M9 12l2 2.5 4-4.5" />
               </svg>
             </div>
-            <div class="quisom-feature-text">
-              <strong>Qualitat i seguretat</strong>
-              <span>Processos certificats i ingredients de primera selecció.</span>
+            <div class="hero-feat-text">
+              <strong>Seguretat alimentària</strong>
+              <span>Processos controlats i traçabilitat en tota la cadena.</span>
             </div>
           </div>
-          <div class="quisom-feature">
-            <div class="quisom-feature-icon">
-              <!-- Leaf sprout -->
-              <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"
+          <div class="hero-feat">
+            <div class="hero-feat-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+              </svg>
+            </div>
+            <div class="hero-feat-text">
+              <strong>Servei personalitzat</strong>
+              <span>Solucions adaptades a cada client i necessitat.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── QUI SOM — reaprofita bg + radial gradients ─────── -->
+    <section class="seccio-quisom" id="qui-som">
+      <div class="quisom-inner">
+
+        <!-- Left column -->
+        <div class="quisom-left">
+          <span class="quisom-badge">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22V11" />
+              <path d="M12 16c0-4.5 4-7 7-8-1 4.5-3 8-7 8z" />
+              <path d="M12 16c0-4.5-4-7-7-8 1 4.5 3 8 7 8z" />
+            </svg>
+            L'empresa
+          </span>
+          <h2 class="quisom-title">
+            Una empresa alimentària<br>nascuda de la<br><em>cuina de sempre.</em>
+          </h2>
+          <p class="quisom-lead">
+            Som un obrador industrial d'alta tecnologia que combina <strong>cuina casolana
+              professional</strong> i estàndards de seguretat alimentària. Més de 35 varietats
+            de plats de cinquena gamma, elaborats amb ingredients de primera selecció.
+          </p>
+          <div class="quisom-divider"></div>
+          <div class="quisom-features">
+            <div class="quisom-feature">
+              <div class="quisom-feature-icon">
+                <!-- Chef hat -->
+                <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M6 16h12v3.5a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V16z" />
+                  <path d="M8.5 16V13c0-1.9 1.6-3.5 3.5-3.5s3.5 1.6 3.5 3.5v3" />
+                  <path d="M6.5 12.5a5.5 5.5 0 0 1 11 0" />
+                  <line x1="10" y1="16" x2="10" y2="19.5" />
+                  <line x1="14" y1="16" x2="14" y2="19.5" />
+                </svg>
+              </div>
+              <div class="quisom-feature-text">
+                <strong>Tradició que inspira</strong>
+                <span>Receptes de sempre elaborades amb el saber fer de la cuina casolana.</span>
+              </div>
+            </div>
+            <div class="quisom-feature">
+              <div class="quisom-feature-icon">
+                <!-- Shield + check -->
+                <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2L4 6v7c0 4.5 3.5 7.5 8 9 4.5-1.5 8-4.5 8-9V6L12 2z" />
+                  <path d="M9 12l2 2.5 4-4.5" />
+                </svg>
+              </div>
+              <div class="quisom-feature-text">
+                <strong>Qualitat i seguretat</strong>
+                <span>Processos certificats i ingredients de primera selecció.</span>
+              </div>
+            </div>
+            <div class="quisom-feature">
+              <div class="quisom-feature-icon">
+                <!-- Leaf sprout -->
+                <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22V11" />
+                  <path d="M12 16c0-4.5 4-7 7-8-1 4.5-3 8-7 8z" />
+                  <path d="M12 16c0-4.5-4-7-7-8 1 4.5 3 8 7 8z" />
+                  <path d="M12 11c0-3 2-5 4.5-6-.5 3-1.5 6-4.5 6z" />
+                </svg>
+              </div>
+              <div class="quisom-feature-text">
+                <strong>Compromesos amb el futur</strong>
+                <span>Producció responsable, eficiència energètica i compromís amb el territori.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right column — stat cards -->
+        <div class="quisom-right">
+          <div class="quisom-bg-photo"></div>
+          <div class="quisom-stats">
+
+            <!-- 35+ Varietats -->
+            <div class="stat-card">
+              <div class="stat-card-top">
+                <div class="stat-icon-wrap">
+                  <!-- Cooking pot -->
+                  <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5V5.5" />
+                    <path d="M8.5 8Q12 5.5 15.5 8" />
+                    <line x1="8" y1="8" x2="16" y2="8" />
+                    <path d="M7 8h10l-1.3 11H8.3L7 8z" />
+                    <path d="M7 12H5.2a1.3 1.3 0 0 0 0 2.5H7" />
+                    <path d="M17 12h1.8a1.3 1.3 0 0 1 0 2.5H17" />
+                  </svg>
+                </div>
+                <div class="stat-card-meta">
+                  <div class="stat-num-row">
+                    <span class="stat-num" data-count="35">0</span><span class="stat-suffix">+</span>
+                  </div>
+                  <div class="stat-label-title">Varietats de plats</div>
+                </div>
+              </div>
+              <hr class="stat-divider">
+              <p class="stat-label">Plats de cinquena gamma elaborats cada dia amb ingredients de qualitat.</p>
+            </div>
+
+            <!-- 18 Dies -->
+            <div class="stat-card">
+              <div class="stat-card-top">
+                <div class="stat-icon-wrap">
+                  <!-- Calendar -->
+                  <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="5" width="18" height="16" rx="2.5" />
+                    <line x1="3" y1="10" x2="21" y2="10" />
+                    <line x1="8" y1="3" x2="8" y2="7" />
+                    <line x1="16" y1="3" x2="16" y2="7" />
+                    <path d="M7 14h10M7 18h6" />
+                  </svg>
+                </div>
+                <div class="stat-card-meta">
+                  <div class="stat-num-row">
+                    <span class="stat-num" data-count="18">0</span>
+                  </div>
+                  <div class="stat-label-title">Dies de vida útil</div>
+                </div>
+              </div>
+              <hr class="stat-divider">
+              <p class="stat-label">Fresc, segur i llest per gaudir, amb tota la qualitat com el primer dia.</p>
+            </div>
+
+            <!-- 100% Artesà -->
+            <div class="stat-card">
+              <div class="stat-card-top">
+                <div class="stat-icon-wrap">
+                  <!-- Medal / rosette -->
+                  <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="8.5" r="4.5" />
+                    <circle cx="12" cy="8.5" r="2" stroke-dasharray="1.5 1.5" />
+                    <path d="M8.5 12.5l-2 7h3.5l2-1.5 2 1.5H17.5l-2-7" />
+                  </svg>
+                </div>
+                <div class="stat-card-meta">
+                  <div class="stat-num-row">
+                    <span class="stat-num" data-count="100">0</span><span class="stat-suffix">%</span>
+                  </div>
+                  <div class="stat-label-title">Producte artesà</div>
+                </div>
+              </div>
+              <hr class="stat-divider">
+              <p class="stat-label">Elaboració pròpia amb receptes tradicionals i ingredients seleccionats.</p>
+            </div>
+
+            <!-- 4° Cadena de fred -->
+            <div class="stat-card">
+              <div class="stat-card-top">
+                <div class="stat-icon-wrap">
+                  <!-- Snowflake -->
+                  <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="2" x2="12" y2="22" />
+                    <line x1="2" y1="12" x2="22" y2="12" />
+                    <line x1="5.27" y1="5.27" x2="18.73" y2="18.73" />
+                    <line x1="18.73" y1="5.27" x2="5.27" y2="18.73" />
+                    <path d="M12 6l2-2m-2 2-2-2M12 18l2 2m-2-2-2 2M6 12l-2 2m2-2-2-2M18 12l2 2m-2-2 2-2" />
+                  </svg>
+                </div>
+                <div class="stat-card-meta">
+                  <div class="stat-num-row">
+                    <span class="stat-num" data-count="4">0</span><span class="stat-suffix">°</span>
+                  </div>
+                  <div class="stat-label-title">Cadena de fred</div>
+                </div>
+              </div>
+              <hr class="stat-divider">
+              <p class="stat-label">Control absolut de la temperatura per garantir la màxima seguretat.</p>
+            </div>
+
+          </div>
+
+          <!-- Circular stamp -->
+          <div class="quisom-stamp">
+            <svg viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <path id="stampCircle" d="M 55,55 m -38,0 a 38,38 0 1,1 76,0 a 38,38 0 1,1 -76,0" />
+              </defs>
+              <circle cx="55" cy="55" r="50" fill="white" stroke="#7ABA78" stroke-width="1.5" />
+              <text font-family="Sora, sans-serif" font-size="8.5" font-weight="600" letter-spacing="2.5" fill="#5a9e5c"
+                text-anchor="middle">
+                <textPath href="#stampCircle" startOffset="0%">CUINEM PER A TU COM A CASA · CUINEM PER A TU COM A CASA ·
+                </textPath>
+              </text>
+            </svg>
+            <div class="quisom-stamp-center">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5a9e5c" stroke-width="1.6"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3.5V5.5" />
+                <path d="M8.5 8Q12 5.5 15.5 8" />
+                <line x1="8" y1="8" x2="16" y2="8" />
+                <path d="M7 8h10l-1.3 11H8.3L7 8z" />
+                <path d="M7 12H5.2a1.3 1.3 0 0 0 0 2.5H7" />
+                <path d="M17 12h1.8a1.3 1.3 0 0 1 0 2.5H17" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ─── QUI SERVIM ──────────────────────────────────────── -->
+    <section class="seccio-serveis" id="que-fem">
+
+      <div class="serveis-inner">
+
+        <!-- Columna esquerra -->
+        <div class="serveis-left">
+          <span class="serveis-badge">
+            <span class="serveis-badge-dot"></span>
+            Qui servim
+          </span>
+          <h2 class="serveis-title" id="serveis-left-title">Col·lectivitats i menjadors</h2>
+          <div class="serveis-divider"></div>
+          <p class="serveis-desc" id="serveis-left-desc">Menús diaris per a escoles, hospitals i menjadors corporatius.
+            Qualitat casolana a gran escala.</p>
+          <div class="serveis-feature">
+            <div class="serveis-feature-icon" id="serveis-feat-icon"></div>
+            <div class="serveis-feature-text">
+              <strong id="serveis-feat-title">Solucions adaptades</strong>
+              <span id="serveis-feat-desc">Ens adaptem a les necessitats de cada col·lectivitat amb flexibilitat i
+                compromís.</span>
+            </div>
+          </div>
+          <a class="serveis-cta" href="#contacte">Més informació →</a>
+        </div>
+
+        <!-- Àrea de cards -->
+        <div class="serveis-cards">
+
+          <!-- Card principal (activa) -->
+          <div class="serveis-main-card">
+            <img id="serveis-main-img" class="serveis-main-img" src="img/fabada.jpg" alt="" loading="lazy"
+              decoding="async">
+            <div class="serveis-main-overlay">
+              <span class="serveis-main-num" id="serveis-main-num">01</span>
+              <h3 class="serveis-main-title" id="serveis-main-title">Col·lectivitats</h3>
+              <p class="serveis-main-desc" id="serveis-main-desc">Cuina casolana, equilibrada i segura per a grans
+                col·lectius cada dia.</p>
+              <a class="serveis-main-link" href="#contacte">
+                <span class="serveis-main-link-circle">→</span>
+                VEURE SOLUCIONS
+              </a>
+            </div>
+          </div>
+
+          <!-- Cards laterals (3 panells no actius) -->
+          <div class="serveis-side-cards">
+
+            <div class="serveis-side-card">
+              <img class="serveis-side-img" src="" alt="" loading="lazy" decoding="async">
+              <div class="serveis-side-overlay"></div>
+              <div class="serveis-side-icon"></div>
+              <div class="serveis-side-content">
+                <div>
+                  <span class="serveis-side-num"></span>
+                  <span class="serveis-side-title"></span>
+                </div>
+                <div class="serveis-side-arrow">→</div>
+              </div>
+            </div>
+
+            <div class="serveis-side-card">
+              <img class="serveis-side-img" src="" alt="" loading="lazy" decoding="async">
+              <div class="serveis-side-overlay"></div>
+              <div class="serveis-side-icon"></div>
+              <div class="serveis-side-content">
+                <div>
+                  <span class="serveis-side-num"></span>
+                  <span class="serveis-side-title"></span>
+                </div>
+                <div class="serveis-side-arrow">→</div>
+              </div>
+            </div>
+
+            <div class="serveis-side-card">
+              <img class="serveis-side-img" src="" alt="" loading="lazy" decoding="async">
+              <div class="serveis-side-overlay"></div>
+              <div class="serveis-side-icon"></div>
+              <div class="serveis-side-content">
+                <div>
+                  <span class="serveis-side-num"></span>
+                  <span class="serveis-side-title"></span>
+                </div>
+                <div class="serveis-side-arrow">→</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Barra inferior -->
+      <div class="serveis-bar-wrap">
+        <div class="serveis-bar">
+          <div class="serveis-bar-main">
+            <div class="serveis-bar-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
                 stroke-linecap="round" stroke-linejoin="round">
                 <path d="M12 22V11" />
                 <path d="M12 16c0-4.5 4-7 7-8-1 4.5-3 8-7 8z" />
@@ -2897,678 +3179,66 @@
                 <path d="M12 11c0-3 2-5 4.5-6-.5 3-1.5 6-4.5 6z" />
               </svg>
             </div>
-            <div class="quisom-feature-text">
-              <strong>Compromesos amb el futur</strong>
-              <span>Producció responsable, eficiència energètica i compromís amb el territori.</span>
+            <div>
+              <strong>Compromesos amb la qualitat i el servei</strong>
+              <p>Ingredients seleccionats, processos segurs i una atenció propera en cada servei que oferim.</p>
+            </div>
+          </div>
+          <div class="serveis-bar-feats">
+            <div class="serveis-bar-feat">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22V11" />
+                <path d="M12 16c0-4.5 4-7 7-8-1 4.5-3 8-7 8z" />
+                <path d="M12 16c0-4.5-4-7-7-8 1 4.5 3 8 7 8z" />
+              </svg>
+              <span>Ingredients<br>de qualitat</span>
+            </div>
+            <div class="serveis-bar-feat">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2L4 6v7c0 4.5 3.5 7.5 8 9 4.5-1.5 8-4.5 8-9V6L12 2z" />
+                <path d="M9 12l2 2.5 4-4.5" />
+              </svg>
+              <span>Seguretat<br>alimentària</span>
+            </div>
+            <div class="serveis-bar-feat">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+              </svg>
+              <span>Servei<br>personalitzat</span>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Right column — stat cards -->
-      <div class="quisom-right">
-        <div class="quisom-bg-photo"></div>
-        <div class="quisom-stats">
+    </section>
 
-          <!-- 35+ Varietats -->
-          <div class="stat-card">
-            <div class="stat-card-top">
-              <div class="stat-icon-wrap">
-                <!-- Cooking pot -->
-                <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 3.5V5.5" />
-                  <path d="M8.5 8Q12 5.5 15.5 8" />
-                  <line x1="8" y1="8" x2="16" y2="8" />
-                  <path d="M7 8h10l-1.3 11H8.3L7 8z" />
-                  <path d="M7 12H5.2a1.3 1.3 0 0 0 0 2.5H7" />
-                  <path d="M17 12h1.8a1.3 1.3 0 0 1 0 2.5H17" />
-                </svg>
-              </div>
-              <div class="stat-card-meta">
-                <div class="stat-num-row">
-                  <span class="stat-num" data-count="35">0</span><span class="stat-suffix">+</span>
-                </div>
-                <div class="stat-label-title">Varietats de plats</div>
-              </div>
-            </div>
-            <hr class="stat-divider">
-            <p class="stat-label">Plats de cinquena gamma elaborats cada dia amb ingredients de qualitat.</p>
-          </div>
-
-          <!-- 18 Dies -->
-          <div class="stat-card">
-            <div class="stat-card-top">
-              <div class="stat-icon-wrap">
-                <!-- Calendar -->
-                <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3" y="5" width="18" height="16" rx="2.5" />
-                  <line x1="3" y1="10" x2="21" y2="10" />
-                  <line x1="8" y1="3" x2="8" y2="7" />
-                  <line x1="16" y1="3" x2="16" y2="7" />
-                  <path d="M7 14h10M7 18h6" />
-                </svg>
-              </div>
-              <div class="stat-card-meta">
-                <div class="stat-num-row">
-                  <span class="stat-num" data-count="18">0</span>
-                </div>
-                <div class="stat-label-title">Dies de vida útil</div>
-              </div>
-            </div>
-            <hr class="stat-divider">
-            <p class="stat-label">Fresc, segur i llest per gaudir, amb tota la qualitat com el primer dia.</p>
-          </div>
-
-          <!-- 100% Artesà -->
-          <div class="stat-card">
-            <div class="stat-card-top">
-              <div class="stat-icon-wrap">
-                <!-- Medal / rosette -->
-                <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="8.5" r="4.5" />
-                  <circle cx="12" cy="8.5" r="2" stroke-dasharray="1.5 1.5" />
-                  <path d="M8.5 12.5l-2 7h3.5l2-1.5 2 1.5H17.5l-2-7" />
-                </svg>
-              </div>
-              <div class="stat-card-meta">
-                <div class="stat-num-row">
-                  <span class="stat-num" data-count="100">0</span><span class="stat-suffix">%</span>
-                </div>
-                <div class="stat-label-title">Producte artesà</div>
-              </div>
-            </div>
-            <hr class="stat-divider">
-            <p class="stat-label">Elaboració pròpia amb receptes tradicionals i ingredients seleccionats.</p>
-          </div>
-
-          <!-- 4° Cadena de fred -->
-          <div class="stat-card">
-            <div class="stat-card-top">
-              <div class="stat-icon-wrap">
-                <!-- Snowflake -->
-                <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="12" y1="2" x2="12" y2="22" />
-                  <line x1="2" y1="12" x2="22" y2="12" />
-                  <line x1="5.27" y1="5.27" x2="18.73" y2="18.73" />
-                  <line x1="18.73" y1="5.27" x2="5.27" y2="18.73" />
-                  <path d="M12 6l2-2m-2 2-2-2M12 18l2 2m-2-2-2 2M6 12l-2 2m2-2-2-2M18 12l2 2m-2-2 2-2" />
-                </svg>
-              </div>
-              <div class="stat-card-meta">
-                <div class="stat-num-row">
-                  <span class="stat-num" data-count="4">0</span><span class="stat-suffix">°</span>
-                </div>
-                <div class="stat-label-title">Cadena de fred</div>
-              </div>
-            </div>
-            <hr class="stat-divider">
-            <p class="stat-label">Control absolut de la temperatura per garantir la màxima seguretat.</p>
-          </div>
-
-        </div>
-
-        <!-- Circular stamp -->
-        <div class="quisom-stamp">
-          <svg viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <path id="stampCircle" d="M 55,55 m -38,0 a 38,38 0 1,1 76,0 a 38,38 0 1,1 -76,0" />
-            </defs>
-            <circle cx="55" cy="55" r="50" fill="white" stroke="#7ABA78" stroke-width="1.5" />
-            <text font-family="Sora, sans-serif" font-size="8.5" font-weight="600" letter-spacing="2.5" fill="#5a9e5c"
-              text-anchor="middle">
-              <textPath href="#stampCircle" startOffset="0%">CUINEM PER A TU COM A CASA · CUINEM PER A TU COM A CASA ·
-              </textPath>
-            </text>
-          </svg>
-          <div class="quisom-stamp-center">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5a9e5c" stroke-width="1.6"
-              stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 3.5V5.5" />
-              <path d="M8.5 8Q12 5.5 15.5 8" />
-              <line x1="8" y1="8" x2="16" y2="8" />
-              <path d="M7 8h10l-1.3 11H8.3L7 8z" />
-              <path d="M7 12H5.2a1.3 1.3 0 0 0 0 2.5H7" />
-              <path d="M17 12h1.8a1.3 1.3 0 0 1 0 2.5H17" />
-            </svg>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ─── QUI SERVIM ──────────────────────────────────────── -->
-  <section class="seccio-serveis" id="que-fem">
-
-    <div class="serveis-inner">
-
-      <!-- Columna esquerra -->
-      <div class="serveis-left">
-        <span class="serveis-badge">
-          <span class="serveis-badge-dot"></span>
-          Qui servim
+    <!-- ─── LÍNIES DE NEGOCI ──────────────────────────────────── -->
+    <section class="seccio-linies" id="linies">
+      <div class="linies-header">
+        <span class="linies-eyebrow">
+          <span class="linies-dot"></span>
+          Línies de negoci
         </span>
-        <h2 class="serveis-title" id="serveis-left-title">Col·lectivitats i menjadors</h2>
-        <div class="serveis-divider"></div>
-        <p class="serveis-desc" id="serveis-left-desc">Menús diaris per a escoles, hospitals i menjadors corporatius.
-          Qualitat casolana a gran escala.</p>
-        <div class="serveis-feature">
-          <div class="serveis-feature-icon" id="serveis-feat-icon"></div>
-          <div class="serveis-feature-text">
-            <strong id="serveis-feat-title">Solucions adaptades</strong>
-            <span id="serveis-feat-desc">Ens adaptem a les necessitats de cada col·lectivitat amb flexibilitat i
-              compromís.</span>
-          </div>
-        </div>
-        <a class="serveis-cta" href="#contacte">Més informació →</a>
+        <h2 class="linies-title">Dues maneres d'<span class="linies-title-accent">arribar</span> a la teva taula.</h2>
+        <p class="linies-sub">Mateixa qualitat. Mateixa cuina casolana. Solucions diferents per a cada necessitat.</p>
       </div>
 
-      <!-- Àrea de cards -->
-      <div class="serveis-cards">
+      <div class="linies-grid">
 
-        <!-- Card principal (activa) -->
-        <div class="serveis-main-card">
-          <img id="serveis-main-img" class="serveis-main-img" src="img/fabada.jpg" alt="" loading="lazy" decoding="async">
-          <div class="serveis-main-overlay">
-            <span class="serveis-main-num" id="serveis-main-num">01</span>
-            <h3 class="serveis-main-title" id="serveis-main-title">Col·lectivitats</h3>
-            <p class="serveis-main-desc" id="serveis-main-desc">Cuina casolana, equilibrada i segura per a grans
-              col·lectius cada dia.</p>
-            <a class="serveis-main-link" href="#contacte">
-              <span class="serveis-main-link-circle">→</span>
-              VEURE SOLUCIONS
-            </a>
-          </div>
-        </div>
+        <!-- Layaya Alimentació -->
+        <article class="linia-card linia-card-verd">
+          <img class="linia-prod-img" src="img/arros_muntanya.png" alt="Layaya Alimentació" loading="lazy"
+            decoding="async">
 
-        <!-- Cards laterals (3 panells no actius) -->
-        <div class="serveis-side-cards">
-
-          <div class="serveis-side-card">
-            <img class="serveis-side-img" src="" alt="" loading="lazy" decoding="async">
-            <div class="serveis-side-overlay"></div>
-            <div class="serveis-side-icon"></div>
-            <div class="serveis-side-content">
-              <div>
-                <span class="serveis-side-num"></span>
-                <span class="serveis-side-title"></span>
-              </div>
-              <div class="serveis-side-arrow">→</div>
-            </div>
-          </div>
-
-          <div class="serveis-side-card">
-            <img class="serveis-side-img" src="" alt="" loading="lazy" decoding="async">
-            <div class="serveis-side-overlay"></div>
-            <div class="serveis-side-icon"></div>
-            <div class="serveis-side-content">
-              <div>
-                <span class="serveis-side-num"></span>
-                <span class="serveis-side-title"></span>
-              </div>
-              <div class="serveis-side-arrow">→</div>
-            </div>
-          </div>
-
-          <div class="serveis-side-card">
-            <img class="serveis-side-img" src="" alt="" loading="lazy" decoding="async">
-            <div class="serveis-side-overlay"></div>
-            <div class="serveis-side-icon"></div>
-            <div class="serveis-side-content">
-              <div>
-                <span class="serveis-side-num"></span>
-                <span class="serveis-side-title"></span>
-              </div>
-              <div class="serveis-side-arrow">→</div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-    <!-- Barra inferior -->
-    <div class="serveis-bar-wrap">
-      <div class="serveis-bar">
-        <div class="serveis-bar-main">
-          <div class="serveis-bar-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
-              stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 22V11" />
-              <path d="M12 16c0-4.5 4-7 7-8-1 4.5-3 8-7 8z" />
-              <path d="M12 16c0-4.5-4-7-7-8 1 4.5 3 8 7 8z" />
-              <path d="M12 11c0-3 2-5 4.5-6-.5 3-1.5 6-4.5 6z" />
-            </svg>
-          </div>
-          <div>
-            <strong>Compromesos amb la qualitat i el servei</strong>
-            <p>Ingredients seleccionats, processos segurs i una atenció propera en cada servei que oferim.</p>
-          </div>
-        </div>
-        <div class="serveis-bar-feats">
-          <div class="serveis-bar-feat">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
-              stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 22V11" />
-              <path d="M12 16c0-4.5 4-7 7-8-1 4.5-3 8-7 8z" />
-              <path d="M12 16c0-4.5-4-7-7-8 1 4.5 3 8 7 8z" />
-            </svg>
-            <span>Ingredients<br>de qualitat</span>
-          </div>
-          <div class="serveis-bar-feat">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
-              stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 2L4 6v7c0 4.5 3.5 7.5 8 9 4.5-1.5 8-4.5 8-9V6L12 2z" />
-              <path d="M9 12l2 2.5 4-4.5" />
-            </svg>
-            <span>Seguretat<br>alimentària</span>
-          </div>
-          <div class="serveis-bar-feat">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
-              stroke-linecap="round" stroke-linejoin="round">
-              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-              <circle cx="9" cy="7" r="4" />
-              <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-            </svg>
-            <span>Servei<br>personalitzat</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </section>
-
-  <!-- ─── LÍNIES DE NEGOCI ──────────────────────────────────── -->
-  <section class="seccio-linies" id="linies">
-    <div class="linies-header">
-      <span class="linies-eyebrow">
-        <span class="linies-dot"></span>
-        Línies de negoci
-      </span>
-      <h2 class="linies-title">Dues maneres d'<span class="linies-title-accent">arribar</span> a la teva taula.</h2>
-      <p class="linies-sub">Mateixa qualitat. Mateixa cuina casolana. Solucions diferents per a cada necessitat.</p>
-    </div>
-
-    <div class="linies-grid">
-
-      <!-- Layaya Alimentació -->
-      <article class="linia-card linia-card-verd">
-        <img class="linia-prod-img" src="img/arros_muntanya.png" alt="Layaya Alimentació" loading="lazy" decoding="async">
-
-        <div class="linia-top">
-          <div class="linia-main-icon linia-main-icon-verd">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
-              stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="8" width="13" height="9" rx="1" />
-              <path d="M15 11h4l3 3v3h-7" />
-              <circle cx="6" cy="18" r="2" />
-              <circle cx="18" cy="18" r="2" />
-            </svg>
-          </div>
-          <span class="linia-tag linia-tag-verd">Producció i distribució</span>
-          <h3 class="linia-name">Layaya Alimentació</h3>
-          <p class="linia-desc">Elaboració professional per a hostaleria, retail, col·lectivitats i distribuïdors.
-            Cinquena gamma amb estàndards d'obrador.</p>
-        </div>
-
-        <div class="linia-bottom">
-          <div class="linia-feats">
-            <div class="linia-feat">
-              <svg class="linia-feat-icon-verd" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M6 16h12v3.5a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V16z" />
-                <path d="M8.5 16V13c0-1.9 1.6-3.5 3.5-3.5s3.5 1.6 3.5 3.5v3" />
-                <path d="M6.5 12.5a5.5 5.5 0 0 1 11 0" />
-              </svg>
-              <span>Obrador propi</span>
-            </div>
-            <div class="linia-feat">
-              <svg class="linia-feat-icon-verd" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M3 7h18" />
-                <path d="M12 7v14" />
-                <path d="m7 7-4 10h8L7 7z" />
-                <path d="m17 7-4 10h8l-4-10z" />
-              </svg>
-              <span>Producció a escala</span>
-            </div>
-            <div class="linia-feat">
-              <svg class="linia-feat-icon-verd" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="8" r="6" />
-                <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" />
-              </svg>
-              <span>Cinquena gamma</span>
-            </div>
-            <div class="linia-feat">
-              <svg class="linia-feat-icon-verd" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                <rect width="16" height="20" x="4" y="2" rx="2" />
-                <path d="M9 22v-4h6v4" />
-                <path d="M8 6h.01M16 6h.01M12 6h.01M12 10h.01M12 14h.01M16 10h.01M16 14h.01M8 10h.01M8 14h.01" />
-              </svg>
-              <span>Solucions per a empreses</span>
-            </div>
-          </div>
-          <a href="#contacte" class="linia-cta linia-cta-verd">Saber-ne més →</a>
-        </div>
-      </article>
-
-      <!-- Layaya Botigues -->
-      <article class="linia-card linia-card-daurat">
-        <img class="linia-prod-img" src="img/arros_muntanya.png" alt="Layaya Botigues" loading="lazy" decoding="async">
-
-        <div class="linia-top">
-          <div class="linia-main-icon linia-main-icon-daurat">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
-              stroke-linecap="round" stroke-linejoin="round">
-              <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
-              <line x1="3" y1="6" x2="21" y2="6" />
-              <path d="M16 10a4 4 0 0 1-8 0" />
-            </svg>
-          </div>
-          <span class="linia-tag linia-tag-daurat">Venda directa</span>
-          <h3 class="linia-name">Layaya Botigues</h3>
-          <p class="linia-desc">Plats per emportar amb cuina casolana al consumidor final, a botigues de proximitat.</p>
-        </div>
-
-        <div class="linia-bottom">
-          <div class="linia-feats">
-            <div class="linia-feat">
-              <svg class="linia-feat-icon-daurat" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
-                <line x1="3" y1="6" x2="21" y2="6" />
-                <path d="M16 10a4 4 0 0 1-8 0" />
-              </svg>
-              <span>Plats per emportar</span>
-            </div>
-            <div class="linia-feat">
-              <svg class="linia-feat-icon-daurat" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M2 12h20" />
-                <path d="M6 8v8a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V8" />
-                <path d="M8 8V6a4 4 0 0 1 8 0v2" />
-              </svg>
-              <span>Cuina casolana</span>
-            </div>
-            <div class="linia-feat">
-              <svg class="linia-feat-icon-daurat" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="8" cy="21" r="1" />
-                <circle cx="19" cy="21" r="1" />
-                <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
-              </svg>
-              <span>Venda directa</span>
-            </div>
-            <div class="linia-feat">
-              <svg class="linia-feat-icon-daurat" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                <path
-                  d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
-                <circle cx="12" cy="10" r="3" />
-              </svg>
-              <span>Proximitat</span>
-            </div>
-          </div>
-          <a href="#contacte" class="linia-cta linia-cta-daurat">Les nostres botigues →</a>
-        </div>
-      </article>
-
-    </div>
-  </section>
-
-  <!-- ─── PRODUCTES ─────────────────────────────────────────── -->
-  <section class="seccio-productes" id="productes">
-    <div class="productes-header">
-      <span class="productes-eyebrow">
-        <span class="productes-num">/ 03</span>
-        El nostre catàleg
-      </span>
-      <h2 class="productes-title">
-        Plats preparats amb <em>sabor</em>,<br>
-        regularitat i confiança.
-      </h2>
-      <p class="productes-sub">
-        Més de 35 varietats elaborades amb ingredients de primera selecció.
-      </p>
-    </div>
-
-    <div class="co-carousel-wrap">
-      <div class="swiper co-carousel">
-        <div class="swiper-wrapper">
-
-          <div class="swiper-slide co-carousel__slide">
-            <div class="co-card">
-              <div class="co-card__media">
-                <img class="co-card__media-img" src="img/arros_muntanya.png" alt="Arròs de muntanya" loading="lazy" decoding="async">
-                <span class="co-card__media-shadow"></span>
-              </div>
-              <div class="co-card__info">
-                <div class="co-card__collection text-mask"><span>Arrossos i Fideuàs</span></div>
-                <div class="co-card__title text-mask"><span>Arròs de muntanya</span></div>
-                <div class="co-card__price text-mask"><span>Cinquena gamma · 18 dies</span></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="swiper-slide co-carousel__slide">
-            <div class="co-card co-card--style-1">
-              <div class="co-card__media">
-                <img class="co-card__media-img" src="img/fabada.jpg" alt="Fabada artesana" loading="lazy" decoding="async">
-                <span class="co-card__media-shadow"></span>
-              </div>
-              <div class="co-card__info">
-                <div class="co-card__collection text-mask"><span>Carns i Llegums</span></div>
-                <div class="co-card__title text-mask"><span>Fabada artesana</span></div>
-                <div class="co-card__price text-mask"><span>Cinquena gamma · 18 dies</span></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="swiper-slide co-carousel__slide">
-            <div class="co-card co-card--style-2">
-              <div class="co-card__media">
-                <img class="co-card__media-img" src="img/pastis_tonyina.jpg" alt="Pastís de tonyina" loading="lazy" decoding="async">
-                <span class="co-card__media-shadow"></span>
-              </div>
-              <div class="co-card__info">
-                <div class="co-card__collection text-mask"><span>Pastes i Amanides</span></div>
-                <div class="co-card__title text-mask"><span>Pastís de tonyina</span></div>
-                <div class="co-card__price text-mask"><span>Cinquena gamma · 18 dies</span></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="swiper-slide co-carousel__slide">
-            <div class="co-card co-card--style-3">
-              <div class="co-card__media">
-                <img class="co-card__media-img" src="img/risotto_bolets.jpg" alt="Risotto de bolets" loading="lazy" decoding="async">
-                <span class="co-card__media-shadow"></span>
-              </div>
-              <div class="co-card__info">
-                <div class="co-card__collection text-mask"><span>Arrossos i Fideuàs</span></div>
-                <div class="co-card__title text-mask"><span>Risotto de bolets</span></div>
-                <div class="co-card__price text-mask"><span>Cinquena gamma · 18 dies</span></div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <div class="co-carousel__nav-buttons">
-        <div class="co-carousel__nav-button prev">
-          <div class="co-carousel__nav-circle">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-          </div>
-          <span>Anterior</span>
-        </div>
-        <div class="co-carousel__nav-button next">
-          <div class="co-carousel__nav-circle">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-          </div>
-          <span>Següent</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="productes-footer">
-      <div class="productes-download-row">
-        <a class="productes-download" href="#">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Descarrega el catàleg
-        </a>
-      </div>
-      <div class="productes-badges">
-        <div class="productes-badge">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V11"/><path d="M12 16c0-4.5 4-7 7-8-1 4.5-3 8-7 8z"/><path d="M12 16c0-4.5-4-7-7-8 1 4.5 3 8 7 8z"/></svg>
-          <span>Ingredients de primera selecció</span>
-        </div>
-        <div class="productes-badges-sep"></div>
-        <div class="productes-badge">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2.5 4-4.5"/></svg>
-          <span>Sense conservants afegits</span>
-        </div>
-        <div class="productes-badges-sep"></div>
-        <div class="productes-badge">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16h12v3.5a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V16z"/><path d="M8.5 16V13c0-1.9 1.6-3.5 3.5-3.5s3.5 1.6 3.5 3.5v3"/><path d="M6.5 12.5a5.5 5.5 0 0 1 11 0"/></svg>
-          <span>Elaboració pròpia</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="co-background co-background--style-0"></div>
-    <div class="co-background co-background--style-1"></div>
-    <div class="co-background co-background--style-2"></div>
-    <div class="co-background co-background--style-3"></div>
-  </section>
-
-  <!-- ─── QUALITAT ──────────────────────────────────────────── -->
-  <section class="seccio-qualitat" id="qualitat">
-    <div class="qualitat-shape qualitat-shape-1"></div>
-    <div class="qualitat-shape qualitat-shape-2"></div>
-
-    <div class="qualitat-inner">
-      <div class="qualitat-header">
-        <span class="qualitat-eyebrow">
-          <span class="qualitat-rule" aria-hidden="true"></span>
-          Qualitat i procés
-        </span>
-        <h2 class="qualitat-title">
-          Cada plat passa per <em>sis controls</em><br>
-          que asseguren el resultat.
-        </h2>
-      </div>
-
-      <div class="qualitat-grid">
-
-        <article class="qualitat-card">
-          <div class="qualitat-card-body">
-            <div class="qualitat-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 3l8 4v6c0 4.5-3.5 7.5-8 8-4.5-.5-8-3.5-8-8V7l8-4z" />
-                <path d="M9 12l2 2 4-4" />
-              </svg>
-            </div>
-            <h3 class="qualitat-name">Selecció de matèries primeres</h3>
-            <p class="qualitat-desc">Proveïdors de proximitat verificats. Recepció controlada, traçabilitat completa.
-            </p>
-          </div>
-          <div class="qualitat-card-img">
-            <img src="img/fabada.jpg" alt="Selecció de matèries primeres" loading="lazy" decoding="async">
-            <span class="qualitat-num">01</span>
-          </div>
-        </article>
-
-        <article class="qualitat-card">
-          <div class="qualitat-card-body">
-            <div class="qualitat-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="M3 12h2l3-9 4 18 3-12 2 6h4" />
-              </svg>
-            </div>
-            <h3 class="qualitat-name">Rigor en la preparació</h3>
-            <p class="qualitat-desc">Receptes estandarditzades, pesatge precís, temps de cocció reproduïbles.</p>
-          </div>
-          <div class="qualitat-card-img">
-            <img src="img/risotto_bolets.jpg" alt="Rigor en la preparació" loading="lazy" decoding="async">
-            <span class="qualitat-num">02</span>
-          </div>
-        </article>
-
-        <article class="qualitat-card">
-          <div class="qualitat-card-body">
-            <div class="qualitat-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="M6 14c0-3 2-5 6-5s6 2 6 5" />
-                <path d="M9 14v3M15 14v3M12 14v3" />
-                <path d="M5 17h14" />
-                <path d="M9 9V5M12 9V3M15 9V5" />
-              </svg>
-            </div>
-            <h3 class="qualitat-name">Cuina d'avantguarda</h3>
-            <p class="qualitat-desc">Cocció a baixa temperatura, fons elaborats al mateix obrador, salses fetes en
-              directe.</p>
-          </div>
-          <div class="qualitat-card-img">
-            <img src="img/arros_muntanya.jpg" alt="Cuina d'avantguarda" loading="lazy" decoding="async">
-            <span class="qualitat-num">03</span>
-          </div>
-        </article>
-
-        <article class="qualitat-card">
-          <div class="qualitat-card-body">
-            <div class="qualitat-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"
-                stroke-linecap="round" stroke-linejoin="round">
-                <rect x="4" y="7" width="16" height="13" rx="2" />
-                <path d="M8 7V5a4 4 0 0 1 8 0v2" />
-                <path d="M8 12h8" />
-              </svg>
-            </div>
-            <h3 class="qualitat-name">Envasat d'alta protecció</h3>
-            <p class="qualitat-desc">Atmosfera protectora i envasos pensats per a 18 dies de vida útil sense
-              conservants.</p>
-          </div>
-          <div class="qualitat-card-img">
-            <img src="img/pastis_tonyina.jpg" alt="Envasat d'alta protecció" loading="lazy" decoding="async">
-            <span class="qualitat-num">04</span>
-          </div>
-        </article>
-
-        <article class="qualitat-card">
-          <div class="qualitat-card-body">
-            <div class="qualitat-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="M9 3h6v3l3 4v9a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-9l3-4z" />
-                <path d="M9 12h6" />
-                <path d="M10.5 16h3" />
-              </svg>
-            </div>
-            <h3 class="qualitat-name">Laboratori de control</h3>
-            <p class="qualitat-desc">Anàlisis microbiològiques periòdiques. Auditories internes i certificats sanitaris.
-            </p>
-          </div>
-          <div class="qualitat-card-img">
-            <img src="img/risotto_bolets.jpg" alt="Laboratori de control" loading="lazy" decoding="async">
-            <span class="qualitat-num">05</span>
-          </div>
-        </article>
-
-        <article class="qualitat-card">
-          <div class="qualitat-card-body">
-            <div class="qualitat-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"
+          <div class="linia-top">
+            <div class="linia-main-icon linia-main-icon-verd">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
                 stroke-linecap="round" stroke-linejoin="round">
                 <rect x="2" y="8" width="13" height="9" rx="1" />
                 <path d="M15 11h4l3 3v3h-7" />
@@ -3576,214 +3246,614 @@
                 <circle cx="18" cy="18" r="2" />
               </svg>
             </div>
-            <h3 class="qualitat-name">Logística i cadena de fred</h3>
-            <p class="qualitat-desc">Transport refrigerat 2°C–4°C. Distribució estable per garantir el sabor d'origen.
+            <span class="linia-tag linia-tag-verd">Producció i distribució</span>
+            <h3 class="linia-name">Layaya Alimentació</h3>
+            <p class="linia-desc">Elaboració professional per a hostaleria, retail, col·lectivitats i distribuïdors.
+              Cinquena gamma amb estàndards d'obrador.</p>
+          </div>
+
+          <div class="linia-bottom">
+            <div class="linia-feats">
+              <div class="linia-feat">
+                <svg class="linia-feat-icon-verd" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M6 16h12v3.5a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V16z" />
+                  <path d="M8.5 16V13c0-1.9 1.6-3.5 3.5-3.5s3.5 1.6 3.5 3.5v3" />
+                  <path d="M6.5 12.5a5.5 5.5 0 0 1 11 0" />
+                </svg>
+                <span>Obrador propi</span>
+              </div>
+              <div class="linia-feat">
+                <svg class="linia-feat-icon-verd" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 7h18" />
+                  <path d="M12 7v14" />
+                  <path d="m7 7-4 10h8L7 7z" />
+                  <path d="m17 7-4 10h8l-4-10z" />
+                </svg>
+                <span>Producció a escala</span>
+              </div>
+              <div class="linia-feat">
+                <svg class="linia-feat-icon-verd" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="8" r="6" />
+                  <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" />
+                </svg>
+                <span>Cinquena gamma</span>
+              </div>
+              <div class="linia-feat">
+                <svg class="linia-feat-icon-verd" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <rect width="16" height="20" x="4" y="2" rx="2" />
+                  <path d="M9 22v-4h6v4" />
+                  <path d="M8 6h.01M16 6h.01M12 6h.01M12 10h.01M12 14h.01M16 10h.01M16 14h.01M8 10h.01M8 14h.01" />
+                </svg>
+                <span>Solucions per a empreses</span>
+              </div>
+            </div>
+            <a href="#contacte" class="linia-cta linia-cta-verd">Saber-ne més →</a>
+          </div>
+        </article>
+
+        <!-- Layaya Botigues -->
+        <article class="linia-card linia-card-daurat">
+          <img class="linia-prod-img" src="img/arros_muntanya.png" alt="Layaya Botigues" loading="lazy"
+            decoding="async">
+
+          <div class="linia-top">
+            <div class="linia-main-icon linia-main-icon-daurat">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+                <line x1="3" y1="6" x2="21" y2="6" />
+                <path d="M16 10a4 4 0 0 1-8 0" />
+              </svg>
+            </div>
+            <span class="linia-tag linia-tag-daurat">Venda directa</span>
+            <h3 class="linia-name">Layaya Botigues</h3>
+            <p class="linia-desc">Plats per emportar amb cuina casolana al consumidor final, a botigues de proximitat.
             </p>
           </div>
-          <div class="qualitat-card-img">
-            <img src="img/fabada.jpg" alt="Logística i cadena de fred" loading="lazy" decoding="async">
-            <span class="qualitat-num">06</span>
+
+          <div class="linia-bottom">
+            <div class="linia-feats">
+              <div class="linia-feat">
+                <svg class="linia-feat-icon-daurat" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+                  <line x1="3" y1="6" x2="21" y2="6" />
+                  <path d="M16 10a4 4 0 0 1-8 0" />
+                </svg>
+                <span>Plats per emportar</span>
+              </div>
+              <div class="linia-feat">
+                <svg class="linia-feat-icon-daurat" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M2 12h20" />
+                  <path d="M6 8v8a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V8" />
+                  <path d="M8 8V6a4 4 0 0 1 8 0v2" />
+                </svg>
+                <span>Cuina casolana</span>
+              </div>
+              <div class="linia-feat">
+                <svg class="linia-feat-icon-daurat" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="8" cy="21" r="1" />
+                  <circle cx="19" cy="21" r="1" />
+                  <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
+                </svg>
+                <span>Venda directa</span>
+              </div>
+              <div class="linia-feat">
+                <svg class="linia-feat-icon-daurat" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path
+                    d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+                <span>Proximitat</span>
+              </div>
+            </div>
+            <a href="#contacte" class="linia-cta linia-cta-daurat">Les nostres botigues →</a>
           </div>
         </article>
 
       </div>
+    </section>
 
-      <!-- Barra inferior -->
-      <div class="qualitat-bar">
-        <div class="qualitat-bar-left">
-          <svg class="qualitat-bar-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-            stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-            <path d="M9 12l2 2.5 4-4.5" />
-          </svg>
-          <div>
-            <div class="qualitat-bar-main">Compromís amb la qualitat, la seguretat alimentària i la millora contínua.
-            </div>
-            <div class="qualitat-bar-sub">Així cuidem cada detall perquè tu nomès hagis d'oferir el millor.</div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ─── CONTACTE ──────────────────────────────────────────── -->
-  <section class="seccio-contacte" id="contacte">
-    <img class="contacte-bg" src="img/hero_background.png" alt="" loading="lazy" decoding="async">
-    <div class="contacte-bg-mask"></div>
-
-    <div class="contacte-inner">
-
-      <!-- Columna esquerra -->
-      <div class="contacte-info">
-        <span class="contacte-eyebrow">
-          <span class="contacte-dot"></span>
-          Parlem
+    <!-- ─── PRODUCTES ─────────────────────────────────────────── -->
+    <section class="seccio-productes" id="productes">
+      <div class="productes-header">
+        <span class="productes-eyebrow">
+          <span class="productes-num">/ 03</span>
+          El nostre catàleg
         </span>
-        <h2 class="contacte-title">
-          Vols portar la nostra cuina<br><em>al teu negoci?</em>
+        <h2 class="productes-title">
+          Plats preparats amb <em>sabor</em>,<br>
+          regularitat i confiança.
         </h2>
-        <div class="contacte-divider"></div>
-        <p class="contacte-lead">
-          Cuina casolana preparada, segura i flexible per a hostaleria, retail, col·lectivitats i distribució.
+        <p class="productes-sub">
+          Més de 35 varietats elaborades amb ingredients de primera selecció.
         </p>
+      </div>
 
-        <div class="contacte-cards">
-          <a class="contacte-card" href="https://www.instagram.com/layaya.alimentacion/" target="_blank" rel="noopener">
-            <div class="contacte-card-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
-                stroke-linecap="round" stroke-linejoin="round">
-                <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-              </svg>
+      <div class="co-carousel-wrap">
+        <div class="swiper co-carousel">
+          <div class="swiper-wrapper">
+
+            <div class="swiper-slide co-carousel__slide">
+              <div class="co-card">
+                <div class="co-card__media">
+                  <img class="co-card__media-img" src="img/arros_muntanya.png" alt="Arròs de muntanya" loading="lazy"
+                    decoding="async">
+                  <span class="co-card__media-shadow"></span>
+                </div>
+                <div class="co-card__info">
+                  <div class="co-card__collection text-mask"><span>Arrossos i Fideuàs</span></div>
+                  <div class="co-card__title text-mask"><span>Arròs de muntanya</span></div>
+                  <div class="co-card__price text-mask"><span>Cinquena gamma · 18 dies</span></div>
+                </div>
+              </div>
             </div>
-            <span class="contacte-card-label">Instagram</span>
-            <span class="contacte-card-val">@layaya.alimentacion</span>
-          </a>
-          <a class="contacte-card" href="mailto:hola@layaya.cat">
-            <div class="contacte-card-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
-                stroke-linecap="round" stroke-linejoin="round">
-                <rect width="20" height="16" x="2" y="4" rx="2" />
-                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-              </svg>
+
+            <div class="swiper-slide co-carousel__slide">
+              <div class="co-card co-card--style-1">
+                <div class="co-card__media">
+                  <img class="co-card__media-img" src="img/fabada.jpg" alt="Fabada artesana" loading="lazy"
+                    decoding="async">
+                  <span class="co-card__media-shadow"></span>
+                </div>
+                <div class="co-card__info">
+                  <div class="co-card__collection text-mask"><span>Carns i Llegums</span></div>
+                  <div class="co-card__title text-mask"><span>Fabada artesana</span></div>
+                  <div class="co-card__price text-mask"><span>Cinquena gamma · 18 dies</span></div>
+                </div>
+              </div>
             </div>
-            <span class="contacte-card-label">Correu</span>
-            <span class="contacte-card-val">hola@layaya.cat</span>
-          </a>
-          <div class="contacte-card">
-            <div class="contacte-card-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
-                stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10" />
-                <polyline points="12 6 12 12 16 14" />
-              </svg>
+
+            <div class="swiper-slide co-carousel__slide">
+              <div class="co-card co-card--style-2">
+                <div class="co-card__media">
+                  <img class="co-card__media-img" src="img/pastis_tonyina.jpg" alt="Pastís de tonyina" loading="lazy"
+                    decoding="async">
+                  <span class="co-card__media-shadow"></span>
+                </div>
+                <div class="co-card__info">
+                  <div class="co-card__collection text-mask"><span>Pastes i Amanides</span></div>
+                  <div class="co-card__title text-mask"><span>Pastís de tonyina</span></div>
+                  <div class="co-card__price text-mask"><span>Cinquena gamma · 18 dies</span></div>
+                </div>
+              </div>
             </div>
-            <span class="contacte-card-label">Horari</span>
-            <span class="contacte-card-val">Dilluns a divendres<br>9h–18h</span>
+
+            <div class="swiper-slide co-carousel__slide">
+              <div class="co-card co-card--style-3">
+                <div class="co-card__media">
+                  <img class="co-card__media-img" src="img/risotto_bolets.jpg" alt="Risotto de bolets" loading="lazy"
+                    decoding="async">
+                  <span class="co-card__media-shadow"></span>
+                </div>
+                <div class="co-card__info">
+                  <div class="co-card__collection text-mask"><span>Arrossos i Fideuàs</span></div>
+                  <div class="co-card__title text-mask"><span>Risotto de bolets</span></div>
+                  <div class="co-card__price text-mask"><span>Cinquena gamma · 18 dies</span></div>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
 
-        <div class="contacte-quote">
-          <p class="contacte-quote-text">
-            Treballem per fer que menjar bé sigui <em>més fàcil</em> cada dia.
-          </p>
+        <div class="co-carousel__nav-buttons">
+          <div class="co-carousel__nav-button prev">
+            <div class="co-carousel__nav-circle">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M15 18l-6-6 6-6" />
+              </svg>
+            </div>
+            <span>Anterior</span>
+          </div>
+          <div class="co-carousel__nav-button next">
+            <div class="co-carousel__nav-circle">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 18l6-6-6-6" />
+              </svg>
+            </div>
+            <span>Següent</span>
+          </div>
         </div>
       </div>
 
-      <!-- Columna dreta: targeta formulari -->
-      <div class="contacte-form-wrap">
-        <div class="form-header">
-          <div class="form-header-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+      <div class="productes-footer">
+        <div class="productes-download-row">
+          <a class="productes-download" href="#">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
               stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="7 10 12 15 17 10" />
+              <line x1="12" y1="15" x2="12" y2="3" />
             </svg>
+            Descarrega el catàleg
+          </a>
+        </div>
+        <div class="productes-badges">
+          <div class="productes-badge">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22V11" />
+              <path d="M12 16c0-4.5 4-7 7-8-1 4.5-3 8-7 8z" />
+              <path d="M12 16c0-4.5-4-7-7-8 1 4.5 3 8 7 8z" />
+            </svg>
+            <span>Ingredients de primera selecció</span>
           </div>
-          <div>
-            <div class="form-header-title">Envia'ns la teva consulta</div>
-            <div class="form-header-sub">Et respondrem tan aviat com sigui possible.</div>
+          <div class="productes-badges-sep"></div>
+          <div class="productes-badge">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              <path d="M9 12l2 2.5 4-4.5" />
+            </svg>
+            <span>Sense conservants afegits</span>
+          </div>
+          <div class="productes-badges-sep"></div>
+          <div class="productes-badge">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 16h12v3.5a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V16z" />
+              <path d="M8.5 16V13c0-1.9 1.6-3.5 3.5-3.5s3.5 1.6 3.5 3.5v3" />
+              <path d="M6.5 12.5a5.5 5.5 0 0 1 11 0" />
+            </svg>
+            <span>Elaboració pròpia</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="co-background co-background--style-0"></div>
+      <div class="co-background co-background--style-1"></div>
+      <div class="co-background co-background--style-2"></div>
+      <div class="co-background co-background--style-3"></div>
+    </section>
+
+    <!-- ─── QUALITAT ──────────────────────────────────────────── -->
+    <section class="seccio-qualitat" id="qualitat">
+      <div class="qualitat-shape qualitat-shape-1"></div>
+      <div class="qualitat-shape qualitat-shape-2"></div>
+
+      <div class="qualitat-inner">
+        <div class="qualitat-header">
+          <span class="qualitat-eyebrow">
+            <span class="qualitat-rule" aria-hidden="true"></span>
+            Qualitat i procés
+          </span>
+          <h2 class="qualitat-title">
+            Cada plat passa per <em>sis controls</em><br>
+            que asseguren el resultat.
+          </h2>
+        </div>
+
+        <div class="qualitat-grid">
+
+          <article class="qualitat-card">
+            <div class="qualitat-card-body">
+              <div class="qualitat-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 3l8 4v6c0 4.5-3.5 7.5-8 8-4.5-.5-8-3.5-8-8V7l8-4z" />
+                  <path d="M9 12l2 2 4-4" />
+                </svg>
+              </div>
+              <h3 class="qualitat-name">Selecció de matèries primeres</h3>
+              <p class="qualitat-desc">Proveïdors de proximitat verificats. Recepció controlada, traçabilitat completa.
+              </p>
+            </div>
+            <div class="qualitat-card-img">
+              <img src="img/qualitat_01.png" alt="Selecció de matèries primeres" loading="lazy" decoding="async">
+              <span class="qualitat-num">01</span>
+            </div>
+          </article>
+
+          <article class="qualitat-card">
+            <div class="qualitat-card-body">
+              <div class="qualitat-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 12h2l3-9 4 18 3-12 2 6h4" />
+                </svg>
+              </div>
+              <h3 class="qualitat-name">Rigor en la preparació</h3>
+              <p class="qualitat-desc">Receptes estandarditzades, pesatge precís, temps de cocció reproduïbles.</p>
+            </div>
+            <div class="qualitat-card-img">
+              <img src="img/qualitat_02.png" alt="Rigor en la preparació" loading="lazy" decoding="async">
+              <span class="qualitat-num">02</span>
+            </div>
+          </article>
+
+          <article class="qualitat-card">
+            <div class="qualitat-card-body">
+              <div class="qualitat-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M6 14c0-3 2-5 6-5s6 2 6 5" />
+                  <path d="M9 14v3M15 14v3M12 14v3" />
+                  <path d="M5 17h14" />
+                  <path d="M9 9V5M12 9V3M15 9V5" />
+                </svg>
+              </div>
+              <h3 class="qualitat-name">Cuina d'avantguarda</h3>
+              <p class="qualitat-desc">Cocció a baixa temperatura, fons elaborats al mateix obrador, salses fetes en
+                directe.</p>
+            </div>
+            <div class="qualitat-card-img">
+              <img src="img/qualitat_03.png" alt="Cuina d'avantguarda" loading="lazy" decoding="async">
+              <span class="qualitat-num">03</span>
+            </div>
+          </article>
+
+          <article class="qualitat-card">
+            <div class="qualitat-card-body">
+              <div class="qualitat-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="4" y="7" width="16" height="13" rx="2" />
+                  <path d="M8 7V5a4 4 0 0 1 8 0v2" />
+                  <path d="M8 12h8" />
+                </svg>
+              </div>
+              <h3 class="qualitat-name">Envasat d'alta protecció</h3>
+              <p class="qualitat-desc">Atmosfera protectora i envasos pensats per a 18 dies de vida útil sense
+                conservants.</p>
+            </div>
+            <div class="qualitat-card-img">
+              <img src="img/qualitat_04.png" alt="Envasat d'alta protecció" loading="lazy" decoding="async">
+              <span class="qualitat-num">04</span>
+            </div>
+          </article>
+
+          <article class="qualitat-card">
+            <div class="qualitat-card-body">
+              <div class="qualitat-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M9 3h6v3l3 4v9a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-9l3-4z" />
+                  <path d="M9 12h6" />
+                  <path d="M10.5 16h3" />
+                </svg>
+              </div>
+              <h3 class="qualitat-name">Laboratori de control</h3>
+              <p class="qualitat-desc">Anàlisis microbiològiques periòdiques. Auditories internes i certificats
+                sanitaris.
+              </p>
+            </div>
+            <div class="qualitat-card-img">
+              <img src="img/qualitat_05.png" alt="Laboratori de control" loading="lazy" decoding="async">
+              <span class="qualitat-num">05</span>
+            </div>
+          </article>
+
+          <article class="qualitat-card">
+            <div class="qualitat-card-body">
+              <div class="qualitat-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="8" width="13" height="9" rx="1" />
+                  <path d="M15 11h4l3 3v3h-7" />
+                  <circle cx="6" cy="18" r="2" />
+                  <circle cx="18" cy="18" r="2" />
+                </svg>
+              </div>
+              <h3 class="qualitat-name">Logística i cadena de fred</h3>
+              <p class="qualitat-desc">Transport refrigerat 2°C–4°C. Distribució estable per garantir el sabor d'origen.
+              </p>
+            </div>
+            <div class="qualitat-card-img">
+              <img src="img/qualitat_06.png" alt="Logística i cadena de fred" loading="lazy" decoding="async">
+              <span class="qualitat-num">06</span>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Barra inferior -->
+        <div class="qualitat-bar">
+          <div class="qualitat-bar-left">
+            <svg class="qualitat-bar-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              <path d="M9 12l2 2.5 4-4.5" />
+            </svg>
+            <div>
+              <div class="qualitat-bar-main">Compromís amb la qualitat, la seguretat alimentària i la millora contínua.
+              </div>
+              <div class="qualitat-bar-sub">Així cuidem cada detall perquè tu nomès hagis d'oferir el millor.</div>
+            </div>
           </div>
         </div>
 
-        <form class="contacte-form" id="contacte-form" novalidate>
-          <div class="form-row">
-            <div class="form-field">
-              <span class="form-field-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                  <circle cx="12" cy="7" r="4" />
-                </svg></span>
-              <label for="f-name" class="sr-only">Nom i cognoms</label>
-              <input type="text" id="f-name" name="name" placeholder="Nom i cognoms" autocomplete="name" required>
-            </div>
-            <div class="form-field">
-              <span class="form-field-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" />
-                  <path d="M6 12H4a2 2 0 0 0-2 2v8h4" />
-                  <path d="M18 9h2a2 2 0 0 1 2 2v11h-4" />
-                  <path d="M10 6h4" />
-                  <path d="M10 10h4" />
-                  <path d="M10 14h4" />
-                  <path d="M10 18h4" />
-                </svg></span>
-              <label for="f-company" class="sr-only">Empresa</label>
-              <input type="text" id="f-company" name="company" placeholder="Empresa" autocomplete="organization">
-            </div>
-          </div>
+      </div>
+    </section>
 
-          <div class="form-row">
-            <div class="form-field">
-              <span class="form-field-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <!-- ─── CONTACTE ──────────────────────────────────────────── -->
+    <section class="seccio-contacte" id="contacte">
+      <img class="contacte-bg" src="img/hero_background.png" alt="" loading="lazy" decoding="async">
+      <div class="contacte-bg-mask"></div>
+
+      <div class="contacte-inner">
+
+        <!-- Columna esquerra -->
+        <div class="contacte-info">
+          <span class="contacte-eyebrow">
+            <span class="contacte-dot"></span>
+            Parlem
+          </span>
+          <h2 class="contacte-title">
+            Vols portar la nostra cuina<br><em>al teu negoci?</em>
+          </h2>
+          <div class="contacte-divider"></div>
+          <p class="contacte-lead">
+            Cuina casolana preparada, segura i flexible per a hostaleria, retail, col·lectivitats i distribució.
+          </p>
+
+          <div class="contacte-cards">
+            <a class="contacte-card" href="https://www.instagram.com/layaya.alimentacion/" target="_blank"
+              rel="noopener">
+              <div class="contacte-card-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                </svg>
+              </div>
+              <span class="contacte-card-label">Instagram</span>
+              <span class="contacte-card-val">@layaya.alimentacion</span>
+            </a>
+            <a class="contacte-card" href="mailto:hola@layaya.es">
+              <div class="contacte-card-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+                  stroke-linecap="round" stroke-linejoin="round">
                   <rect width="20" height="16" x="2" y="4" rx="2" />
                   <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-                </svg></span>
-              <label for="f-email" class="sr-only">Correu electrònic</label>
-              <input type="email" id="f-email" name="email" placeholder="Correu electrònic" autocomplete="email" required>
-            </div>
-            <div class="form-field">
-              <span class="form-field-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-                  <path
-                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.11 12 19.79 19.79 0 0 1 1.04 3.4 2 2 0 0 1 3 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-                </svg></span>
-              <label for="f-phone" class="sr-only">Telèfon</label>
-              <input type="tel" id="f-phone" name="phone" placeholder="Telèfon" autocomplete="tel">
+                </svg>
+              </div>
+              <span class="contacte-card-label">Correu</span>
+              <span class="contacte-card-val">hola@layaya.es</span>
+            </a>
+            <div class="contacte-card">
+              <div class="contacte-card-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10" />
+                  <polyline points="12 6 12 12 16 14" />
+                </svg>
+              </div>
+              <span class="contacte-card-label">Horari</span>
+              <span class="contacte-card-val">Dilluns a divendres<br>9h–18h</span>
             </div>
           </div>
 
-          <div class="form-field">
-            <span class="form-field-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z" />
-                <path d="M7 7h.01" />
-              </svg></span>
-            <label for="f-type" class="sr-only">Tipus de consulta</label>
-            <select id="f-type" name="type">
-              <option value="">Tipus de consulta</option>
-              <option value="comercial">Informació comercial</option>
-              <option value="profesionals">Producte per a professionals</option>
-              <option value="botigues">Botigues</option>
-              <option value="distribucio">Distribució</option>
-              <option value="altres">Altres</option>
-            </select>
-            <span class="form-field-chevron" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="6 9 12 15 18 9" />
-              </svg></span>
+          <div class="contacte-quote">
+            <p class="contacte-quote-text">
+              Treballem per fer que menjar bé sigui <em>més fàcil</em> cada dia.
+            </p>
           </div>
+        </div>
 
-          <div class="form-field form-field--textarea">
-            <span class="form-field-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <!-- Columna dreta: targeta formulari -->
+        <div class="contacte-form-wrap">
+          <div class="form-header">
+            <div class="form-header-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+                stroke-linecap="round" stroke-linejoin="round">
                 <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-              </svg></span>
-            <label for="f-message" class="sr-only">Missatge</label>
-            <textarea id="f-message" name="message" rows="4" placeholder="Missatge" required></textarea>
+              </svg>
+            </div>
+            <div>
+              <div class="form-header-title">Envia'ns la teva consulta</div>
+              <div class="form-header-sub">Et respondrem tan aviat com sigui possible.</div>
+            </div>
           </div>
 
-          <button type="submit" class="form-submit">
-            Enviar missatge
-            <span>→</span>
-          </button>
+          <form class="contacte-form" id="contacte-form" novalidate>
+            <div class="form-row">
+              <div class="form-field">
+                <span class="form-field-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                    <circle cx="12" cy="7" r="4" />
+                  </svg></span>
+                <label for="f-name" class="sr-only">Nom i cognoms</label>
+                <input type="text" id="f-name" name="name" placeholder="Nom i cognoms" autocomplete="name" required>
+              </div>
+              <div class="form-field">
+                <span class="form-field-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" />
+                    <path d="M6 12H4a2 2 0 0 0-2 2v8h4" />
+                    <path d="M18 9h2a2 2 0 0 1 2 2v11h-4" />
+                    <path d="M10 6h4" />
+                    <path d="M10 10h4" />
+                    <path d="M10 14h4" />
+                    <path d="M10 18h4" />
+                  </svg></span>
+                <label for="f-company" class="sr-only">Empresa</label>
+                <input type="text" id="f-company" name="company" placeholder="Empresa" autocomplete="organization">
+              </div>
+            </div>
 
-          <div class="form-footer">
-            <span class="form-footer-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                <path d="M9 12l2 2.5 4-4.5" />
-              </svg></span>
-            <span class="form-footer-text">Sense compromís. T'ajudarem a valorar la millor opció segons el teu volum i
-              necessitat.</span>
-          </div>
-        </form>
+            <div class="form-row">
+              <div class="form-field">
+                <span class="form-field-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                    <rect width="20" height="16" x="2" y="4" rx="2" />
+                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                  </svg></span>
+                <label for="f-email" class="sr-only">Correu electrònic</label>
+                <input type="email" id="f-email" name="email" placeholder="Correu electrònic" autocomplete="email"
+                  required>
+              </div>
+              <div class="form-field">
+                <span class="form-field-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.11 12 19.79 19.79 0 0 1 1.04 3.4 2 2 0 0 1 3 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                  </svg></span>
+                <label for="f-phone" class="sr-only">Telèfon</label>
+                <input type="tel" id="f-phone" name="phone" placeholder="Telèfon" autocomplete="tel">
+              </div>
+            </div>
+
+            <div class="form-field">
+              <span class="form-field-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"
+                  fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z" />
+                  <path d="M7 7h.01" />
+                </svg></span>
+              <label for="f-type" class="sr-only">Tipus de consulta</label>
+              <select id="f-type" name="type">
+                <option value="">Tipus de consulta</option>
+                <option value="comercial">Informació comercial</option>
+                <option value="profesionals">Producte per a professionals</option>
+                <option value="botigues">Botigues</option>
+                <option value="distribucio">Distribució</option>
+                <option value="altres">Altres</option>
+              </select>
+              <span class="form-field-chevron" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24"
+                  fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9" />
+                </svg></span>
+            </div>
+
+            <div class="form-field form-field--textarea">
+              <span class="form-field-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"
+                  fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                </svg></span>
+              <label for="f-message" class="sr-only">Missatge</label>
+              <textarea id="f-message" name="message" rows="4" placeholder="Missatge" required></textarea>
+            </div>
+
+            <button type="submit" class="form-submit">
+              Enviar missatge
+              <span>→</span>
+            </button>
+
+            <div class="form-footer">
+              <span class="form-footer-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                  <path d="M9 12l2 2.5 4-4.5" />
+                </svg></span>
+              <span class="form-footer-text">Sense compromís. T'ajudarem a valorar la millor opció segons el teu volum i
+                necessitat.</span>
+            </div>
+          </form>
+        </div>
+
       </div>
-
-    </div>
-  </section>
+    </section>
   </main>
 
   <!-- ─── FOOTER ────────────────────────────────────────────── -->
@@ -3809,7 +3879,7 @@
         </div>
         <div class="footer-col">
           <span class="footer-col-title">Contacte</span>
-          <a href="mailto:hola@layaya.cat">hola@layaya.cat</a>
+          <a href="mailto:hola@layaya.es">hola@layaya.es</a>
           <a href="https://www.instagram.com/layaya.alimentacion/" target="_blank"
             rel="noopener">@layaya.alimentacion</a>
         </div>
