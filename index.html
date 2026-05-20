@@ -1,15 +1,13 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="ca">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Layaya — Próximamente</title>
+  <meta name="theme-color" content="#7ABA78">
+  <title>Layaya — Cuina preparada amb ànima</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400&display=swap"
-    rel="stylesheet">
   <link
     href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700&family=Sora:wght@300;400;500;600&display=swap"
     rel="stylesheet">
@@ -27,12 +25,15 @@
       --bg: #FFFDF8;
       --green: #7ABA78;
       --green-dk: #5a9e5c;
-      --green-xdk: #3C2A21;
+      --green-xxdk: #1e4a20;
       --green-lt: #b8d9b6;
       --green-xlt: #e2f0e1;
       --muted: #606060;
-
-      /* px de scroll per segon de vídeo — ajusta si cal */
+      --text-dark: #3C2A21;
+      --groc: #E8C870;
+      --blau: #9FB9E8;
+      --coral: #D97A7A;
+      --green-xdk: var(--text-dark);
       --scroll-per-second: 300;
     }
 
@@ -42,8 +43,26 @@
 
     body {
       background-color: var(--bg);
-      font-family: 'Lato', sans-serif;
-      color: var(--green-xdk);
+      font-family: 'Sora', sans-serif;
+      color: var(--text-dark);
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--green);
+      outline-offset: 3px;
+      border-radius: 3px;
     }
 
     /* ─── HERO — imatge estàtica ────────────────────────────── */
@@ -159,9 +178,7 @@
     .hero-features {
       max-width: 1240px;
       margin: 0 auto;
-      background: rgba(255, 253, 248, 0.93);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      background: var(--bg);
       border-radius: 16px;
       padding: 1.4rem 2rem;
       display: grid;
@@ -1182,9 +1199,12 @@
       font-weight: 600;
       letter-spacing: 0.08em;
       color: rgba(0, 0, 0, 0.35);
-      padding: 0.35rem 0.4rem;
+      padding: 0.45rem 0.55rem;
+      min-width: 36px;
+      min-height: 36px;
       text-transform: uppercase;
       transition: color 0.25s ease;
+      border-radius: 6px;
     }
 
     .nav-lang button:hover {
@@ -1593,26 +1613,23 @@
 
     .productes-eyebrow {
       display: inline-flex;
-      align-items: center;
-      gap: 0.55rem;
+      align-items: baseline;
+      gap: 0.7rem;
       font-family: 'Sora', sans-serif;
       font-size: 0.74rem;
       font-weight: 600;
       letter-spacing: 0.16em;
       text-transform: uppercase;
       color: rgba(255, 255, 255, 0.7);
-      padding: 0.5rem 1.1rem;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 100px;
       margin-bottom: 1.4rem;
     }
 
-    .productes-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--green);
-      animation: pulse 2s ease-in-out infinite;
+    .productes-num {
+      font-family: 'Fraunces', serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--green);
     }
 
     .productes-title {
@@ -1848,14 +1865,14 @@
     }
 
     /* Food image — PNG transparent, overflows card top (same as original) */
-    .co-card__shoe {
+    .co-card__media {
       position: relative;
       width: 160%;
       flex-shrink: 0;
       top: -110px;
     }
 
-    .co-card__shoe-img {
+    .co-card__media-img {
       user-select: none;
       position: relative;
       width: 100%;
@@ -1863,7 +1880,7 @@
       z-index: 9;
     }
 
-    .co-card__shoe-shadow {
+    .co-card__media-shadow {
       position: absolute;
       top: 80px;
       left: 0;
@@ -1943,8 +1960,8 @@
     @media (max-width: 540px) {
       .co-carousel { width: 86%; height: 440px; }
       .co-card { height: 440px; width: 280px; }
-      .co-card__shoe { top: -80px; }
-      .co-card__shoe-shadow { top: 70px; }
+      .co-card__media { top: -80px; }
+      .co-card__media-shadow { top: 70px; }
     }
 
     /* ─── QUALITAT ─────────────────────────────────────────── */
@@ -1993,25 +2010,21 @@
     .qualitat-eyebrow {
       display: inline-flex;
       align-items: center;
-      gap: 0.55rem;
+      gap: 0.8rem;
       font-family: 'Sora', sans-serif;
       font-size: 0.74rem;
       font-weight: 600;
       letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--green-dk);
-      padding: 0.5rem 1.1rem;
-      border: 1px solid rgba(30, 74, 32, 0.22);
-      border-radius: 100px;
       margin-bottom: 1.4rem;
     }
 
-    .qualitat-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--green);
-      animation: pulse 2s ease-in-out infinite;
+    .qualitat-rule {
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--green-dk);
     }
 
     .qualitat-title {
@@ -2066,7 +2079,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: rgba(122, 186, 120, 0.14);
+      background: rgba(159, 185, 232, 0.22);
+      color: #4a6da8;
       color: var(--green-dk);
       margin-bottom: 1.1rem;
     }
@@ -2281,9 +2295,7 @@
     }
 
     .contacte-card {
-      background: rgba(255, 255, 255, 0.72);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
+      background: #fff;
       border: 1px solid rgba(30, 74, 32, 0.12);
       border-radius: 14px;
       padding: 1.2rem 0.8rem;
@@ -2365,9 +2377,7 @@
 
     /* Targeta formulari */
     .contacte-form-wrap {
-      background: rgba(255, 255, 255, 0.94);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      background: #fff;
       border-radius: 20px;
       padding: 2rem;
       box-shadow: 0 8px 40px rgba(0, 0, 0, 0.1);
@@ -2691,6 +2701,18 @@
         text-align: center;
       }
     }
+
+    /* ─── Reduced motion: respecta preferències sistema ───── */
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
   </style>
 </head>
 
@@ -2704,7 +2726,7 @@
           <img src="img/logo.png" alt="Layaya">
         </a>
         <span class="nav-brand-text">Cuina casolana</span>
-        <button class="nav-hamburger" id="nav-hamburger" aria-label="Menú">
+        <button class="nav-hamburger" id="nav-hamburger" aria-label="Obrir menú" aria-expanded="false" aria-controls="site-nav">
           <span></span><span></span><span></span>
         </button>
       </div>
@@ -2714,20 +2736,21 @@
         <li><a href="#que-fem">Què fem</a></li>
         <li><a href="#productes">Productes</a></li>
         <li><a href="#qualitat">Qualitat</a></li>
-        <span class="nav-cursor"></span>
+        <li class="nav-cursor" role="presentation" aria-hidden="true"></li>
       </ul>
 
       <div class="nav-right">
-        <ul class="nav-lang">
-          <li><button class="active">CA</button></li>
-          <li><button>ES</button></li>
-          <li><button>EN</button></li>
+        <ul class="nav-lang" role="group" aria-label="Selector d'idioma">
+          <li><button class="active" lang="ca" aria-label="Canviar a català" aria-pressed="true">CA</button></li>
+          <li><button lang="es" aria-label="Cambiar a castellano" aria-pressed="false">ES</button></li>
+          <li><button lang="en" aria-label="Switch to English" aria-pressed="false">EN</button></li>
         </ul>
         <a href="#contacte" class="nav-cta">Contacte</a>
       </div>
     </div>
   </nav>
 
+  <main id="contingut">
   <!-- ─── HERO ─────────────────────────────────────────────── -->
   <section class="hero-section" id="hero">
     <img class="hero-bg" src="img/hero_background.png" alt="">
@@ -3049,7 +3072,7 @@
 
         <!-- Card principal (activa) -->
         <div class="serveis-main-card">
-          <img id="serveis-main-img" class="serveis-main-img" src="img/fabada.jpg" alt="">
+          <img id="serveis-main-img" class="serveis-main-img" src="img/fabada.jpg" alt="" loading="lazy" decoding="async">
           <div class="serveis-main-overlay">
             <span class="serveis-main-num" id="serveis-main-num">01</span>
             <h3 class="serveis-main-title" id="serveis-main-title">Col·lectivitats</h3>
@@ -3066,7 +3089,7 @@
         <div class="serveis-side-cards">
 
           <div class="serveis-side-card">
-            <img class="serveis-side-img" src="" alt="">
+            <img class="serveis-side-img" src="" alt="" loading="lazy" decoding="async">
             <div class="serveis-side-overlay"></div>
             <div class="serveis-side-icon"></div>
             <div class="serveis-side-content">
@@ -3079,7 +3102,7 @@
           </div>
 
           <div class="serveis-side-card">
-            <img class="serveis-side-img" src="" alt="">
+            <img class="serveis-side-img" src="" alt="" loading="lazy" decoding="async">
             <div class="serveis-side-overlay"></div>
             <div class="serveis-side-icon"></div>
             <div class="serveis-side-content">
@@ -3092,7 +3115,7 @@
           </div>
 
           <div class="serveis-side-card">
-            <img class="serveis-side-img" src="" alt="">
+            <img class="serveis-side-img" src="" alt="" loading="lazy" decoding="async">
             <div class="serveis-side-overlay"></div>
             <div class="serveis-side-icon"></div>
             <div class="serveis-side-content">
@@ -3175,7 +3198,7 @@
 
       <!-- Layaya Alimentació -->
       <article class="linia-card linia-card-verd">
-        <img class="linia-prod-img" src="img/arros_muntanya.png" alt="Layaya Alimentació">
+        <img class="linia-prod-img" src="img/arros_muntanya.png" alt="Layaya Alimentació" loading="lazy" decoding="async">
 
         <div class="linia-top">
           <div class="linia-main-icon linia-main-icon-verd">
@@ -3238,7 +3261,7 @@
 
       <!-- Layaya Botigues -->
       <article class="linia-card linia-card-daurat">
-        <img class="linia-prod-img" src="img/arros_muntanya.png" alt="Layaya Botigues">
+        <img class="linia-prod-img" src="img/arros_muntanya.png" alt="Layaya Botigues" loading="lazy" decoding="async">
 
         <div class="linia-top">
           <div class="linia-main-icon linia-main-icon-daurat">
@@ -3304,7 +3327,7 @@
   <section class="seccio-productes" id="productes">
     <div class="productes-header">
       <span class="productes-eyebrow">
-        <span class="productes-dot"></span>
+        <span class="productes-num">/ 03</span>
         El nostre catàleg
       </span>
       <h2 class="productes-title">
@@ -3322,9 +3345,9 @@
 
           <div class="swiper-slide co-carousel__slide">
             <div class="co-card">
-              <div class="co-card__shoe">
-                <img class="co-card__shoe-img" src="img/arros_muntanya.png" alt="Arròs de muntanya">
-                <span class="co-card__shoe-shadow"></span>
+              <div class="co-card__media">
+                <img class="co-card__media-img" src="img/arros_muntanya.png" alt="Arròs de muntanya" loading="lazy" decoding="async">
+                <span class="co-card__media-shadow"></span>
               </div>
               <div class="co-card__info">
                 <div class="co-card__collection text-mask"><span>Arrossos i Fideuàs</span></div>
@@ -3336,9 +3359,9 @@
 
           <div class="swiper-slide co-carousel__slide">
             <div class="co-card co-card--style-1">
-              <div class="co-card__shoe">
-                <img class="co-card__shoe-img" src="img/fabada.jpg" alt="Fabada artesana">
-                <span class="co-card__shoe-shadow"></span>
+              <div class="co-card__media">
+                <img class="co-card__media-img" src="img/fabada.jpg" alt="Fabada artesana" loading="lazy" decoding="async">
+                <span class="co-card__media-shadow"></span>
               </div>
               <div class="co-card__info">
                 <div class="co-card__collection text-mask"><span>Carns i Llegums</span></div>
@@ -3350,9 +3373,9 @@
 
           <div class="swiper-slide co-carousel__slide">
             <div class="co-card co-card--style-2">
-              <div class="co-card__shoe">
-                <img class="co-card__shoe-img" src="img/pastis_tonyina.jpg" alt="Pastís de tonyina">
-                <span class="co-card__shoe-shadow"></span>
+              <div class="co-card__media">
+                <img class="co-card__media-img" src="img/pastis_tonyina.jpg" alt="Pastís de tonyina" loading="lazy" decoding="async">
+                <span class="co-card__media-shadow"></span>
               </div>
               <div class="co-card__info">
                 <div class="co-card__collection text-mask"><span>Pastes i Amanides</span></div>
@@ -3364,9 +3387,9 @@
 
           <div class="swiper-slide co-carousel__slide">
             <div class="co-card co-card--style-3">
-              <div class="co-card__shoe">
-                <img class="co-card__shoe-img" src="img/risotto_bolets.jpg" alt="Risotto de bolets">
-                <span class="co-card__shoe-shadow"></span>
+              <div class="co-card__media">
+                <img class="co-card__media-img" src="img/risotto_bolets.jpg" alt="Risotto de bolets" loading="lazy" decoding="async">
+                <span class="co-card__media-shadow"></span>
               </div>
               <div class="co-card__info">
                 <div class="co-card__collection text-mask"><span>Arrossos i Fideuàs</span></div>
@@ -3434,7 +3457,7 @@
     <div class="qualitat-inner">
       <div class="qualitat-header">
         <span class="qualitat-eyebrow">
-          <span class="qualitat-dot"></span>
+          <span class="qualitat-rule" aria-hidden="true"></span>
           Qualitat i procés
         </span>
         <h2 class="qualitat-title">
@@ -3459,7 +3482,7 @@
             </p>
           </div>
           <div class="qualitat-card-img">
-            <img src="img/fabada.jpg" alt="Selecció de matèries primeres">
+            <img src="img/fabada.jpg" alt="Selecció de matèries primeres" loading="lazy" decoding="async">
             <span class="qualitat-num">01</span>
           </div>
         </article>
@@ -3476,7 +3499,7 @@
             <p class="qualitat-desc">Receptes estandarditzades, pesatge precís, temps de cocció reproduïbles.</p>
           </div>
           <div class="qualitat-card-img">
-            <img src="img/risotto_bolets.jpg" alt="Rigor en la preparació">
+            <img src="img/risotto_bolets.jpg" alt="Rigor en la preparació" loading="lazy" decoding="async">
             <span class="qualitat-num">02</span>
           </div>
         </article>
@@ -3497,7 +3520,7 @@
               directe.</p>
           </div>
           <div class="qualitat-card-img">
-            <img src="img/arros_muntanya.jpg" alt="Cuina d'avantguarda">
+            <img src="img/arros_muntanya.jpg" alt="Cuina d'avantguarda" loading="lazy" decoding="async">
             <span class="qualitat-num">03</span>
           </div>
         </article>
@@ -3517,7 +3540,7 @@
               conservants.</p>
           </div>
           <div class="qualitat-card-img">
-            <img src="img/pastis_tonyina.jpg" alt="Envasat d'alta protecció">
+            <img src="img/pastis_tonyina.jpg" alt="Envasat d'alta protecció" loading="lazy" decoding="async">
             <span class="qualitat-num">04</span>
           </div>
         </article>
@@ -3537,7 +3560,7 @@
             </p>
           </div>
           <div class="qualitat-card-img">
-            <img src="img/risotto_bolets.jpg" alt="Laboratori de control">
+            <img src="img/risotto_bolets.jpg" alt="Laboratori de control" loading="lazy" decoding="async">
             <span class="qualitat-num">05</span>
           </div>
         </article>
@@ -3558,7 +3581,7 @@
             </p>
           </div>
           <div class="qualitat-card-img">
-            <img src="img/fabada.jpg" alt="Logística i cadena de fred">
+            <img src="img/fabada.jpg" alt="Logística i cadena de fred" loading="lazy" decoding="async">
             <span class="qualitat-num">06</span>
           </div>
         </article>
@@ -3586,7 +3609,7 @@
 
   <!-- ─── CONTACTE ──────────────────────────────────────────── -->
   <section class="seccio-contacte" id="contacte">
-    <img class="contacte-bg" src="img/hero_background.png" alt="">
+    <img class="contacte-bg" src="img/hero_background.png" alt="" loading="lazy" decoding="async">
     <div class="contacte-bg-mask"></div>
 
     <div class="contacte-inner">
@@ -3667,15 +3690,16 @@
         <form class="contacte-form" id="contacte-form" novalidate>
           <div class="form-row">
             <div class="form-field">
-              <span class="form-field-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+              <span class="form-field-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
                   stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                   <circle cx="12" cy="7" r="4" />
                 </svg></span>
-              <input type="text" id="f-name" name="name" placeholder="Nom i cognoms" required>
+              <label for="f-name" class="sr-only">Nom i cognoms</label>
+              <input type="text" id="f-name" name="name" placeholder="Nom i cognoms" autocomplete="name" required>
             </div>
             <div class="form-field">
-              <span class="form-field-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+              <span class="form-field-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
                   stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" />
                   <path d="M6 12H4a2 2 0 0 0-2 2v8h4" />
@@ -3685,35 +3709,39 @@
                   <path d="M10 14h4" />
                   <path d="M10 18h4" />
                 </svg></span>
-              <input type="text" id="f-company" name="company" placeholder="Empresa">
+              <label for="f-company" class="sr-only">Empresa</label>
+              <input type="text" id="f-company" name="company" placeholder="Empresa" autocomplete="organization">
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-field">
-              <span class="form-field-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+              <span class="form-field-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
                   stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
                   <rect width="20" height="16" x="2" y="4" rx="2" />
                   <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
                 </svg></span>
-              <input type="email" id="f-email" name="email" placeholder="Correu electrònic" required>
+              <label for="f-email" class="sr-only">Correu electrònic</label>
+              <input type="email" id="f-email" name="email" placeholder="Correu electrònic" autocomplete="email" required>
             </div>
             <div class="form-field">
-              <span class="form-field-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+              <span class="form-field-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
                   stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
                   <path
                     d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.11 12 19.79 19.79 0 0 1 1.04 3.4 2 2 0 0 1 3 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
                 </svg></span>
-              <input type="tel" id="f-phone" name="phone" placeholder="Telèfon">
+              <label for="f-phone" class="sr-only">Telèfon</label>
+              <input type="tel" id="f-phone" name="phone" placeholder="Telèfon" autocomplete="tel">
             </div>
           </div>
 
           <div class="form-field">
-            <span class="form-field-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+            <span class="form-field-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z" />
                 <path d="M7 7h.01" />
               </svg></span>
+            <label for="f-type" class="sr-only">Tipus de consulta</label>
             <select id="f-type" name="type">
               <option value="">Tipus de consulta</option>
               <option value="comercial">Informació comercial</option>
@@ -3722,17 +3750,18 @@
               <option value="distribucio">Distribució</option>
               <option value="altres">Altres</option>
             </select>
-            <span class="form-field-chevron"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+            <span class="form-field-chevron" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <polyline points="6 9 12 15 18 9" />
               </svg></span>
           </div>
 
           <div class="form-field form-field--textarea">
-            <span class="form-field-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+            <span class="form-field-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
               </svg></span>
+            <label for="f-message" class="sr-only">Missatge</label>
             <textarea id="f-message" name="message" rows="4" placeholder="Missatge" required></textarea>
           </div>
 
@@ -3755,12 +3784,13 @@
 
     </div>
   </section>
+  </main>
 
   <!-- ─── FOOTER ────────────────────────────────────────────── -->
   <footer class="site-footer">
     <div class="footer-inner">
       <div class="footer-brand">
-        <img src="img/logo.png" alt="Layaya" class="footer-logo">
+        <img src="img/logo.png" alt="Layaya" class="footer-logo" loading="lazy" decoding="async">
         <p class="footer-tag">Cuinem perquè menjar bé sigui més fàcil.</p>
       </div>
 
@@ -3808,8 +3838,10 @@
       }, { passive: true });
 
       hamburger.addEventListener('click', function () {
-        hamburger.classList.toggle('open');
-        nav.classList.toggle('nav-mobile-open');
+        const isOpen = hamburger.classList.toggle('open');
+        nav.classList.toggle('nav-mobile-open', isOpen);
+        hamburger.setAttribute('aria-expanded', String(isOpen));
+        hamburger.setAttribute('aria-label', isOpen ? 'Tancar menú' : 'Obrir menú');
       });
 
       // Tanca el menú mòbil en clicar un link
@@ -3817,22 +3849,28 @@
         link.addEventListener('click', function () {
           hamburger.classList.remove('open');
           nav.classList.remove('nav-mobile-open');
+          hamburger.setAttribute('aria-expanded', 'false');
+          hamburger.setAttribute('aria-label', 'Obrir menú');
         });
       });
 
       // Selector d'idioma
       nav.querySelectorAll('.nav-lang button').forEach(function (btn) {
         btn.addEventListener('click', function () {
-          nav.querySelectorAll('.nav-lang button').forEach(function (b) { b.classList.remove('active'); });
+          nav.querySelectorAll('.nav-lang button').forEach(function (b) {
+            b.classList.remove('active');
+            b.setAttribute('aria-pressed', 'false');
+          });
           btn.classList.add('active');
+          btn.setAttribute('aria-pressed', 'true');
         });
       });
 
-      // Pill nav: cursor lliscant a l'hover
+      // Pill nav: cursor lliscant a l'hover (excloent el propi cursor)
       const navUL = nav.querySelector('.nav-links');
       const cursor = nav.querySelector('.nav-cursor');
       if (navUL && cursor) {
-        nav.querySelectorAll('.nav-links li').forEach(function (li) {
+        nav.querySelectorAll('.nav-links li:not(.nav-cursor)').forEach(function (li) {
           li.addEventListener('mouseenter', function () {
             cursor.style.left = li.offsetLeft + 'px';
             cursor.style.width = li.offsetWidth + 'px';
@@ -3975,10 +4013,10 @@
 
                 slide.querySelector('.co-card').style.transform = 'scale(' + scale + ')';
 
-                var shoeImg = slide.querySelector('.co-card__shoe-img');
+                var shoeImg = slide.querySelector('.co-card__media-img');
                 if (shoeImg) shoeImg.style.transform = 'translate3d(' + translateX + 'px,0,0) rotate(' + rotateShoe + 'deg)';
 
-                var shoeShadow = slide.querySelector('.co-card__shoe-shadow');
+                var shoeShadow = slide.querySelector('.co-card__media-shadow');
                 if (shoeShadow) shoeShadow.style.transform = 'translateX(calc(-50% + ' + (translateX / 2) + 'px))';
 
                 if (backgroundWrapper[index]) backgroundWrapper[index].style.opacity = opacity.toFixed(2);
@@ -3992,9 +4030,9 @@
           setTransition: function (swiper, speed) {
             swiper.slides.forEach(function (slide, index) {
               slide.querySelector('.co-card').style.transition = speed + 'ms';
-              var shoeImg = slide.querySelector('.co-card__shoe-img');
+              var shoeImg = slide.querySelector('.co-card__media-img');
               if (shoeImg) shoeImg.style.transition = speed + 'ms';
-              var shoeShadow = slide.querySelector('.co-card__shoe-shadow');
+              var shoeShadow = slide.querySelector('.co-card__media-shadow');
               if (shoeShadow) shoeShadow.style.transition = speed + 'ms';
               if (backgroundWrapper[index]) backgroundWrapper[index].style.transition = speed + 'ms';
               slide.querySelectorAll('.text-mask span').forEach(function (t) {
