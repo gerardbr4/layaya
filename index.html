@@ -1386,6 +1386,12 @@
       height: 65%;
       object-fit: cover;
       object-position: center top;
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 38%),
+                          linear-gradient(to top, transparent 0%, black 32%);
+      -webkit-mask-composite: destination-in;
+      mask-image: linear-gradient(to right, transparent 0%, black 38%),
+                  linear-gradient(to top, transparent 0%, black 32%);
+      mask-composite: intersect;
     }
 
     .linia-top {
@@ -3158,7 +3164,6 @@
                 <span>Solucions per a empreses</span>
               </div>
             </div>
-            <a href="#contacte" class="linia-cta linia-cta-verd">Saber-ne més →</a>
           </div>
         </article>
 
@@ -3221,7 +3226,6 @@
                 <span>Proximitat</span>
               </div>
             </div>
-            <a href="#contacte" class="linia-cta linia-cta-daurat">Les nostres botigues →</a>
           </div>
         </article>
 
