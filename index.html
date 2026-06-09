@@ -482,6 +482,16 @@
       line-height: 1;
     }
 
+    .stat-sep {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.3rem, 2vw, 1.8rem);
+      font-weight: 700;
+      color: var(--green);
+      line-height: 1;
+      margin: 0 0.12em;
+      letter-spacing: -0.03em;
+    }
+
     .stat-label-title {
       font-family: 'Sora', sans-serif;
       font-size: 0.78rem;
@@ -506,39 +516,6 @@
       margin: 0;
     }
 
-    /* Circular stamp */
-    .quisom-stamp {
-      position: absolute;
-      bottom: -1.5rem;
-      right: -1.5rem;
-      width: 110px;
-      height: 110px;
-      z-index: 2;
-    }
-
-    .quisom-stamp svg {
-      width: 100%;
-      height: 100%;
-      animation: spin 18s linear infinite;
-    }
-
-    .quisom-stamp-center {
-      position: absolute;
-      inset: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 1.4rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 36px;
-      height: 36px;
-    }
-
-    @keyframes spin {
-      to {
-        transform: rotate(360deg);
-      }
-    }
 
     @media (max-width: 900px) {
       .seccio-quisom {
@@ -550,12 +527,6 @@
         gap: 3rem;
       }
 
-      .quisom-stamp {
-        bottom: -1rem;
-        right: -1rem;
-        width: 88px;
-        height: 88px;
-      }
     }
 
     /* ─── SECCIÓ "QUI SERVIM" ───────────────────────────────── */
@@ -694,7 +665,6 @@
       display: grid;
       grid-template-columns: 1fr 290px;
       gap: 0.7rem;
-      height: 600px;
     }
 
     /* Card principal */
@@ -703,6 +673,8 @@
       border-radius: 20px;
       overflow: hidden;
       cursor: default;
+      aspect-ratio: 1 / 1;
+      align-self: start;
     }
 
     .serveis-main-img {
@@ -796,6 +768,7 @@
     .serveis-side-card {
       position: relative;
       flex: 1;
+      min-height: 0;
       border-radius: 16px;
       overflow: hidden;
       cursor: pointer;
@@ -867,24 +840,58 @@
       display: block;
     }
 
-    .serveis-side-arrow {
+    .serveis-side-active-dot {
       flex-shrink: 0;
-      width: 28px;
-      height: 28px;
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
-      border: 1.5px solid rgba(255, 255, 255, 0.5);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      font-size: 0.78rem;
-      transition: background 0.2s ease, border-color 0.2s ease;
-      margin-bottom: 0.1rem;
+      border: 1.5px solid rgba(255, 255, 255, 0.55);
+      background: transparent;
+      transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+      margin-bottom: 0.15rem;
+      align-self: flex-end;
     }
 
-    .serveis-side-card:hover .serveis-side-arrow {
-      background: rgba(255, 255, 255, 0.15);
-      border-color: #fff;
+    .serveis-side-card.is-active .serveis-side-active-dot {
+      background: var(--green);
+      border-color: var(--green);
+      transform: scale(1.3);
+    }
+
+    .serveis-side-card.is-active .serveis-side-overlay {
+      background: linear-gradient(to top,
+        rgba(15, 25, 10, 0.55) 0%,
+        rgba(15, 25, 10, 0.05) 60%,
+        transparent 100%);
+    }
+
+    .serveis-side-card:not(.is-active) {
+      cursor: pointer;
+    }
+
+    .serveis-side-card:not(.is-active) .serveis-side-overlay {
+      background: linear-gradient(to top,
+        rgba(15, 25, 10, 0.82) 0%,
+        rgba(15, 25, 10, 0.45) 60%,
+        rgba(15, 25, 10, 0.25) 100%);
+      transition: background 0.3s ease;
+    }
+
+    .serveis-side-card:not(.is-active):hover .serveis-side-overlay {
+      background: linear-gradient(to top,
+        rgba(15, 25, 10, 0.65) 0%,
+        rgba(15, 25, 10, 0.2) 60%,
+        rgba(15, 25, 10, 0.08) 100%);
+    }
+
+    .serveis-side-card.is-active::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 16px;
+      box-shadow: inset 0 0 0 2px var(--green);
+      z-index: 3;
+      pointer-events: none;
     }
 
     /* Barra inferior */
@@ -1387,10 +1394,10 @@
       object-fit: cover;
       object-position: center top;
       -webkit-mask-image: linear-gradient(to right, transparent 0%, black 38%),
-                          linear-gradient(to top, transparent 0%, black 32%);
+        linear-gradient(to top, transparent 0%, black 32%);
       -webkit-mask-composite: destination-in;
       mask-image: linear-gradient(to right, transparent 0%, black 38%),
-                  linear-gradient(to top, transparent 0%, black 32%);
+        linear-gradient(to top, transparent 0%, black 32%);
       mask-composite: intersect;
     }
 
@@ -2859,7 +2866,7 @@
                 </div>
                 <div class="stat-card-meta">
                   <div class="stat-num-row">
-                    <span class="stat-num" data-count="18">0</span>
+                    <span class="stat-num" data-count="18">0</span><span class="stat-sep">-</span><span class="stat-num" data-count="24">0</span>
                   </div>
                   <div class="stat-label-title">Dies de vida útil</div>
                 </div>
@@ -2907,7 +2914,7 @@
                 </div>
                 <div class="stat-card-meta">
                   <div class="stat-num-row">
-                    <span class="stat-num" data-count="4">0</span><span class="stat-suffix">°</span>
+                    <span class="stat-num" data-count="2">0</span><span class="stat-sep">-</span><span class="stat-num" data-count="4">0</span><span class="stat-suffix">°</span>
                   </div>
                   <div class="stat-label-title">Cadena de fred</div>
                 </div>
@@ -2918,32 +2925,7 @@
 
           </div>
 
-          <!-- Circular stamp -->
-          <div class="quisom-stamp">
-            <svg viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <path id="stampCircle" d="M 55,55 m -38,0 a 38,38 0 1,1 76,0 a 38,38 0 1,1 -76,0" />
-              </defs>
-              <circle cx="55" cy="55" r="50" fill="white" stroke="#7ABA78" stroke-width="1.5" />
-              <text font-family="Sora, sans-serif" font-size="8.5" font-weight="600" letter-spacing="2.5" fill="#5a9e5c"
-                text-anchor="middle">
-                <textPath href="#stampCircle" startOffset="0%">CUINEM PER A TU COM A CASA · CUINEM PER A TU COM A CASA ·
-                </textPath>
-              </text>
-            </svg>
-            <div class="quisom-stamp-center">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5a9e5c" stroke-width="1.6"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 3.5V5.5" />
-                <path d="M8.5 8Q12 5.5 15.5 8" />
-                <line x1="8" y1="8" x2="16" y2="8" />
-                <path d="M7 8h10l-1.3 11H8.3L7 8z" />
-                <path d="M7 12H5.2a1.3 1.3 0 0 0 0 2.5H7" />
-                <path d="M17 12h1.8a1.3 1.3 0 0 1 0 2.5H17" />
-              </svg>
-            </div>
           </div>
-        </div>
 
       </div>
     </section>
@@ -2971,7 +2953,6 @@
                 compromís.</span>
             </div>
           </div>
-          <a class="serveis-cta" href="#contacte">Més informació →</a>
         </div>
 
         <!-- Àrea de cards -->
@@ -2993,10 +2974,10 @@
             </div>
           </div>
 
-          <!-- Cards laterals (3 panells no actius) -->
+          <!-- Cards laterals (4 panells fixos) -->
           <div class="serveis-side-cards">
 
-            <div class="serveis-side-card">
+            <div class="serveis-side-card" data-panel-idx="0">
               <img class="serveis-side-img" src="" alt="" loading="lazy" decoding="async">
               <div class="serveis-side-overlay"></div>
               <div class="serveis-side-icon"></div>
@@ -3005,11 +2986,11 @@
                   <span class="serveis-side-num"></span>
                   <span class="serveis-side-title"></span>
                 </div>
-                <div class="serveis-side-arrow">→</div>
+                <div class="serveis-side-active-dot"></div>
               </div>
             </div>
 
-            <div class="serveis-side-card">
+            <div class="serveis-side-card" data-panel-idx="1">
               <img class="serveis-side-img" src="" alt="" loading="lazy" decoding="async">
               <div class="serveis-side-overlay"></div>
               <div class="serveis-side-icon"></div>
@@ -3018,11 +2999,11 @@
                   <span class="serveis-side-num"></span>
                   <span class="serveis-side-title"></span>
                 </div>
-                <div class="serveis-side-arrow">→</div>
+                <div class="serveis-side-active-dot"></div>
               </div>
             </div>
 
-            <div class="serveis-side-card">
+            <div class="serveis-side-card" data-panel-idx="2">
               <img class="serveis-side-img" src="" alt="" loading="lazy" decoding="async">
               <div class="serveis-side-overlay"></div>
               <div class="serveis-side-icon"></div>
@@ -3031,7 +3012,20 @@
                   <span class="serveis-side-num"></span>
                   <span class="serveis-side-title"></span>
                 </div>
-                <div class="serveis-side-arrow">→</div>
+                <div class="serveis-side-active-dot"></div>
+              </div>
+            </div>
+
+            <div class="serveis-side-card" data-panel-idx="3">
+              <img class="serveis-side-img" src="" alt="" loading="lazy" decoding="async">
+              <div class="serveis-side-overlay"></div>
+              <div class="serveis-side-icon"></div>
+              <div class="serveis-side-content">
+                <div>
+                  <span class="serveis-side-num"></span>
+                  <span class="serveis-side-title"></span>
+                </div>
+                <div class="serveis-side-active-dot"></div>
               </div>
             </div>
 
@@ -3830,28 +3824,28 @@
 
       var PANELS = [
         {
-          num: '01', img: 'img/fabada.jpg',
+          num: '01', img: 'img/collectivitats.png',
           cardTitle: 'Col·lectivitats', cardDesc: 'Cuina casolana, equilibrada i segura per a grans col·lectius cada dia.',
           leftTitle: 'Col·lectivitats i menjadors', leftDesc: 'Menús diaris per a escoles, hospitals i menjadors corporatius. Qualitat casolana a gran escala.',
           featTitle: 'Solucions adaptades', featDesc: 'Ens adaptem a les necessitats de cada col·lectivitat amb flexibilitat i compromís.',
           icon: 'people',
         },
         {
-          num: '02', img: 'img/paella_marisc.jpg',
+          num: '02', img: 'img/hostaleria.png',
           cardTitle: 'Hostaleria', cardDesc: 'Productes premium per a cuines professionals que busquen màxima eficiència i sabor constant.',
           leftTitle: 'Hostaleria i restaurants', leftDesc: 'Plats de cinquena gamma per a restaurants, bars i hotels. Producció regular, sabor constant.',
           featTitle: 'Consistència i qualitat', featDesc: 'Producció regular que garanteix el sabor i la qualitat en cada servei.',
           icon: 'chefhat',
         },
         {
-          num: '03', img: 'img/risotto_bolets.jpg',
+          num: '03', img: 'img/retail.png',
           cardTitle: 'Retail', cardDesc: 'Productes envasats amb identitat de marca per a comerços i grans superfícies.',
           leftTitle: 'Retail i gran distribució', leftDesc: 'Envasos premium per a supermercats i comerços alimentaris especialitzats.',
           featTitle: 'Presentació impecable', featDesc: "Packaging d'alta protecció i llarga vida útil per a la gran distribució.",
           icon: 'basket',
         },
         {
-          num: '04', img: 'img/croquetes_pollastre.jpg',
+          num: '04', img: 'img/botigues.png',
           cardTitle: 'Botigues pròpies', cardDesc: 'Plats tradicionals per a botigues de cuina casolana i establiments de take-away.',
           leftTitle: 'Botigues i take-away', leftDesc: "Venda directa al consumidor final amb el sabor d'una cuina de mercat casolana.",
           featTitle: 'Producte de proximitat', featDesc: 'Comerç local amb producte autèntic, fresc i de qualitat garantida.',
@@ -3873,12 +3867,9 @@
 
       if (!mainImg || !sideCards.length) return;
 
-      function renderSideCards() {
-        var others = PANELS.filter(function (_, i) { return i !== activeIdx; });
+      function initSideCards() {
         sideCards.forEach(function (card, i) {
-          var p = others[i];
-          var idx = PANELS.indexOf(p);
-          card.dataset.panelIdx = idx;
+          var p = PANELS[i];
           card.querySelector('.serveis-side-img').src = p.img;
           card.querySelector('.serveis-side-img').alt = p.cardTitle;
           card.querySelector('.serveis-side-num').textContent = p.num;
@@ -3900,16 +3891,29 @@
         featIcon.innerHTML = ICONS[p.icon];
         featTitle.textContent = p.featTitle;
         featDesc.textContent = p.featDesc;
-        renderSideCards();
+        sideCards.forEach(function (card, i) {
+          card.classList.toggle('is-active', i === idx);
+        });
       }
 
-      sideCards.forEach(function (card) {
+      sideCards.forEach(function (card, i) {
         card.addEventListener('mouseenter', function () {
-          activate(parseInt(card.dataset.panelIdx));
+          activate(i);
         });
       });
 
+      function syncSideHeight() {
+        var mainCard = document.querySelector('.serveis-main-card');
+        var sideCards = document.querySelector('.serveis-side-cards');
+        if (mainCard && sideCards) {
+          sideCards.style.height = mainCard.offsetHeight + 'px';
+        }
+      }
+      window.addEventListener('resize', function () { requestAnimationFrame(syncSideHeight); });
+
+      initSideCards();
       activate(0);
+      requestAnimationFrame(syncSideHeight);
     })();
 
     // Productes — co-carousel (Tim Guignard)
