@@ -154,6 +154,7 @@
       text-transform: uppercase;
       color: var(--green-dk);
       margin-bottom: 1.2rem;
+      animation: fadeUp 0.7s ease-out both;
     }
 
     .hero-title {
@@ -163,6 +164,7 @@
       line-height: 1.05;
       color: #1a1a1a;
       margin-bottom: 1.8rem;
+      animation: fadeUp 0.7s ease-out 0.15s both;
     }
 
     .hero-title em {
@@ -178,6 +180,7 @@
       line-height: 1.75;
       margin-bottom: 2.5rem;
       max-width: 380px;
+      animation: fadeUp 0.7s ease-out 0.3s both;
     }
 
     .hero-cta {
@@ -195,6 +198,7 @@
       padding: 1rem 2rem;
       border-radius: 100px;
       transition: background 0.25s ease, transform 0.25s ease;
+      animation: fadeUp 0.7s ease-out 0.45s both;
     }
 
     .hero-cta:hover {
@@ -260,6 +264,23 @@
         transform: translateY(0);
       }
     }
+
+    /* ─── SCROLL REVEAL ──────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 80ms; }
+    .reveal-delay-2 { transition-delay: 160ms; }
+    .reveal-delay-3 { transition-delay: 240ms; }
+    .reveal-delay-4 { transition-delay: 320ms; }
 
     /* ─── QUI SOM — bg cremós + radial gradients reaprofitats ─── */
 
@@ -1399,6 +1420,11 @@
       mask-image: linear-gradient(to right, transparent 0%, black 38%),
         linear-gradient(to top, transparent 0%, black 32%);
       mask-composite: intersect;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .linia-card:hover .linia-prod-img {
+      transform: translateX(-6px) scale(1.03);
     }
 
     .linia-top {
@@ -2759,17 +2785,17 @@
             </svg>
             L'empresa
           </span>
-          <h2 class="quisom-title">
+          <h2 class="quisom-title reveal">
             Una empresa alimentària<br>nascuda de la<br><em>cuina de sempre.</em>
           </h2>
-          <p class="quisom-lead">
+          <p class="quisom-lead reveal reveal-delay-1">
             Som un obrador industrial d'alta tecnologia que combina <strong>cuina casolana
               professional</strong> i estàndards de seguretat alimentària. Més de 35 varietats
             de plats de cinquena gamma, elaborats amb ingredients de primera selecció.
           </p>
           <div class="quisom-divider"></div>
           <div class="quisom-features">
-            <div class="quisom-feature">
+            <div class="quisom-feature reveal reveal-delay-2">
               <div class="quisom-feature-icon">
                 <!-- Chef hat -->
                 <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"
@@ -2786,7 +2812,7 @@
                 <span>Receptes de sempre elaborades amb el saber fer de la cuina casolana.</span>
               </div>
             </div>
-            <div class="quisom-feature">
+            <div class="quisom-feature reveal reveal-delay-3">
               <div class="quisom-feature-icon">
                 <!-- Shield + check -->
                 <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"
@@ -2800,7 +2826,7 @@
                 <span>Processos certificats i ingredients de primera selecció.</span>
               </div>
             </div>
-            <div class="quisom-feature">
+            <div class="quisom-feature reveal reveal-delay-4">
               <div class="quisom-feature-icon">
                 <!-- Leaf sprout -->
                 <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"
@@ -2825,7 +2851,7 @@
           <div class="quisom-stats">
 
             <!-- 35+ Varietats -->
-            <div class="stat-card">
+            <div class="stat-card reveal">
               <div class="stat-card-top">
                 <div class="stat-icon-wrap">
                   <!-- Cooking pot -->
@@ -2851,7 +2877,7 @@
             </div>
 
             <!-- 18 Dies -->
-            <div class="stat-card">
+            <div class="stat-card reveal reveal-delay-1">
               <div class="stat-card-top">
                 <div class="stat-icon-wrap">
                   <!-- Calendar -->
@@ -2876,7 +2902,7 @@
             </div>
 
             <!-- 100% Artesà -->
-            <div class="stat-card">
+            <div class="stat-card reveal reveal-delay-2">
               <div class="stat-card-top">
                 <div class="stat-icon-wrap">
                   <!-- Medal / rosette -->
@@ -2899,7 +2925,7 @@
             </div>
 
             <!-- 4° Cadena de fred -->
-            <div class="stat-card">
+            <div class="stat-card reveal reveal-delay-3">
               <div class="stat-card-top">
                 <div class="stat-icon-wrap">
                   <!-- Snowflake -->
@@ -2956,7 +2982,7 @@
         </div>
 
         <!-- Àrea de cards -->
-        <div class="serveis-cards">
+        <div class="serveis-cards reveal reveal-delay-1">
 
           <!-- Card principal (activa) -->
           <div class="serveis-main-card">
@@ -3099,7 +3125,7 @@
       <div class="linies-grid">
 
         <!-- Layaya Alimentació -->
-        <article class="linia-card linia-card-verd">
+        <article class="linia-card linia-card-verd reveal">
           <img class="linia-prod-img" src="img/cocina_layaya.webp" alt="Layaya Alimentació" loading="lazy"
             decoding="async">
 
@@ -3162,7 +3188,7 @@
         </article>
 
         <!-- Layaya Botigues -->
-        <article class="linia-card linia-card-daurat">
+        <article class="linia-card linia-card-daurat reveal reveal-delay-2">
           <img class="linia-prod-img" src="img/tiendas_layaya.webp" alt="Layaya Botigues" loading="lazy"
             decoding="async">
 
@@ -3400,7 +3426,7 @@
 
         <div class="qualitat-grid">
 
-          <article class="qualitat-card">
+          <article class="qualitat-card reveal">
             <div class="qualitat-card-body">
               <div class="qualitat-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"
@@ -3419,7 +3445,7 @@
             </div>
           </article>
 
-          <article class="qualitat-card">
+          <article class="qualitat-card reveal reveal-delay-1">
             <div class="qualitat-card-body">
               <div class="qualitat-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"
@@ -3436,7 +3462,7 @@
             </div>
           </article>
 
-          <article class="qualitat-card">
+          <article class="qualitat-card reveal reveal-delay-2">
             <div class="qualitat-card-body">
               <div class="qualitat-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"
@@ -3457,7 +3483,7 @@
             </div>
           </article>
 
-          <article class="qualitat-card">
+          <article class="qualitat-card reveal">
             <div class="qualitat-card-body">
               <div class="qualitat-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"
@@ -3477,7 +3503,7 @@
             </div>
           </article>
 
-          <article class="qualitat-card">
+          <article class="qualitat-card reveal reveal-delay-1">
             <div class="qualitat-card-body">
               <div class="qualitat-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"
@@ -3497,7 +3523,7 @@
             </div>
           </article>
 
-          <article class="qualitat-card">
+          <article class="qualitat-card reveal reveal-delay-2">
             <div class="qualitat-card-body">
               <div class="qualitat-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"
@@ -3881,16 +3907,25 @@
       function activate(idx) {
         activeIdx = idx;
         var p = PANELS[idx];
-        mainImg.src = p.img;
-        mainImg.alt = p.cardTitle;
-        mainNum.textContent = p.num;
-        mainTitle.textContent = p.cardTitle;
-        mainDesc.textContent = p.cardDesc;
-        leftTitle.textContent = p.leftTitle;
-        leftDesc.textContent = p.leftDesc;
-        featIcon.innerHTML = ICONS[p.icon];
-        featTitle.textContent = p.featTitle;
-        featDesc.textContent = p.featDesc;
+        var overlay = document.querySelector('.serveis-main-overlay');
+        mainImg.style.transition = 'opacity 0.35s ease';
+        if (overlay) overlay.style.transition = 'opacity 0.35s ease';
+        mainImg.style.opacity = '0';
+        if (overlay) overlay.style.opacity = '0';
+        setTimeout(function () {
+          mainImg.src = p.img;
+          mainImg.alt = p.cardTitle;
+          mainNum.textContent = p.num;
+          mainTitle.textContent = p.cardTitle;
+          mainDesc.textContent = p.cardDesc;
+          leftTitle.textContent = p.leftTitle;
+          leftDesc.textContent = p.leftDesc;
+          featIcon.innerHTML = ICONS[p.icon];
+          featTitle.textContent = p.featTitle;
+          featDesc.textContent = p.featDesc;
+          mainImg.style.opacity = '1';
+          if (overlay) overlay.style.opacity = '1';
+        }, 180);
         sideCards.forEach(function (card, i) {
           card.classList.toggle('is-active', i === idx);
         });
@@ -4015,6 +4050,21 @@
       }, { threshold: 0.4 });
 
       nums.forEach(function (n) { obs.observe(n); });
+    })();
+
+    // Scroll reveal
+    (function () {
+      var els = document.querySelectorAll('.reveal');
+      if (!els.length) return;
+      var obs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      els.forEach(function (el) { obs.observe(el); });
     })();
 
     // Contacte — submit (placeholder)
