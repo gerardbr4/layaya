@@ -298,6 +298,62 @@
     .reveal-slow.reveal-delay-2 { transition-delay: 300ms; }
     .reveal-slow.reveal-delay-3 { transition-delay: 450ms; }
 
+    /* ─── QUALITAT — spectacular entrance ────────────────────── */
+    .reveal-spectacle-left,
+    .reveal-spectacle-center,
+    .reveal-spectacle-right {
+      opacity: 0;
+      filter: blur(6px);
+    }
+    .reveal-spectacle-left   { transform: translateX(-90px) scale(0.80); }
+    .reveal-spectacle-center { transform: translateY(70px)  scale(0.80); }
+    .reveal-spectacle-right  { transform: translateX(90px)  scale(0.80); }
+
+    /* compound selector (0,2,0) beats .qualitat-card (0,1,0) for transition */
+    .qualitat-card.reveal-spectacle-left,
+    .qualitat-card.reveal-spectacle-center,
+    .qualitat-card.reveal-spectacle-right {
+      transition:
+        opacity    0.75s cubic-bezier(0.22, 1, 0.36, 1),
+        transform  0.75s cubic-bezier(0.34, 1.56, 0.64, 1),
+        filter     0.75s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.35s ease;
+    }
+    /* is-visible: specificity 0,2,0 — .qualitat-card:hover (line below) comes
+       later in the file, so hover still wins on transform */
+    .reveal-spectacle-left.is-visible,
+    .reveal-spectacle-center.is-visible,
+    .reveal-spectacle-right.is-visible {
+      opacity: 1;
+      transform: none;
+      filter: blur(0);
+    }
+    /* stagger delays — 0,3,0 beats the compound transition rule */
+    .qualitat-card.reveal-spectacle-left.qs-d1,
+    .qualitat-card.reveal-spectacle-center.qs-d1,
+    .qualitat-card.reveal-spectacle-right.qs-d1 { transition-delay: 160ms; }
+    .qualitat-card.reveal-spectacle-left.qs-d2,
+    .qualitat-card.reveal-spectacle-center.qs-d2,
+    .qualitat-card.reveal-spectacle-right.qs-d2 { transition-delay: 320ms; }
+    .qualitat-card.reveal-spectacle-left.qs-d3,
+    .qualitat-card.reveal-spectacle-center.qs-d3,
+    .qualitat-card.reveal-spectacle-right.qs-d3 { transition-delay: 480ms; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal-spectacle-left,
+      .reveal-spectacle-center,
+      .reveal-spectacle-right {
+        opacity: 1;
+        filter: none;
+        transform: none;
+      }
+      .qualitat-card.reveal-spectacle-left,
+      .qualitat-card.reveal-spectacle-center,
+      .qualitat-card.reveal-spectacle-right {
+        transition: box-shadow 0.35s ease;
+      }
+    }
+
     /* ─── QUI SOM — bg cremós + radial gradients reaprofitats ─── */
 
     /* ─── SECCIÓ "L'EMPRESA" ─────────────────────────────────── */
@@ -3442,7 +3498,7 @@
 
         <div class="qualitat-grid">
 
-          <article class="qualitat-card reveal-left reveal-slow">
+          <article class="qualitat-card reveal-spectacle-left">
             <div class="qualitat-card-body">
               <div class="qualitat-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"
@@ -3461,7 +3517,7 @@
             </div>
           </article>
 
-          <article class="qualitat-card reveal reveal-slow reveal-delay-1">
+          <article class="qualitat-card reveal-spectacle-center qs-d1">
             <div class="qualitat-card-body">
               <div class="qualitat-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"
@@ -3478,7 +3534,7 @@
             </div>
           </article>
 
-          <article class="qualitat-card reveal-right reveal-slow reveal-delay-2">
+          <article class="qualitat-card reveal-spectacle-right qs-d2">
             <div class="qualitat-card-body">
               <div class="qualitat-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"
@@ -3499,7 +3555,7 @@
             </div>
           </article>
 
-          <article class="qualitat-card reveal-left reveal-slow reveal-delay-1">
+          <article class="qualitat-card reveal-spectacle-left qs-d1">
             <div class="qualitat-card-body">
               <div class="qualitat-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"
@@ -3519,7 +3575,7 @@
             </div>
           </article>
 
-          <article class="qualitat-card reveal reveal-slow reveal-delay-2">
+          <article class="qualitat-card reveal-spectacle-center qs-d2">
             <div class="qualitat-card-body">
               <div class="qualitat-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"
@@ -3539,7 +3595,7 @@
             </div>
           </article>
 
-          <article class="qualitat-card reveal-right reveal-slow reveal-delay-3">
+          <article class="qualitat-card reveal-spectacle-right qs-d3">
             <div class="qualitat-card-body">
               <div class="qualitat-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"
@@ -4070,7 +4126,7 @@
 
     // Scroll reveal
     (function () {
-      var els = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+      var els = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-spectacle-left, .reveal-spectacle-center, .reveal-spectacle-right');
       if (!els.length) return;
       var obs = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
