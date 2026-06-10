@@ -254,6 +254,13 @@
     .hero-cta:hover::before { left: 130%; }
     .hero-cta:hover .hero-cta-arrow { transform: translateX(5px); }
 
+    /* Ken Burns més suau per a mòbil — evita perdre l'enquadrament */
+    @keyframes heroKenBurnsMobile {
+      0%   { transform: scale(1.02) translate3d(0, 0, 0); }
+      50%  { transform: scale(1.06) translate3d(-1%, -0.6%, 0); }
+      100% { transform: scale(1.09) translate3d(-1.5%, -1%, 0); }
+    }
+
     @media (max-width: 860px) {
       .hero-section {
         padding-top: 70px;
@@ -263,6 +270,27 @@
 
       .hero-inner {
         padding: 3rem 1.5rem 2rem;
+      }
+
+      .hero-bg {
+        animation: heroKenBurnsMobile 24s ease-in-out infinite alternate;
+      }
+
+      /* Màscara molt més opaca a mòbil perquè el text sobresurti */
+      .hero-bg-mask {
+        background: linear-gradient(to right,
+            rgba(255, 253, 248, 0.96) 0%,
+            rgba(255, 253, 248, 0.92) 55%,
+            rgba(255, 253, 248, 0.55) 90%,
+            rgba(255, 253, 248, 0.3) 100%);
+      }
+    }
+
+    @media (max-width: 540px) {
+      .hero-bg-mask {
+        background: linear-gradient(to right,
+            rgba(255, 253, 248, 0.97) 0%,
+            rgba(255, 253, 248, 0.95) 100%);
       }
     }
 
@@ -683,6 +711,13 @@
 
     }
 
+    @media (max-width: 480px) {
+      .quisom-stats {
+        grid-template-columns: 1fr;
+        gap: 0.9rem;
+      }
+    }
+
     /* ─── SECCIÓ "QUI SERVIM" ───────────────────────────────── */
 
     .seccio-serveis {
@@ -881,12 +916,6 @@
 
     .serveis-main-veil.is-active { opacity: 1; }
 
-    /* Quan el veil tapa, el text s'amaga; quan s'aixeca, reapareix */
-    .serveis-main-overlay {
-      transition: opacity 0.28s ease;
-    }
-    .serveis-main-card.is-swapping .serveis-main-overlay { opacity: 0; }
-
     .serveis-main-overlay {
       position: absolute;
       inset: 0;
@@ -898,7 +927,11 @@
       flex-direction: column;
       justify-content: flex-end;
       padding: 2rem 2.2rem 2.2rem;
+      transition: opacity 0.28s ease;
     }
+
+    /* Quan el veil tapa, el text s'amaga; quan s'aixeca, reapareix */
+    .serveis-main-card.is-swapping .serveis-main-overlay { opacity: 0; }
 
     .serveis-main-num {
       font-family: 'Sora', sans-serif;
@@ -1203,13 +1236,26 @@
         height: auto;
       }
 
+      /* Card principal full-bleed: trenca el padding lateral de la secció.
+         Override aspect-ratio del desktop perquè ocupi 100% d'amplada. */
       .serveis-main-card {
+        aspect-ratio: auto;
+        width: auto;
         height: 360px;
+        margin-left: -1.5rem;
+        margin-right: -1.5rem;
+        border-radius: 0;
       }
 
       .serveis-side-cards {
         flex-direction: row;
         height: 150px;
+      }
+
+      /* A mòbil, les cards són estretes en fila — limitem el lift perquè no s'encavalquin */
+      .serveis-side-card.is-active {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 22px rgba(15, 25, 10, 0.18);
       }
 
       .serveis-bar {
@@ -1446,6 +1492,8 @@
     @media (max-width: 860px) {
       .nav-pill {
         padding: 0.6rem 1.5rem;
+        flex-wrap: wrap;
+        row-gap: 0.6rem;
       }
 
       .nav-links,
@@ -1454,34 +1502,35 @@
         display: none;
       }
 
-      .nav-hamburger {
-        display: flex;
+      .nav-right {
+        display: none;
       }
 
+      .nav-hamburger {
+        display: flex;
+        margin-left: auto;
+        order: 2;
+      }
+
+      .nav-brand {
+        order: 1;
+      }
+
+      /* Quan el menú està obert, els blocs s'apilen sota la fila top (brand + hamburger) */
       .site-nav.nav-mobile-open .nav-pill {
-        flex-direction: column;
         align-items: stretch;
-        gap: 0.55rem;
         padding-bottom: 1rem;
       }
 
-      .site-nav.nav-mobile-open .nav-brand {
-        justify-content: space-between;
-        width: 100%;
-      }
-
-      .site-nav.nav-mobile-open .nav-links,
-      .site-nav.nav-mobile-open .nav-lang,
-      .site-nav.nav-mobile-open .nav-cta {
-        display: flex;
-      }
-
       .site-nav.nav-mobile-open .nav-links {
+        display: flex;
         flex-direction: column;
+        flex-basis: 100%;
         align-items: stretch;
         padding: 0.4rem 0;
         border-top: 1px solid rgba(0, 0, 0, 0.08);
         border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        order: 3;
       }
 
       .site-nav.nav-mobile-open .nav-cursor {
@@ -1491,6 +1540,26 @@
       .site-nav.nav-mobile-open .nav-links a {
         padding: 0.65rem 0.6rem;
         color: #1a1a1a;
+      }
+
+      /* nav-right wrap a fila pròpia: idiomes a l'esquerra, CTA a la dreta */
+      .site-nav.nav-mobile-open .nav-right {
+        display: flex;
+        flex-direction: row;
+        flex-basis: 100%;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.8rem;
+        order: 4;
+        padding-top: 0.3rem;
+      }
+
+      .site-nav.nav-mobile-open .nav-lang {
+        display: flex;
+      }
+
+      .site-nav.nav-mobile-open .nav-cta {
+        display: inline-flex;
       }
     }
 
@@ -1983,6 +2052,7 @@
     }
 
     .productes-download {
+      position: relative;
       flex-shrink: 0;
       margin: 0 2rem;
       display: inline-flex;
@@ -1999,12 +2069,37 @@
       text-decoration: none;
       padding: 1.1rem 2.5rem;
       border-radius: 100px;
-      transition: background 0.25s ease;
+      overflow: hidden;
+      isolation: isolate;
+      transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
     }
+
+    .productes-download::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -120%;
+      width: 55%;
+      height: 100%;
+      background: linear-gradient(115deg,
+          transparent 0%,
+          rgba(255, 255, 255, 0.35) 50%,
+          transparent 100%);
+      transform: skewX(-18deg);
+      pointer-events: none;
+      z-index: 0;
+      transition: left 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .productes-download > * { position: relative; z-index: 1; }
 
     .productes-download:hover {
       background: var(--green);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
     }
+
+    .productes-download:hover::before { left: 130%; }
 
     .productes-badges {
       display: flex;
@@ -2167,6 +2262,15 @@
       .productes-badges-sep {
         width: 40px;
         height: 1px;
+      }
+    }
+
+    /* Botons del carousel a l'altura del text del producte (mòbil i tablet) */
+    @media (max-width: 768px) {
+      .co-carousel__nav-buttons {
+        top: 78%;
+        transform: translateY(-50%);
+        padding: 0 0.5rem;
       }
     }
 
@@ -2444,6 +2548,24 @@
       .qualitat-grid {
         grid-template-columns: repeat(2, 1fr);
       }
+
+      /* Layout vertical: imatge a sobre amb alçada fixa,
+         text a sota — així totes les imatges es veuen iguals
+         independentment del text */
+      .qualitat-card {
+        grid-template-columns: 1fr;
+        grid-template-rows: 180px auto;
+      }
+
+      .qualitat-card-img {
+        grid-row: 1;
+        height: 180px;
+      }
+
+      .qualitat-card-body {
+        grid-row: 2;
+        padding: 1.5rem 1.4rem 1.6rem;
+      }
     }
 
     @media (max-width: 600px) {
@@ -2455,8 +2577,12 @@
         padding: 5rem 1.3rem;
       }
 
+      .qualitat-card-img {
+        height: 200px;
+      }
+
       .qualitat-card {
-        grid-template-columns: 1fr 120px;
+        grid-template-rows: 200px auto;
       }
     }
 
@@ -2996,11 +3122,12 @@
           <img src="img/logo.webp" alt="Layaya">
         </a>
         <span class="nav-brand-text">Cuina casolana</span>
-        <button class="nav-hamburger" id="nav-hamburger" aria-label="Obrir menú" aria-expanded="false"
-          aria-controls="site-nav">
-          <span></span><span></span><span></span>
-        </button>
       </div>
+
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Obrir menú" aria-expanded="false"
+        aria-controls="site-nav">
+        <span></span><span></span><span></span>
+      </button>
 
       <ul class="nav-links">
         <li><a href="#qui-som">Qui som</a></li>
@@ -4270,9 +4397,14 @@
       function syncSideHeight() {
         var mainCard = document.querySelector('.serveis-main-card');
         var sideCards = document.querySelector('.serveis-side-cards');
-        if (mainCard && sideCards) {
-          sideCards.style.height = mainCard.offsetHeight + 'px';
+        if (!mainCard || !sideCards) return;
+        // Mòbil (≤780px): el CSS controla l'alçada (150px en fila horitzontal),
+        // no la sobreescrivim amb JS o trenquem el layout.
+        if (window.innerWidth <= 780) {
+          sideCards.style.height = '';
+          return;
         }
+        sideCards.style.height = mainCard.offsetHeight + 'px';
       }
       window.addEventListener('resize', function () { requestAnimationFrame(syncSideHeight); });
 
@@ -4305,6 +4437,7 @@
             swiper.params.speed = Math.max(200, Math.min(1000, newSpeed));
           },
           progress: function (swiper) {
+            var hideNeighbors = window.innerWidth <= 640;
             swiper.slides.forEach(function (slide, index) {
               var progress = slide.progress;
               if (progress >= -1 && progress <= 1) {
@@ -4316,7 +4449,10 @@
                 var scale = 1 - progressPositive * 0.2;
                 var opacity = 0.5 - progressPositive * 0.5;
 
-                slide.querySelector('.co-card').style.transform = 'scale(' + scale + ')';
+                // A mòbil mantenim l'escala 1 — només entrada lateral (cap zoom)
+                slide.querySelector('.co-card').style.transform = hideNeighbors
+                  ? 'scale(1)'
+                  : 'scale(' + scale + ')';
 
                 var shoeImg = slide.querySelector('.co-card__media-img');
                 if (shoeImg) shoeImg.style.transform = 'translate3d(' + translateX + 'px,0,0) rotate(' + rotateShoe + 'deg)';
@@ -4329,6 +4465,13 @@
                 slide.querySelectorAll('.text-mask span').forEach(function (t, i) {
                   t.style.transform = 'translate3d(0,' + (textMaskY * (i + 1)) + 'px,0)';
                 });
+              }
+              // Mòbil: fade els slides veïnes segons la distància al slide actiu
+              // (progress 0 = actiu → opacity 1; progress ±1 = veí → opacity 0)
+              if (hideNeighbors) {
+                slide.style.opacity = Math.max(0, 1 - Math.abs(slide.progress)).toFixed(2);
+              } else {
+                slide.style.opacity = '';
               }
             });
           },
