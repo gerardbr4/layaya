@@ -1580,6 +1580,9 @@
       display: flex;
       flex-direction: column;
       min-height: 530px;
+      transition:
+        transform 0.45s cubic-bezier(0.34, 1.4, 0.64, 1),
+        box-shadow 0.45s ease;
     }
 
     .linia-card-verd {
@@ -1587,9 +1590,23 @@
       box-shadow: inset 0 0 0 2.5px rgba(255, 255, 255, 0.95), 0 6px 32px rgba(30, 74, 32, 0.08);
     }
 
+    .linia-card-verd:hover {
+      transform: translateY(-6px);
+      box-shadow:
+        inset 0 0 0 2.5px rgba(255, 255, 255, 0.95),
+        0 22px 50px rgba(30, 74, 32, 0.18);
+    }
+
     .linia-card-daurat {
       background: #FBF3DC;
       box-shadow: inset 0 0 0 2.5px rgba(255, 255, 255, 0.95), 0 6px 32px rgba(200, 160, 20, 0.12);
+    }
+
+    .linia-card-daurat:hover {
+      transform: translateY(-6px);
+      box-shadow:
+        inset 0 0 0 2.5px rgba(255, 255, 255, 0.95),
+        0 22px 50px rgba(200, 160, 20, 0.22);
     }
 
     .linia-prod-img {
@@ -1606,11 +1623,6 @@
       mask-image: linear-gradient(to right, transparent 0%, black 38%),
         linear-gradient(to top, transparent 0%, black 32%);
       mask-composite: intersect;
-      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .linia-card:hover .linia-prod-img {
-      transform: translateX(-6px) scale(1.03);
     }
 
     .linia-top {
