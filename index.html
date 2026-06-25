@@ -128,9 +128,17 @@
     }
 
     @keyframes heroKenBurns {
-      0%   { transform: scale(1.02) translate3d(0, 0, 0); }
-      50%  { transform: scale(1.10) translate3d(-2.2%, -1.4%, 0); }
-      100% { transform: scale(1.16) translate3d(-3.5%, -2%, 0); }
+      0% {
+        transform: scale(1.02) translate3d(0, 0, 0);
+      }
+
+      50% {
+        transform: scale(1.10) translate3d(-2.2%, -1.4%, 0);
+      }
+
+      100% {
+        transform: scale(1.16) translate3d(-3.5%, -2%, 0);
+      }
     }
 
     .hero-bg-mask {
@@ -144,8 +152,13 @@
     }
 
     @keyframes heroMaskBreathe {
-      0%   { opacity: 1; }
-      100% { opacity: 0.86; }
+      0% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0.86;
+      }
     }
 
     .hero-inner {
@@ -238,7 +251,10 @@
       transition: left 0.7s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    .hero-cta > * { position: relative; z-index: 1; }
+    .hero-cta>* {
+      position: relative;
+      z-index: 1;
+    }
 
     .hero-cta-arrow {
       display: inline-block;
@@ -251,14 +267,27 @@
       box-shadow: 0 10px 28px rgba(30, 74, 32, 0.22);
     }
 
-    .hero-cta:hover::before { left: 130%; }
-    .hero-cta:hover .hero-cta-arrow { transform: translateX(5px); }
+    .hero-cta:hover::before {
+      left: 130%;
+    }
+
+    .hero-cta:hover .hero-cta-arrow {
+      transform: translateX(5px);
+    }
 
     /* Ken Burns més suau per a mòbil — evita perdre l'enquadrament */
     @keyframes heroKenBurnsMobile {
-      0%   { transform: scale(1.02) translate3d(0, 0, 0); }
-      50%  { transform: scale(1.06) translate3d(-1%, -0.6%, 0); }
-      100% { transform: scale(1.09) translate3d(-1.5%, -1%, 0); }
+      0% {
+        transform: scale(1.02) translate3d(0, 0, 0);
+      }
+
+      50% {
+        transform: scale(1.06) translate3d(-1%, -0.6%, 0);
+      }
+
+      100% {
+        transform: scale(1.09) translate3d(-1.5%, -1%, 0);
+      }
     }
 
     @media (max-width: 860px) {
@@ -337,9 +366,17 @@
     }
 
     @keyframes pulseHalo {
-      0%   { box-shadow: 0 0 0 0 rgba(122, 186, 120, 0.45); }
-      70%  { box-shadow: 0 0 0 8px rgba(122, 186, 120, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(122, 186, 120, 0); }
+      0% {
+        box-shadow: 0 0 0 0 rgba(122, 186, 120, 0.45);
+      }
+
+      70% {
+        box-shadow: 0 0 0 8px rgba(122, 186, 120, 0);
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 rgba(122, 186, 120, 0);
+      }
     }
 
     @keyframes fadeUp {
@@ -362,9 +399,17 @@
       transition: opacity 0.65s ease-out, transform 0.65s ease-out;
     }
 
-    .reveal         { transform: translateY(22px); }
-    .reveal-left    { transform: translateX(-52px); }
-    .reveal-right   { transform: translateX(52px); }
+    .reveal {
+      transform: translateY(22px);
+    }
+
+    .reveal-left {
+      transform: translateX(-52px);
+    }
+
+    .reveal-right {
+      transform: translateX(52px);
+    }
 
     .reveal.is-visible,
     .reveal-left.is-visible,
@@ -373,19 +418,39 @@
       transform: translate(0);
     }
 
-    .reveal-delay-1 { transition-delay: 80ms; }
-    .reveal-delay-2 { transition-delay: 160ms; }
-    .reveal-delay-3 { transition-delay: 240ms; }
-    .reveal-delay-4 { transition-delay: 320ms; }
+    .reveal-delay-1 {
+      transition-delay: 80ms;
+    }
+
+    .reveal-delay-2 {
+      transition-delay: 160ms;
+    }
+
+    .reveal-delay-3 {
+      transition-delay: 240ms;
+    }
+
+    .reveal-delay-4 {
+      transition-delay: 320ms;
+    }
 
     .reveal-slow,
     .reveal-slow.reveal-left,
     .reveal-slow.reveal-right {
       transition-duration: 1.1s, 1.1s;
     }
-    .reveal-slow.reveal-delay-1 { transition-delay: 150ms; }
-    .reveal-slow.reveal-delay-2 { transition-delay: 300ms; }
-    .reveal-slow.reveal-delay-3 { transition-delay: 450ms; }
+
+    .reveal-slow.reveal-delay-1 {
+      transition-delay: 150ms;
+    }
+
+    .reveal-slow.reveal-delay-2 {
+      transition-delay: 300ms;
+    }
+
+    .reveal-slow.reveal-delay-3 {
+      transition-delay: 450ms;
+    }
 
     /* ─── QUALITAT — spectacular entrance ────────────────────── */
     .reveal-spectacle-left,
@@ -394,20 +459,30 @@
       opacity: 0;
       filter: blur(6px);
     }
-    .reveal-spectacle-left   { transform: translateX(-90px) scale(0.80); }
-    .reveal-spectacle-center { transform: translateY(70px)  scale(0.80); }
-    .reveal-spectacle-right  { transform: translateX(90px)  scale(0.80); }
+
+    .reveal-spectacle-left {
+      transform: translateX(-90px) scale(0.80);
+    }
+
+    .reveal-spectacle-center {
+      transform: translateY(70px) scale(0.80);
+    }
+
+    .reveal-spectacle-right {
+      transform: translateX(90px) scale(0.80);
+    }
 
     /* compound selector (0,2,0) beats .qualitat-card (0,1,0) for transition */
     .qualitat-card.reveal-spectacle-left,
     .qualitat-card.reveal-spectacle-center,
     .qualitat-card.reveal-spectacle-right {
       transition:
-        opacity    0.75s cubic-bezier(0.22, 1, 0.36, 1),
-        transform  0.75s cubic-bezier(0.34, 1.56, 0.64, 1),
-        filter     0.75s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.75s cubic-bezier(0.34, 1.56, 0.64, 1),
+        filter 0.75s cubic-bezier(0.22, 1, 0.36, 1),
         box-shadow 0.35s ease;
     }
+
     /* is-visible: specificity 0,2,0 — .qualitat-card:hover (line below) comes
        later in the file, so hover still wins on transform */
     .reveal-spectacle-left.is-visible,
@@ -417,18 +492,28 @@
       transform: none;
       filter: blur(0);
     }
+
     /* stagger delays — 0,3,0 beats the compound transition rule */
     .qualitat-card.reveal-spectacle-left.qs-d1,
     .qualitat-card.reveal-spectacle-center.qs-d1,
-    .qualitat-card.reveal-spectacle-right.qs-d1 { transition-delay: 160ms; }
+    .qualitat-card.reveal-spectacle-right.qs-d1 {
+      transition-delay: 160ms;
+    }
+
     .qualitat-card.reveal-spectacle-left.qs-d2,
     .qualitat-card.reveal-spectacle-center.qs-d2,
-    .qualitat-card.reveal-spectacle-right.qs-d2 { transition-delay: 320ms; }
+    .qualitat-card.reveal-spectacle-right.qs-d2 {
+      transition-delay: 320ms;
+    }
+
     .qualitat-card.reveal-spectacle-left.qs-d3,
     .qualitat-card.reveal-spectacle-center.qs-d3,
-    .qualitat-card.reveal-spectacle-right.qs-d3 { transition-delay: 480ms; }
+    .qualitat-card.reveal-spectacle-right.qs-d3 {
+      transition-delay: 480ms;
+    }
 
     @media (prefers-reduced-motion: reduce) {
+
       .reveal-spectacle-left,
       .reveal-spectacle-center,
       .reveal-spectacle-right {
@@ -436,6 +521,7 @@
         filter: none;
         transform: none;
       }
+
       .qualitat-card.reveal-spectacle-left,
       .qualitat-card.reveal-spectacle-center,
       .qualitat-card.reveal-spectacle-right {
@@ -864,7 +950,10 @@
       transition: left 0.7s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    .serveis-cta > * { position: relative; z-index: 1; }
+    .serveis-cta>* {
+      position: relative;
+      z-index: 1;
+    }
 
     .serveis-cta:hover {
       background: var(--green);
@@ -872,7 +961,9 @@
       box-shadow: 0 8px 22px rgba(30, 74, 32, 0.20);
     }
 
-    .serveis-cta:hover::before { left: 130%; }
+    .serveis-cta:hover::before {
+      left: 130%;
+    }
 
     /* Àrea de cards */
     .serveis-cards {
@@ -914,7 +1005,9 @@
       transition: opacity 0.28s ease;
     }
 
-    .serveis-main-veil.is-active { opacity: 1; }
+    .serveis-main-veil.is-active {
+      opacity: 1;
+    }
 
     .serveis-main-overlay {
       position: absolute;
@@ -931,7 +1024,9 @@
     }
 
     /* Quan el veil tapa, el text s'amaga; quan s'aixeca, reapareix */
-    .serveis-main-card.is-swapping .serveis-main-overlay { opacity: 0; }
+    .serveis-main-card.is-swapping .serveis-main-overlay {
+      opacity: 0;
+    }
 
     .serveis-main-num {
       font-family: 'Sora', sans-serif;
@@ -1100,9 +1195,9 @@
 
     .serveis-side-card.is-active .serveis-side-overlay {
       background: linear-gradient(to top,
-        rgba(15, 25, 10, 0.55) 0%,
-        rgba(15, 25, 10, 0.05) 60%,
-        transparent 100%);
+          rgba(15, 25, 10, 0.55) 0%,
+          rgba(15, 25, 10, 0.05) 60%,
+          transparent 100%);
     }
 
     .serveis-side-card:not(.is-active) {
@@ -1111,17 +1206,17 @@
 
     .serveis-side-card:not(.is-active) .serveis-side-overlay {
       background: linear-gradient(to top,
-        rgba(15, 25, 10, 0.82) 0%,
-        rgba(15, 25, 10, 0.45) 60%,
-        rgba(15, 25, 10, 0.25) 100%);
+          rgba(15, 25, 10, 0.82) 0%,
+          rgba(15, 25, 10, 0.45) 60%,
+          rgba(15, 25, 10, 0.25) 100%);
       transition: background 0.3s ease;
     }
 
     .serveis-side-card:not(.is-active):hover .serveis-side-overlay {
       background: linear-gradient(to top,
-        rgba(15, 25, 10, 0.65) 0%,
-        rgba(15, 25, 10, 0.2) 60%,
-        rgba(15, 25, 10, 0.08) 100%);
+          rgba(15, 25, 10, 0.65) 0%,
+          rgba(15, 25, 10, 0.2) 60%,
+          rgba(15, 25, 10, 0.08) 100%);
     }
 
     .serveis-side-card.is-active::before {
@@ -2091,7 +2186,10 @@
       transition: left 0.8s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    .productes-download > * { position: relative; z-index: 1; }
+    .productes-download>* {
+      position: relative;
+      z-index: 1;
+    }
 
     .productes-download:hover {
       background: var(--green);
@@ -2099,7 +2197,9 @@
       box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
     }
 
-    .productes-download:hover::before { left: 130%; }
+    .productes-download:hover::before {
+      left: 130%;
+    }
 
     .productes-badges {
       display: flex;
@@ -2401,8 +2501,7 @@
       inset: 0;
       pointer-events: none;
       border-radius: inherit;
-      background: radial-gradient(
-          340px circle at var(--mx) var(--my),
+      background: radial-gradient(340px circle at var(--mx) var(--my),
           rgba(122, 186, 120, 0.18) 0%,
           rgba(122, 186, 120, 0.08) 35%,
           transparent 70%);
@@ -2411,7 +2510,10 @@
       z-index: 1;
     }
 
-    .qualitat-card > * { position: relative; z-index: 2; }
+    .qualitat-card>* {
+      position: relative;
+      z-index: 2;
+    }
 
     .qualitat-card:hover {
       transform: translateY(-4px);
@@ -2419,7 +2521,9 @@
       border-color: rgba(122, 186, 120, 0.28);
     }
 
-    .qualitat-card:hover::before { opacity: 1; }
+    .qualitat-card:hover::before {
+      opacity: 1;
+    }
 
     .qualitat-card .qualitat-card-img img {
       transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
@@ -2431,7 +2535,7 @@
 
     .qualitat-card .qualitat-icon {
       transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
-                  background-color 0.4s ease;
+        background-color 0.4s ease;
     }
 
     .qualitat-card:hover .qualitat-icon {
@@ -2909,7 +3013,10 @@
       transition: left 0.8s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    .form-submit > * { position: relative; z-index: 1; }
+    .form-submit>* {
+      position: relative;
+      z-index: 1;
+    }
 
     .form-submit:hover {
       background: var(--green);
@@ -2917,7 +3024,9 @@
       box-shadow: 0 10px 24px rgba(30, 74, 32, 0.20);
     }
 
-    .form-submit:hover::before { left: 130%; }
+    .form-submit:hover::before {
+      left: 130%;
+    }
 
     .form-footer {
       display: flex;
@@ -2945,11 +3054,27 @@
         grid-template-columns: 1fr;
         gap: 3rem;
       }
+
+      /* En tablet/mòbil el grid és d'una columna: el gradient passa a vertical */
+      .contacte-bg-mask {
+        background: linear-gradient(to bottom,
+            rgba(255, 253, 248, 0.96) 0%,
+            rgba(255, 253, 248, 0.93) 55%,
+            rgba(255, 253, 248, 0.60) 88%,
+            rgba(255, 253, 248, 0.30) 100%);
+      }
     }
 
     @media (max-width: 640px) {
       .seccio-contacte {
         padding: 5rem 1.5rem;
+      }
+
+      /* Mòbil petit: gairebé opac per garantir llegibilitat */
+      .contacte-bg-mask {
+        background: linear-gradient(to bottom,
+            rgba(255, 253, 248, 0.97) 0%,
+            rgba(255, 253, 248, 0.95) 100%);
       }
 
       .contacte-cards {
@@ -3160,7 +3285,8 @@
           <h1 class="hero-title">Cuina de mercat amb<br>el sabor <em>casolà de<br>sempre.</em></h1>
           <p class="hero-lead">Receptes tradicionals elaborades cada dia amb ingredients de primera selecció, per a
             col·lectivitats, comerç i hostaleria.</p>
-          <a class="hero-cta" href="#que-fem"><span>Descobreix la nostra cuina</span> <span class="hero-cta-arrow" aria-hidden="true">→</span></a>
+          <a class="hero-cta" href="#que-fem"><span>Descobreix la nostra cuina</span> <span class="hero-cta-arrow"
+              aria-hidden="true">→</span></a>
         </div>
       </div>
     </section>
@@ -3184,7 +3310,7 @@
             Una empresa alimentària<br>nascuda de la<br><em>cuina de sempre.</em>
           </h2>
           <p class="quisom-lead reveal reveal-delay-1">
-            Som un obrador industrial d'alta tecnologia que combina <strong>cuina casolana
+            Som un obrador industrial que combina <strong>cuina casolana
               professional</strong> i estàndards de seguretat alimentària. Més de 35 varietats
             de plats de cinquena gamma, elaborats amb ingredients de primera selecció.
           </p>
@@ -3287,7 +3413,8 @@
                 </div>
                 <div class="stat-card-meta">
                   <div class="stat-num-row">
-                    <span class="stat-num" data-count="18">0</span><span class="stat-sep">-</span><span class="stat-num" data-count="24">0</span>
+                    <span class="stat-num" data-count="18">0</span><span class="stat-sep">-</span><span class="stat-num"
+                      data-count="24">0</span>
                   </div>
                   <div class="stat-label-title">Dies de vida útil</div>
                 </div>
@@ -3335,7 +3462,8 @@
                 </div>
                 <div class="stat-card-meta">
                   <div class="stat-num-row">
-                    <span class="stat-num" data-count="2">0</span><span class="stat-sep">-</span><span class="stat-num" data-count="4">0</span><span class="stat-suffix">°</span>
+                    <span class="stat-num" data-count="2">0</span><span class="stat-sep">-</span><span class="stat-num"
+                      data-count="4">0</span><span class="stat-suffix">°</span>
                   </div>
                   <div class="stat-label-title">Cadena de fred</div>
                 </div>
@@ -3346,7 +3474,7 @@
 
           </div>
 
-          </div>
+        </div>
 
       </div>
     </section>
@@ -3832,7 +3960,7 @@
                 </svg>
               </div>
               <h3 class="qualitat-name">Selecció de matèries primeres</h3>
-              <p class="qualitat-desc">Proveïdors de proximitat verificats. Recepció controlada, traçabilitat completa.
+              <p class="qualitat-desc">Proveïdors verificats. Recepció controlada, traçabilitat completa.
               </p>
             </div>
             <div class="qualitat-card-img">
@@ -3870,8 +3998,7 @@
                 </svg>
               </div>
               <h3 class="qualitat-name">Cuina d'avantguarda</h3>
-              <p class="qualitat-desc">Cocció a baixa temperatura, fons elaborats al mateix obrador, salses fetes en
-                directe.</p>
+              <p class="qualitat-desc">Cocció a baixa temperatura i fons elaborats al mateix obrador.</p>
             </div>
             <div class="qualitat-card-img">
               <img src="img/qualitat_03.webp" alt="Cuina d'avantguarda" loading="lazy" decoding="async">
@@ -4380,7 +4507,7 @@
 
         if (preloader.decode) {
           preloader.decode().then(function () { imgReady = true; maybeSwap(); })
-                            .catch(function () { imgReady = true; maybeSwap(); });
+            .catch(function () { imgReady = true; maybeSwap(); });
         } else {
           preloader.onload = function () { imgReady = true; maybeSwap(); };
           preloader.onerror = function () { imgReady = true; maybeSwap(); };
