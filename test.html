@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Layaya - Test de Productes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    .controls {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .controls select, .controls button {
+      padding: 10px 15px;
+      margin-right: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .controls button {
+      background: #007bff;
+      color: white;
+      border: none;
+    }
+    .controls button:hover {
+      background: #0056b3;
+    }
+    .products {
+      display: grid;
+      gap: 20px;
+    }
+    .product {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      border-left: 4px solid #007bff;
+    }
+    .product h3 {
+      margin: 0 0 10px 0;
+      color: #333;
+    }
+    .product-ref {
+      color: #999;
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+    .product-color {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+      border: 1px solid #ddd;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+    .product-category {
+      display: inline-block;
+      background: #e9ecef;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      margin-right: 10px;
+    }
+    .product-description {
+      color: #666;
+      margin: 10px 0;
+      line-height: 1.5;
+    }
+    .product-allergens {
+      background: #fff3cd;
+      padding: 10px;
+      border-radius: 4px;
+      margin-top: 10px;
+      font-size: 12px;
+      color: #856404;
+    }
+    .loading {
+      text-align: center;
+      padding: 40px;
+      color: #999;
+    }
+    .error {
+      background: #f8d7da;
+      color: #721c24;
+      padding: 15px;
+      border-radius: 4px;
+      margin-bottom: 20px;
+    }
+    .empty {
+      text-align: center;
+      padding: 40px;
+      color: #999;
+    }
+  </style>
+</head>
+<body>
+  <h1>🍽️ Layaya - Test de Productes</h1>
+
+  <div class="controls">
+    <label for="language">Idioma:</label>
+    <select id="language">
+      <option value="ca">Català</option>
+      <option value="es">Español</option>
+      <option value="en">English</option>
+      <option value="fr">Français</option>
+    </select>
+
+    <label for="category">Categoria:</label>
+    <select id="category">
+      <option value="">Totes</option>
+      <option value="pasta-arros">Pasta i arròs</option>
+      <option value="peix">Peix</option>
+      <option value="verdures">Verdures</option>
+      <option value="carns">Carns</option>
+      <option value="rostits">Rostits</option>
+      <option value="horeca">Horeca</option>
+    </select>
+
+    <button onclick="loadProducts()">Carregar</button>
+    <button onclick="loadCategories()">Carregar Categories</button>
+  </div>
+
+  <div id="error"></div>
+  <div id="loading" class="loading" style="display:none;">Carregant...</div>
+  <div id="products" class="products"></div>
+
+  <script>
+    const API_BASE = window.location.origin + '/api';
+
+    function getLanguage() {
+      return document.getElementById('language').value;
+    }
+
+    function getCategory() {
+      return document.getElementById('category').value;
+    }
+
+    async function loadProducts() {
+      const language = getLanguage();
+      const category = getCategory();
+      const errorDiv = document.getElementById('error');
+      const loadingDiv = document.getElementById('loading');
+      const productsDiv = document.getElementById('products');
+
+      errorDiv.innerHTML = '';
+      loadingDiv.style.display = 'block';
+      productsDiv.innerHTML = '';
+
+      try {
+        let url = `${API_BASE}/products?language=${language}`;
+        if (category) {
+          url += `&category=${category}`;
+        }
+
+        const response = await fetch(url);
+        const result = await response.json();
+
+        loadingDiv.style.display = 'none';
+
+        if (!result.success) {
+          errorDiv.innerHTML = `<div class="error">Error: ${result.error}</div>`;
+          return;
+        }
+
+        if (!result.data || result.data.length === 0) {
+          productsDiv.innerHTML = '<div class="empty">No hi ha productes</div>';
+          return;
+        }
+
+        let html = '';
+        result.data.forEach(product => {
+          html += `
+            <div class="product">
+              <div class="product-ref">REF: ${product.reference}</div>
+              <h3>${product.name}</h3>
+              <div>
+                <span class="product-color" style="background-color: ${product.color}"></span>
+                <span class="product-category">${product.category_name}</span>
+              </div>
+              <div class="product-description">${product.description}</div>
+              ${product.allergens ? `<div class="product-allergens">⚠️ Al·lèrgens: ${product.allergens}</div>` : ''}
+            </div>
+          `;
+        });
+
+        productsDiv.innerHTML = html;
+      } catch (error) {
+        loadingDiv.style.display = 'none';
+        errorDiv.innerHTML = `<div class="error">Error de connexió: ${error.message}</div>`;
+      }
+    }
+
+    async function loadCategories() {
+      const language = getLanguage();
+      const errorDiv = document.getElementById('error');
+
+      errorDiv.innerHTML = '';
+
+      try {
+        const response = await fetch(`${API_BASE}/categories?language=${language}`);
+        const result = await response.json();
+
+        if (!result.success) {
+          errorDiv.innerHTML = `<div class="error">Error: ${result.error}</div>`;
+          return;
+        }
+
+        let html = '<h3>Categories:</h3>';
+        result.data.forEach(cat => {
+          html += `<p>${cat.name} (${cat.product_count} productes)</p>`;
+        });
+
+        errorDiv.innerHTML = html;
+      } catch (error) {
+        errorDiv.innerHTML = `<div class="error">Error de connexió: ${error.message}</div>`;
+      }
+    }
+
+    // Carregar productes quan canvia l'idioma o categoria
+    document.getElementById('language').addEventListener('change', loadProducts);
+    document.getElementById('category').addEventListener('change', loadProducts);
+
+    // Carregar productes al principi
+    window.addEventListener('load', loadProducts);
+  </script>
+</body>
+</html>
