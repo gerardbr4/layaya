@@ -1,0 +1,17 @@
+name = "layaya"
+compatibility_date = "2024-01-01"
+pages_build_output_dir = "."
+
+[env.production]
+vars = { ENVIRONMENT = "production" }
+[[env.production.d1_databases]]
+binding = "DB"
+database_name = "layaya_db"
+database_id = "36097ac8-b375-46e3-939b-806ff52de0d6"
+
+[env.preview]
+vars = { ENVIRONMENT = "preview" }
+[[env.preview.d1_databases]]
+binding = "DB"
+database_name = "layaya_db"
+database_id = "36097ac8-b375-46e3-939b-806ff52de0d6"

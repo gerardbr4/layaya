@@ -2,3 +2,5 @@
 briefing/
 sitemap.md
 img_originals/
+node_modules/
+.wrangler/
