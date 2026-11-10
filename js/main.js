@@ -182,13 +182,18 @@ var T = {
     card.addEventListener('mouseenter', function () {
       activate(i);
     });
+    card.addEventListener('click', function () {
+      activate(i);
+    });
   });
 
   function syncSideHeight() {
     var mainCard = document.querySelector('.serveis-main-card');
     var sideCards = document.querySelector('.serveis-side-cards');
     if (mainCard && sideCards) {
-      sideCards.style.height = mainCard.offsetHeight + 'px';
+      sideCards.style.height = window.matchMedia('(max-width: 780px)').matches
+        ? ''
+        : mainCard.offsetHeight + 'px';
     }
   }
   window.addEventListener('resize', function () { requestAnimationFrame(syncSideHeight); });

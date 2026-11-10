@@ -547,10 +547,39 @@ body::after {
   }
 
   .quisom-inner {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 3rem;
   }
 
+}
+
+/* Mòbil: les targetes de xifres han de cabre en dues columnes sense desbordar */
+@media (max-width: 480px) {
+  .quisom-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.8rem;
+  }
+
+  .stat-card {
+    padding: 1.2rem 1rem;
+  }
+
+  .stat-card-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+
+  .stat-icon-wrap {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+  }
+
+  .stat-icon-wrap svg {
+    width: 40px;
+    height: 40px;
+  }
 }
 
 /* ─── SECCIÓ "QUI SERVIM" ───────────────────────────────── */
@@ -747,39 +776,9 @@ body::after {
   font-weight: 300;
   color: rgba(255, 255, 255, 0.8);
   line-height: 1.65;
-  margin-bottom: 1.3rem;
+  margin-bottom: 0;
   max-width: 400px;
   transition: opacity 0.35s ease;
-}
-
-.serveis-main-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  color: #fff;
-  text-decoration: none;
-  font-family: 'Sora', sans-serif;
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-}
-
-.serveis-main-link-circle {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  border: 1.5px solid rgba(255, 255, 255, 0.55);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.9rem;
-  transition: background 0.2s ease, border-color 0.2s ease;
-}
-
-.serveis-main-link:hover .serveis-main-link-circle {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: #fff;
 }
 
 /* Cards laterals */
@@ -891,6 +890,21 @@ body::after {
 
 .serveis-side-card:not(.is-active) {
   cursor: pointer;
+}
+
+.serveis-side-img,
+.serveis-side-icon,
+.serveis-side-content {
+  transition: filter 0.3s ease, opacity 0.3s ease, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.serveis-side-card:not(.is-active) .serveis-side-img {
+  filter: grayscale(0.7) brightness(0.8);
+}
+
+.serveis-side-card:not(.is-active) .serveis-side-icon,
+.serveis-side-card:not(.is-active) .serveis-side-content {
+  opacity: 0.6;
 }
 
 .serveis-side-card:not(.is-active) .serveis-side-overlay {
@@ -1022,11 +1036,14 @@ body::after {
 
   .serveis-main-card {
     height: 360px;
+    aspect-ratio: auto;
   }
 
   .serveis-side-cards {
-    flex-direction: row;
-    height: 150px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: 150px;
+    height: auto;
   }
 
   .serveis-bar {
