@@ -2,8 +2,16 @@
 var LANG = document.documentElement.lang === 'es' ? 'es' : 'ca';
 var BASE = document.documentElement.getAttribute('data-base') || '';
 var T = {
-  ca: { menuOpen: 'Obrir menú', menuClose: 'Tancar menú', thanks: 'Gràcies! Missatge enviat', sending: 'Enviant…', error: "No s'ha pogut enviar. Torna-ho a provar." },
-  es: { menuOpen: 'Abrir menú', menuClose: 'Cerrar menú', thanks: '¡Gracias! Mensaje enviado', sending: 'Enviando…', error: 'No se ha podido enviar. Inténtalo de nuevo.' },
+  ca: {
+    menuOpen: 'Obrir menú', menuClose: 'Tancar menú', sending: 'Enviant…',
+    okTitle: 'Missatge enviat', okText: "El seu missatge s'ha enviat amb èxit.", okBtn: "D'acord",
+    errTitle: "No s'ha pogut enviar", errText: "Hi ha hagut un error en enviar el missatge. Torni-ho a provar d'aquí a uns minuts.", errBtn: 'Tancar',
+  },
+  es: {
+    menuOpen: 'Abrir menú', menuClose: 'Cerrar menú', sending: 'Enviando…',
+    okTitle: 'Mensaje enviado', okText: 'Su mensaje se ha enviado con éxito.', okBtn: 'Aceptar',
+    errTitle: 'No se ha podido enviar', errText: 'Se ha producido un error al enviar su mensaje. Inténtelo de nuevo en unos minutos.', errBtn: 'Cerrar',
+  },
 }[LANG];
 
 // Navegació: scroll → fons sòlid + hamburger mòbil
@@ -315,13 +323,36 @@ var T = {
   const original = btn.innerHTML;
   let busy = false;
 
-  function restore(delay) {
-    setTimeout(function () {
-      btn.innerHTML = original;
-      btn.style.background = '';
-      btn.disabled = false;
-      busy = false;
-    }, delay);
+  // Pop-up de resultat (es crea un sol cop)
+  const ICON_OK = '<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>';
+  const ICON_ERR = '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
+  const dlg = document.createElement('dialog');
+  dlg.className = 'form-modal';
+  dlg.setAttribute('aria-labelledby', 'form-modal-title');
+  dlg.innerHTML =
+    '<h3 class="form-modal-title" id="form-modal-title"></h3>' +
+    '<p class="form-modal-text"></p>' +
+    '<button type="button" class="form-modal-btn"></button>';
+  document.body.appendChild(dlg);
+  const dlgBtn = dlg.querySelector('.form-modal-btn');
+  dlgBtn.addEventListener('click', function () { dlg.close(); });
+  dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
+
+  function showModal(ok) {
+    dlg.classList.toggle('is-error', !ok);
+    dlg.querySelector('.form-modal-title').textContent = ok ? T.okTitle : T.errTitle;
+    dlg.querySelector('.form-modal-text').textContent = ok ? T.okText : T.errText;
+    dlgBtn.innerHTML = ok ? ICON_OK : ICON_ERR;
+    dlgBtn.setAttribute('aria-label', ok ? T.okBtn : T.errBtn);
+    if (typeof dlg.showModal === 'function') dlg.showModal();
+    else alert((ok ? T.okTitle : T.errTitle) + ' ' + (ok ? T.okText : T.errText));
+    dlgBtn.focus();
+  }
+
+  function restore() {
+    btn.innerHTML = original;
+    btn.disabled = false;
+    busy = false;
   }
 
   form.addEventListener('submit', function (e) {
@@ -339,16 +370,9 @@ var T = {
       .then(function (res) { return res.json().catch(function () { return {}; }).then(function (j) { return res.ok && j.ok; }); })
       .catch(function () { return false; })
       .then(function (ok) {
-        if (ok) {
-          btn.innerHTML = T.thanks;
-          btn.style.background = 'var(--green-dk)';
-          form.reset();
-          restore(3000);
-        } else {
-          btn.innerHTML = T.error;
-          btn.style.background = '#b4442f';
-          restore(4000);
-        }
+        if (ok) form.reset();
+        restore();
+        showModal(ok);
       });
   });
 })();

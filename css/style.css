@@ -2517,6 +2517,97 @@ body::after {
   overflow: hidden;
 }
 
+/* Pop-up de resultat del formulari */
+.form-modal {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  height: fit-content;
+  border: none;
+  border-radius: 24px;
+  padding: 2.4rem 2.2rem 2rem;
+  width: min(420px, calc(100vw - 32px));
+  background: var(--bg);
+  color: var(--text-dark);
+  text-align: center;
+  box-shadow: 0 24px 60px rgba(30, 74, 32, 0.22);
+}
+
+.form-modal[open] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9rem;
+  animation: formModalIn 0.28s ease;
+}
+
+.form-modal::backdrop {
+  background: rgba(30, 40, 25, 0.45);
+  backdrop-filter: blur(3px);
+}
+
+.form-modal-title {
+  font-family: 'Fraunces', serif;
+  font-size: 1.7rem;
+  font-weight: 600;
+  line-height: 1.15;
+  margin: 0;
+  color: var(--green-xxdk);
+}
+
+.form-modal.is-error .form-modal-title {
+  color: #8f3b2c;
+}
+
+.form-modal-text {
+  font-family: 'Sora', sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 0 0 0.6rem;
+}
+
+.form-modal-btn {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: none;
+  background: var(--green-dk);
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.form-modal-btn:hover {
+  background: var(--green-xxdk);
+  transform: scale(1.05);
+}
+
+.form-modal-btn:focus-visible {
+  outline: 3px solid var(--green-lt);
+  outline-offset: 3px;
+}
+
+.form-modal.is-error .form-modal-btn {
+  background: var(--coral);
+}
+
+.form-modal.is-error .form-modal-btn:hover {
+  background: #b85c5c;
+}
+
+@keyframes formModalIn {
+  from { opacity: 0; transform: translateY(12px) scale(0.97); }
+  to   { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .form-modal[open] { animation: none; }
+}
+
 .form-submit {
   width: 100%;
   font-family: 'Sora', sans-serif;
