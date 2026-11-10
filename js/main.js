@@ -2,8 +2,8 @@
 var LANG = document.documentElement.lang === 'es' ? 'es' : 'ca';
 var BASE = document.documentElement.getAttribute('data-base') || '';
 var T = {
-  ca: { menuOpen: 'Obrir menú', menuClose: 'Tancar menú', thanks: 'Gràcies!' },
-  es: { menuOpen: 'Abrir menú', menuClose: 'Cerrar menú', thanks: '¡Gracias!' },
+  ca: { menuOpen: 'Obrir menú', menuClose: 'Tancar menú', thanks: 'Gràcies! Missatge enviat', sending: 'Enviant…', error: "No s'ha pogut enviar. Torna-ho a provar." },
+  es: { menuOpen: 'Abrir menú', menuClose: 'Cerrar menú', thanks: '¡Gracias! Mensaje enviado', sending: 'Enviando…', error: 'No se ha podido enviar. Inténtalo de nuevo.' },
 }[LANG];
 
 // Navegació: scroll → fons sòlid + hamburger mòbil
@@ -306,21 +306,49 @@ var T = {
   els.forEach(function (el) { obs.observe(el); });
 })();
 
-// Contacte — submit (placeholder)
+// Contacte — envia el formulari a /api/contact (Pages Function → correu)
 (function () {
   const form = document.getElementById('contacte-form');
   if (!form) return;
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    const btn = form.querySelector('.form-submit');
-    if (!btn) return;
-    const original = btn.innerHTML;
-    btn.innerHTML = T.thanks;
-    btn.style.background = 'var(--green-dk)';
+  const btn = form.querySelector('.form-submit');
+  if (!btn) return;
+  const original = btn.innerHTML;
+  let busy = false;
+
+  function restore(delay) {
     setTimeout(function () {
       btn.innerHTML = original;
       btn.style.background = '';
-      form.reset();
-    }, 2400);
+      btn.disabled = false;
+      busy = false;
+    }, delay);
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (busy) return;
+    if (!form.reportValidity()) return;
+    busy = true;
+    btn.disabled = true;
+    btn.innerHTML = T.sending;
+
+    const data = new FormData(form);
+    data.append('lang', LANG);
+
+    fetch('/api/contact', { method: 'POST', body: data })
+      .then(function (res) { return res.json().catch(function () { return {}; }).then(function (j) { return res.ok && j.ok; }); })
+      .catch(function () { return false; })
+      .then(function (ok) {
+        if (ok) {
+          btn.innerHTML = T.thanks;
+          btn.style.background = 'var(--green-dk)';
+          form.reset();
+          restore(3000);
+        } else {
+          btn.innerHTML = T.error;
+          btn.style.background = '#b4442f';
+          restore(4000);
+        }
+      });
   });
 })();
